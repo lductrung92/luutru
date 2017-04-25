@@ -1,0 +1,88 @@
+<p>Như c&aacute;c bạn đ&atilde; biết PHP đ&atilde; đạt được sự c&ocirc;ng nhận rộng r&atilde;i v&agrave; đ&atilde; trở th&agrave;nh ng&ocirc;n ngữ lập tr&igrave;nh đa năng nhất th&ecirc; giới. PHP l&agrave; ng&ocirc;n ngữ m&atilde; nguồn mở, dể học v&agrave; được sử dụng rộng r&atilde;i cho việc ph&aacute;t triển web. N&oacute; đ&atilde; v&agrave; đang trở th&agrave;nh sự lựa chọn h&agrave;ng đầu của c&aacute;c lập tr&igrave;nh vi&ecirc;n.</p>
+
+<p>Tuy nhi&ecirc;n, để ph&aacute;t triển 1 ứng dụng web th&igrave; việc d&ugrave;ng code thuần để viết quả thật rất kh&oacute; khăn, chưa kể đến việc bảo tr&igrave; n&acirc;ng cấp hay vấn đề bảo mật. Ch&iacute;nh v&igrave; l&yacute; do đ&oacute;, PHP framework lần lượt ra đời nhằm hổ trợ cho c&aacute;c lập tr&igrave;nh vi&ecirc;n ph&aacute;t triển ứng dụng 1 c&aacute;ch nhanh ch&oacute;ng.</p>
+
+<p>C&oacute; rất nhiều framework PHP cho bạn lựa chọn như: CakePHP, Zend, Symfony, Yii, Laravel, ...</p>
+
+<p>H&ocirc;m nay m&igrave;nh sẽ giới thiệu đến c&aacute;c bạn 1 trong những nền tảng đ&oacute;: Laravel framework - được ph&aacute;t triển bởi <a href="https://medium.com/@taylorotwell" target="_blank">Taylor Otwell</a>.</p>
+
+<h3><strong>V&igrave; sao lại l&agrave; Laravel framework?</strong></h3>
+
+<p style="text-"><img alt="" src="http://laptrinh.laedaily.com/laravel-filemanager/photos/1/laravel/bai1/1.png"/></p>
+
+<p><img alt="" src="http://laptrinh.laedaily.com/laravel-filemanager/photos/1/laravel/bai1/2.png"/></p>
+
+<p>Theo biểu đồ xu hướng t&igrave;m kiếm của Google, Laravel l&agrave; framework PHP phổ biến nhất trong số c&aacute;c nh&agrave; ph&aacute;t triển PHP. Đ&acirc;y l&agrave; một khu&ocirc;n khổ ứng dụng web kh&aacute; mới nhưng tuyệt vời với c&uacute; ph&aacute;p đơn giản v&agrave; để hiểu nhằm gi&uacute;p cho việc ph&aacute;t triển web trở n&ecirc;n dễ d&agrave;ng v&agrave; nhanh ch&oacute;ng.</p>
+
+<p>Laravel l&agrave; 1 framework kh&aacute; mới. Với c&aacute;c ưu điểm vượt trội như: thừa hưởng ưu điểm v&agrave; thế mạnh từ những framework đi trước, cộng đồng sử dụng lớn, sử dụng ORM để thao t&aacute;c với database t&iacute;ch hợp composer l&agrave;m c&ocirc;ng cụ quản l&yacute;, sử dụng blade template engine&hellip;</p>
+
+<p>Phi&ecirc;n bản đầu ti&ecirc;n được ph&aacute;t h&agrave;nh v&agrave;o th&aacute;ng 5/2011. Từ đ&oacute; đến nay đ&atilde; trải qua nhiều lần update. Phi&ecirc;n bản mới nhất t&iacute;nh đến thời điểm n&agrave;y l&agrave; 5.4.</p>
+
+<p><strong>1. C&agrave;i đặt Laravel: </strong></p>
+
+<p>- Y&ecirc;u cầu hệ thống:</p>
+
+<ul>
+	<li>PHP &gt;= 5.6.4 OpenSSL</li>
+	<li>PHP Extension PDO</li>
+	<li>PHP Extension Mbstring</li>
+	<li>PHP Extension Tokenizer</li>
+	<li>PHP Extension XML</li>
+	<li>PHP Extension</li>
+</ul>
+
+<p><strong>2. C&agrave;i đặt xampp:</strong></p>
+
+<p>C&aacute;c bạn c&oacute; thể download xampp tại: <a href="https://www.apachefriends.org/download.html" target="_blank">https://www.apachefriends.org/download.html</a> . C&aacute;c bạn cứ install b&igrave;nh thường như c&aacute;c phần mềm kh&aacute;c.</p>
+
+<p><strong>3. C&agrave;i đặt composer: </strong></p>
+
+<p>C&aacute;c bạn c&oacute; thể download composer tại: <a href="https://getcomposer.org/Composer-Setup.exe" target="_blank">https://getcomposer.org/Composer-Setup.exe</a>&nbsp;.C&aacute;c bạn cứ install b&igrave;nh thường như c&aacute;c phần mềm kh&aacute;c.</p>
+
+<p><em>Ngo&agrave;i ra bạn cần khai b&aacute;o</em> PATH = C:\Users\\AppData\Roaming\Composer</p>
+
+<p><strong>4. C&agrave;i đặt Laravel: </strong></p>
+
+<ul>
+	<li>C&aacute;ch 1: C&agrave;i đặt bằng Laravel installer:</li>
+</ul>
+
+<p>V&agrave;o thư mục: C:\xampp\htdocs bạn nhấn tổ hợp ph&iacute;m <strong>Shift + Chuột phải</strong> chọn <strong>Open command window here</strong> tiếp theo chạy lệnh:</p>
+
+<pre>
+$ composer global require &quot;laravel/installer&quot;</pre>
+
+<p>để c&agrave;i đặt Laravel installer sau đ&oacute; bạn chạy tiếp lệnh:</p>
+
+<pre>
+$ laravel new blog</pre>
+
+<p>Kiểm tra xem trong C:\xampp\htdocs c&oacute; thư mục blog l&agrave; ok r&ugrave;i nh&eacute;</p>
+
+<ul>
+	<li>C&aacute;ch 2: C&agrave;i đặt th&ocirc;ng qua Composer</li>
+</ul>
+
+<p>Bạn cũng c&oacute; thể c&agrave;i Laravel bằng c&aacute;ch sử dụng Composer với tool create-project: V&agrave;o thư mục: C:\xampp\htdocs bạn nhấn tổ hợp ph&iacute;m<strong> Shift + Chuột phải</strong> chọn <strong>Open command window here</strong> tiếp theo chạy lệnh:</p>
+
+<pre>
+$ composer create-project laravel/laravel --prefer-dist</pre>
+
+<ul>
+	<li>C&aacute;ch 3: v&agrave;o <a href="https://github.com/laravel/laravel/releases" target="_blank">https://github.com/laravel/laravel/releases</a> chọn phi&ecirc;n bản download về rồi giải n&eacute;n, v&agrave;o thư mục vừa giải n&eacute;n nhấn tổ hợp ph&iacute;m <strong>Shift + Chuột phải</strong> chọn <strong>Open command window here</strong> chạy lệnh:</li>
+</ul>
+
+<pre>
+$ composer update</pre>
+
+<p>Tr&ecirc;n đ&acirc;y l&agrave; 3 c&aacute;ch để c&agrave;i đặt Laravel. M&igrave;nh th&igrave; th&iacute;ch c&aacute;ch 2 hơn chỉ cần 1 d&ograve;ng lệnh l&agrave; xong</p>
+
+<p><strong>5. Chạy thử Laravel:</strong></p>
+
+<p>Khởi động xampp l&ecirc;n:</p>
+
+<p>&nbsp;</p>
+
+<p>Mở tr&igrave;nh duyệt l&ecirc;n nhập: http://localhost/blog/public</p>
+
+<p>B&agrave;i giới thiệu v&agrave; c&agrave;i đặt xin được tạm dừng tại đ&acirc;y, trong series b&agrave;i viết tiếp theo m&igrave;nh sẽ hướng dẫn c&aacute;c bạn về cấu tr&uacute;c thư mục trong Laravel 5. Mời c&aacute;c bạn đ&oacute;n đọc. B&agrave;i viết tr&ecirc;n l&agrave; những hiểu biết của c&aacute; nh&acirc;n m&igrave;nh n&ecirc;n kh&ocirc;ng tr&aacute;nh phải sai s&oacute;t, rất mong sự đ&oacute;ng g&oacute;p &yacute; kiến của c&aacute;c bạn để b&agrave;i viết trở n&ecirc;n hữu &iacute;ch hơn.</p>
