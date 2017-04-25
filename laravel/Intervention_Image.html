@@ -1,0 +1,85 @@
+<p>Bài viết hướng dẫn cài đặt Intervention/Image. Sử dụng Intervention Image để upload và resize image Laravel, PHP.</p>
+<p><strong>1. Yêu cầu hệ thống:</strong></p>
+<ul>
+    <li>Phiên bản php >= 5.4</li>
+    <li>Fileinfo Extension</li>
+</ul>
+<p><strong>Và một trong các thư viện hình ảnh sau đây:</strong></p>
+<ul>
+    <li>GD Library (>=2.0) … or …</li>
+    <li>Imagick PHP extension (>=6.5.7)</li>
+</ul>
+<p><strong>2. Cài đặt bằng <code>Composer</code>:</strong></p>
+<p>Để cài đặt phiên bản mới nhất bạn chạy lệnh sau:</p>
+<pre class="brush: php">
+	$ php composer.phar require intervention/image
+</pre>
+<p><strong>3. Sử dụng đối với PHP:</strong></p>
+<p><code>Intervention/Image</code> không yêu cầu Laravel hay bất ký framework nào khác. Đối với PHP thuần bạn có thể sử dụng như ví dụ sau: </p>
+<p>Ví dụ 1: </p>
+<pre class="brush: php">
+	// include composer autoload
+	require 'vendor/autoload.php';
+
+	// import the Intervention Image Manager Class
+	use Intervention\Image\ImageManager;
+
+	// create an image manager instance with favored driver
+	$manager = new ImageManager(array('driver' => 'imagick'));
+
+	// to finally create image instances
+	$image = $manager->make('public/foo.jpg')->resize(300, 200);
+</pre>
+<p>Ví dụ 2: </p>
+<pre class="brush: php">
+	// include composer autoload
+	require 'vendor/autoload.php';
+
+	// import the Intervention Image Manager Class
+	use Intervention\Image\ImageManagerStatic as Image;
+
+	// configure with favored image driver (gd by default)
+	Image::configure(array('driver' => 'imagick'));
+
+	// and you are ready to go ...
+	$image = Image::make('public/foo.jpg')->resize(300, 200);
+</pre>
+<p><strong>4. Sử dụng đối với Laravel:</strong></p>
+<p>Mở file <code>config/app.php</code>: </p>
+<ul>
+    <li>Thêm vào <code>providers</code> dòng:
+        <pre class="brush: php">
+             Intervention\Image\ImageServiceProvider::class,
+        </pre>
+    </li>
+    <li>Thêm vào <code>aliases</code> dòng:
+        <pre class="brush: php">
+             'Image' => Intervention\Image\Facades\Image::class,
+        </pre>
+    </li>
+</ul>
+<p>Theo mặc định, <code>Intervention/Image</code> sử dụng phần mở rộng thư viện GD của PHP để xử lý tất cả các hình ảnh. Nếu bạn muốn chuyển sang Imagick, bạn có thể copy tệp cấu hình vào ứng dụng của mình bằng cách chạy lệnh sau:</p>
+<ul>
+	<li>Laravel 5
+		<pre class="brush: php">
+			$ php artisan vendor:publish --provider="Intervention\Image\ImageServiceProviderLaravel5"
+		</pre>
+	</li>
+	<li>Laravel 4
+		<pre class="brush: php">
+			$ php artisan config:publish intervention/image
+		</pre>
+	</li>
+</ul>
+<p>Trong Laravel 5, tệp cấu hình được copy vào <code>config/image.php</code>. Trong phiên bản Laravel 4 hoặc cũ hơn sẽ là <code>app/config/packages/intervention/image/config.php</code>. Bạn có thể tùy chỉnh cho phù hợp với ứng dụng của mình.</p>
+<p>Ví dụ: </p>
+<pre class="brush: php">
+	// usage inside a laravel route
+	Route::get('/', function()
+	{
+	    $img = Image::make('foo.jpg')->resize(300, 200);
+
+	    return $img->response('jpg');
+	});
+</pre>
+<p>Chúc bạn thành công!</p>

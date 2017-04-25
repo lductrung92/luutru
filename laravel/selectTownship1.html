@@ -1,0 +1,28 @@
+<p>Bài viết hướng dẫn sử dụng ajax tạo select box chọn tỉnh thành trong Laravel</p>
+<p><strong>1. Chuẩn bị cơ sở dữ liệu:</strong></p>
+<p>Ở đây mình lưu trong file. Bạn có thể download load: <a href="http://laptrinh.laedaily.com/laravel-filemanager/photos/1/file/City.rar" target="_blank">tại đây</a></p>
+<p>Trong thư mục app bạn tạo thêm 1 thư mục <code>function</code>(tên tùy thích) rùi copy file đó vào đây: </p>
+<p>Mở file <code>composer.json</code> trong <code>autoload</code> thêm vào dòng: </p>
+<pre class="brush: php">
+	"autoload": {
+        ...
+        ,
+        "files": [
+            "app/Functions/City.php"
+        ]
+    },
+</pre>
+<p>Sau đó chuyện lệnh: </p>
+<pre class="brush: php">
+$ composer dumpautoload
+</pre> 
+
+
+
+target
+
+_blank	Mở trang liên kết trong cửa sổ mới
+_self	Mở trang liên kết trong cùng một khung giống với khung chứa liên kết
+_parent	Mở trang liên kết trong khung nguồn chứa đường link
+_top	Mở trang liên kết trong cửa sổ toàn màn hình
+targetframe	Mở tài liệu được liên kết trong targetframe đã đặt tên
