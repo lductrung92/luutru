@@ -12,12 +12,88 @@
         ]
     },
 </pre>
-<p>Sau đó chuyện lệnh: </p>
+<p>Sau đó chạy lệnh: </p>
 <pre class="brush: php">
 $ composer dumpautoload
+</pre>
+<p>Tạo <code>route</code></p>
+<pre class="brush: php">
+	Route::get('township', 'DemoController@township');
+	Route::get('ajax/township', 'DemoController@ajaxTownship');
 </pre> 
+<p>Tạo view <code>township.blade.php</code> có nội dung như sau: </p>
+<p>Chèn vào thẻ <code>head</code> 2 thừ viện sau:</p>
+<pre class="brush: php">
+	https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css
+	https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js
+</pre>
+<p><code>township.blade.php</code></p>
+<pre class="brush: php">
+	<div class="container" style="margin-top: 30px; margin-bottom: 250px">
+	    <div class="row">
+	        <div class="col-md-8 col-md-offset-2">
+	            <div class="panel-body">
+	                <form class="form-horizontal" role="form" action="">
+	                    <div class="form-group">
+	                        <label for="address1" class="col-md-4 control-label">Tỉnh / Thành phố</label>
+	                        <div class="col-md-6">
+	                            <select name="address1" id="address1" class="form-control" required>
+	                                <option value="0">Chọn Tỉnh / Thành phố</option>
+	                            <!-- {{ empty($i) ? $i = 1 : ++$i }} -->
+	                                @foreach(get_list_citi_vn() as $city => $township)
+	                                    <option value="{{ $city }}">{{ $city }}</option>
+	                                @endforeach
+	                            </select>
+	                        </div>
+	                    </div>
 
-
+	                    <div class="form-group">
+	                        <label for="address2" class="col-md-4 control-label">Quận / Huyện</label>
+	                        <div class="col-md-6">
+	                            <select name="address2" id="address2" class="form-control" required>
+	                                <option value="0">Chọn Quận / Huyện</option>
+	                            </select>
+	                        </div>
+	                    </div>
+	                </form>
+	            </div>
+	        </div>
+	    </div>
+	</div>
+</pre>
+<p>function <code>township</code> trong file <code>app/Controllers/DemoController.php</code><p>
+<pre class="brush: php">
+	public function township()
+    {
+        return view('township');
+    }
+    public function ajaxTownship($city) 
+    {
+        $c = false;
+        foreach (get_list_citi_vn() as $key => $value) {
+            if(trim($key) == trim($city)) {
+                foreach ($value as $township) {
+                   echo '<option value="'. $township .'">'. $township .'</option>';
+                }
+                $c = true;
+            }
+        }
+        if(!$c){
+            echo '<option value="0">Chọn Quận / Huyện</option>';
+            return;
+        }
+    }
+</pre> 
+<p>Nhúng đoạn js này vào file <code>township.blade.php</code></p>
+<pre class="brush: php">
+    $(document).ready(function (){
+	     $('#address1').change(function (){
+	        $.get('ajax/township/' + $('#address1').val(), function(data) {
+	             $('#address2').html(data);
+	        });
+	     });
+    });
+</pre> 
 
 target
 
