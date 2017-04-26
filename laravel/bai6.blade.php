@@ -127,6 +127,7 @@
 </div>
 <div id="category_03">
     <p><strong>3. Tạo database website tin tức cơ bản bằng migrations</strong></p>
+
 </div>
 
 
