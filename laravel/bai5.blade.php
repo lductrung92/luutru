@@ -79,7 +79,7 @@
 </div>
 <p><strong>Video hướng dẫn: </strong></p>
 <div class="videowrapper">
-    <iframe width="100%" height="auto" src="https://www.youtube.com/embed/D2kK0UmA2PA" frameborder="0" allowfullscreen></iframe>
+    <iframe width="100%" height="auto" src="https://www.youtube.com/embed/nfM4REGjlw4" frameborder="0" allowfullscreen></iframe>
 </div>
 <p>Trong bài này mình đã giới thiệu về <code>Blade Template Engine</code> trong Laravel 5. Trong series bài viết tiếp theo mình sẽ hướng dẫn các bạn về <code>Migrations</code> trong Laravel 5. Mời các bạn đón đọc. Bài viết trên là những hiểu biết của cá nhân mình nên không tránh phải sai sót, rất mong sự đóng góp ý kiến của các bạn để bài viết trở nên hữu ích hơn.</p>
 
