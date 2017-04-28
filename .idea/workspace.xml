@@ -2,10 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2d317aa6-23bb-4a43-812c-a593a1626d31" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/laravel/bai7.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/laravel/bai5.blade.php" afterPath="$PROJECT_DIR$/laravel/bai5.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/laravel/bai6.blade.php" afterPath="$PROJECT_DIR$/laravel/bai6.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/laravel/bai8.html" afterPath="$PROJECT_DIR$/laravel/bai8.html" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -27,13 +25,31 @@
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="bai7.html" pinned="false" current-in-tab="true">
+    <leaf>
+      <file leaf-file-name="bai7.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/laravel/bai7.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="10" column="79" lean-forward="true" selection-start-line="10" selection-start-column="79" selection-end-line="10" selection-end-column="79" />
+            <state relative-caret-position="-47">
+              <caret line="163" column="41" lean-forward="true" selection-start-line="163" selection-start-column="41" selection-end-line="163" selection-end-column="41" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="bai8.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/laravel/bai8.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="152">
+              <caret line="503" column="44" lean-forward="true" selection-start-line="503" selection-start-column="44" selection-end-line="503" selection-end-column="44" />
+              <folding>
+                <element signature="n#div#0;n#pre#1;n#div#8;n#!!top" expanded="false" />
+                <element signature="n#style#0;n#span#0;n#h3#0;n#div#0;n#div#0;n#div#0;n#div#0;n#section#1;n#div#0;n#pre#1;n#div#8;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#a#0;n#div#0;n#div#4;n#div#0;n#form#0;n#div#0;n#div#0;n#div#0;n#section#1;n#div#0;n#pre#1;n#div#8;n#!!top" expanded="true" />
+                <element signature="n#pre#3;n#div#8;n#!!top" expanded="false" />
+                <element signature="n#div#0;n#pre#1;n#div#9;n#!!top" expanded="false" />
+                <element signature="n#div#0;n#pre#1;n#div#10;n#!!top" expanded="false" />
+                <element signature="n#style#0;n#span#0;n#h3#0;n#div#0;n#div#0;n#div#0;n#div#0;n#section#1;n#div#0;n#pre#1;n#div#10;n#!!top" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -44,6 +60,7 @@
     <findStrings>
       <find>&lt;pre&gt;</find>
       <find>orphans: auto;</find>
+      <find>tại</find>
     </findStrings>
     <replaceStrings>
       <replace>&lt;pre class=&quot;brush: php&quot;&gt;</replace>
@@ -62,6 +79,7 @@
         <option value="$PROJECT_DIR$/laravel/bai6.blade.php" />
         <option value="&lt;793e761d-64fb-44af-8e9f-d21d10416ce1&gt;/laptrinh/local/resources/views/home/article.blade.php" />
         <option value="$PROJECT_DIR$/laravel/bai7.html" />
+        <option value="$PROJECT_DIR$/laravel/bai8.html" />
       </list>
     </option>
   </component>
@@ -135,6 +153,7 @@
     <property name="WebServerToolWindowPanel.toolwindow.highlight.symlinks" value="true" />
     <property name="WebServerToolWindowPanel.toolwindow.highlight.mappings" value="true" />
     <property name="js.eslint.eslintPackage" value="" />
+    <property name="last_opened_file_path" value="C:/xampp/htdocs/tintuc" />
   </component>
   <component name="RunManager">
     <configuration default="true" type="JavaScriptTestRunnerProtractor" factoryName="Protractor">
@@ -208,24 +227,26 @@
       <workItem from="1493210271228" duration="145000" />
       <workItem from="1493210451762" duration="2903000" />
       <workItem from="1493298327444" duration="2692000" />
+      <workItem from="1493376444677" duration="406000" />
+      <workItem from="1493378825491" duration="7486000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="10152000" />
+    <option name="totallyTimeSpent" value="18044000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2344932" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.301059" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.20196672" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.18381241" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32914925" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3289689" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -249,11 +270,18 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/laravel/bai5.blade.php">
+    <entry file="file://$PROJECT_DIR$/laravel/bai7.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/laravel/bai5.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -261,7 +289,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="969">
           <caret line="57" column="72" lean-forward="false" selection-start-line="57" selection-start-column="72" selection-end-line="57" selection-end-column="190" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -269,7 +296,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -277,34 +303,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1479">
           <caret line="87" column="511" lean-forward="false" selection-start-line="87" selection-start-column="0" selection-end-line="87" selection-end-column="511" />
-          <folding>
-            <element signature="e#8#16#0" expanded="false" />
-            <element signature="e#23#31#0" expanded="false" />
-            <element signature="e#42#50#0" expanded="false" />
-            <element signature="e#64#71#0" expanded="false" />
-            <element signature="e#85#93#0" expanded="false" />
-            <element signature="e#96#104#0" expanded="false" />
-            <element signature="e#106#114#0" expanded="false" />
-            <element signature="e#121#129#0" expanded="false" />
-            <element signature="e#134#141#0" expanded="false" />
-            <element signature="e#153#161#0" expanded="false" />
-            <element signature="e#179#186#0" expanded="false" />
-            <element signature="e#198#206#0" expanded="false" />
-            <element signature="e#209#216#0" expanded="false" />
-            <element signature="e#223#231#0" expanded="false" />
-            <element signature="e#250#258#0" expanded="false" />
-            <element signature="e#278#286#0" expanded="false" />
-            <element signature="e#299#307#0" expanded="false" />
-            <element signature="e#321#329#0" expanded="false" />
-            <element signature="e#331#339#0" expanded="false" />
-            <element signature="e#341#349#0" expanded="false" />
-            <element signature="e#361#369#0" expanded="false" />
-            <element signature="e#385#393#0" expanded="false" />
-            <element signature="e#405#413#0" expanded="false" />
-            <element signature="e#421#429#0" expanded="false" />
-            <element signature="e#434#441#0" expanded="false" />
-            <element signature="n#style#0;n#p#4;n#!!top" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -319,7 +317,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="969">
           <caret line="57" column="72" lean-forward="true" selection-start-line="57" selection-start-column="72" selection-end-line="57" selection-end-column="190" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -327,7 +324,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -335,34 +331,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1479">
           <caret line="87" column="511" lean-forward="false" selection-start-line="87" selection-start-column="0" selection-end-line="87" selection-end-column="511" />
-          <folding>
-            <element signature="e#8#16#0" expanded="false" />
-            <element signature="e#23#31#0" expanded="false" />
-            <element signature="e#42#50#0" expanded="false" />
-            <element signature="e#64#71#0" expanded="false" />
-            <element signature="e#85#93#0" expanded="false" />
-            <element signature="e#96#104#0" expanded="false" />
-            <element signature="e#106#114#0" expanded="false" />
-            <element signature="e#121#129#0" expanded="false" />
-            <element signature="e#134#141#0" expanded="false" />
-            <element signature="e#153#161#0" expanded="false" />
-            <element signature="e#179#186#0" expanded="false" />
-            <element signature="e#198#206#0" expanded="false" />
-            <element signature="e#209#216#0" expanded="false" />
-            <element signature="e#223#231#0" expanded="false" />
-            <element signature="e#250#258#0" expanded="false" />
-            <element signature="e#278#286#0" expanded="false" />
-            <element signature="e#299#307#0" expanded="false" />
-            <element signature="e#321#329#0" expanded="false" />
-            <element signature="e#331#339#0" expanded="false" />
-            <element signature="e#341#349#0" expanded="false" />
-            <element signature="e#361#369#0" expanded="false" />
-            <element signature="e#385#393#0" expanded="false" />
-            <element signature="e#405#413#0" expanded="false" />
-            <element signature="e#421#429#0" expanded="false" />
-            <element signature="e#434#441#0" expanded="false" />
-            <element signature="n#style#0;n#p#4;n#!!top" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -413,7 +381,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="353">
           <caret line="205" column="37" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="211" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -421,7 +388,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
           <caret line="63" column="10" lean-forward="true" selection-start-line="63" selection-start-column="10" selection-end-line="63" selection-end-column="10" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -429,34 +395,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="549">
           <caret line="87" column="511" lean-forward="false" selection-start-line="87" selection-start-column="0" selection-end-line="87" selection-end-column="511" />
-          <folding>
-            <element signature="e#8#16#0" expanded="false" />
-            <element signature="e#23#31#0" expanded="false" />
-            <element signature="e#42#50#0" expanded="false" />
-            <element signature="e#64#71#0" expanded="false" />
-            <element signature="e#85#93#0" expanded="false" />
-            <element signature="e#96#104#0" expanded="false" />
-            <element signature="e#106#114#0" expanded="false" />
-            <element signature="e#121#129#0" expanded="false" />
-            <element signature="e#134#141#0" expanded="false" />
-            <element signature="e#153#161#0" expanded="false" />
-            <element signature="e#179#186#0" expanded="false" />
-            <element signature="e#198#206#0" expanded="false" />
-            <element signature="e#209#216#0" expanded="false" />
-            <element signature="e#223#231#0" expanded="false" />
-            <element signature="e#250#258#0" expanded="false" />
-            <element signature="e#278#286#0" expanded="false" />
-            <element signature="e#299#307#0" expanded="false" />
-            <element signature="e#321#329#0" expanded="false" />
-            <element signature="e#331#339#0" expanded="false" />
-            <element signature="e#341#349#0" expanded="false" />
-            <element signature="e#361#369#0" expanded="false" />
-            <element signature="e#385#393#0" expanded="false" />
-            <element signature="e#405#413#0" expanded="false" />
-            <element signature="e#421#429#0" expanded="false" />
-            <element signature="e#434#441#0" expanded="false" />
-            <element signature="n#style#0;n#p#4;n#!!top" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -464,15 +402,30 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="238">
           <caret line="14" column="13" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="223" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/laravel/bai7.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="79" lean-forward="true" selection-start-line="10" selection-start-column="79" selection-end-line="10" selection-end-column="79" />
+        <state relative-caret-position="-47">
+          <caret line="163" column="41" lean-forward="true" selection-start-line="163" selection-start-column="41" selection-end-line="163" selection-end-column="41" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/laravel/bai8.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="152">
+          <caret line="503" column="44" lean-forward="true" selection-start-line="503" selection-start-column="44" selection-end-line="503" selection-end-column="44" />
+          <folding>
+            <element signature="n#div#0;n#pre#1;n#div#8;n#!!top" expanded="false" />
+            <element signature="n#style#0;n#span#0;n#h3#0;n#div#0;n#div#0;n#div#0;n#div#0;n#section#1;n#div#0;n#pre#1;n#div#8;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#a#0;n#div#0;n#div#4;n#div#0;n#form#0;n#div#0;n#div#0;n#div#0;n#section#1;n#div#0;n#pre#1;n#div#8;n#!!top" expanded="true" />
+            <element signature="n#pre#3;n#div#8;n#!!top" expanded="false" />
+            <element signature="n#div#0;n#pre#1;n#div#9;n#!!top" expanded="false" />
+            <element signature="n#div#0;n#pre#1;n#div#10;n#!!top" expanded="false" />
+            <element signature="n#style#0;n#span#0;n#h3#0;n#div#0;n#div#0;n#div#0;n#div#0;n#section#1;n#div#0;n#pre#1;n#div#10;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
