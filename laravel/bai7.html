@@ -1,223 +1,191 @@
-<p>Bài trước mình đã giới thiệu về <code>Migrations</code> trong Laravel 5 và tạo database website tin tức. Bài hôm nay chúng ta sẽ đi tổng quan về <code>Model</code> và cách sử dụng route trong Laravel 5. Đồng thời sẽ tạo model cho dự án website tin tức</p>
+<p>Bài trước mình đã giới thiệu về <code>Migrations</code> trong Laravel 5 và tạo database website tin tức. Bài hôm nay chúng ta sẽ đi tổng quan về <code>Model</code> và cách sử dụng model, định nghĩa quan hệ giữa các bảng <code>relationships</code> trong Laravel 5. Đồng thời sẽ tạo model cho dự án website tin tức</p>
 <p><strong>Mục Lục:</strong></p>
 <div id="category_list">
     <ul>
-        <li><a id = "category_01_link" href="#">Hiểu về route trong Laravel</a></li>
+        <li><a id = "category_01_link" href="#">Giới thiệu Model trong Laravel</a></li>
+        <li><a id = "category_02_link" href="#">Tạo Model và khai báo các thông số trong Laravel</a></li>
         <li>
-            <a id = "category_02_link" href="#">Các loại route trong Laravel 5 và cách sử dụng:</a>
+            <a id = "category_03_link" href="#">Định nghĩa quan hiệu giữa các bảng relationships</a>
             <ul>
-                <li><a id = "category_03_link" href="#">Route::get()</a></li>
-                <li><a id = "category_04_link" href="#">Route::post()</a></li>
-                <li><a id = "category_05_link" href="#">Route::group()</a></li>
-                <li><a id = "category_06_link" href="#">Route::match()</a></li>
-                <li><a id = "category_07_link" href="#">Route::any()</a></li>
+                <li><a id = "category_04_link" href="#">One To One</a></li>
+                <li><a id = "category_05_link" href="#">One To Many</a></li>
+                <li><a id = "category_06_link" href="#">One To Many (Inverse)</a></li>
+                <li><a id = "category_07_link" href="#">Many To Many</a></li>
             </ul>
         </li>
+        <li><a id = "category_8_link" href="#">Tạo Model cho website tin tức</a></li>
     </ul>
 </div>
 <div id="category_01">
-    <p><strong>1. Hiểu về route trong Laravel</strong></p>
-    <ul>
-        <li>
-            Tất cả các routes(định tuyến) của Laravel chứ trong thư mục <code>routes/web.php</code> Các file trong thư mục này sẽ được tải tự động bởi Laravel.File <code>routes/web.php</code> định nghĩa các định tuyến cho giao diện web của bạn. Ngoài ra ở phiên bản 5.3 so với các phiên bản trước nó còn có thêm <code>routes/api.php</code> và <code>routes/console.php</code>. Về cơ bản chỉ là tách nhỏ routes ra theo chức năng, nên ta sẽ định nghĩa các định tuyến từ file <code>routes/web.php</code>.
-        </li>
-        <li>
-            Ta hiểu môn na như sau: khi <code>index.blade.php</code> nhận được 1 request từ người dùng, nó sẽ đưa request đó về route, từ route sẽ định tuyến cho request đó đi đâu tiếp theo.
-        </li>
-        <li>
-            Ví dụ: Khi người dùng truy cập vào đường dẫn: http://laptrinh.laedaily.com/article, thì lúc này route sẽ nhận url là <code>/articles</code>, sau đó nó sẽ gửi request đó tời Controller tương ứng để xử lý.
-        </li>
-        <li>
-            Tóm lại, chúng ta chỉ cần hiểu route trong laravel đóng vai trò định tuyến(điều hướng request).
-        </li>
-    </ul>
-    <p>Route trong Laravel 5 (bản 5.4) được định nghĩa trong <code>routes/web.php</code>. Danh sách các route cơ bản: </p>
-    <ul>
-        <li>
-            <strong>Route::get</strong> : tương tự như method get() trong PHP
-            <strong>Route::post</strong> : tương tự như method post() trong PHP
-            <strong>Route::group</strong> : gom các route có điểm chung với nhau thành 1 nhóm.
-            <strong>Route::match</strong> : kết hợp nhiều method.
-            <strong>Route::any</strong> : nhận tất cả các method.
-        </li>
-    </ul>
-    <p>Ngoài ra còn có:</p>
-    <ul>
-        <li>
-            <strong>Route::filter</strong> : tạo bộ lọc. ví dụ tạo bộ lọc kiểm ta login
-        </li>
-        <li>
-            <strong>Route::controller</strong> : gọi đến Controller tương ứng
-        </li>
-        <li>
-            <strong>Route::resource</strong> : sử dụng với resource controller
-        </li>
-    </ul>
+    <p><strong>1. Giới thiệu <code>Model</code> trong Laravel</strong></p>
+    <p>Như các bạn đã biết thì <code>Model</code> trong mô hình MVC đóng vai trò nhận các request từ Controller, sau đó nó thực hiện giao tiếp với database, sau khi model nhận kết quả sẽ trả ngược về Controller</p>
+    <p style="text-align: center"><img alt="" src="http://laptrinh.laedaily.com/laravel-filemanager/photos/1/laravel/bai7/mvc.jpg"/></p>
+    <p>Đối với Laravel thì nó đi kèm với Eloquent một ORM với Active Record Pattern.Trong Active Record Pattern thì mỗi object sẽ đại diện cho một dòng trong table. Điều này làm cho việc tương tác với database dễ hơn bao giờ hết.</p>
+    <p>Mỗi một model là một file nằm trong thư mục <code>app</code>. Mặc định model User đã được tạo sẵn và class này sẽ đại diện cho toàn bộ hệ thốn của bạn.</p>
 </div>
 <div id="category_02">
-    <p><strong>2. Các loại route trong Laravel 5 và cách sử dụng:</strong></p>
+    <p><strong>2. Tạo <code>Model</code> và khai báo các thông số trong Laravel</strong></p>
+    <p><strong>Cú pháp tạo model Laravel</strong></p>
+    <pre class="brush: php">
+        $ php artisan make:model (tên model)
+    </pre>
+    <p><strong>Khai báo các thông số</strong></p>
+    <ul>
+        <li>Ở trong Laravel mỗi một model ứng với một bảng dữ liệu trong CSDL và để khai báo model sử dụng bảng dữ liệu nào trong database thì chúng ta cần khai báo tên bảng trong class model.
+            <pre class="brush: php">
+                protected $table = 'tableName'; // tên bảng dữ liệu trong CSDL
+            </pre>
+        </li>
+        <li>Điều chỉnh các cột dữ liệu cần thao tác, ta khai báo như sau:
+            <pre class="brush: php">
+                protected $fillable = ['column1','column2',..,'columnn'];
+            </pre>
+        </li>
+        <li>Laravel cũng cung cấp cho chúng ta tùy biến có sử dụng time stamps hay không. Nếu để <code>true</code> là có và ngược lại <code>false</code> là không
+            <pre class="brush: php">
+                public $timestamps = true;
+                //or
+                public $timestamps = false;
+            </pre>
+        </li>
+    </ul>
 </div>
 <div id="category_03">
-    <p><strong>Route::get()</strong></p>
-    <p>Đây là route tiếp nhận các request với method <code>get()</code>. Cú pháp:</p>
-    <pre class="brush: php">
-        Route::get($uri, $ac);
-        // $ac có thể là mảng, hàm hoặc chuổi
-    </pre>
-    <p><strong>Ví dụ 1: Khi action là một hàm</strong></p>
-    <pre class="brush: php">
-        Route::get('/demo_get', function () {
-            echo 'Đây là ví dụ route get';
-        });
-    </pre>
-    <p>Bạn truy cập vào địa chỉ: <i>http://localhost/blog/public/demo_get</i> sẽ thấy kết quả:</p>
-    <p style="text-align: center">
-        <a href="http://laptrinh.laedaily.com/upload/laravel/bai3/1.png">
-            <img src="http://laptrinh.laedaily.com/laravel-filemanager/photos/1/laravel/bai3/1.png" title="Demo route get laravel 5" />
-        </a>
-    </p>
-    <p><strong>Ví dụ 2: Khi action là một mảng</strong></p>
-    <pre class="brush: php">
-        Route::get('/demo_get', ['as' => 'getMethod', 'uses' => 'DemoController@index']);
-        // getMethod là tên route
-        // uses sẽ gọi tới method index trong DemoController
-    </pre>
-    <p>Các bạn phải khởi tạo controller <code>DemoController</code> bằng lệnh:</p>
-    <pre class="brush: php">
-        $ php artisan make:controller DemoController
-    </pre>
-    <p>Mở file <code>blog/app/Http/Controllers/DemoController.php</code> lên thêm vào function <code>index</code></p>
-    <pre class="brush: php">
-        <?php
-        class DemoController extends Controller
-        {
-            public function index ()
-            {
-                echo 'Đây là ví dụ route get';
-            }
-        }
-        ?>
-    </pre>
-    <p>Bạn truy cập vào địa chỉ: <i>http://localhost/blog/public/demo_get</i> sẽ thấy kết quả giống như ví dụ 1.</p>
+    <p><strong>2. Định nghĩa quan hiệu giữa các bảng <code>relationships</code></strong></p>
 </div>
 <div id="category_04">
-    <p><strong>Route::post()</strong></p>
-    <p>Đây là route tiếp nhận các request với method <code>post()</code>. Cú pháp:</p>
+    <p><strong>One To One</strong></p>
+    <p>Quan hệ <code>One To One</code> là quan hệ cơ bản nhất. Ví dụ, một <code>User</code> có thể được liên kết với một <code>Phone</code></p>
+    <p>Khi đó ta định nghĩa như sau. Trong model <code>User</code> định nghĩa bằng function sau</p>
     <pre class="brush: php">
-        Route::post($uri, $ac);
-        // $ac có thể là mảng, hàm hoặc chuổi
-        // tương tự như route get
-    </pre>
-    <p>Vậy khi nào dùng get, khi nào dùng post. Ta sẽ đi vào ví dụ sau:</p>
-    <p>Trong file <code>routes/web.php</code> bạn tạ 2 route:</p>
-    <pre class="brush: php">
-        Route::get('/login', ['as' => 'getLogin', 'uses' => 'DemoController@getLogin']);
-        Route::post('/login', ['as' => 'postLogin', 'uses' => 'DemoController@postLogin']);
-    </pre>
-    <p>Trong file <code>DemoController.php</code> bạn tạo 2 function như sau:</p>
-    <pre class="brush: php">
-        <?php
-        namespace App\Http\Controllers;
-        use Illuminate\Http\Request;
-
-        class DemoController extends Controller
+        public function phone()
         {
-            public function getLogin()
-            {
-                return view('login');
-            }
-
-            public function postLogin(Request $request)
-            {
-                if($request->user == 'admin' && $request->pass == '123')
-                {
-                    echo "Login thành công";
-                }
-                else
-                {
-                    echo "Login thất bại";
-                }
-            }
+            return $this->hasOne('App\Phone');
         }
-        ?>
     </pre>
-    <p>Tạo 1 view có tên là <code>login.blade.php</code> trong thư mục <code>resources/views</code> có nội dung: </p>
+    <p>Trong model <code>Phone</code> định nghĩa bằng function sau</p>
     <pre class="brush: php">
-        <form ;class="form-inline" action="login" method="post">
-            <input type="hidden" name="_token" value="{{ csrf_token() }}">
-            <div class="form-group">
-                <label class="sr-only" for="exampleInputEmail3">Email address</label>
-                <input type="text" class="form-control" name="user" placeholder="Username">
-            </div>
-            <div class="form-group">
-                <label class="sr-only" for="exampleInputPassword3">Password</label>
-                <input type="password" class="form-control" name="pass" placeholder="Password">
-            </div>
-            <button type="submit" class="btn btn-default">Sign in</button>
-        </form>
+        public function user()
+        {
+            return $this->belongsTo('App\User');
+        }
     </pre>
-    <p>Bạn truy cập vào địa chỉ: <i>http://localhost/login</i> sẽ thấy kết quả giống như sau:</p>
-    <p style="text-align: center">
-        <a href="http://laptrinh.laedaily.com/upload/laravel/bai3/2.png">
-            <img src="http://laptrinh.laedaily.com/laravel-filemanager/photos/1/laravel/bai3/2.png" title="Demo route get laravel 5" />
-        </a>
-    </p>
-    <p>Ta thấy nó nhận hiển thị form login mà ta đã tạo ở file <code>login.blade.php</code>. Vì đây là method get lấy nhận request GET đưa về function <code>getLogin()</code> của controller <code>DemoControler</code> và function này return về view login</p>
-    <p>Tiếp theo nhập vào thông tin và nhấn submit (Username: <code>admin</code> Password: <code>123</code>)</p>
-    <p>Kết quả: </p>
-    <p style="text-align: center">
-        <a href="http://laptrinh.laedaily.com/upload/laravel/bai3/3.png">
-            <img src="http://laptrinh.laedaily.com/laravel-filemanager/photos/1/laravel/bai3/3.png" title="Demo route post laravel 5" />
-        </a>
-    </p>
-    <p>Ta thấy nó nhận hiển thị <code>Login thành công</code>. Có thể hiểu khi ta nhấn submit thì các thông tin <code>user, pass, token</code> sẽ đưa về route post, route này sẽ đưa về function <code>postLogin()</code> của controller <code>DemoControler</code> và function này kiểm tra dữ liệu nhập vào và xuất ra thông báo</p>
-    <p>Khác với PHP ta lấy dữ liệu bằng <code>$_POST["user"]</code> đối với Laravel chỉ cần sử dụng <code>Request</code> như trong file <code>DemoController.php</code></p>
 </div>
 <div id="category_05">
-    <p><strong>Route::group()</strong></p>
-    <p>Nó sẽ nhóm có route có điểm chung lại với nhau.</p>
-    <p>Ví dụ: </p>
-    <p>Không sử dụng <code>Route::group()</code></p>
+    <p><strong>One To Many</strong></p>
+    <p>Quan hệ <code>One To Many</code> là quan hệ mà một model có nhiều model khác. Ví dụ một bài viết có vố số các bình luận.</p>
+    <p>Khi đó ta định nghĩa như sau. Trong model <code>Post</code> định nghĩa bằng function sau</p>
     <pre class="brush: php">
-        Route::get('admin/category/list', function(){});
-        Route::get('admin/category/insert', function(){});
-        Route::get('admin/category/list', function(){});
+        public function comments()
+        {
+            return $this->hasMany('App\Comment');
+        }
     </pre>
-    <p>Sử dụng <code>Route::group()</code></p>
-    <pre class="brush: php">
-        Route::group('prefix' => 'admin', function () {
-            Route::get('category/list', function(){});
-            Route::get('category/insert', function(){});
-            Route::get('category/list', function(){});
-        });
-    </pre>
-    <p>Sử dụng hay không sử dụng thì các route trên đều có mục đích sử dụng giống nhau. Việc nhóm như thế này sẽ giúp bạn dễ dàng trong việc quản lý code hơn.</p>
+
 </div>
 <div id="category_06">
-    <p><strong>Route::match()</strong></p>
-    <p>Ngoài các method POST và GET phổ biến trong laravel còn có thêm <code>PUT</code>, <code>PATCH</code>, <code>DELETE</code> vậy nên sinh ra Route này.</p>
-    <p>Cú pháp: </p>
+    <p><strong>One To Many (Inverse)</strong></p>
+    <p>Bây giờ xác định mối quan hệ để cho phép nhận xét truy cập vào bài viết.</p>
+    <p>Trong model <code>Comment</code> định nghĩa bằng function sau</p>
     <pre class="brush: php">
-        Route::match($methods, $uri, $action);
-        //trong đó $methods có thể là 1 mảng các method như ['GET', 'POST','PUT']
-        //$uri và $action giống như các route kể trên
+        public function post()
+        {
+            return $this->belongsTo('App\Post');
+        }
     </pre>
-    <p>Ví du:</p>
-    <pre class="brush: php">
-        Route::match(['GET', 'POST','PUT'],'/demo',function(){
-            return 'match route';
-        });
-    </pre>
-    <p>Route này sẽ nhận request với 3 method là PUT, POST, GET</p>
 </div>
 <div id="category_07">
-    <p><strong>Route::any()</strong></p>
-    <p>Cú pháp và cách sử dụng của loại route này không khác Route::get() là mấy, chỉ có điều route này nhận request với tất cả các method như: POST, GET, DELETE, ...</p>
-    <p>Cú Pháp</p>
+    <p><strong>Many To Many</strong></p>
+    <p>Quan hệ <code>Many To Many</code> hơi phức tạp hơn quan hệ <code>hasOne</code> và <code>hasMany</code>. Ví dụ như là mối quan hệ của 1 user với nhiều quyền, khi mà các quyền cùng được đảm nhận bởi nhiều user. Cụ thể hơn, nhiều user có thể có cùng quyền "quản trị". Để định nghĩa mối quan hệ này, cần đến 3 bảng: users, roles, và role_user. Bảng role_user xuất phát từ tên của những bảng hay model liên quan, và bao gồm các cột user_id và role_id columns.</p>
+    <p>Trong model <code>User</code> định nghĩa bằng function sau</p>
     <pre class="brush: php">
-        Route::any($uri, $action);
+        public function roles()
+        {
+            return $this->belongsToMany('App\Role');
+        }
+    </pre>
+    <p>Trong model <code>Role</code> định nghĩa bằng function sau</p>
+    <pre class="brush: php">
+        public function users()
+        {
+            return $this->belongsToMany('App\User');
+        }
+    </pre>
+    <p>Lấy các cột của bảng trung gian</p>
+    <p>Như chúng ta đã biết, khi làm việc với quan hệ nhiều nhiều, ta cần tới 1 bảng trung gian. Eloquent cung cấp nhiều cách rất hữu ích để tương tác với bảng này. Ví dụ hãy giả sử đối tượng <code>User</code> có nhiều đối tượng <code>Role</code> mà nó liên quan đến. Sau khi truy cập vào quan hệ này, chúng ta có thể muốn lấy thông tin bảng trung gian bằng cách sử dụng thuộc tính <code>pivot</code> trong model:</p>
+    <pre class="brush: php">
+        $user = App\User::find(1);
+        foreach ($user->roles as $role) {
+            echo $role->pivot->created_at;
+        }
+    </pre>
+    <p>Ngoài ra còn có quan hệ: <code>Has Many Through</code>, <code>Polymorphic Relations</code>, <code>Many To Many Polymorphic Relations</code>. Bạn có thể tham khảo: <a href="https://laravel.com/docs/5.4/eloquent-relationships" target="_blank">tại đây</a></p>
+</div>
+<div id="category_8">
+    <p><strong>3. Tạo <code>Model</code> cho website tin tức</strong></p>
+    <p style="text-align: center"><img alt="" src="http://laptrinh.laedaily.com/laravel-filemanager/photos/1/laravel/bai6/sql.JPG"></p>
+    <p>Như hình trên ta thấy: một loại tin thì có nhiều bài viết, ngược lại một bài viết chỉ thuộc về một loại tin. Nên ta xác đinh đây là mối quan hệ <code>One To Many</code></p>
+    <p>Định nghĩa mối quan hệ giữa các model</p>
+    <p>Đầu tiên, các bạn tạo 3 model <code>User</code>, <code>Category</code>, <code>Article</code>. Trong đó, mặc định Laravel đã tạo sẵn cho chúng ta model <code>User</code>. Nên ta chỉ cần tao 2 model <code>Category</code>, <code>Article</code> </p>
+    <pre class="brush :php">
+        // create model Category
+        php artisan make:model Category
+        // create model Article
+        php artisan make:model Article
+    </pre>
+    <p>Một <code>Category</code> sẽ có nhiều <code>Article</code>. Do đó ta định nghĩa file <code>model/Category.php</code> như sau: </p>
+    <pre class="brush: php">
+        namespace App;
+
+        use Illuminate\Database\Eloquent\Model;
+
+        class Category extends Model
+        {
+            protected $table = 'categories';
+            protected $fillable = ['id', 'name', 'parent_id', 'alias', 'description', 'status'];
+
+            public function childs ()
+            {
+                return $this->hasMany('App\Category', 'parent_id', 'id');
+            }
+
+            public function parent ()
+            {
+                return $this->belongsTo('App\Category', 'parent_id', 'id');
+            }
+
+            public function articles ()
+            {
+                return $this->hasMany('App\Article', 'category_id', 'id');
+            }
+        }
+    </pre>
+    <p>Giải thích một chút về <code>childs</code> và <code>parent</code>. Một loại tin sẽ thuộc vào một nhóm loại tin <code>parent</code>, ngược lại một nhóm loại tin sẽ có nhiều loại tin <code>childs</code>. Cái này định nghĩa theo <code>id</code> và <code>parent_id</code> của chính model <code>Category</code></p>
+    <p>Ví dụ: ta có các loại tin là laravel, php, jquery thì nhóm loại tin của nó chính là lập trình. Khi đó <code>parent_id</code> của các loại tin là laravel, php, jquery chính là <code>id</code> của nhóm loại tin lập trình.</p>
+
+    <p>Ngược lại, một <code>Article</code> sẽ có một <code>Category</code>. Do đó ta định nghĩa file <code>model/Article.php</code> như sau: </p>
+    <pre class="brush: php">
+        namespace App;
+
+        use Illuminate\Database\Eloquent\Model;
+
+        class Article extends Model
+        {
+            protected $table = 'articles';
+            protected $fillable = ['id', 'category_id', 'title', 'alias', 'tag', 'image', 'description', 'content', 'status'];
+
+            public function category ()
+            {
+                return $this->belongsTo('App\Article', 'category_id', 'id');
+            }
+        }
     </pre>
 </div>
-<p>Trong bài này mình đã giới thiệu về <code>Route</code> trong Laravel 5. Trong series bài viết tiếp theo mình sẽ hướng dẫn các bạn về <code>View</code> trong Laravel 5. Mời các bạn đón đọc. Bài viết trên là những hiểu biết của cá nhân mình nên không tránh phải sai sót, rất mong sự đóng góp ý kiến của các bạn để bài viết trở nên hữu ích hơn.</p>
+<p><strong>Video hướng dẫn: </strong></p>
+<div class="videowrapper">
+    <iframe width="100%" height="auto" src="https://www.youtube.com/embed/wK0J1JOLURc" frameborder="0" allowfullscreen></iframe>
+</div>
+<p>Trong bài này mình đã giới thiệu về <code>Model</code> trong Laravel 5 và hướng dẫn các bạn Tạo model website tin tức. Trong series bài viết tiếp theo mình sẽ hướng dẫn các bạn về <code>Eloquent</code> trong Laravel 5 và tạo chức năng thêm, sữa, xóa cho trang category. Mời các bạn đón đọc. Bài viết trên là những hiểu biết của cá nhân mình nên không tránh phải sai sót, rất mong sự đóng góp ý kiến của các bạn để bài viết trở nên hữu ích hơn.</p>
 
 
+laravel căn bản, eloquent, php artisan tinker, eloquent trong laravel, sử dụng eloquent trong laravel 5

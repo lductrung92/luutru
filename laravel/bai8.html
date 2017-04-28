@@ -1,0 +1,90 @@
+<p>Bài trước mình đã giới thiệu về <code>Model</code> trong Laravel 5 và hướng dẫn các bạn tạo model website tin tức. Bài hôm nay chúng ta sẽ đi tìm hiểu về <code>Eloquent</code> và cách sử dụng Eloquent trong Laravel 5. Đồng thời ứng dụng <code>Eloquent</code> tạo trang quản lý loại tin cho dự án website tin tức</p>
+<p><strong>Mục Lục:</strong></p>
+<div id="category_list">
+    <ul>
+        <li><a id = "category_01_link" href="#">Giới thiệu Eloquent trong Laravel</a></li>
+        <li><a id = "category_02_link" href="#">Hướng dẫn sử dụng Eloquent trong Laravel</a>
+            <ul>
+                <li><a id = "category_03_link" href="#">Thêm 1 record mới vào database</a></li>
+                <li><a id = "category_04_link" href="#">Truy vấn dữ liệu trong database</a></li>
+                <li><a id = "category_05_link" href="#">Cập nhật thông tin record vừa tạo</a></li>
+                <li><a id = "category_06_link" href="#">Xóa record trong database</a></li>
+            </ul>
+        </li>
+        <li>
+            <a id = "category_07_link" href="#">Ứng dụng Eloquent tạo trang quản lý loại tin</a>
+            <ul>
+                <li><a id = "category_08_link" href="#">Thêm mới một loại tin</a></li>
+                <li><a id = "category_09_link" href="#">Hiển thị danh sách loại tin</a></li>
+                <li><a id = "category_10_link" href="#">Cập nhật một loại tin</a></li>
+                <li><a id = "category_11_link" href="#">Xóa một loại tin</a></li>
+            </ul>
+        </li>
+    </ul>
+</div>
+<div id="category_01">
+    <p><strong>1. Giới thiệu <code>Eloquent</code> trong Laravel</strong></p>
+    <p>Eloquent trong Laravel 5 chính là một ORM (Object-relational mapping), cung cấp các <code>ActiveRecord</code> đơn giản nhưng vô cùng chuyên nghiệp, giúp chúng ta làm việc với cơ sở dữ liệu thuận tiện hơn.</p>
+    <p>Với <code>Eloquent</code> trong Laravel 5 đã xây dựng sẵn các phương thức <code>thêm</code>, <code>xóa</code>, <code>cập nhật</code> và <code>truy vấn</code>, giúp cho việc sử dụng database trở nên dễ dàng hơn bao giờ hết.</p>
+</div>
+<div id="category_02">
+    <p><strong>2. Hướng dẫn sử dụng <code>Eloquent</code> trong Laravel</strong></p>
+    <p>Để các bạn hiểu hơn về cách sử dụng <code>Eloquent</code>, mình sẽ đưa ra ví dụ sau: </p>
+    <p>Giả sử mình có bảng <code>thanhvien</code> có các trường sau: id, ten, tuoi, gioitinh</p>
+    <p>Tạo model <code>ThanhVien</code>. cái này mình đã hướng dẫn các bạn ở bài trước rồi nên mình không nói lại nữa. Bạn nào nắm rõ có thể xem lại <a href="http://laptrinh.laedaily.com/bai-7-su-dung-model-trong-laravel-5-du-an-website-tin-tuc.html" title="Bài 7. Sử dụng Model trong Laravel 5 - Dự án website Tin tức" target="_blank">bài 7</a></p>
+</div>
+<div id="category_03">
+    <p><strong>Thêm 1 record mới vào database</strong></p>
+    <pre class="brush: php">
+        $thanhvien = new App\ThanhVien();
+        $thanhvien->name = 'TrungLe';
+        $thanhvien->tuoi = 24;
+        $thanhvien->gioitinh = 1; //nam
+        $thanhvien->save();
+    </pre>
+</div>
+<div id="category_04">
+    <p><strong>Truy vấn dữ liệu trong database</strong></p>
+    <pre class="brush: php">
+        $thanhvien = App\ThanhVien::all(); // lấy tất cả dữ liệu
+        $thanhvien = App\ThanhVien::find(1); // lấy theo id
+        $thanhvien = App\ThanhVien::where('gioitinh', '=', 1); // lấy giới tính
+    </pre>
+</div>
+<div id="category_05">
+    <p><strong>Cập nhật thông tin record vừa tạo</strong></p>
+    <pre class="brush: php">
+        $thanhvien = App\ThanhVien::find(1); // tìm id của thành viên cần cập nhật
+        $thanhvien->name = 'TrungLe';
+        $thanhvien->tuoi = 24;
+        $thanhvien->gioitinh = 1; //nam
+        $thanhvien->update();
+    </pre>
+</div>
+<div id="category_06">
+    <p><strong>Xóa record trong database</strong></p>
+    <pre class="brush: php">
+        $thanhvien = App\ThanhVien::find(1); // tìm id của thành viên cần xóa
+        $thanhvien->delete();
+    </pre>
+</div>
+<div id="category_07">
+    <p><strong>3. Ứng dụng <code>Eloquent</code> tạo trang quản lý loại tin</strong></p>
+</div>
+<div id="category_08">
+    <p><strong>Thêm mới một loại tin</strong></p>
+</div>
+<div id="category_09">
+    <p><strong>Hiển thị danh sách loại tin</strong></p>
+</div>
+<div id="category_10">
+    <p><strong>Cập nhật một loại tin</strong></p>
+</div>
+<div id="category_11">
+    <p><strong>Xóa một loại tin</strong></p>
+</div>
+<p><strong>Video hướng dẫn: </strong></p>
+<div class="videowrapper">
+    <iframe width="100%" height="auto" src="https://www.youtube.com/embed/wK0J1JOLURc" frameborder="0" allowfullscreen></iframe>
+</div>
+<p>Trong bài này mình đã giới thiệu về <code>Eloquent</code> trong Laravel 5 và hướng dẫn các bạn ứng dụng <code>Eloquent</code> tạo trang quản lý loại tin. Trong series bài viết tiếp theo mình sẽ hướng dẫn các bạn tạo chức năng thêm, sữa, xóa cho trang articles. Mời các bạn đón đọc. Bài viết trên là những hiểu biết của cá nhân mình nên không tránh phải sai sót, rất mong sự đóng góp ý kiến của các bạn để bài viết trở nên hữu ích hơn.</p>
