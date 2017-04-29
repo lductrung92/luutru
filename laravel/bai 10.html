@@ -1,0 +1,589 @@
+<p>Bài trước mình đã giới thiệu về <code>Eloquent</code> trong Laravel 5 và hướng dẫn các bạn tạo trang quản lý loại tin cho dự án website tin tức. Bài hôm nay chúng ta sẽ ứng dụng <code>Eloquent</code> tạo trang quản lý tin tức cho dự án website tin tức.</p>
+<p><strong>Mục Lục:</strong></p>
+<div id="category_list">
+    <ul>
+        <li>
+            <a id = "category_01_link" href="#">Ứng dụng Eloquent tạo trang quản lý tin tức</a>
+            <ul>
+                <li><a id = "category_02_link" href="#">Thêm mới một tin tức</a></li>
+                <li><a id = "category_03_link" href="#">Hiển thị danh sách tin tức</a></li>
+                <li><a id = "category_04_link" href="#">Cập nhật một tin tức</a></li>
+                <li><a id = "category_05_link" href="#">Xóa một tin tức</a></li>
+            </ul>
+        </li>
+    </ul>
+</div>
+<div id="category_01">
+    <p><strong>4. Ứng dụng <code>Eloquent</code> tạo trang quản lý tin tức</strong></p>
+    <p><strong>Chuẩn bị giao diện: </strong></p>
+    <p>Cái này mình đã chuẩn bị sẵn cho các bạn, bạn nào đã từng làm việc với adminlte rồi có thể tự thiết kế lại theo ý của minh tùy thích. Download: <a href="http://laptrinh.laedaily.com/laravel-filemanager/photos/1/laravel/bai8/admin.rar" target="_blank">tại đây</a></p>
+    <p>Sau khi download load về các bạn giải nén vào thư mục <code>resources/views/admin</code></p>
+    <p>route cho trang quản trị tin tức</p>
+    <pre class="brush: php">
+        Route::group(['prefix' => 'article'], function () {
+            // hiển thị danh sách tin
+            Route::get('list', ['as' => 'getListArticle', 'uses' => 'Admin\ArticleController@getList']);
+
+            // hiển thị form thêm tin tức
+            Route::get('insert', ['as' => 'getInsertArticle', 'uses' => 'Admin\ArticleController@getInsert']);
+
+            // nhận request method post từ trang thêm gủi về để tiến hành insert dữ liệu
+            Route::post('insert', ['as' => 'postInsertArticle', 'uses' => 'Admin\ArticleController@postInsert']);
+
+            // hiển thị form cập nhật dữ liệu
+            Route::get('update/{id}', ['as' => 'getUpdateArticle', 'uses' => 'Admin\ArticleController@getUpdate']);
+
+            // nhận request method post từ trang update gủi về để tiến hành update dữ liệu
+            Route::post('update/{id}', ['as' => 'postUpdateArticle', 'uses' => 'Admin\ArticleController@postUpdate']);
+
+            // xóa tin tức
+            Route::get('delete/{id}', ['as' => 'getDeleteArticle', 'uses' => 'Admin\ArticleController@getDelete']);
+        });
+    </pre>
+    <p>Tạo controller xử lý trang quản lý tin tức: </p>
+    <pre class="brush: php">
+        $ php artisan make:controller Admin\ArticleController
+    </pre>
+</div>
+<div id="category_02">
+    <p><strong>Thêm mới một tin tức</strong></p>
+    <p>Sử dụng route gủi request tới <code>ArticleController</code> cụ thể là function <code>getInsert()</code> trong <code>ArticleController</code></p>
+    <p>function này sẽ return về view insert, cụ thể là file <code>resources/views/admin/article/insert.blade.php</code></p>
+    <pre class="brush: php">
+        public function getInsert(){
+            $categories = Category::all();
+            return view('admin.article.insert', compact('categories'));
+        }
+    </pre>
+
+    <p>view thêm tin tức <code>resources/views/admin/article/insert.blade.php</code> có nội dung như sau: </p>
+    <pre class="brush: php">
+        @extends('admin.base.base')
+        @section('title')
+            Thêm tin
+        @endsection
+        @section('css')
+            <link rel="stylesheet" href="adminlte/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
+        @endsection
+        @section('content')
+            <div class="content-wrapper">
+                <!-- Content Header (Page header) -->
+                <section class="content-header">
+                    <h1>
+                        Tin tức
+                        <small>quản lý</small>
+                    </h1>
+                    <ol class="breadcrumb">
+                        <li><a href="#"><i class="fa fa-dashboard"></i> Bảng điều khiển</a></li>
+                        <li><a href="#"><i class="fa fa-dashboard"></i>Tin</a></li>
+                        <li class="active">Thêm</li>
+                    </ol>
+                </section>
+
+                <section class="content">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="box box-primary">
+                                <div class="box-header">
+                                    <h3 class="box-title"><span style="color: green" class="glyphicon glyphicon-plus"></span>
+                                        Thêm tin tức</h3>
+                                </div>
+                                <form class="form-horizontal" method="post" id="formProduct" action="administrator/article/insert"
+                                      enctype="multipart/form-data">
+                                    <input type="hidden" name="_token" value="{{ csrf_token() }}"/>
+                                    <div class="box-body">
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">Danh mục</label>
+                                            <div class="col-sm-4">
+                                                <select name="selCategory" id="selCategory" class="form-control">
+                                                    <option value="0">Chọn danh mục</option>
+                                                    @foreach($categories as $category)
+                                                        <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group {{ empty($errors->messages()['txtTitle']) ? '' : 'has-error' }}">
+                                            <label class="col-sm-2 control-label" for="txtTitle">Tiêu đề</label>
+                                            <div class="col-sm-4">
+                                                <input type="text" class="form-control" name="txtTitle" placeholder="Nhập tiêu đề">
+                                                <span class="help-block">{{ empty($errors->messages()['txtTitle']) ? '' : showError($errors->messages()['txtTitle']) }}</span>
+                                            </div>
+                                        </div>
+                                        <div class="form-group {{ empty($errors->messages()['txtTag']) ? '' : 'has-error' }}">
+                                            <label class="col-sm-2 control-label" for="txtTag">Tag</label>
+                                            <div class="col-sm-4">
+                                                <input type="text" class="form-control" name="txtTag" placeholder="Nhập tên loại tin">
+                                                <span class="help-block">{{ empty($errors->messages()['txtTag']) ? '' : showError($errors->messages()['txtTag']) }}</span>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-md-2 control-label" for="Nom22">Ảnh đại diện</label>
+                                            <div class="col-md-4">
+                                                <input type="file" class="file" name="fImage">
+                                            </div>
+                                        </div>
+                                        <div class="form-group {{ empty($errors->messages()['txtDescription']) ? '' : 'has-error' }}">
+                                            <label class="col-sm-2 control-label" for="txtDescription">Mô tả</label>
+                                            <div class="col-sm-4">
+                                                <textarea type="text" class="form-control" name="txtDescription" placeholder="Nhập mô tả" rows="5"></textarea>
+                                                <span class="help-block">{{ empty($errors->messages()['txtDescription']) ? '' : showError($errors->messages()['txtDescription']) }}</span>
+                                            </div>
+                                        </div>
+                                        <div class="form-group {{ empty($errors->messages()['txtContent']) ? '' : 'has-error' }}">
+                                            <label class="col-sm-2 control-label" for="txtContent"></label>
+                                            <div class="col-sm-7">
+                                                <textarea type="text" class="form-control" name="txtContent" placeholder="Nhập nội dung" rows="10"></textarea>
+                                                <span class="help-block">{{ empty($errors->messages()['txtContent']) ? '' : showError($errors->messages()['txtContent']) }}</span>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label" for="txtCode">Hiển thị</label>
+                                            <div class="col-sm-4">
+                                                <input type="checkbox"name="txtStatus" >
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <div class="col-sm-offset-2 col-sm-8">
+                                                <button type="submit" class="btn btn-primary" id="btn_category"><i
+                                                        class="fa fa-fw fa-plus"></i> Thêm
+                                                </button>
+                                                <a id="btn-refresh" style="margin-left: 10px; margin-right: 10px" type="submit"
+                                                   class="btn btn-info"><i class="fa fa-refresh"></i> Làm mới</a>
+                                                <a id="btn-cancel" class="btn btn-danger"><i class="fa fa-fw fa-minus"></i> Hủy</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                                <!-- /.box-body -->
+                            </div>
+                        </div>
+
+                        <!-- /.col (right) -->
+                    </div>
+                    <!-- /.row -->
+
+                </section>
+                <!-- /.content -->
+            </div>
+        @endsection
+        @section('javascript')
+            <script src="adminlte/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
+            <script>
+                $(function () {
+                    $("textarea[name = 'txtContent']").wysihtml5();
+                });
+            </script>
+        @endsection
+    </pre>
+    <p><strong>Validate Form</strong></p>
+    <pre class="brush: php">
+        $ php artisan make:request ArticleRequest
+    </pre>
+    <p>Mở file <code>app/Http/ArticleRequest.php</code></p>
+    <pre class="brush: php">
+        namespace App\Http\Requests;
+
+        use Illuminate\Foundation\Http\FormRequest;
+
+        class ArticleRequest extends FormRequest
+        {
+            /**
+             * Determine if the user is authorized to make this request.
+             *
+             * @return bool
+             */
+            public function authorize()
+            {
+                return true;
+            }
+
+            /**
+             * Get the validation rules that apply to the request.
+             *
+             * @return array
+             */
+            public function rules()
+            {
+                $postId = $this->route()->parameter('id');
+                return [
+                    'txtTitle' => 'required|unique:articles,title,'.$postId,
+                    'txtTag' => 'required',
+                    'txtDescription' => 'required',
+                    'txtContent' => 'required',
+                ];
+            }
+            public function messages()
+            {
+                return [
+                    'txtTitle.required' => 'Bạn chưa nhập tiêu đề bài viết',
+                    'txtTitle.unique' => 'Tiêu đề bài viết đã tồn tại',
+                    'txtDescription.required' => 'Bạn chưa nhập mô tả',
+                    'txtTag.required' => 'Bạn chưa nhập tag',
+                    'txtContent.required' => 'Bạn chưa nhập nội dung'
+                ];
+            }
+        }
+    </pre>
+    <p>Chú ý: action form phải gủi về route <code>postInsertArticle</code></p>
+    <p>Sau khi nhấn submit sẻ sử dụng route <code>postInsertArticle</code> gủi request tới <code>ArticleController</code> cụ thể là function <code>postInsert()</code> trong <code>ArticleController</code></p>
+    <p>function này có nhiệm vụ gửi request tới model là file <code>app/Article.php</code> để tiến hành giao tiếp với database để insert dữ liệu</p>
+    <pre class="brush: php">
+         public function postInsert(ArticleRequest $request){
+            $article =  new Article();
+            $article->title = $request->txtTitle;
+            $article->category_id = $request->selCategory;
+            $article->tag = $request->txtTag;
+            $article->description = $request->txtDescription;
+            $article->content = $request->txtContent;
+            $article->alias = changeTitle($request->txtTitle);
+            if($request->hasFile('fImage'))
+            {
+                $article->image = moveFile($request, 'fImage', false, null);
+
+            }else{
+                $article->image = "";
+            }
+            $article->status = empty($request->txtStatus) ? 0 : 1;
+            $article->save();
+            return redirect('administrator/article/list')->with(['success' => 'Thêm thành công']);
+        }
+    </pre>
+    <p>Hàm <code>moveFile</code> ở dâu ra? ^_^</p>
+    <p>Mở file <code>app/function/ChangeTitle.php</code> thêm cho mình function sau: </p>
+    <p>Sau đó chạy lênh sau là có thể sử dụng nó: </p>
+    <pre class="brush: php">
+        function moveFile($request, $fileName, $unlink = false, $fileDel)
+        {
+            $file = $request->file($fileName);
+            $format = $file->getClientOriginalExtension();
+            if($format != 'jpg' && $format != 'png' && $format != 'jpeg'){
+                return redirect('admin/news/list')->with(['flash_level' => 'danger', 'flash_message' => 'File upload lên phải có định dạng sau jpg,png,jpeg']);
+            }
+            $name = $file->getClientOriginalName();
+            $image = str_random(4) . "_" . $name;
+            while(file_exists("upload/articles/" . $image))
+            {
+                $image = str_random(4) . "_" . $name;
+            }
+            if($unlink)
+                unlink("upload/articles/" . $fileDel);
+            Image::make($file->getRealPath())->resize(480, 292)->save(public_path('upload/articles/' . $image));
+            return $image;
+        }
+    </pre>
+    <p>Tiếp theo ta cài đặt <code>Intervention/Image</code>. Xem chi tiết: <a href="http://laptrinh.laedaily.com/su-dung-intervention-image-de-upload-va-resize-image.html" target="_blank">tại đây</a></p>
+    <p>Không cài là không chạy được hàm đó đâu nhé.</p>
+    <p>Form insert</p>
+    <p style="text-align: center"><img alt="" src="http://laptrinh.laedaily.com/laravel-filemanager/photos/1/laravel/bai10/1.jpg"></p>
+    <p>Validate form</p>
+    <p style="text-align: center"><img alt="" src="http://laptrinh.laedaily.com/laravel-filemanager/photos/1/laravel/bai10/2.jpg"></p>
+</div>
+<div id="category_03">
+    <p><strong>Hiển thị danh sách tin tức</strong></p>
+    <p>Sử dụng route <code>getListArticle</code> gủi request tới <code>ArticleController</code> cụ thể là function <code>getList()</code> trong <code>ArticleController</code></p>
+    <p>function này sẽ lấy tất cả dữ liệu bảng <code>articles</code> tryền qua view list, cụ thể là file <code>resources/views/admin/article/list.blade.php</code></p>
+    <pre class="brush: php">
+          public function getList(){
+            $articles = Article::all();
+            return view('admin.article.list', compact('articles'));
+          }
+    </pre>
+    <p>view danh sách tin tức<code>resources/views/admin/artucle/list.blade.php</code> có nội dung như sau: </p>
+    <pre class="brush: php">
+        @extends('admin.base.base')
+        @section('title')
+            Danh sách tin
+        @endsection
+        @section('css')
+                <!-- DataTables -->
+            <link rel="stylesheet" href="admin-lte/plugins/datatables/dataTables.bootstrap.css">
+        @endsection
+        @section('content')
+            <div class="content-wrapper">
+                <!-- Content Header (Page header) -->
+                <section class="content-header">
+                    <h1>
+                        Danh mục
+                        <small>quản lý</small>
+                    </h1>
+                    <ol class="breadcrumb">
+                        <li><a href="administrator/dashboard"><i class="fa fa-dashboard"></i> Bảng điều khiển</a></li>
+                        <li><a href="administrator/article/list">Tin</a></li>
+                        <li class="active">Danh sách</li>
+                    </ol>
+                </section>
+
+                <!-- Main content -->
+                <section class="content">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="box box-primary">
+                                <div class="box-header">
+                                    <i class="fa fa-fw fa-th"></i>
+                                    <h3 class="box-title">Danh sách Tin</h3>
+                                </div>
+                                <!-- /.box-header -->
+                                <div class="box-body">
+                                    <table id="example1" class="table table-bordered table-striped">
+                                        <thead>
+                                        <tr>
+                                            <th>Danh mục</th>
+                                            <th>Tiêu đề</th>
+                                            <th>Tag</th>
+                                            <th>Hiển thị</th>
+                                            <th></th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        @foreach($articles as $article)
+                                        <tr>
+                                            <td>{{ $article->category->name }}</td>
+                                            <td>{{ $article->title }}</td>
+                                            <td>{{ $article->tag }}</td>
+                                            <td>{{ $article->status == 1 ? 'Có' : 'Không'}}</td>
+                                            <td class="centered text-center">
+                                                <a class="btn btn-primary btn-xs"
+                                                   href="administrator/article/update/{{ $article->id }}">
+                                                    <span class="glyphicon glyphicon-pencil"></span>
+                                                </a>
+                                                <a class="btn btn-danger btn-xs"
+                                                   href="administrator/article/delete/{{ $article->id }}">
+                                                    <span class="glyphicon glyphicon-trash"></span>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        @endforeach
+                                        </tbody>
+                                        <tfoot>
+                                        <tr>
+                                            <th>Danh mục</th>
+                                            <th>Tiêu đề</th>
+                                            <th>Tag</th>
+                                            <th>Tag</th>
+                                            <th></th>
+                                        </tr>
+                                        </tfoot>
+                                    </table>
+
+                                </div>
+                                <!-- /.box-body -->
+                            </div>
+                            <!-- /.box -->
+                        </div>
+                        <!-- /.col -->
+                    </div>
+                    <!-- /.row -->
+                </section>
+                <!-- /.content -->
+            </div>
+        @endsection
+        @section('javascript')
+                <!-- DataTables -->
+            <script src="admin-lte/plugins/datatables/jquery.dataTables.min.js"></script>
+            <script src="admin-lte/plugins/datatables/dataTables.bootstrap.min.js"></script>
+            <script>
+                $(function () {
+                    var table = $("#example1").DataTable();
+                });
+            </script>
+        @endsection
+    </pre>
+    <p>Danh sách</p>
+    <p style="text-align: center"><img alt="" src="http://laptrinh.laedaily.com/laravel-filemanager/photos/1/laravel/bai10/3.jpg"></p>
+</div>
+<div id="category_04">
+    <p><strong>Cập nhật một tin tức</strong></p>
+    <p>Sử dụng route <code>getUpdateArticle</code> gủi request tới <code>ArticleController</code> cụ thể là function <code>getUpdate()</code> trong <code>ArticleController</code></p>
+    <p>function này sẽ lấy dữ liệu column cần cập nhật trong bảng <code>categories</code> truyền qua view update, cụ thể là file <code>resources/views/admin/article/update.blade.php</code></p>
+    <pre class="brush: php">
+           public function getUpdate($id){
+                $art = Article::find($id);
+                $categories = Category::all();
+                return view('admin.article.update', compact('art', 'categories'));
+           }
+    </pre>
+    <p>view danh sách loại tin <code>resources/views/admin/article/update.blade.php</code> có nội dung như sau: </p>
+    <pre class="brush: php">
+        @extends('admin.base.base')
+        @section('title')
+            Cập nhật tin
+        @endsection
+        @section('css')
+            <link rel="stylesheet" href="adminlte/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
+        @endsection
+        @section('content')
+            <div class="content-wrapper">
+                <!-- Content Header (Page header) -->
+                <section class="content-header">
+                    <h1>
+                        Tin tức
+                        <small>quản lý</small>
+                    </h1>
+                    <ol class="breadcrumb">
+                        <li><a href="#"><i class="fa fa-dashboard"></i> Bảng điều khiển</a></li>
+                        <li><a href="#"><i class="fa fa-dashboard"></i>Tin</a></li>
+                        <li class="active">Cập nhật</li>
+                    </ol>
+                </section>
+
+                <section class="content">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="box box-primary">
+                                <div class="box-header">
+                                    <h3 class="box-title"><span style="color: green" class="glyphicon glyphicon-plus"></span>
+                                        Cập nhật tin tức</h3>
+                                </div>
+                                <form class="form-horizontal" method="post" id="formProduct" action="administrator/article/update/{{ $art->id }}"
+                                      enctype="multipart/form-data">
+                                    <input type="hidden" name="_token" value="{{ csrf_token() }}"/>
+                                    <div class="box-body">
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">Danh mục</label>
+                                            <div class="col-sm-4">
+                                                <select name="selCategory" id="selCategory" class="form-control">
+                                                    <option value="0">Chọn danh mục</option>
+                                                    @foreach($categories as $category)
+                                                        @if($category->id == $art->id)
+                                                            <option value="{{ $category->id }}" selected>{{ $category->name }}</option>
+                                                        @else
+                                                            <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                                        @endif
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group {{ empty($errors->messages()['txtTitle']) ? '' : 'has-error' }}">
+                                            <label class="col-sm-2 control-label" for="txtTitle">Tiêu đề</label>
+                                            <div class="col-sm-4">
+                                                <input value="{{ $art->title }}" type="text" class="form-control" name="txtTitle" placeholder="Nhập tiêu đề">
+                                                <span class="help-block">{{ empty($errors->messages()['txtTitle']) ? '' : showError($errors->messages()['txtTitle']) }}</span>
+                                            </div>
+                                        </div>
+                                        <div class="form-group {{ empty($errors->messages()['txtTag']) ? '' : 'has-error' }}">
+                                            <label class="col-sm-2 control-label" for="txtTag">Tag</label>
+                                            <div class="col-sm-4">
+                                                <input value="{{ $art->tag }}" type="text" class="form-control" name="txtTag" placeholder="Nhập tên loại tin">
+                                                <span class="help-block">{{ empty($errors->messages()['txtTag']) ? '' : showError($errors->messages()['txtTag']) }}</span>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-md-2 control-label" for="Nom22"></label>
+                                            <div class="col-md-4">
+                                                <img src="upload/articles/{{ $art->image }}" />
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="col-md-2 control-label" for="Nom22">Ảnh đại diện</label>
+                                            <div class="col-md-4">
+                                                <input type="file" class="file" name="fImage">
+                                            </div>
+                                        </div>
+                                        <div class="form-group {{ empty($errors->messages()['txtDescription']) ? '' : 'has-error' }}">
+                                            <label class="col-sm-2 control-label" for="txtDescription">Mô tả</label>
+                                            <div class="col-sm-4">
+                                                <textarea type="text" class="form-control" name="txtDescription" placeholder="Nhập mô tả" rows="5">{{ $art->description }}</textarea>
+                                                <span class="help-block">{{ empty($errors->messages()['txtDescription']) ? '' : showError($errors->messages()['txtDescription']) }}</span>
+                                            </div>
+                                        </div>
+                                        <div class="form-group {{ empty($errors->messages()['txtContent']) ? '' : 'has-error' }}">
+                                            <label class="col-sm-2 control-label" for="txtContent"></label>
+                                            <div class="col-sm-7">
+                                                <textarea type="text" class="form-control" name="txtContent" placeholder="Nhập nội dung" rows="10">{{ $art->content }}</textarea>
+                                                <span class="help-block">{{ empty($errors->messages()['txtContent']) ? '' : showError($errors->messages()['txtContent']) }}</span>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label" for="txtCode">Hiển thị</label>
+                                            <div class="col-sm-4">
+                                                <input type="checkbox"name="txtStatus" {{ $art->status == 1 ? 'checked' : '' }}>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <div class="col-sm-offset-2 col-sm-8">
+                                                <button type="submit" class="btn btn-success" id="btn_category"><i class="fa fa-fw fa-edit"></i>Cập nhật</button>
+                                                <a id="btn-refresh" style="margin-left: 10px; margin-right: 10px" type="submit"
+                                                   class="btn btn-info"><i class="fa fa-refresh"></i> Làm mới</a>
+                                                <a id="btn-cancel" class="btn btn-danger"><i class="fa fa-fw fa-minus"></i> Hủy</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                                <!-- /.box-body -->
+                            </div>
+                        </div>
+
+                        <!-- /.col (right) -->
+                    </div>
+                    <!-- /.row -->
+
+                </section>
+                <!-- /.content -->
+            </div>
+        @endsection
+        @section('javascript')
+            <script src="adminlte/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
+            <script>
+                $(function () {
+                    $("textarea[name = 'txtContent']").wysihtml5();
+                });
+            </script>
+        @endsection
+    </pre>
+    <p>Sau khi nhấn submit sẻ sử dụng route <code>postUpdateArticle</code> gủi request tới <code>ArticleController</code> cụ thể là function <code>postUpdate()</code> trong <code>ArticleController</code></p>
+    <p>function này có nhiệm vụ gửi request tới model là file <code>app/Article.php</code> để tiến hành giao tiếp với database để update dữ liệu</p>
+    <pre class="brush: php">
+        public function postUpdate(ArticleRequest $request, $id){
+            $article = Article::find($id);
+            $article->title = $request->txtTitle;
+            $article->category_id = $request->selCategory;
+            $article->tag = $request->txtTag;
+            $article->description = $request->txtDescription;
+            $article->content = $request->txtContent;
+            $article->alias = changeTitle($request->txtTitle);
+            if($request->hasFile('fImage'))
+            {
+                if($article->image != '')
+                {
+                    $article->image = moveFile($request, 'fImage', true, $article->image);
+                }
+                else
+                {
+                    $article->image = moveFile($request, 'fImage', false, null);
+                }
+            }else{
+                $article->image = $article->image;
+            }
+            $article->status = empty($request->txtStatus) ? 0 : 1;
+            $article->update();
+            return redirect('administrator/article/list')->with(['success' => 'Cập nhật thành công']);
+        }
+    </pre>
+    <p>Form cập nhật</p>
+    <p style="text-align: center"><img alt="" src="http://laptrinh.laedaily.com/laravel-filemanager/photos/1/laravel/bai10/4.jpg"></p>
+</div>
+<div id="category_05">
+    <p><strong>Xóa một tin tức</strong></p>
+    <p>Sử dụng route <code>getDeleteArticle</code> gủi request tới <code>ArticleController</code> cụ thể là function <code>getDelete()</code> trong <code>ArticleController</code></p>
+    <p>function này sẽ lấy dữ liệu column cần xóa trong bảng <code>articles</code> để tiến hành xóa</p>
+    <pre class="brush: php">
+        public function getDelete($id){
+            $article = Article::find($id);
+            $article->delete();
+            if($article->image != '')
+            {
+                unlink("upload/news/" . $article->image);
+            }
+            return redirect('administrator/article/list')->with(['success' => 'Xóa thành công']);
+        }
+    </pre>
+</div>
+<p>Soure code: <a href="https://drive.google.com/file/d/0B_FGcJ1YC9ozejVLLWU3V3FsblE/view" target="_blank">download</a></p>
+<p>Trong bài này mình đã hướng dẫn các bạn ứng dụng <code>Eloquent</code> tạo trang quản lý tin tức. Trong series bài viết tiếp theo mình sẽ hướng dẫn các bạn tạo chức năng thêm, sữa, xóa cho trang user. Mời các bạn đón đọc. Bài viết trên là những hiểu biết của cá nhân mình nên không tránh phải sai sót, rất mong sự đóng góp ý kiến của các bạn để bài viết trở nên hữu ích hơn.</p>
+
