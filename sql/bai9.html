@@ -1,0 +1,149 @@
+<p>Bài hôm nay mình sẽ hướng dẫn các bạn sử dụng toán tử ANY và ALL trong SQL</p>
+<p><strong>Mục Lục:</strong></p>
+<div id="category_list">
+    <ul>
+        <li><a id = "category_01_link" href="#">Toán tử ANY</a></li>
+        <li><a id = "category_02_link" href="#">Toán tử ALL</a></li>
+        <li><a id = "category_03_link" href="#">Ví dụ</a></li>
+    </ul>
+</div>
+<div id="category_01">
+    <p><strong>1. Toán tử ANY</strong></p>
+    <p>Toán tử <code>ANY</code> được sử dụng với mệnh đề <code>WHERE</code> hoặc <code>HAVING</code>.</p>
+    <p>Toán tử <code>ANY</code> trả về true nếu bất kỳ giá trị truy vấn phụ nào đáp ứng điều kiện.</p>
+    <p><strong>Cú pháp: </strong></p>
+    <pre class="brush: sql">
+        SELECT column_name(s)
+        FROM table_name
+        WHERE column_name operator ANY
+        (SELECT column_name FROM table_name WHERE condition);
+    </pre>
+</div>
+<div id="category_02">
+    <p><strong>2. Toán tử ALL</strong></p>
+    <p>Toán tử <code>ALL</code> được sử dụng với mệnh đề <code>WHERE</code> hoặc <code>HAVING</code>.</p>
+    <p>Toán tử <code>ALL</code> trả về true nếu tất cả các giá trị của truy vấn phụ đáp ứng điều kiện.</p>
+    <p><strong>Cú pháp: </strong></p>
+    <pre class="brush: sql">
+        SELECT column_name(s)
+    FROM table_name
+    WHERE column_name operator ALL
+    (SELECT column_name FROM table_name WHERE condition);
+    </pre>
+</div>
+<div id="category_03">
+    <p><strong>3. Ví dụ</strong></p>
+    <p><strong>Ví dụ:</strong> ta có 2 bảng sau</p>
+    <p>Bảng "Products"</p>
+    <div class="table-responsive">
+        <table class="table">
+            <tbody><tr>
+                <th>ProductID</th>
+                <th>ProductName</th>
+                <th>SupplierID</th>
+                <th>CategoryID</th>
+                <th>Unit</th>
+                <th>Price</th>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>Chais</td>
+                <td>1</td>
+                <td>1</td>
+                <td>10 boxes x 20 bags</td>
+                <td>18</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>Chang</td>
+                <td>1</td>
+                <td>1</td>
+                <td>24 - 12 oz bottles</td>
+                <td>19</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>Aniseed Syrup</td>
+                <td>1</td>
+                <td>2</td>
+                <td>12 - 550 ml bottles</td>
+                <td>10</td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>Chef Anton's Cajun Seasoning</td>
+                <td>2</td>
+                <td>2</td>
+                <td>48 - 6 oz jars</td>
+                <td>22</td>
+            </tr>
+            <tr>
+                <td>5</td>
+                <td>Chef Anton's Gumbo Mix</td>
+                <td>2</td>
+                <td>2</td>
+                <td>36 boxes</td>
+                <td>21.35</td>
+            </tr>
+            </tbody></table>
+    </div>
+    <p>Bảng "OrderDetails"</p>
+    <div class="table-responsive">
+        <table class="table">
+            <tbody><tr>
+                <th>OrderDetailID</th>
+                <th>OrderID</th>
+                <th>ProductID</th>
+                <th>Quantity</th>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>10248</td>
+                <td>11</td>
+                <td>12</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>10248</td>
+                <td>42</td>
+                <td>10</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>10248</td>
+                <td>72</td>
+                <td>5</td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>10249</td>
+                <td>14</td>
+                <td>9</td>
+            </tr>
+            <tr>
+                <td>5</td>
+                <td>10249</td>
+                <td>51</td>
+                <td>40</td>
+            </tr>
+            </tbody></table>
+    </div>
+    <p><strong>Ví dụ: </strong>Câu lệnh SQL sau trả về TRUE và liệt kê các tên sản phẩm nếu nó tìm thấy bất kỳ bản ghi nào trong bảng OrderDetails có số lượng = 10:</p>
+    <pre class="brush: sql">
+        SELECT ProductName
+        FROM Products
+        WHERE ProductID = ANY (SELECT ProductID FROM OrderDetails WHERE Quantity = 10);
+    </pre>
+    <p><strong>Ví dụ: </strong>Câu lệnh SQL sau trả về TRUE và liệt kê các tên sản phẩm nếu nó tìm thấy bất kỳ bản ghi nào trong bảng OrderDetails số lượng > 99:</p>
+    <pre class="brush: sql">
+        SELECT ProductName
+        FROM Products
+        WHERE ProductID = ANY (SELECT ProductID FROM OrderDetails WHERE Quantity > 99);
+    </pre>
+    <p><strong>Ví dụ: </strong>Câu lệnh SQL sau trả về TRUE và liệt kê các tên sản phẩm nếu tất cả các bản ghi trong bảng OrderDetails có số lượng = 10: (Khi sử dụng ALL)</p>
+    <pre class="brush: sql">
+        SELECT ProductName
+        FROM Products
+        WHERE ProductID = ALL (SELECT ProductID FROM OrderDetails WHERE Quantity = 10);
+    </pre>
+</div>

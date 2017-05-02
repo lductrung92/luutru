@@ -1,0 +1,137 @@
+<p>Bài trước mình đã giới thiệu về <code>Auth</code> trong Laravel 5 và ứng dụng tạo chức năng login cho trang quản trị website tin tức. Bài hôm nay chúng ta sẽ đi tìm hiểu về <code>Middleware</code> trong Laravel 5 và ứng dụng nó để bảo vệ trang quản trị website.</p>
+<p><strong>Mục Lục:</strong></p>
+<div id="category_list">
+    <ul>
+        <li><a id = "category_01_link" href="#">Giới thiệu</a></li>
+        <li><a id = "category_02_link" href="#">Tạo và đăng ký Middleware</a></li>
+        <li><a id = "category_03_link" href="#">Tạo Middleware cho trang quản trị website tin tức</a></li>
+    </ul>
+</div>
+<div id="category_01">
+    <p><strong>1. Giới thiệu</strong></p>
+    <p>Laravel có chứa một middleware xác thực người dùng đăng nhập vào hệ thống. Nếu user chưa đăng nhập, middleware sẽ chuyển hướng user tới màn hình đăng nhập. Tuy nhiên, nếu user đã đăng nhập rồi, thì middleware sẽ cho phép request được thực hiện tiếp tiến trình xử lý vào ứng dụng.</p>
+    <p>Có vài middleware đã có sẵn trong Laravel framework, bao gồm middlware xác thực, CSRF protection. Tất cả được nằm trong thư mục <code>app/Http/Middleware</code>.</p>
+</div>
+<div id="category_02">
+    <p><strong>2. Tạo và đăng ký Middleware</strong></p>
+    <p><strong>Cú pháp: </strong></p>
+    <pre class="brush: php">
+        $ php artisan make:middleware DemoMiddleware
+    </pre>
+    <p><code>DemoMiddleware</code> là tên middleware. Chạy lệnh tên sẽ tạo ra class <code>DemoMiddleware</code> trong thư mục <code>app/Http/Middleware</code></p>
+    <pre class="brush: php">
+        class AdminMiddleware
+        {
+            /**
+             * Handle an incoming request.
+             *
+             * @param  \Illuminate\Http\Request  $request
+             * @param  \Closure  $next
+             * @return mixed
+             */
+            public function handle($request, Closure $next)
+            {
+                if($request->age <= 18) {
+                    return $next($request);
+                } else {
+                    return redirect('home');
+                }
+
+            }
+        }
+    </pre>
+    <p>Nói cho vui thì middleware này sẽ cấm trẻ em dưới 18 tuổi được truy cập vào. Nếu không đủ 18 tuổi nó sẽ 'đá' về trang chủ còn ngược lại sẽ cho phép truy cập vào.</p>
+    <p><strong>Đăng ký Middleware</strong></p>
+    <p>Bạn mở file <code>app/Http/Kernel.php</code> tìm tới <code>$routeMiddleware</code> đây là thuộc tính sẽ chứa một số class thuộc middleware của framework Laravel. Để thêm middleware của bạn, đơn giản chỉ là thêm nó vào dach sách và gán từ khóa bạn chọn. Ví dụ:</p>
+    <pre class="brush: php">
+        protected $routeMiddleware = [
+            ...,
+            'demo' => \App\Http\Middleware\DemoMiddleware::class
+        ];
+    </pre>
+    <p><strong>Gán Middleware vào Routes</strong></p>
+    <p>Khi middleware đã được định nghĩa trong HTTP kernel, bạn có thể sử dụng phương thức middleware gán cho một route:</p>
+    <pre class="brush: php">
+    Route::group(['prefix' => 'anh/18', 'middleware' => 'demo'], function() {
+        ... // danh sách các route
+    });
+    </pre>
+</div>
+<div id="category_03">
+    <p><strong>3. Tạo Middleware cho trang quản trị website tin tức</strong></p>
+    <p>Tạo middleware <code>AdminMiddleware</code></p>
+    <pre class="brush: php">
+        $ php artisan make:middleware AdminMiddleware
+    </pre>
+    <p>Mở file <code>app/Middleware/AdminMiddleware.php</code></p>
+    <pre class="brush: php">
+        namespace App\Http\Middleware;
+        use Closure;
+        use Auth;
+
+        class AdminMiddleware
+        {
+            /**
+             * Handle an incoming request.
+             *
+             * @param  \Illuminate\Http\Request  $request
+             * @param  \Closure  $next
+             * @return mixed
+             */
+            public function handle($request, Closure $next)
+            {
+                if(Auth::check()) {
+                    return $next($request);
+                } else {
+                    return redirect('administrator/login');
+                }
+
+            }
+        }
+    </pre>
+    <p>middleware này giúp ta xác đinh người dùng đã xác thực hay chưa? nếu chưa sẽ redirect về trang login còn ngược lại sẽ cho đi qua.</p>
+    <p>Bạn mở file <code>app/Http/Kernel.php</code> tìm tới <code>$routeMiddleware</code> đây là thuộc tính sẽ chứa một số class thuộc middleware của framework Laravel. Để thêm middleware của bạn, đơn giản chỉ là thêm nó vào dach sách và gán từ khóa bạn chọn. Ví dụ:</p>
+    <pre class="brush: php">
+        protected $routeMiddleware = [
+            ...,
+            'adminLogin' => \App\Http\Middleware\AdminMiddleware::class
+        ];
+    </pre>
+    <p>Gán middlewware vào route</p>
+    <pre class="brush: php">
+        Route::group(['prefix' => 'administrator', 'middleware' => 'adminLogin'], function() {
+
+	        Route::get('index', 'AdminController@index');
+
+            Route::group(['prefix' => 'category'], function () {
+               Route::get('list', ['as' => 'getListCate', 'uses' => 'Admin\CategoryController@getList']);
+               Route::get('insert', ['as' => 'getInsertCate', 'uses' => 'Admin\CategoryController@getInsert']);
+               Route::post('insert', ['as' => 'postInsertCate', 'uses' => 'Admin\CategoryController@postInsert']);
+               Route::get('update/{id}', ['as' => 'getUpdateCate', 'uses' => 'Admin\CategoryController@getUpdate']);
+               Route::post('update/{id}', ['as' => 'postUpdateCate', 'uses' => 'Admin\CategoryController@postUpdate']);
+               Route::get('delete/{id}', ['as' => 'getDeleteCate', 'uses' => 'Admin\CategoryController@getDelete']);
+            });
+
+            Route::group(['prefix' => 'article'], function () {
+                Route::get('list', ['as' => 'getListArticle', 'uses' => 'Admin\ArticleController@getList']);
+                Route::get('insert', ['as' => 'getInsertArticle', 'uses' => 'Admin\ArticleController@getInsert']);
+                Route::post('insert', ['as' => 'postInsertArticle', 'uses' => 'Admin\ArticleController@postInsert']);
+                Route::get('update/{id}', ['as' => 'getUpdateArticle', 'uses' => 'Admin\ArticleController@getUpdate']);
+                Route::post('update/{id}', ['as' => 'postUpdateArticle', 'uses' => 'Admin\ArticleController@postUpdate']);
+                Route::get('delete/{id}', ['as' => 'getDeleteArticle', 'uses' => 'Admin\ArticleController@getDelete']);
+            });
+
+            Route::group(['prefix' => 'user'], function () {
+                Route::get('list', ['as' => 'getListUser', 'uses' => 'Admin\UserController@getList']);
+                Route::get('insert', ['as' => 'getInsertUser', 'uses' => 'Admin\UserController@getInsert']);
+                Route::post('insert', ['as' => 'postInsertUser', 'uses' => 'Admin\UserController@postInsert']);
+                Route::get('update/{id}', ['as' => 'getUpdateUser', 'uses' => 'Admin\UserController@getUpdate']);
+                Route::post('update/{id}', ['as' => 'postUpdateUser', 'uses' => 'Admin\UserController@postUpdate']);
+                Route::get('delete/{id}', ['as' => 'getDeleteUser', 'uses' => 'Admin\UserController@getDelete']);
+            });
+
+        });
+    </pre>
+    <p>Bạn thử không đăng nhập truy cập 1 trong các route trong nhóm route <code>administrator</code> nếu nó redirect về trang login là bạn đã thành công.</p>
+</div>
+<p>Trong bài này mình đã giới thiệu về <code>Middleware</code> trong Laravel 5 và tạo <code>Middleware</code> cho website tin tức. Trong series bài viết tiếp theo mình sẽ hướng dẫn các bạn về <code>Query Builder</code> trong Laravel 5 và hiển thị tin tức lên trang chủ.</p>

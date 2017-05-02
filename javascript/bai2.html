@@ -1,0 +1,92 @@
+<p>Bài hôm nay mình sẽ đi giới thiệu về biến và kiểu dữ liệu trong Javascript</p>
+<p><strong>Mục Lục:</strong></p>
+<div id="category_list">
+    <ul>
+        <li><a id = "category_01_link" href="#">Biến trong Javascript</a></li>
+        <li>
+            <a id = "category_02_link" href="#">Kiểu dữ liệu trong Javascript</a>
+            <ul>
+                <li><a id = "category_03_link" href="#">Strings</a></li>
+                <li><a id = "category_04_link" href="#">Numbers</a></li>
+                <li><a id = "category_05_link" href="#">Booleans</a></li>
+            </ul>
+        </li>
+    </ul>
+</div>
+<div id="category_01">
+    <p><strong>1. Biến trong Javascript</strong></p>
+    <p>Biến là một vật chứa tham chiếu đến một vị trí ở bộ nhớ máy tính</p>
+    <p>Nó được sử dụng để giữ giá trị và có thể thay đổi trong khi kịch bản thực thi</p>
+    <p>Một biến được khai báo sử dụng từ khoá <code>var</code></p>
+    <p>Biến được định nghĩa ngoài tất cả các hàm hoặc được sử dụng mà không khai báo với cú pháp var sẽ được coi là <code>biến toàn cục</code>, những biến này có thể sử dụng trên toàn trang web. Biến được khai báo với var bên trong một hàm là <code>biến cục bộ</code> của hàm đó và chỉ có thể sử dụng được bên trong hàm đó.</p>
+</div>
+<div id="category_02">
+    <p><strong>2. Kiểu dữ liệu trong Javascript</strong></p>
+    <p>JavaScript có một tập các kiểu dữ liệu: </p>
+    <ul>
+        <li>Chuỗi (String)</li>
+        <li>Số (Number)</li>
+        <li>Giá trị logic (Boolean)</li>
+    </ul>
+</div>
+<div id="category_03">
+    <p><strong>Strings</strong></p>
+    <p>Các chuỗi là các giá trị được tạo thành từ văn bản và có thể chứa các chữ cái, số, ký hiệu, dấu chấm câu.</p>
+    <p>Các chuỗi được chứa trong một cặp dấu nháy đơn <code>' '</code> hoặc dấu ngoặc kép <code>" "</code>.</p>
+    <p>Bạn có thể sử dụng dấu gạch chéo ngược <code>\</code> để thoát dấu ngoặc kép</p>
+    <p><strong>Ví dụ: </strong></p>
+    <pre class="brush: js">
+        'It\'s six o\'clock.';
+        "Remember to say \"please\" and \"thank you.\"";
+    </pre>
+    <p>Các thuộc tính và phương thức thường được sử dụng: </p>
+    <ul>
+        <li><code>length</code>: Chiều dài chuỗi
+            <p><strong>Ví dụ: </strong></p>
+            <pre class="brush: js">
+                "caterpillar".length;
+            </pre>
+            <p><strong>Kết quả: </strong> 11</p>
+        </li>
+        <li><code>toLowerCase</code>: Chuyển chuỗi thành chữ <code>thường</code>
+            <p><strong>Ví dụ: </strong></p>
+            <pre class="brush: js">
+                "THE KIDS".toLowerCase();
+            </pre>
+            <p><strong>Kết quả: </strong> "the kids"</p>
+        </li>
+        <li><code>toUpperCase</code>: Chuyển chuỗi thành chữ <code>HOA</code>
+            <p><strong>Ví dụ: </strong></p>
+            <pre class="brush: js">
+                "I wish I were big.".toUpperCase();
+            </pre>
+            <p><strong>Kết quả: </strong> "I WISH I WERE BIG."</p>
+        </li>
+        <li><code>trim</code>: Xóa khoảng trắng <code>bắt đầu</code> và <code>kết thúc</code> chuỗi
+            <p><strong>Ví dụ: </strong></p>
+            <pre class="brush: js">
+                "   but keep the middle spaces   ".trim();
+            </pre>
+            <p><strong>Kết quả: </strong> "but keep the middle spaces"</p>
+        </li>
+    </ul>
+</div>
+<div id="category_04">
+    <p><strong>Numbers</strong></p>
+    <ul>
+        <li><strong>Số thập phân và phân số:</strong> JavaScript không phân biệt giữa số nguyên và số thập phân, vì vậy bạn có thể sử dụng chúng cùng nhau mà không cần phải chuyển đổi từ số này sang số thập phân khác.</li>
+        <li><strong>Số âm:</strong> Bạn có thể tạo ra một số âm bằng cách đặt toán tử ở phía trước.</li>
+    </ul>
+</div>
+<div id="category_05">
+    <p><strong>Booleans</strong></p>
+    <p>Giá trị trả về chỉ có thể là <code>true</code> hoặc <code>false</code></p>
+    <p><strong>Ví dụ: </strong></p>
+    <pre class="brush: js">
+        var kitchenLights = false;
+        kitchenLights = true;
+        kitchenLights;
+    </pre>
+    <p><strong>Kết quả: </strong> true</p>
+</div>
+

@@ -1,0 +1,498 @@
+<p>Bài hôm nay mình sẽ đi giới thiệu các lệnh: INSERT INTO, UPDATE, DELETE trong SQL</p>
+<p><strong>Mục Lục:</strong></p>
+<div id="category_list">
+    <ul>
+        <li><a id = "category_01_link" href="#">INSERT INTO</a></li>
+        <li><a id = "category_02_link" href="#">UPDATE</a></li>
+        <li><a id = "category_03_link" href="#">DELETE</a></li>
+    </ul>
+</div>
+<div id="category_01">
+    <p><strong>1. INSERT INTO</strong></p>
+    <p>Câu lệnh <code>INSERT INTO</code> được sử dụng để chèn các bản ghi mới vào một bảng.</p>
+    <p><strong>Cú pháp: </strong></p>
+    <p>Có thể viết câu lệnh <code>INSERT INTO</code> theo hai cách.</p>
+    <pre class="brush: sql">
+        INSERT INTO table_name (column1, column2, column3, ...)
+        VALUES (value1, value2, value3, ...);
+    </pre>
+    <p>Nếu bạn đang thêm các giá trị cho tất cả các cột của bảng, bạn không cần chỉ định tên cột trong truy vấn SQL. Tuy nhiên, đảm bảo thứ tự của các giá trị đúng theo thứ tự như các cột trong bảng. Cú pháp INSERT INTO sẽ như sau:</p>
+    <pre class="brush: sql">
+        INSERT INTO table_name
+        VALUES (value1, value2, value3, ...);
+    </pre>
+    <p><strong>Ví dụ:</strong> ta có bảng sau</p>
+    <div class="table-responsive">
+        <table class="table">
+            <tbody><tr>
+                <th>CustomerID</th>
+                <th>CustomerName</th>
+                <th>ContactName</th>
+                <th>Address</th>
+                <th>City</th>
+                <th>PostalCode</th>
+                <th>Country</th>
+            </tr>
+            <tr>
+                <td>89</td>
+                <td>White Clover Markets</td>
+                <td>Karl Jablonski</td>
+                <td>305 - 14th Ave. S. Suite 3B</td>
+                <td>Seattle</td>
+                <td>98128</td>
+                <td>USA</td>
+            </tr>
+            <tr>
+                <td>90<br><br></td>
+                <td>Wilman Kala</td>
+                <td>Matti Karttunen</td>
+                <td>Keskuskatu 45</td>
+                <td>Helsinki</td>
+                <td>21240</td>
+                <td>Finland</td>
+            </tr>
+            <tr>
+                <td>91<br><br></td>
+                <td>Wolski</td>
+                <td>Zbyszek</td>
+                <td>ul. Filtrowa 68</td>
+                <td>Walla</td>
+                <td>01-012</td>
+                <td>Poland</td>
+            </tr>
+            </tbody></table>
+    </div>
+    <p><strong>Ví dụ: </strong>Câu lệnh SQL sau chèn một bản ghi mới trong bảng "Customers":</p>
+    <pre class="brush: sql">
+        INSERT INTO Customers (CustomerName, ContactName, Address, City, PostalCode, Country)
+        VALUES ('Cardinal', 'Tom B. Erichsen', 'Skagen 21', 'Stavanger', '4006', 'Norway');
+    </pre>
+    <p><strong>Kết quả</strong></p>
+    <div class="table-responsive">
+        <table class="table">
+            <tbody><tr>
+                <th>CustomerID</th>
+                <th>CustomerName</th>
+                <th>ContactName</th>
+                <th>Address</th>
+                <th>City</th>
+                <th>PostalCode</th>
+                <th>Country</th>
+            </tr>
+            <tr>
+                <td>89</td>
+                <td>White Clover Markets</td>
+                <td>Karl Jablonski</td>
+                <td>305 - 14th Ave. S. Suite 3B</td>
+                <td>Seattle</td>
+                <td>98128</td>
+                <td>USA</td>
+            </tr>
+            <tr>
+                <td>90<br><br></td>
+                <td>Wilman Kala</td>
+                <td>Matti Karttunen</td>
+                <td>Keskuskatu 45</td>
+                <td>Helsinki</td>
+                <td>21240</td>
+                <td>Finland</td>
+            </tr>
+            <tr>
+                <td>91<br><br></td>
+                <td>Wolski</td>
+                <td>Zbyszek</td>
+                <td>ul. Filtrowa 68</td>
+                <td>Walla</td>
+                <td>01-012</td>
+                <td>Poland</td>
+            </tr>
+            <tr>
+                <td>92</td>
+                <td>Cardinal</td>
+                <td>Tom B. Erichsen</td>
+                <td>Skagen 21</td>
+                <td>Stavanger</td>
+                <td>4006</td>
+                <td>Norway</td>
+            </tr>
+            </tbody></table>
+    </div>
+    <p><strong>Ví dụ: </strong>Câu lệnh SQL sau đây sẽ chèn một bản ghi mới, nhưng chỉ chèn dữ liệu vào các cột "CustomerName", "City" và "Country" (CustomerID sẽ được cập nhật tự động):</p>
+    <pre class="brush: sql">
+        INSERT INTO Customers (CustomerName, City, Country)
+        VALUES ('Cardinal', 'Stavanger', 'Norway');
+    </pre>
+    <p><strong>Kết quả</strong></p>
+    <div class="table-responsive">
+        <table class="table">
+            <tbody><tr>
+                <th>CustomerID</th>
+                <th>CustomerName</th>
+                <th>ContactName</th>
+                <th>Address</th>
+                <th>City</th>
+                <th>PostalCode</th>
+                <th>Country</th>
+            </tr>
+            <tr>
+                <td>89</td>
+                <td>White Clover Markets</td>
+                <td>Karl Jablonski</td>
+                <td>305 - 14th Ave. S. Suite 3B</td>
+                <td>Seattle</td>
+                <td>98128</td>
+                <td>USA</td>
+            </tr>
+            <tr>
+                <td>90<br><br></td>
+                <td>Wilman Kala</td>
+                <td>Matti Karttunen</td>
+                <td>Keskuskatu 45</td>
+                <td>Helsinki</td>
+                <td>21240</td>
+                <td>Finland</td>
+            </tr>
+            <tr>
+                <td>91<br><br></td>
+                <td>Wolski</td>
+                <td>Zbyszek</td>
+                <td>ul. Filtrowa 68</td>
+                <td>Walla</td>
+                <td>01-012</td>
+                <td>Poland</td>
+            </tr>
+            <tr>
+                <td>92</td>
+                <td>Cardinal</td>
+                <td>null</td>
+                <td>null&nbsp;</td>
+                <td>Stavanger</td>
+                <td>null</td>
+                <td>Norway</td>
+            </tr>
+            </tbody></table>
+    </div>
+</div>
+<div id="category_02">
+    <p><strong>2. UPDATE</strong></p>
+    <p>Câu lệnh <code>UPDATE</code> được sử dụng để sửa đổi các bản ghi hiện có trong một bảng.</p>
+    <p><strong>Cú pháp: </strong></p>
+    <pre class="brush: sql">
+        UPDATE table_name
+        SET column1 = value1, column2 = value2, ...
+        WHERE condition;
+    </pre>
+    <p><strong>Ví dụ:</strong> ta có bảng sau</p>
+    <div class="table-responsive">
+        <table class="table">
+            <tbody><tr>
+                <th>CustomerID</th>
+                <th>CustomerName</th>
+                <th>ContactName</th>
+                <th>Address</th>
+                <th>City</th>
+                <th>PostalCode</th>
+                <th>Country</th>
+            </tr>
+            <tr>
+                <td>1<br><br></td>
+                <td>Alfreds Futterkiste</td>
+                <td>Maria Anders</td>
+                <td>Obere Str. 57</td>
+                <td>Berlin</td>
+                <td>12209</td>
+                <td>Germany</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>Ana Trujillo Emparedados y helados</td>
+                <td>Ana Trujillo</td>
+                <td>Avda. de la Constitución 2222</td>
+                <td>México D.F.</td>
+                <td>05021</td>
+                <td>Mexico</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>Antonio Moreno Taquería</td>
+                <td>Antonio Moreno</td>
+                <td>Mataderos 2312</td>
+                <td>México D.F.</td>
+                <td>05023</td>
+                <td>Mexico</td>
+            </tr>
+            <tr>
+                <td>4<br><br></td>
+                <td>Around the Horn</td>
+                <td>Thomas Hardy</td>
+                <td>120 Hanover Sq.</td>
+                <td>London</td>
+                <td>WA1 1DP</td>
+                <td>UK</td>
+            </tr>
+            <tr>
+                <td>5</td>
+                <td>Berglunds snabbköp</td>
+                <td>Christina Berglund</td>
+                <td>Berguvsvägen 8</td>
+                <td>Luleå</td>
+                <td>S-958 22</td>
+                <td>Sweden</td>
+            </tr>
+            </tbody></table>
+    </div>
+    <p><strong>Ví dụ: </strong>Câu lệnh SQL sau đây cập nhật cho khách hàng đầu tiên (CustomerID = 1) với một ContactName và một City mới.</p>
+    <pre class="brush: sql">
+        UPDATE Customers
+        SET ContactName = 'Alfred Schmidt', City= 'Frankfurt'
+        WHERE CustomerID = 1;
+    </pre>
+    <p><strong>Kết quả</strong></p>
+    <div class="table-responsive">
+        <table class="table">
+            <tbody><tr>
+                <th>CustomerID</th>
+                <th>CustomerName</th>
+                <th>ContactName</th>
+                <th>Address</th>
+                <th>City</th>
+                <th>PostalCode</th>
+                <th>Country</th>
+            </tr>
+            <tr>
+                <td>1<br><br></td>
+                <td>Alfreds Futterkiste</td>
+                <td>Alfred Schmidt</td>
+                <td>Obere Str. 57</td>
+                <td>Frankfurt</td>
+                <td>12209</td>
+                <td>Germany</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>Ana Trujillo Emparedados y helados</td>
+                <td>Ana Trujillo</td>
+                <td>Avda. de la Constitución 2222</td>
+                <td>México D.F.</td>
+                <td>05021</td>
+                <td>Mexico</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>Antonio Moreno Taquería</td>
+                <td>Antonio Moreno</td>
+                <td>Mataderos 2312</td>
+                <td>México D.F.</td>
+                <td>05023</td>
+                <td>Mexico</td>
+            </tr>
+            <tr>
+                <td>4<br><br></td>
+                <td>Around the Horn</td>
+                <td>Thomas Hardy</td>
+                <td>120 Hanover Sq.</td>
+                <td>London</td>
+                <td>WA1 1DP</td>
+                <td>UK</td>
+            </tr>
+            <tr>
+                <td>5</td>
+                <td>Berglunds snabbköp</td>
+                <td>Christina Berglund</td>
+                <td>Berguvsvägen 8</td>
+                <td>Luleå</td>
+                <td>S-958 22</td>
+                <td>Sweden</td>
+            </tr>
+            </tbody></table>
+    </div>
+    <p><code>UPDATE</code> nhiều bản ghi</p>
+    <p><strong>Ví dụ: </strong>Câu lệnh SQL sau đây sẽ cập nhật ContactName "Juan" cho tất cả các bản ghi ở đó quốc gia là "Mexico":</p>
+    <pre class="brush: sql">
+       UPDATE Customers
+       SET ContactName='Juan'
+       WHERE Country='Mexico';
+    </pre>
+    <p><strong>Kết quả</strong></p>
+    <div class="table-responsive">
+        <table class="table">
+            <tbody><tr>
+                <th>CustomerID</th>
+                <th>CustomerName</th>
+                <th>ContactName</th>
+                <th>Address</th>
+                <th>City</th>
+                <th>PostalCode</th>
+                <th>Country</th>
+            </tr>
+            <tr>
+                <td>1<br><br></td>
+                <td>Alfreds Futterkiste</td>
+                <td>Alfred Schmidt</td>
+                <td>Obere Str. 57</td>
+                <td>Frankfurt</td>
+                <td>12209</td>
+                <td>Germany</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>Ana Trujillo Emparedados y helados</td>
+                <td>Juan</td>
+                <td>Avda. de la Constitución 2222</td>
+                <td>México D.F.</td>
+                <td>05021</td>
+                <td>Mexico</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>Antonio Moreno Taquería</td>
+                <td>Juan</td>
+                <td>Mataderos 2312</td>
+                <td>México D.F.</td>
+                <td>05023</td>
+                <td>Mexico</td>
+            </tr>
+            <tr>
+                <td>4<br><br></td>
+                <td>Around the Horn</td>
+                <td>Thomas Hardy</td>
+                <td>120 Hanover Sq.</td>
+                <td>London</td>
+                <td>WA1 1DP</td>
+                <td>UK</td>
+            </tr>
+            <tr>
+                <td>5</td>
+                <td>Berglunds snabbköp</td>
+                <td>Christina Berglund</td>
+                <td>Berguvsvägen 8</td>
+                <td>Luleå</td>
+                <td>S-958 22</td>
+                <td>Sweden</td>
+            </tr>
+            </tbody></table>
+    </div>
+</div>
+<div id="category_03">
+    <p><strong>3. DELETE</strong></p>
+    <p>Câu lệnh <code>DELETE</code> được sử dụng để xóa các bản ghi hiện có trong một bảng.</p>
+    <p><strong>Cú pháp: </strong></p>
+    <pre class="brush: sql">
+        DELETE FROM table_name
+        WHERE condition;
+    </pre>
+    <p><strong>Ví dụ:</strong> ta có bảng sau</p>
+    <div class="table-responsive">
+        <table class="table">
+            <tbody><tr>
+                <th>CustomerID</th>
+                <th>CustomerName</th>
+                <th>ContactName</th>
+                <th>Address</th>
+                <th>City</th>
+                <th>PostalCode</th>
+                <th>Country</th>
+            </tr>
+            <tr>
+                <td>1<br><br></td>
+                <td>Alfreds Futterkiste</td>
+                <td>Maria Anders</td>
+                <td>Obere Str. 57</td>
+                <td>Berlin</td>
+                <td>12209</td>
+                <td>Germany</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>Ana Trujillo Emparedados y helados</td>
+                <td>Ana Trujillo</td>
+                <td>Avda. de la Constitución 2222</td>
+                <td>México D.F.</td>
+                <td>05021</td>
+                <td>Mexico</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>Antonio Moreno Taquería</td>
+                <td>Antonio Moreno</td>
+                <td>Mataderos 2312</td>
+                <td>México D.F.</td>
+                <td>05023</td>
+                <td>Mexico</td>
+            </tr>
+            <tr>
+                <td>4<br><br></td>
+                <td>Around the Horn</td>
+                <td>Thomas Hardy</td>
+                <td>120 Hanover Sq.</td>
+                <td>London</td>
+                <td>WA1 1DP</td>
+                <td>UK</td>
+            </tr>
+            <tr>
+                <td>5</td>
+                <td>Berglunds snabbköp</td>
+                <td>Christina Berglund</td>
+                <td>Berguvsvägen 8</td>
+                <td>Luleå</td>
+                <td>S-958 22</td>
+                <td>Sweden</td>
+            </tr>
+            </tbody></table>
+    </div>
+    <p><strong>Ví dụ: </strong>Câu lệnh SQL sau đây sẽ xóa ContactName "Alfreds Futterkiste" khỏi bảng "Customers":</p>
+    <pre class="brush: sql">
+        DELETE FROM Customers
+        WHERE CustomerName='Alfreds Futterkiste';
+    </pre>
+    <p><strong>Kết quả</strong></p>
+    <div class="table-responsive">
+        <table class="table">
+            <tbody><tr>
+                <th>CustomerID</th>
+                <th>CustomerName</th>
+                <th>ContactName</th>
+                <th>Address</th>
+                <th>City</th>
+                <th>PostalCode</th>
+                <th>Country</th>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>Ana Trujillo Emparedados y helados</td>
+                <td>Ana Trujillo</td>
+                <td>Avda. de la Constitución 2222</td>
+                <td>México D.F.</td>
+                <td>05021</td>
+                <td>Mexico</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>Antonio Moreno Taquería</td>
+                <td>Antonio Moreno</td>
+                <td>Mataderos 2312</td>
+                <td>México D.F.</td>
+                <td>05023</td>
+                <td>Mexico</td>
+            </tr>
+            <tr>
+                <td>4<br><br></td>
+                <td>Around the Horn</td>
+                <td>Thomas Hardy</td>
+                <td>120 Hanover Sq.</td>
+                <td>London</td>
+                <td>WA1 1DP</td>
+                <td>UK</td>
+            </tr>
+            <tr>
+                <td>5</td>
+                <td>Berglunds snabbköp</td>
+                <td>Christina Berglund</td>
+                <td>Berguvsvägen 8</td>
+                <td>Luleå</td>
+                <td>S-958 22</td>
+                <td>Sweden</td>
+            </tr>
+            </tbody></table>
+    </div>
+</div>

@@ -1,0 +1,98 @@
+<p>Bài hôm nay mình sẽ đi giới thiệu về câu lệnh điều kiện: if... else, switch... case trong Javascript</p>
+<p><strong>Mục Lục:</strong></p>
+<div id="category_list">
+    <ul>
+        <li><a id = "category_01_link" href="#">IF ELSE</a></li>
+        <li><a id = "category_02_link" href="#">SWITCH CASE</a></li>
+    </ul>
+</div>
+<div id="category_01">
+    <p><strong>1. IF ELSE</strong></p>
+    <p>Cú pháp <code>if... else</code> dùng trong trường hợp muốn rẽ nhánh theo điều kiện. Cú pháp này tương đương với nếu x thì làm y, còn nếu không thì làm z. Các câu lệnh <code>if... else</code> có thể lồng trong nhau.</p>
+    <p><strong>Cú pháp: </strong></p>
+    <pre class="brush: js">
+        if (biểu_thức_1) {
+            khối lệnh được thực hiện nếu biểu thức 1 đúng;
+        }
+        else if (biểu_thức_2) {
+            khối lệnh được thực hiện nếu biểu thức 2 đúng;
+        }
+        else {
+            khối lệnh được thực hiện nếu cả hai biểu thức trên đều không đúng;
+        }
+    </pre>
+    <p><strong>Ví dụ: </strong></p>
+    <pre class="brush: js">
+        var x = prompt("Nhập vào giá trị của x:");
+        x = parseFloat(x);
+
+        if (!isNaN(x)) {
+            if (x > 0) {
+                alert("x > 0");
+            }
+            else if (x == 0) {
+                alert("x = 0");
+            }
+            else {
+                alert("x < 0");
+            }
+        }
+        else {
+            alert("giá trị bạn nhập không phải là một số");
+        }
+    </pre>
+    <p>Đoạn mã nguồn trên mở một hộp thoại yêu cầu nhập vào một giá trị số, sau đó hiển thị thông báo số đó lớn hơn 0, bằng 0 hay nhỏ hơn 0.</p>
+</div>
+<div id="category_02">
+    <p><strong>2. SWITCH CASE</strong></p>
+    <p>Cú pháp <code>switch</code> cũng là cú pháp điều kiện như <code>if... else</code> hay <code>toán tử tam phân</code>. Tuy nhiên, cú pháp <code>switch</code> thường được dùng khi chỉ cần so sánh bằng với số lượng kết quả cần kiểm tra lớn. Cách sử dụng cú pháp <code>switch</code>:</p>
+    <p><strong>Cú pháp: </strong></p>
+    <pre class="brush: js">
+        switch (biểu_thức_điều_kiện) {
+            case kết_quả_1:
+                khối lệnh cần thực hiện nếu biểu_thức_điều_kiện bằng kết_quả_1;
+                break;
+            case kết_quả_2:
+                khối lệnh cần thực hiện nếu biểu_thức_điều_kiện bằng kết_quả_2;
+                break;
+            default:
+                khối lệnh cần thực hiện nếu biểu_thức_điều_kiện cho ra một kết quả khác;
+                break;
+        }
+    </pre>
+    <p><strong>Ví dụ: </strong></p>
+    <pre class="brush: js">
+        var grade='A';
+        document.write("Entering switch block<br />");
+        switch (grade)
+        {
+           case 'A': document.write("Good job<br />");
+           break;
+
+           case 'B': document.write("Pretty good<br />");
+           break;
+
+           case 'C': document.write("Passed<br />");
+           break;
+
+           case 'D': document.write("Not so good<br />");
+           break;
+
+           case 'F': document.write("Failed<br />");
+           break;
+
+           default:  document.write("Unknown grade<br />")
+        }
+        document.write("Exiting switch block");
+    </pre>
+    <p><strong>Kết quả: </strong></p>
+    <pre>
+Entering switch block
+Good job
+Exiting switch block
+Set the variable to different value and then try...
+    </pre>
+</div>
+
+
+

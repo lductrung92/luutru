@@ -1,0 +1,98 @@
+<p>Bài hôm nay mình sẽ đi giới thiệu về cú pháp trong SQL</p>
+<p><strong>Mục Lục:</strong></p>
+<div id="category_list">
+    <ul>
+        <li><a id = "category_01_link" href="#">Bảng cơ sở dữ liệu</a></li>
+        <li><a id = "category_02_link" href="#">Câu lệnh SQL</a></li>
+        <li><a id = "category_03_link" href="#">Một số lệnh SQL quan trọng nhất</a></li>
+    </ul>
+</div>
+<div id="category_01">
+    <p><strong>1. Bảng cơ sở dữ liệu</strong></p>
+    <p>Cơ sở dữ liệu thường chứa một hoặc nhiều bảng. Mỗi bảng được xác định bằng tên (ví dụ: "Customers" hoặc "Orders"). Các bảng chứa các bản ghi (hàng) với dữ liệu.</p>
+    <p>Dưới đây là một lựa chọn từ bảng "Customers":</p>
+    <div class="table-responsive">
+        <table class="table">
+        <tbody><tr>
+            <th>CustomerID</th>
+            <th>CustomerName</th>
+            <th>ContactName</th>
+            <th>Address</th>
+            <th>City</th>
+            <th>PostalCode</th>
+            <th>Country</th>
+        </tr>
+        <tr>
+            <td>1<br><br></td>
+            <td>Alfreds Futterkiste</td>
+            <td>Maria Anders</td>
+            <td>Obere Str. 57</td>
+            <td>Berlin</td>
+            <td>12209</td>
+            <td>Germany</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>Ana Trujillo Emparedados y helados</td>
+            <td>Ana Trujillo</td>
+            <td>Avda. de la Constitución 2222</td>
+            <td>México D.F.</td>
+            <td>05021</td>
+            <td>Mexico</td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td>Antonio Moreno Taquería</td>
+            <td>Antonio Moreno</td>
+            <td>Mataderos 2312</td>
+            <td>México D.F.</td>
+            <td>05023</td>
+            <td>Mexico</td>
+        </tr>
+        <tr>
+            <td>4<br><br></td>
+            <td>Around the Horn</td>
+            <td>Thomas Hardy</td>
+            <td>120 Hanover Sq.</td>
+            <td>London</td>
+            <td>WA1 1DP</td>
+            <td>UK</td>
+        </tr>
+        <tr>
+            <td>5</td>
+            <td>Berglunds snabbköp</td>
+            <td>Christina Berglund</td>
+            <td>Berguvsvägen 8</td>
+            <td>Luleå</td>
+            <td>S-958 22</td>
+            <td>Sweden</td>
+        </tr>
+        </tbody>
+    </table>
+    </div>
+    <p>Bảng trên chứa 5 bản ghi (một bản cho mỗi khách hàng) và bảy cột (CustomerID, CustomerName, ContactName, Address, City, PostalCode, Country).</p>
+</div>
+<div id="category_02">
+    <p><strong>2. Câu lệnh SQL</strong></p>
+    <p><strong>Ví dụ: </strong>Câu lệnh SQL sau đây sẽ chọn tất cả các bản ghi trong bảng "Customers":</p>
+    <pre class="brush: sql">
+        SELECT * FROM Customers;
+    </pre>
+    <p>Câu lệnh lấy tất cả bản ghi trong bảng "Customers"</p>
+</div>
+<div id="category_03">
+    <p><strong>3. Một số lệnh SQL quan trọng nhất</strong></p>
+    <ul>
+        <li><strong>SELECT</strong> - lấy dữ liệu từ cơ sở dữ liệu</li>
+        <li><strong>UPDATE</strong> - cập nhật dữ liệu trong cơ sở dữ liệu</li>
+        <li><strong>DELETE</strong> - xóa dữ liệu từ cơ sở dữ liệu</li>
+        <li><strong>INSERT INTO</strong> - chèn dữ liệu mới vào cơ sở dữ liệu</li>
+        <li><strong>CREATE DATABASE</strong> - tạo một cơ sở dữ liệu mới</li>
+        <li><strong>ALTER DATABASE</strong> - sửa đổi cơ sở dữ liệu</li>
+        <li><strong>CREATE TABLE</strong> - tạo một bảng mới</li>
+        <li><strong>ALTER TABLE</strong> - sửa đổi một bảng</li>
+        <li><strong>DROP TABLE</strong> - xóa một bảng</li>
+        <li><strong>CREATE INDEX</strong> - tạo chỉ mục (tìm kiếm)</li>
+        <li><strong>DROP INDEX</strong> - xóa một chỉ mục</li>
+    </ul>
+</div>

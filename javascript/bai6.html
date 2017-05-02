@@ -1,0 +1,88 @@
+<p>Bài hôm nay mình sẽ đi giới thiệu về hàm trong Javascript</p>
+<p><strong>Mục Lục:</strong></p>
+<div id="category_list">
+    <ul>
+        <li><a id = "category_01_link" href="#">Định nghĩa hàm</a></li>
+        <li><a id = "category_02_link" href="#">Gọi một hàm</a></li>
+        <li><a id = "category_03_link" href="#">Gọi một hàm trong hàm khác</a></li>
+    </ul>
+</div>
+<div id="category_01">
+    <p><strong>1. Định nghĩa hàm</strong></p>
+    <p>Hàm là một khối các câu lệnh với một danh sách một hoặc nhiều đối số (có thể không có đối số) và thường có tên (mặc dù trong JavaScript hàm không nhất thiết phải có tên). Hàm có thể trả lại một giá trị.</p>
+    <p><strong>Cú pháp: </strong></p>
+    <pre class="brush: js">
+        function tên_hàm(đối_số_1, đối_số_2) {
+            các câu lệnh cần thực hiện mỗi khi hàm được gọi;
+            return giá_trị_cần_trả_về;
+        }
+
+        tên_hàm(1, 2); // Gọi hàm tên_hàm với hai đối số 1 và 2 ứng với đối_số_1 và đối_số_2
+        tên_hàm(1); // Gọi hàm tên_hàm với đối_số_1 có giá trị 1, đối_số_2 có giá trị undefined
+    </pre>
+    <p><strong>Ví dụ: </strong></p>
+    <pre class="brush: js">
+        function say()
+        {
+            alert("Xin chào bạn đến với blog laptrinh.laedaily.com");
+        }
+    </pre>
+</div>
+<div id="category_02">
+    <p><strong>2. Gọi một hàm</strong></p>
+    <p>Trong JavaScript, khi gọi hàm không nhất thiết phải gọi hàm với cùng số đối số như khi định nghĩa hàm, nếu số đối số ít hơn khi định nghĩa hàm, những đối số không được chuyển cho hàm sẽ mang giá trị <code>undefined</code>.</p>
+    <p><strong>Ví dụ 1: </strong> Không có tham số truyền vào</p>
+    <pre class="brush: js">
+         <script type="text/javascript">
+             function say()
+             {
+                 alert("Xin chào bạn đến với blog laptrinh.laedaily.com!");
+             }
+         </script>
+    </pre>
+    <pre class="brush: js">
+        <button type="submit" onclick="say()">Click me</button>
+    </pre>
+    <p>Hàm <code>say()</code> sẽ được gọi khi xự kiện click vào button được kích hoạt.</p>
+    <p><strong>Demo: </strong></p>
+    <button type="submit" style="margin-bottom: 10px" onclick="say()">Click me</button>
+    <p><strong>Ví dụ 2: </strong>Có tham số truyền vào</p>
+    <pre class="brush: js">
+         <script type="text/javascript">
+             function sum(a, b)
+             {
+                 alert ('Tổng bằng: ' + (a + b));
+             }
+         </script>
+    </pre>
+    <pre class="brush: js">
+        <button type="submit" onclick="sum(2,3)">Click me</button>
+    </pre>
+    <p>Hàm <code>sum()</code> sẽ được gọi khi xự kiện click vào button được kích hoạt.</p>
+    <p><strong>Demo: </strong></p>
+    <button type="submit" style="margin-bottom: 10px" onclick="sum(2,3)">Click me</button>
+</div>
+<div id="category_03">
+    <p><strong>3. Gọi một hàm trong hàm khác</strong></p>
+    <p>Tất cả các hàm là đối tượng của nguyên mẫu Function. Hàm có thể được tạo và dùng trong phép toán gán như bất kỳ một đối tượng nào khác, và cũng có thể được dùng làm đối số cho các hàm khác.</p>
+    <p><strong>Ví dụ: </strong></p>
+    <pre class="brush: js">
+        <script type="text/javascript">
+            function w(a, b) {
+                return 'Tổng của ' + a + ' + ' + b + ' = ';
+            }
+            function sumAB(a, b)
+            {
+                alert(w(a,b) + (a+b));
+            }
+         </script>
+    </pre>
+    <pre class="brush: js">
+        <button type="submit" onclick="sumAB(5,7)">Click me</button>
+    </pre>
+    <p><strong>Demo: </strong></p>
+    <button type="submit" style="margin-bottom: 10px" onclick="sumAB(5,7)">Click me</button>
+</div>
+
+
+

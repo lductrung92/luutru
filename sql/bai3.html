@@ -1,0 +1,173 @@
+<p>Bài hôm nay mình sẽ đi giới thiệu về các câu lệnh truy vấn với: SELECT, SELECT DISTINCT, SELECT TOP</p>
+<p><strong>Mục Lục:</strong></p>
+<div id="category_list">
+    <ul>
+        <li><a id = "category_01_link" href="#">SELECT</a></li>
+        <li><a id = "category_02_link" href="#">SELECT DISTINCT</a></li>
+        <li><a id = "category_03_link" href="#">SELECT TOP</a></li>
+    </ul>
+</div>
+<div id="category_01">
+    <p><strong>1. SELECT</strong></p>
+    <p>Mệnh đề <code>SELECT</code> được sử dụng để lấy dữ liệu từ cơ sở dữ liệu.</p>
+    <p>Dữ liệu trả về được lưu trữ trong một bảng kết quả, gọi là tập kết quả.</p>
+    <p><strong>Cú pháp: </strong></p>
+    <pre class="brush: sql">
+        SELECT column1, column2, ... FROM table_name;
+    </pre>
+    <p>Ở đây column1, column2, ... là các tên trường của bảng mà bạn muốn lấy dữ liệu. Nếu bạn muốn chọn tất cả các trường có sẵn trong bảng, hãy sử dụng cú pháp sau:</p>
+    <pre class="brush: sql">
+        SELECT * FROM table_name;
+    </pre>
+    <p><strong>Ví dụ:</strong> ta có bảng sau</p>
+    <div class="table-responsive">
+        <table class="table">
+            <tbody><tr>
+                <th>CustomerID</th>
+                <th>CustomerName</th>
+                <th>ContactName</th>
+                <th>Address</th>
+                <th>City</th>
+                <th>PostalCode</th>
+                <th>Country</th>
+            </tr>
+            <tr>
+                <td>1<br><br></td>
+                <td>Alfreds Futterkiste</td>
+                <td>Maria Anders</td>
+                <td>Obere Str. 57</td>
+                <td>Berlin</td>
+                <td>12209</td>
+                <td>Germany</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>Ana Trujillo Emparedados y helados</td>
+                <td>Ana Trujillo</td>
+                <td>Avda. de la Constitución 2222</td>
+                <td>México D.F.</td>
+                <td>05021</td>
+                <td>Mexico</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>Antonio Moreno Taquería</td>
+                <td>Antonio Moreno</td>
+                <td>Mataderos 2312</td>
+                <td>México D.F.</td>
+                <td>05023</td>
+                <td>Mexico</td>
+            </tr>
+            <tr>
+                <td>4<br><br></td>
+                <td>Around the Horn</td>
+                <td>Thomas Hardy</td>
+                <td>120 Hanover Sq.</td>
+                <td>London</td>
+                <td>WA1 1DP</td>
+                <td>UK</td>
+            </tr>
+            <tr>
+                <td>5</td>
+                <td>Berglunds snabbköp</td>
+                <td>Christina Berglund</td>
+                <td>Berguvsvägen 8</td>
+                <td>Luleå</td>
+                <td>S-958 22</td>
+                <td>Sweden</td>
+            </tr>
+            </tbody></table>
+    </div>
+    <p><strong>Ví dụ:</strong> lấy dũ liệu từ cột "CustomerName" và "City" từ bảng "Customers"</p>
+    <pre class="brush: sql">
+        SELECT CustomerName, City FROM Customers;
+    </pre>
+    <div class="table-responsive">
+        <table class="table">
+            <tbody><tr>
+                <th>CustomerName</th>
+                <th>City</th>
+            </tr>
+            <tr>
+                <td>Alfreds Futterkiste</td>
+                <td>Berlin</td>
+            </tr>
+            <tr>
+                <td>Ana Trujillo Emparedados y helados</td>
+                <td>México D.F.</td>
+            </tr>
+            <tr>
+                <td>Antonio Moreno Taquería</td>
+                <td>México D.F.</td>
+            </tr>
+            <tr>
+                <td>Around the Horn</td>
+                <td>London</td>
+            </tr>
+            <tr>
+                <td>Berglunds snabbköp</td>
+                <td>Luleå</td>
+            </tr>
+            </tbody></table>
+    </div>
+</div>
+<div id="category_02">
+    <p><strong>2. SELECT DISTINCT</strong></p>
+    <p>Mệnh đề <code>SELECT DISTINCT</code> được sử dụng để trả về các giá trị riêng biệt (khác nhau).</p>
+    <p>Trong một bảng, một cột thường chứa nhiều giá trị trùng lặp, và đôi khi bạn chỉ muốn liệt kê các giá trị khác biệt.</p>
+    <p>Mệnh đề <code>SELECT DISTINCT</code> được sử dụng để trả về các giá trị riêng biệt (khác nhau).</p>
+    <p><strong>Cú pháp: </strong></p>
+    <pre class="brush: sql">
+        SELECT DISTINCT column1, column2, ... FROM table_name;
+    </pre>
+    <p><strong>Ví dụ: </strong>Câu lệnh sau chỉ chọn các giá trị DISTINCT từ cột "Country" trong bảng "Customers":</p>
+    <pre class="brush: sql">
+        SELECT DISTINCT Country FROM Customers;
+    </pre>
+    <p>Câu lệnh sau đây liệt kê số lượng các quốc gia khác nhau:</p>
+    <pre class="brush: sql">
+        SELECT COUNT(DISTINCT Country) FROM Customers;
+    </pre>
+    <p><strong>Lưu ý: </strong><i>Ví dụ trên sẽ không hoạt động trong Firefox và Microsoft Edge! Bởi vì COUNT (DISTINCT column_name ) không được hỗ trợ trong cơ sở dữ liệu Microsoft Access.</i></p>
+    <p>Đối với <code>MS Access</code> ta làm như sau:</p>
+    <pre class="brush: sql">
+        SELECT Count(*) AS DistinctCountries FROM (SELECT DISTINCT Country FROM Customers);
+    </pre>
+</div>
+<div id="category_03">
+    <p><strong>3. SELECT TOP</strong></p>
+    <p>Mệnh đề <code>SELECT TOP</code> được sử dụng để xác định số lượng các bản ghi để trả về.</p>
+    <p>Mệnh đề <code>SELECT TOP</code> rất hữu ích trên các bảng lớn với hàng nghìn bản ghi</p>
+    <p><strong>Cú pháp: </strong><code>SQL Server / MS</code></p>
+    <pre class="brush: sql">
+        SELECT TOP number|percent column_name(s)
+        FROM table_name
+        WHERE condition;
+    </pre>
+    <p><strong>Cú pháp: </strong><code>MySQL</code></p>
+    <pre class="brush: sql">
+        SELECT column_name(s)
+        FROM table_name
+        WHERE condition
+        LIMIT number;
+    </pre>
+    <p><strong>Cú pháp: </strong><code>Oracle</code></p>
+    <pre class="brush: sql">
+        SELECT column_name(s)
+        FROM table_name
+        WHERE ROWNUM <= number;
+    </pre>
+    <p><strong>Ví dụ: </strong>Câu lệnh SQL sau đây chọn ba bản ghi đầu tiên từ bảng "Customers":</p>
+    <pre class="brush: sql">
+        SELECT TOP 3 * FROM Customers;
+        or
+        SELECT * FROM Customers LIMIT 3;
+        or
+        SELECT * FROM Customers WHERE ROWNUM <= 3;
+    </pre>
+    <p><strong>Ví dụ: </strong>Câu lệnh SQL sau đây chọn ba bản ghi đầu tiên từ bảng "Customers", và là nước "Germany":</p>
+    <pre class="brush: sql">
+        SELECT TOP 3 * FROM Customers
+        WHERE Country='Germany';
+    </pre>
+</div>

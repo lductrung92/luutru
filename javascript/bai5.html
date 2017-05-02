@@ -1,0 +1,150 @@
+<p>Bài hôm nay mình sẽ đi giới thiệu về	vòng lặp: vòng lặp while, vòng lặp do... while, vòng lặp for, vòng lặp for... in trong Javascript</p>
+<p><strong>Mục Lục:</strong></p>
+<div id="category_list">
+    <ul>
+        <li><a id = "category_01_link" href="#">Vòng lặp while</a></li>
+        <li><a id = "category_02_link" href="#">Vòng lặp do... while</a></li>
+        <li><a id = "category_03_link" href="#">Vòng lặp for</a></li>
+        <li><a id = "category_04_link" href="#">Vòng lặp for... in</a></li>
+    </ul>
+</div>
+<div id="category_01">
+    <p><strong>1. Vòng lặp while</strong></p>
+    <p>Vòng lặp <code>while</code> có mục đích lặp đi lặp lại một khối lệnh nhất định cho đến khi biểu thức điều kiện trả về false. Khi dùng vòng lặp while phải chú ý tạo lối thoát cho vòng lặp (làm cho biểu thức điều kiện có giá trị false), nếu không đoạn mã nguồn sẽ rơi vào vòng lặp vô hạn, là một lỗi lập trình. Vòng lặp while thường được dùng khi lập trình viên không biết chính xác cần lặp bao nhiêu lần</p>
+    <p><strong>Cú pháp: </strong></p>
+    <pre class="brush: js">
+        while (biểu_thức_điều_kiện) {
+            khối lệnh cần thực hiện nếu biểu_thức_điều_kiện trả về true;
+        }
+    </pre>
+    <p><strong>Ví dụ: </strong></p>
+    <pre class="brush: js">
+        var count = 0;
+        document.write("Vòng lặp bắt đầu ");
+
+        while (count < 10){
+           document.write(" Số hiện tại : " + count + "<br />");
+           count++;
+        }
+
+        document.write("Vòng lặp dừng lại!");
+    </pre>
+    <p><strong>Kết quả: </strong></p>
+    <pre>
+ Vòng lặp bắt đầu
+ Số hiện tại : 0
+ Số hiện tại : 1
+ Số hiện tại : 2
+ Số hiện tại : 3
+ Số hiện tại : 4
+ Số hiện tại : 5
+ Số hiện tại : 6
+ Số hiện tại : 7
+ Số hiện tại : 8
+ Số hiện tại : 9
+ Vòng lặp dừng lại!
+    </pre>
+</div>
+<div id="category_02">
+    <p><strong>2. Vòng lặp do... while</strong></p>
+    <p>Về cơ bản, vòng lặp <code>do... while</code> gần như giống hệt như vòng lặp <code>while</code>. Tuy nhiên, trong trường hợp biểu thức điều kiện trả về false ngay từ đầu, khối lệnh trong vòng lặp <code>while</code> sẽ không bao giờ được thực hiện, trong khi đó, vòng lặp <code>do... while</code> luôn đảm bảo khối lệnh trong vòng lặp được thực hiện ít nhất một lần.</p>
+    <p><strong>Cú pháp: </strong></p>
+    <pre class="brush: js">
+        do {
+                khối lệnh;
+        }
+        while (biểu_thức_điều_kiện);
+    </pre>
+    <p><strong>Ví dụ: </strong></p>
+    <pre class="brush: js">
+        var count = 0;
+
+        document.write("Vòng lặp bắt đầu" + "<br />");
+        do{
+           document.write(" Số hiện tại : " + count + "<br />");
+           count++;
+        }
+
+        while (count < 5);
+        document.write ("Vòng lặp dừng lại!");
+    </pre>
+    <p><strong>Kết quả: </strong></p>
+    <pre>
+ Vòng lặp bắt đầu
+ Số hiện tại : 0
+ Số hiện tại : 1
+ Số hiện tại : 2
+ Số hiện tại : 3
+ Số hiện tại : 4
+ Vòng lặp dừng lại!
+    </pre>
+</div>
+<div id="category_03">
+    <p><strong>3. Vòng lặp for</strong></p>
+    <p>Vòng lặp <code>for</code> thường được sử dụng khi cần lặp một khối lệnh mà lập trình viên biết trước sẽ cần lặp bao nhiêu lần.</p>
+    <p><strong>Cú pháp: </strong></p>
+    <pre class="brush: js">
+        for (biểu_thức_khởi_tạo; biểu_thức_điều_kiện; biểu_thức_thay_đổi_giá_trị) {
+            Khối lệnh cần lặp;
+        }
+    </pre>
+    <p>Khi bắt đầu vòng lặp for, lập trình viên cần khởi tạo một biến nhất định bằng biểu_thức_khởi_tạo để dùng trong biểu_thức_điều_kiện, nếu biểu_thức_điều_kiện trả về true, khối lệnh cần lặp sẽ được thực hiện, sau khi thực hiện xong khối lệnh cần lặp, biểu_thức_thay_đổi_giá_trị sẽ được thực hiện, tiếp theo, biểu_thức_điều_kiện sẽ lại được kiểm tra, cứ như vậy cho đến khi biểu_thức_điều_kiện trả về false, khi đó vòng lặp sẽ kết thúc.</p>
+    <p><strong>Ví dụ: </strong></p>
+    <pre class="brush: js">
+        var count;
+        document.write("Vòng lặp bắt đầu" + "<br />");
+
+        for(count = 0; count < 10; count++){
+           document.write(" Số hiện tại : " + count );
+           document.write("<br />");
+        }
+
+        document.write("Vòng lặp dừng lại!");
+    </pre>
+    <p><strong>Kết quả: </strong></p>
+    <pre>
+ Vòng lặp bắt đầu
+ Số hiện tại : 0
+ Số hiện tại : 1
+ Số hiện tại : 2
+ Số hiện tại : 3
+ Số hiện tại : 4
+ Số hiện tại : 5
+ Số hiện tại : 6
+ Số hiện tại : 7
+ Số hiện tại : 8
+ Số hiện tại : 9
+ Vòng lặp dừng lại!
+    </pre>
+</div>
+<div id="category_04">
+    <p><strong>4. Vòng lặp for... in</strong></p>
+    <p>Vòng lặp <code>for... in</code> dùng để lặp qua tất cả các thuộc tính của một đối tượng (hay lặp qua tất cả các phần tử của một mảng).</p>
+    <p><strong>Cú pháp: </strong></p>
+    <pre class="brush: js">
+        for (biến in đối_tượng) {
+            khối lệnh cần thực hiện, có thể sử dụng đối_tượng[biến] để truy cập từng thuộc tính (phần tử) của đối tượng;
+        }
+    </pre>
+    <p><strong>Ví dụ: </strong></p>
+    <pre class="brush: js">
+        // Vòng lặp for..in cho 1 Mảng
+        var arr = ['PHP','Laravel','Javascript'];
+        for ( var i in arr ) {
+            console.log(arr[i]);
+        }
+
+        // Vòng lặp for..in cho 1 Object
+        var obj = {
+            'name': 'Trung Le',
+            'type': 'demo',
+            'id': 1992
+        };
+        for ( var i in obj ) {
+            console.log(obj[i]);
+        }
+    </pre>
+</div>
+
+
+

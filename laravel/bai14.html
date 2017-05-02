@@ -1,0 +1,249 @@
+<p>Bài trước mình đã giới thiệu về <code>Middleware</code> trong Laravel 5 và tạo <code>Middleware</code> cho website tin tức. Bài hôm nay chúng ta sẽ đi tìm hiểu về <code>Query Builder</code> trong Laravel 5 và sẽ hướng dẫn các bạn áp dụng <code>Eloquent ORM</code> và <code>Query Builder</code> để hiển thị tin lên trang chủ.</p>
+<p><strong>Mục Lục:</strong></p>
+<div id="category_list">
+    <ul>
+        <li><a id = "category_01_link" href="#">Giới thiệu về Query Builder</a></li>
+        <li>
+            <a id = "category_02_link" href="#">Các truy vấn cơ bản trong Query Builder</a>
+            <ul>
+                <li><a id = "category_03_link" href="#">Lấy tất cả dữ liệu bảng ghi</a></li>
+                <li><a id = "category_04_link" href="#">Lấy 1 bảng ghi theo trường xác định</a></li>
+                <li><a id = "category_05_link" href="#">Lấy 1 hàng của bảng ghi</a></li>
+                <li><a id = "category_06_link" href="#">Lấy 1 trường của bảng ghi</a></li>
+                <li><a id = "category_07_link" href="#">Insert</a></li>
+                <li><a id = "category_08_link" href="#">Update</a></li>
+                <li><a id = "category_09_link" href="#">Delete</a></li>
+            </ul>
+        </li>
+        <li><a id = "category_10_link" href="#">So sánh Eloquent ORM và Query Builder</a></li>
+        <li><a id = "category_11_link" href="#">Hiển thị tin lên trang chủ - Dự án website tin tức</a></li>
+    </ul>
+</div>
+<div id="category_01">
+    <p><strong>1. Giới thiệu về Query Builder</strong></p>
+    <p>Query Builder cung cấp 1 giao diện tiện lợi và để dàng tạo và chạy truy vấn cơ sở dữ liệu. Nó có thể được sử dụng để thực thi hầu hết những thao tác về cơ sở dữ liệu trong ứng dụng của bạn và làm việc với tất cả những cơ sở dữ liệu được hỗ trợ.</p>
+    <p>Query Builder sử dụng tham số PDO ràng buộc để bảo vệ ứng dụng của bạn chống lại các cuộc tấn công SQL injection.</p>
+</div>
+<div id="category_02">
+    <p><strong>2. Các truy vấn cơ bản trong Query Builder</strong></p>
+</div>
+<div id="category_03">
+    <p><strong>Lấy tất cả dữ liệu bảng ghi</strong></p>
+    <pre class="brush: php">
+        $users = DB::table('users')->get();
+    </pre>
+</div>
+<div id="category_04">
+    <p><strong>Lấy 1 bảng ghi theo trường xác định</strong></p>
+    <pre class="brush: php">
+        $user = DB::table('users')->where('name', 'John')->get();
+    </pre>
+</div>
+<div id="category_05">
+    <p><strong>Lấy 1 hàng của bảng ghi</strong></p>
+    <pre class="brush: php">
+        $user = DB::table('users')->where('name', 'John')->first();
+    </pre>
+</div>
+<div id="category_06">
+    <p><strong>Lấy 1 trường của bảng ghi</strong></p>
+    <pre class="brush: php">
+        $email = DB::table('users')->where('name', 'John')->value('email');
+    </pre>
+</div>
+<div id="category_07">
+    <p><strong>Insert</strong></p>
+    <pre class="brush: php">
+        DB::table('users')->insert([
+            ['email' => 'taylor@example.com', 'votes' => 0],
+            ['email' => 'dayle@example.com', 'votes' => 0]
+        ]);
+    </pre>
+</div>
+<div id="category_08">
+    <p><strong>Update</strong></p>
+    <pre class="brush: php">
+        DB::table('users')
+            ->where('id', 1)
+            ->update(['votes' => 1]);
+    </pre>
+</div>
+<div id="category_09">
+    <p><strong>Delete</strong></p>
+    <pre class="brush: php">
+        DB::table('users')->where('votes', '>', 100)->delete();
+    </pre>
+</div>
+<div id="category_10">
+    <p><strong>3. So sánh Eloquent ORM và Query Builder</strong></p>
+    <ul>
+        <li><strong>Tính bảo mật:</strong>
+            <p>Query Builder sử dụng tham số PDO ràng buộc để bảo vệ ứng dụng của bạn chống lại các cuộc tấn công SQL injection còn Eloquent ORM thì chưa làm được.</p>
+        </li>
+        <li><strong>Tính tương tác:</strong>
+            <p>Bạn có thể sử dụng tất cả các function của Query Builder trong Eloquent nhưng không thể sử dụng các funcation của Eloquent trong Query Builder.</p>
+        </li>
+        <li><strong>Sử dụng</strong>:</strong>
+            <ul>
+                <li>Eloquent ORM sử dụng câu lệnh ngắn gọn, dể hiểu hơn Query Builder.</li>
+                <li>Eloquent ORM dễ dàng kết nối các bảng với nhau.</li>
+                <li>Query Builder có thể thực hiện các lệnh truy vấn phước tạp hơn Eloquent ORM.</li>
+            </ul>
+        </li>
+        <li><strong>Hiệu suất:</strong>
+            <p>Eloquent ORM bị chậm hơn so với Query Builder, nhất là ở những truy vấn cần thao tác với dữ liệu lớn.</p>
+        </li>
+    </ul>
+</div>
+<div id="category_11">
+    <p><strong>4. Hiển thị tin lên trang chủ - Dự án website tin tức</strong></p>
+    <p>Chuẩn bị giao diện trang chủ: cái này mình đã chuẩn bị cho các bạn rồi. Download: <a href="http://laptrinh.laedaily.com/laravel-filemanager/photos/1/laravel/bai14/home.rar" target="_blank">tại đây</a></p>
+    <p>Các bạn giải nén vào thư mục <code>resources/views</code></p>
+    <p>file <code>style.css</code> bạn cut vào thư mục public <code>public/home/css/style.css</code></p>
+    <p style="text-align: center"><img alt="" src="http://laptrinh.laedaily.com/laravel-filemanager/photos/1/laravel/bai14/1.png"></p>
+    <p>Tạo route test thử giao diện nào: </p>
+    <pre class="brush: php">
+        Route::get('', function (){
+            return view('home.base.base');
+        });
+    </pre>
+    <p style="text-align: center"><img alt="" src="http://laptrinh.laedaily.com/laravel-filemanager/photos/1/laravel/bai14/2.png"></p>
+    <p>Những phần mình khoanh màu đỏ là những phần sẽ giữ cố định của trang web. Dù có đi tới trang chi tiết bài viết,... thì nó đều hiển thị</p>
+    <p><strong>Tạo Route</strong></p>
+    <pre class="brush: php">
+        Route::get('/', ['as' => 'home', 'uses' => 'Home\HomeController@index']);
+    </pre>
+    <p><strong>Tạo Controller</strong></p>
+    <pre class="brush: php">
+        $ php artisan make:controller Home/BaseController
+        $ php artisan make:controller Home/HomeController
+    </pre>
+    <p><code>BaseController</code> sẽ là class cha</p>
+    <p><code>HomeController</code> sẽ extends từ <code>BaseController</code></p>
+    <p>Phần mainmenu, leftbar, rightbar là những phần mà ta cần truy xuất dữ liệu từ database và là những thành phần cố định nên ta sẽ viết trong <code>BaseController</code></p>
+    <p>Nội dung class <code>BaseController</code></p>
+    <pre class="brush: php">
+        namespace App\Http\Controllers\Home;
+        use View;
+        use Illuminate\Http\Request;
+        use App\Http\Controllers\Controller;
+        use Illuminate\Support\Facades\DB;
+
+        class BaseController extends Controller
+        {
+            function __construct()
+            {
+                // mainmenu
+                $categories = DB::table('categories')
+                    ->where('categories.status', '=', 1)
+                    ->where('categories.parent_id', '=', 0)
+                    ->select('categories.name', 'categories.alias')
+                    ->get();
+                // leftbar
+                $cate_child = DB::table('categories')
+                    ->where('categories.status', '=', 1)
+                    ->where('categories.parent_id', '<>', 0)
+                    ->select('categories.name', 'categories.alias')
+                    ->get();
+                // rightbar
+                $highlights = DB::table('articles')
+                    ->where('articles.status', '=', 1)
+                    ->orderBy('articles.created_at')
+                    ->take(5)
+                    ->get();
+
+                View::share('categories', $categories);
+                View::share('highlights', $highlights);
+                View::share('cate_child', $cate_child);
+            }
+        }
+    </pre>
+    <p>Ở đây, để cho các view có thể nhận được dữ liệu thì mình dùng view share. Cấu trúc view share cũng khá đơn giản </p>
+    <pre class="brush: php">
+         View::share('key', 'value');
+    </pre>
+    <p>Nội dung class <code>HomeController</code></p>
+    <pre class="brush: php">
+        namespace App\Http\Controllers\Home;
+        use Illuminate\Http\Request;
+        use App\Http\Controllers\Controller;
+
+        class HomeController extends BaseController
+        {
+            public function index ()
+            {
+                return view('home.index');
+            }
+        }
+    </pre>
+    <p>Nội dung file <code>resources/views/home/base/mainmenu.blade.php</code></p>
+    <pre class="brush: php">
+        <div id="mainmenu" class="clearfix">
+            <ul id="topnav" class="navigation clearfix">
+                <li class="item all">
+                    <a href="{{ asset('/') }}"> Trang chủ</a>
+                </li>
+                @foreach($categories as $category)
+                <li class="item  tax-cong-nghe">
+                    <a href='{{ $category->alias }}.html'>{{ $category->name }}</a>
+                </li>
+                @endforeach
+            </ul>
+        </div>
+    </pre>
+    <p>Nội dung file <code>resources/views/home/base/leftbar.blade.php</code></p>
+    <pre class="brush: php">
+        <div class="leftbar">
+            <div  class="navbox sidenav clearfix">
+                <div class="title" style="display:none">☰ Danh mục</div>
+                <ul id="leftnav" class="navigation clearfix">
+                    @foreach($cate_child as $category)
+                    <li><a href="{{ $category->alias }}.html">{{ $category->name }}</a></li>
+                    @endforeach
+                </ul>
+            </div>
+        </div>
+    </pre>
+    <p>Nội dung file <code>resources/views/home/base/rightbar.blade.php</code></p>
+    <pre class="brush: php">
+        <div class="sidebar">
+            <div class="listbox highlight">
+                <div class="list-title">Tiêu điểm</div>
+                <ul>
+                    @foreach($highlights as $article)
+                    <li class="list-item">
+                        <a href="{{ $article->alias }}.html">
+                            <img src="upload/articles/{{ $article->image }}" alt="{{ $article->title }}" class="img-rounded">
+                            {{ $article->title }}
+                        </a>
+                    </li>
+                    @endforeach
+                </ul>
+            </div>
+        </div>
+    </pre>
+    <p>Nội dung file <code>resources/views/home/base/base.blade.php</code></p>
+    <pre class="brush: php">
+        <div id="page">
+            @include('home.base.header')
+            @include('home.base.mainmenu')
+            <div id="main" class="indexpage clearfix">
+                @yield('content')
+                @include('home.base.rightbar')
+                @include('home.base.leftbar')
+            </div>
+            @include('home.base.footer')
+        </div>
+    </pre>
+    <p>Nội dung file <code>resources/views/home/index.blade.php</code></p>
+    <pre class="brush: php">
+        @extends('home.base.base')
+        @section('title', 'Trang chủ')
+        @section('content')
+        // bài sau xử lý
+        @endsection
+    </pre>
+    <p>Test thử nào: http://localhost/tintuc/public</p>
+    <p style="text-align: center"><img alt="" src="http://laptrinh.laedaily.com/laravel-filemanager/photos/1/laravel/bai14/3.png"></p>
+</div>
+<p>Trong bài này mình đã giới thiệu về <code>Query Builder</code> trong Laravel 5 và hướng dẫn các bạn áp dụng <code>Query Builder</code> để hiển thị tin lên trang chủ. Trong series bài viết tiếp theo mình sẽ hướng dẫn các bạn về <code>Pagination</code> trong Laravel 5 và hiển thị list tin tức trên trang chủ.</p>

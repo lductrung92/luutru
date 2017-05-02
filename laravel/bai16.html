@@ -1,0 +1,91 @@
+<p>Bài trước mình đã giới thiệu về Pagination trong Laravel 5 và hướng dẫn các bạn hiển thị list tin tức lên trang chủ. Bài hôm nay mình sẽ hướng dẫn các bạn về xóa public trên url, hiển thị trang chi tiết tin.</p>
+<p><strong>Mục Lục:</strong></p>
+<div id="category_list">
+    <ul>
+        <li>
+            <a id = "category_01_link" href="#">Xóa đường dẫn public trên url Laravel</a>
+            <ul>
+                <li><a id = "category_02_link" href="#">Cách 1: Viết file .htaccess</a></li>
+                <li><a id = "category_03_link" href="#">Cách 2: Di chuyển thư mục</a></li>
+            </ul>
+        </li>
+        <li><a id = "category_04_link" href="#">Tạo trang chi tiết tin</a></li>
+    </ul>
+</div>
+<div id="category_01">
+    <p><strong>1. Xóa đường dẫn public trên url Laravel</strong></p>
+</div>
+<div id="category_02">
+    <p><strong>Cách 1: Viết file .htaccess</strong></p>
+    <p>thêm file <code>.htaccess</code> vào thư mục root với nội dung như sau</p>
+    <pre class="brush: php">
+        <IfModule mod_rewrite.c>
+           RewriteEngine On
+           RewriteRule ^(.*)$ public/$1 [L]
+        </IfModule>
+    </pre>
+</div>
+<div id="category_03">
+    <p><strong>Cách 2: Di chuyển thư mục</strong></p>
+    <p>Đầu tiên tạo thư mục local trong thư mục root cùng hàng với thư mục public</p>
+	<p style="text-align: center"><img alt="" src="http://laptrinh.laedaily.com/laravel-filemanager/photos/1/laravel/bai16/2.png"></p>
+    <p>Tiếp theo, di chuyển toàn bộ thư mục, file  từ thư mục root vào thư mục local chỉ để lại thư mục public</p>
+	<p style="text-align: center"><img alt="" src="http://laptrinh.laedaily.com/laravel-filemanager/photos/1/laravel/bai16/3.png"></p>
+    <p>Tiếp theo, di chuyển toàn bộ thư mục, file từ thư mục public ra lại thư mục root</p>
+	<p style="text-align: center"><img alt="" src="http://laptrinh.laedaily.com/laravel-filemanager/photos/1/laravel/bai16/4.png"></p>
+	<p>Mở file index.php sửa như sau</p>
+	<pre class="brush: php">	
+		require __DIR__.'/local/bootstrap/autoload.php';
+		$app = require_once __DIR__.'/local/bootstrap/app.php';
+	</pre>
+	<p>Thêm vào dòng sau</p>
+	<pre class="brush: php">
+		// set the public path to this directory
+		$app->bind('path.public', function() {
+			return __DIR__;
+		});
+	</pre>
+	<p>Chạy thử nào</p>
+	<p style="text-align: center"><img alt="" src="http://laptrinh.laedaily.com/laravel-filemanager/photos/1/laravel/bai16/5.png"></p>
+</div>
+<div id="category_04">
+    <p><strong>2. Tạo trang chi tiết tin</strong></p>
+    <p>Tạo route cho trang chi tiết tin</p>
+    <pre class="brush: php">
+        Route::get('{link}.html', ['as' => 'home', 'uses' => 'Home\HomeController@detail']);
+    </pre>
+    <p>Lấy dữ liệu tin tức, trong class <code>HomeController</code> thêm vào func tion <code>detail</code></p>
+    <pre class="brush: php">
+        public function detail ($link)
+        {
+            $article = DB::table('articles')
+                ->where('articles.alias', '=', $link)
+                ->select('articles.*')
+                ->get();
+            return view('home.detail', compact('article'));
+        }
+    </pre>
+    <p>Hiển thị tin được chon <code>resources/views/home/detail.blade.php</code></p>
+    <pre class="brush: php">
+        @extends('home.base.base')
+        @section('title', $article[0]->title)
+        @section('content')
+            <div class="content post-detail">
+                <h1>
+                    {{ $article[0]->title }}
+                </h1>
+                <div class="author-info clearfix">
+                    <span class="date">Cập nhật: {{ date('d/m/y', strtotime($article[0]->updated_at)) }}</span>
+                </div>
+                <div class="content-detail">
+                    {!! $article[0]->content !!}
+                </div>
+            </div>
+        @endsection
+    </pre>
+    <p>Test thử nào trên trang chủ bạn kích vào 1 tin bất kỳ</p>
+    <p style="text-align: center"><img alt="" src="http://laptrinh.laedaily.com/laravel-filemanager/photos/1/laravel/bai16/1.png"></p>
+</div>
+<p>Full source code: <a href="https://drive.google.com/open?id=0B_FGcJ1YC9ozQjFMVl9qazFBV3c" target="_blank">download</a></p>
+<p>Series bài viết về lập trinh Laravel đến đây là kết thúc. Các bạn có ý kiến hay thắc mắc gì cứ comment bên dưới hoặc gửi về địa chỉ email: support@laedaily.com</p>
+<p>Chúc các bạn thành công!</p>

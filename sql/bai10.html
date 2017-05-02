@@ -1,0 +1,568 @@
+<p>Bài hôm nay mình sẽ hướng dẫn cách truy xuất dữ liệu từ nhiều bảng sử dụng mệnh đề <code>JOIN</code> trong SQL</p>
+<p><strong>Mục Lục:</strong></p>
+<div id="category_list">
+    <ul>
+        <li><a id = "category_01_link" href="#">Mệnh đề JOIN</a></li>
+        <li>
+            <a id = "category_02_link" href="#">Các mệnh đề JOIN khác nhau trong SQL</a>
+            <ul>
+                <li><a id = "category_03_link" href="#">Mệnh đề INNER JOIN</a></li>
+                <li><a id = "category_04_link" href="#">Mệnh đề LEFT (OUTER) JOIN</a></li>
+                <li><a id = "category_05_link" href="#">Mệnh đề RIGHT (OUTER) JOIN</a></li>
+                <li><a id = "category_06_link" href="#">Mệnh đề FULL (OUTER) JOIN</a></li>
+                <li><a id = "category_07_link" href="#">Mệnh đề Self JOIN</a></li>
+            </ul>
+        </li>
+    </ul>
+</div>
+<div id="category_01">
+    <p><strong>1. Mệnh đề JOIN</strong></p>
+    <p>Mệnh đề <code>JOIN</code> được sử dụng lấy dữ liệu các hàng từ hai hay nhiều bảng, dựa trên cột liên quan giữa chúng</p>
+    <p><strong>Ví dụ:</strong> ta có 2 bảng sau</p>
+    <p>Bảng "Orders"</p>
+    <div class="table-responsive">
+        <table class="table">
+            <tbody><tr>
+                <th style="width:15%">OrderID</th>
+                <th>CustomerID</th>
+                <th>OrderDate</th>
+            </tr>
+            <tr>
+                <td>10308</td>
+                <td>2</td>
+                <td>1996-09-18</td>
+            </tr>
+            <tr>
+                <td>10309</td>
+                <td>37</td>
+                <td>1996-09-19</td>
+            </tr>
+            <tr>
+                <td>10310</td>
+                <td>77</td>
+                <td>1996-09-20</td>
+            </tr>
+            </tbody></table>
+    </div>
+    <p>Bảng "Customers"</p>
+    <div class="table-responsive">
+        <table class="table">
+            <tbody><tr>
+                <th style="width:15%">CustomerID</th>
+                <th>CustomerName</th>
+                <th>ContactName</th>
+                <th>Country</th>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>Alfreds Futterkiste</td>
+                <td>Maria Anders</td>
+                <td>Germany</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>Ana Trujillo Emparedados y helados</td>
+                <td>Ana Trujillo</td>
+                <td>Mexico</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>Antonio Moreno Taquería</td>
+                <td>Antonio Moreno</td>
+                <td>Mexico</td>
+            </tr>
+            </tbody></table>
+    </div>
+    <p>Cột "CustomerID" trong bảng "Orders" dùng để chỉ "CustomerID" trong bảng "Customers". Mối quan hệ giữa hai bảng ở trên là cột "CustomerID".</p>
+    <p>Thực hiện truy vấn lấy OrderID, CustomerName, OrderDate</p>
+    <pre class="brush: sql">
+        SELECT Orders.OrderID, Customers.CustomerName, Orders.OrderDate
+        FROM Orders
+        INNER JOIN Customers ON Orders.CustomerID=Customers.CustomerID;
+    </pre>
+    <p><strong>Kết quả</strong></p>
+    <div class="table-responsive">
+        <table class="table">
+            <tbody><tr>
+                <th style="width:15%">OrderID</th>
+                <th style="width:70%">CustomerName</th>
+                <th style="width:15%">OrderDate</th>
+            </tr>
+            <tr>
+                <td>10308</td>
+                <td>Ana Trujillo Emparedados y helados</td>
+                <td>9/18/1996</td>
+            </tr>
+            <tr>
+                <td>10365</td>
+                <td>Antonio Moreno Taquería</td>
+                <td>11/27/1996</td>
+            </tr>
+            <tr>
+                <td>10383</td>
+                <td>Around the Horn</td>
+                <td>12/16/1996</td>
+            </tr>
+            <tr>
+                <td>10355</td>
+                <td>Around the Horn</td>
+                <td>11/15/1996</td>
+            </tr>
+            <tr>
+                <td>10278</td>
+                <td>Berglunds snabbköp</td>
+                <td>8/12/1996</td>
+            </tr>
+            </tbody></table>
+    </div>
+</div>
+<div id="category_02">
+    <p><strong>2. Các mệnh đề JOIN khác nhau trong SQL</strong></p>
+    <ul>
+        <li><strong>(INNER) JOIN:</strong> Trả về các hàng khi có một so khớp (match) trong các bảng</li>
+        <li><strong>LEFT (OUTER) JOIN:</strong> Trả về tất cả các hàng từ bảng bên trái, ngay cả khi không có so khớp nào trong bảng bên phải</li>
+        <li><strong>RIGHT (OUTER) JOIN:</strong>  Trả về tất cả các hàng từ bảng bên phải, ngay cả khi không có so khớp nào trong bảng bên trái</li>
+        <li><strong>FULL (OUTER) JOIN:</strong> Trả về các hàng khi có một so khớp ở một trong các bảng</li>
+    </ul>
+    <p style="text-align: center; margin-bottom: 15px">
+        <img style="margin-right: 10px" alt="SQL INNER JOIN" src="http://laptrinh.laedaily.com/laravel-filemanager/photos/1/sql/img_innerjoin.gif">&nbsp;
+        <img style="margin-left: 10px" alt="SQL LEFT JOIN" src="http://laptrinh.laedaily.com/laravel-filemanager/photos/1/sql/img_leftjoin.gif" >&nbsp;
+    </p>
+    <p style="text-align: center">
+        <img style="margin-right: 10px" alt="SQL RIGHT JOIN" src="http://laptrinh.laedaily.com/laravel-filemanager/photos/1/sql/img_rightjoin.gif" >&nbsp;
+        <img style="margin-left: 10px" alt="SQL bên ngoài tham gia" src="http://laptrinh.laedaily.com/laravel-filemanager/photos/1/sql/img_fulljoin.gif">&nbsp;
+    </p>
+</div>
+<div id="category_03">
+    <p><strong>Mệnh đề INNER JOIN</strong></p>
+    <p>Mệnh đề <code>INNER JOIN</code> chọn các bản ghi có giá trị phù hợp trong cả hai bảng.</p>
+    <p><strong>Cú pháp: </strong></p>
+    <pre class="brush: sql">
+        SELECT column_name(s)
+        FROM table1
+        INNER JOIN table2 ON table1.column_name = table2.column_name;
+    </pre>
+    <p style="text-align: center">
+        <img alt="SQL INNER JOIN" src="http://laptrinh.laedaily.com/laravel-filemanager/photos/1/sql/img_innerjoin.gif">&nbsp;
+    </p>
+    <p><strong>Ví dụ:</strong> ta có 2 bảng sau</p>
+    <p>Bảng "Orders"</p>
+    <div class="table-responsive">
+        <table class="table">
+            <tbody><tr>
+                <th style="width:15%">OrderID</th>
+                <th>CustomerID</th>
+                <th>EmployeeID</th>
+                <th>OrderDate</th>
+                <th>ShipperID</th>
+            </tr>
+            <tr>
+                <td>10308</td>
+                <td>2</td>
+                <td>7</td>
+                <td>1996-09-18</td>
+                <td>3</td>
+            </tr>
+            <tr>
+                <td>10309</td>
+                <td>37</td>
+                <td>3</td>
+                <td>1996-09-19</td>
+                <td>1</td>
+            </tr>
+            <tr>
+                <td>10310</td>
+                <td>77</td>
+                <td>8</td>
+                <td>1996-09-20</td>
+                <td>2</td>
+            </tr>
+            </tbody></table>
+    </div>
+    <p>Bảng "Customers"</p>
+    <div class="table-responsive">
+        <table class="table">
+            <tbody><tr>
+                <th style="width:15%">CustomerID</th>
+                <th>CustomerName</th>
+                <th>ContactName</th>
+                <th>Address</th>
+                <th>City</th>
+                <th>PostalCode</th>
+                <th>Country</th>
+            </tr>
+            <tr>
+                <td>1<br><br></td>
+                <td>Alfreds Futterkiste</td>
+                <td>Maria Anders</td>
+                <td>Obere Str. 57</td>
+                <td>Berlin</td>
+                <td>12209</td>
+                <td>Germany</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>Ana Trujillo Emparedados y helados</td>
+                <td>Ana Trujillo</td>
+                <td>Avda. de la Constitución 2222</td>
+                <td>México D.F.</td>
+                <td>05021</td>
+                <td>Mexico</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>Antonio Moreno Taquería</td>
+                <td>Antonio Moreno</td>
+                <td>Mataderos 2312</td>
+                <td>México D.F.</td>
+                <td>05023</td>
+                <td>Mexico</td>
+            </tr>
+            </tbody></table>
+    </div>
+    <p><strong>Ví dụ: </strong>Câu lệnh SQL sau đây sẽ chọn tất cả các đơn đặt hàng với thông tin khách hàng:</p>
+    <pre class="brush: sql">
+        SELECT Orders.OrderID, Customers.CustomerName
+        FROM Orders
+        INNER JOIN Customers ON Orders.CustomerID = Customers.CustomerID;
+    </pre>
+</div>
+<div id="category_04">
+    <p><strong>Mệnh đề LEFT (OUTER) JOIN</strong></p>
+    <p>Mệnh đề <code>LEFT (OUTER) JOIN</code> trả về tất cả các bản ghi từ bảng bên trái (table1), và các bản ghi phù hợp từ bảng bên phải (table2). Kết quả là NULL từ phía bên phải, nếu không có kết hợp.</p>
+    <p><strong>Cú pháp: </strong></p>
+    <pre class="brush: sql">
+        SELECT column_name(s)
+        FROM table1
+        LEFT JOIN table2 ON table1.column_name = table2.column_name;
+    </pre>
+    <p style="text-align: center">
+        <img alt="SQL INNER JOIN" src="http://laptrinh.laedaily.com/laravel-filemanager/photos/1/sql/img_leftjoin.gif">&nbsp;
+    </p>
+    <p><strong>Ví dụ:</strong> ta có 2 bảng sau</p>
+    <p>Bảng "Customers"</p>
+    <div class="table-responsive">
+        <table class="table">
+            <tbody><tr>
+                <th style="width:15%">CustomerID</th>
+                <th>CustomerName</th>
+                <th>ContactName</th>
+                <th>Address</th>
+                <th>City</th>
+                <th>PostalCode</th>
+                <th>Country</th>
+            </tr>
+            <tr>
+                <td>1<br><br></td>
+                <td>Alfreds Futterkiste</td>
+                <td>Maria Anders</td>
+                <td>Obere Str. 57</td>
+                <td>Berlin</td>
+                <td>12209</td>
+                <td>Germany</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>Ana Trujillo Emparedados y helados</td>
+                <td>Ana Trujillo</td>
+                <td>Avda. de la Constitución 2222</td>
+                <td>México D.F.</td>
+                <td>05021</td>
+                <td>Mexico</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>Antonio Moreno Taquería</td>
+                <td>Antonio Moreno</td>
+                <td>Mataderos 2312</td>
+                <td>México D.F.</td>
+                <td>05023</td>
+                <td>Mexico</td>
+            </tr>
+            </tbody></table>
+    </div>
+    <p>Bảng "Orders"</p>
+    <div class="table-responsive">
+        <table class="table">
+            <tbody><tr>
+                <th style="width:15%">OrderID</th>
+                <th>CustomerID</th>
+                <th>EmployeeID</th>
+                <th>OrderDate</th>
+                <th>ShipperID</th>
+            </tr>
+            <tr>
+                <td>10308</td>
+                <td>2</td>
+                <td>7</td>
+                <td>1996-09-18</td>
+                <td>3</td>
+            </tr>
+            <tr>
+                <td>10309</td>
+                <td>37</td>
+                <td>3</td>
+                <td>1996-09-19</td>
+                <td>1</td>
+            </tr>
+            <tr>
+                <td>10310</td>
+                <td>77</td>
+                <td>8</td>
+                <td>1996-09-20</td>
+                <td>2</td>
+            </tr>
+            </tbody></table>
+    </div>
+    <p><strong>Ví dụ: </strong>Câu lệnh SQL sau đây sẽ chọn tất cả các khách hàng, và bất kỳ đơn đặt hàng nào họ có thể có:</p>
+    <pre class="brush: sql">
+        SELECT Customers.CustomerName, Orders.OrderID
+        FROM Customers
+        LEFT JOIN Orders ON Customers.CustomerID = Orders.CustomerID
+        ORDER BY Customers.CustomerName;
+    </pre>
+</div>
+<div id="category_05">
+    <p><strong>Mệnh đề RIGHT (OUTER) JOIN</strong></p>
+    <p>Mệnh đề <code>RIGHT (OUTER) JOIN</code> trả về tất cả các bản ghi từ bảng bên phải (table2), và các bản ghi phù hợp từ bảng bên trái (table1). Kết quả là NULL từ phía bên trái, nếu không có kết hợp.</p>
+    <p><strong>Cú pháp: </strong></p>
+    <pre class="brush: sql">
+        SELECT column_name(s)
+        FROM table1
+        RIGHT JOIN table2 ON table1.column_name = table2.column_name;
+    </pre>
+    <p style="text-align: center">
+        <img alt="SQL INNER JOIN" src="http://laptrinh.laedaily.com/laravel-filemanager/photos/1/sql/img_rightjoin.gif">&nbsp;
+    </p>
+    <p><strong>Ví dụ:</strong> ta có 2 bảng sau</p>
+    <p>Bảng "Orders"</p>
+    <div class="table-responsive">
+        <table class="table">
+            <tbody><tr>
+                <th style="width:15%">OrderID</th>
+                <th>CustomerID</th>
+                <th>EmployeeID</th>
+                <th>OrderDate</th>
+                <th>ShipperID</th>
+            </tr>
+            <tr>
+                <td>10308</td>
+                <td>2</td>
+                <td>7</td>
+                <td>1996-09-18</td>
+                <td>3</td>
+            </tr>
+            <tr>
+                <td>10309</td>
+                <td>37</td>
+                <td>3</td>
+                <td>1996-09-19</td>
+                <td>1</td>
+            </tr>
+            <tr>
+                <td>10310</td>
+                <td>77</td>
+                <td>8</td>
+                <td>1996-09-20</td>
+                <td>2</td>
+            </tr>
+            </tbody></table>
+    </div>
+    <p>Bảng "Employees"</p>
+    <div class="table-responsive">
+        <table class="table">
+            <tbody><tr>
+                <th>EmployeeID</th>
+                <th>LastName</th>
+                <th>FirstName</th>
+                <th>BirthDate</th>
+                <th>Photo</th>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>Davolio</td>
+                <td>Nancy</td>
+                <td>12/8/1968</td>
+                <td>EmpID1.pic</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>Fuller</td>
+                <td>Andrew</td>
+                <td>2/19/1952</td>
+                <td>EmpID2.pic</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>Leverling</td>
+                <td>Janet</td>
+                <td>8/30/1963</td>
+                <td>EmpID3.pic</td>
+            </tr>
+            </tbody></table>
+    </div>
+    <p><strong>Ví dụ: </strong>Câu lệnh SQL sau đây sẽ trả lại tất cả nhân viên và bất kỳ đơn đặt hàng nào họ đã đặt:</p>
+    <pre class="brush: sql">
+        SELECT Orders.OrderID, Employees.LastName, Employees.FirstName
+        FROM Orders
+        RIGHT JOIN Employees ON Orders.EmployeeID = Employees.EmployeeID
+        ORDER BY Orders.OrderID;
+    </pre>
+</div>
+<div id="category_06">
+    <p><strong>Mệnh đề FULL (OUTER) JOIN</strong></p>
+    <p>Mệnh đề <code>FULL (OUTER) JOIN</code> trả lại tất cả các bản ghi khi có kết quả trong bảng ghi trái (table1) hoặc bên phải (table2).</p>
+    <p><strong>Cú pháp: </strong></p>
+    <pre class="brush: sql">
+        SELECT column_name(s)
+        FROM table1
+        FULL OUTER JOIN table2 ON table1.column_name = table2.column_name;
+    </pre>
+    <p style="text-align: center">
+        <img alt="SQL INNER JOIN" src="http://laptrinh.laedaily.com/laravel-filemanager/photos/1/sql/img_fulljoin.gif">&nbsp;
+    </p>
+    <p><strong>Ví dụ:</strong> ta có 2 bảng sau</p>
+    <p>Bảng "Customers"</p>
+    <div class="table-responsive">
+        <table class="table">
+            <tbody><tr>
+                <th style="width:15%">CustomerID</th>
+                <th>CustomerName</th>
+                <th>ContactName</th>
+                <th>Address</th>
+                <th>City</th>
+                <th>PostalCode</th>
+                <th>Country</th>
+            </tr>
+            <tr>
+                <td>1<br><br></td>
+                <td>Alfreds Futterkiste</td>
+                <td>Maria Anders</td>
+                <td>Obere Str. 57</td>
+                <td>Berlin</td>
+                <td>12209</td>
+                <td>Germany</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>Ana Trujillo Emparedados y helados</td>
+                <td>Ana Trujillo</td>
+                <td>Avda. de la Constitución 2222</td>
+                <td>México D.F.</td>
+                <td>05021</td>
+                <td>Mexico</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>Antonio Moreno Taquería</td>
+                <td>Antonio Moreno</td>
+                <td>Mataderos 2312</td>
+                <td>México D.F.</td>
+                <td>05023</td>
+                <td>Mexico</td>
+            </tr>
+            </tbody></table>
+    </div>
+    <p>Bảng "Orders"</p>
+    <div class="table-responsive">
+        <table class="table">
+            <tbody><tr>
+                <th style="width:15%">OrderID</th>
+                <th>CustomerID</th>
+                <th>EmployeeID</th>
+                <th>OrderDate</th>
+                <th>ShipperID</th>
+            </tr>
+            <tr>
+                <td>10308</td>
+                <td>2</td>
+                <td>7</td>
+                <td>1996-09-18</td>
+                <td>3</td>
+            </tr>
+            <tr>
+                <td>10309</td>
+                <td>37</td>
+                <td>3</td>
+                <td>1996-09-19</td>
+                <td>1</td>
+            </tr>
+            <tr>
+                <td>10310</td>
+                <td>77</td>
+                <td>8</td>
+                <td>1996-09-20</td>
+                <td>2</td>
+            </tr>
+            </tbody></table>
+    </div>
+    <p><strong>Ví dụ: </strong>Câu lệnh SQL sau đây sẽ chọn tất cả các khách hàng và tất cả các đơn đặt hàng:</p>
+    <pre class="brush: sql">
+        SELECT Customers.CustomerName, Orders.OrderID
+        FROM Customers
+        FULL OUTER JOIN Orders ON Customers.CustomerID=Orders.CustomerID
+        ORDER BY Customers.CustomerName;
+    </pre>
+</div>
+<div id="category_07">
+    <p><strong>Mệnh đề Self JOIN</strong></p>
+    <p>Mệnh đề <code>Self JOIN</code> được sử dụng để kết hợp một bảng với chính nó, khi nếu table đó là hai bảng dữ liệu, thay tên tạm thời cho ít nhất một bảng trong lệnh SQL.</p>
+    <p><strong>Cú pháp: </strong></p>
+    <pre class="brush: sql">
+        SELECT column_name(s)
+        FROM table1 T1, table1 T2
+        WHERE condition;
+    </pre>
+    <p style="text-align: center">
+        <img alt="SQL INNER JOIN" src="http://laptrinh.laedaily.com/laravel-filemanager/photos/1/sql/img_fulljoin.gif">&nbsp;
+    </p>
+    <p><strong>Ví dụ:</strong> ta có bảng sau</p>
+    <div class="table-responsive">
+        <table class="table">
+            <tbody><tr>
+                <th style="width:15%">CustomerID</th>
+                <th>CustomerName</th>
+                <th>ContactName</th>
+                <th>Address</th>
+                <th>City</th>
+                <th>PostalCode</th>
+                <th>Country</th>
+            </tr>
+            <tr>
+                <td>1<br><br></td>
+                <td>Alfreds Futterkiste</td>
+                <td>Maria Anders</td>
+                <td>Obere Str. 57</td>
+                <td>Berlin</td>
+                <td>12209</td>
+                <td>Germany</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>Ana Trujillo Emparedados y helados</td>
+                <td>Ana Trujillo</td>
+                <td>Avda. de la Constitución 2222</td>
+                <td>México D.F.</td>
+                <td>05021</td>
+                <td>Mexico</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>Antonio Moreno Taquería</td>
+                <td>Antonio Moreno</td>
+                <td>Mataderos 2312</td>
+                <td>México D.F.</td>
+                <td>05023</td>
+                <td>Mexico</td>
+            </tr>
+            </tbody></table>
+    </div>
+    <p><strong>Ví dụ: </strong>Câu lệnh SQL lấy dữ liệu các khách hàng đến từ cùng một thành phố:</p>
+    <pre class="brush: sql">
+        SELECT A.CustomerName AS CustomerName1, B.CustomerName AS CustomerName2, A.City
+        FROM Customers A, Customers B
+        WHERE A.CustomerID <> B.CustomerID
+        AND A.City = B.City
+        ORDER BY A.City;
+    </pre>
+</div>

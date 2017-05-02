@@ -1,0 +1,95 @@
+<p>Bài hôm nay mình sẽ đi giới thiệu về hàm <code>MIN</code> và <code>MAX</code> trong SQL</p>
+<p><strong>Mục Lục:</strong></p>
+<div id="category_list">
+    <ul>
+        <li><a id = "category_01_link" href="#">Hàm MIN</a></li>
+        <li><a id = "category_02_link" href="#">Hàm MAX</a></li>
+        <li><a id = "category_03_link" href="#">Ví dụ</a></li>
+    </ul>
+</div>
+<div id="category_01">
+    <p><strong>1. Hàm MIN</strong></p>
+    <p>Hàm <code>MIN ()</code> trả về giá trị nhỏ nhất của cột được chọn.</p>
+    <p><strong>Cú pháp: </strong></p>
+    <pre class="brush: sql">
+        SELECT MIN(column_name)
+        FROM table_name
+        WHERE condition;
+    </pre>
+</div>
+<div id="category_02">
+    <p><strong>2. Hàm MAX</strong></p>
+    <p>Hàm <code>MAX ()</code> trả về giá trị lớn nhất của cột được chọn.</p>
+    <p><strong>Cú pháp: </strong></p>
+    <pre class="brush: sql">
+        SELECT MAX(column_name)
+        FROM table_name
+        WHERE condition;
+    </pre>
+</div>
+<div id="category_03">
+    <p><strong>3. Ví dụ</strong></p>
+    <p><strong>Ví dụ:</strong> ta có bảng sau</p>
+    <div class="table-responsive">
+        <table class="table">
+            <tbody><tr>
+                <th>ProductID</th>
+                <th>ProductName</th>
+                <th>SupplierID</th>
+                <th>CategoryID</th>
+                <th>Unit</th>
+                <th>Price</th>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>Chais</td>
+                <td>1</td>
+                <td>1</td>
+                <td>10 boxes x 20 bags</td>
+                <td>18</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>Chang</td>
+                <td>1</td>
+                <td>1</td>
+                <td>24 - 12 oz bottles</td>
+                <td>19</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>Aniseed Syrup</td>
+                <td>1</td>
+                <td>2</td>
+                <td>12 - 550 ml bottles</td>
+                <td>10</td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>Chef Anton's Cajun Seasoning</td>
+                <td>2</td>
+                <td>2</td>
+                <td>48 - 6 oz jars</td>
+                <td>22</td>
+            </tr>
+            <tr>
+                <td>5</td>
+                <td>Chef Anton's Gumbo Mix</td>
+                <td>2</td>
+                <td>2</td>
+                <td>36 boxes</td>
+                <td>21.35</td>
+            </tr>
+            </tbody></table>
+    </div>
+    <p><strong>Ví dụ: </strong>Câu lệnh SQL sau đây tìm thấy giá của sản phẩm rẻ nhất:</p>
+    <pre class="brush: sql">
+        SELECT MIN(Price) AS SmallestPrice
+        FROM Products;
+    </pre>
+    <p><strong>Ví dụ: </strong>Câu lệnh SQL sau đây tìm thấy giá của sản phẩm đắt tiền nhất:</p>
+    <pre class="brush: sql">
+        SELECT MAX(Price) AS LargestPrice
+        FROM Products;
+    </pre>
+</div>

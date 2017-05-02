@@ -1,0 +1,383 @@
+<p>Bài hôm nay mình sẽ hướng dẫn các bạn sử dụng: GROUP BY, HAVING, EXISTS trong SQL</p>
+<p><strong>Mục Lục:</strong></p>
+<div id="category_list">
+    <ul>
+        <li><a id = "category_01_link" href="#">Mệnh đề GROUP BY</a></li>
+        <li><a id = "category_02_link" href="#">Mệnh đề HAVING</a></li>
+        <li><a id = "category_03_link" href="#">Toán tử EXISTS</a></li>
+    </ul>
+</div>
+<div id="category_01">
+    <p><strong>1. Mệnh đề GROUP BY</strong></p>
+    <p>Mệnh đề <code>GROUP BY</code> thường được sử dụng với các hàm tổng hợp (COUNT, MAX, MIN, SUM, AVG) để nhóm các tập hợp kết quả theo một hoặc nhiều cột.</p>
+    <p><strong>Cú pháp: </strong></p>
+    <pre class="brush: sql">
+        SELECT column_name(s)
+        FROM table_name
+        WHERE condition
+        GROUP BY column_name(s)
+        ORDER BY column_name(s);
+    </pre>
+    <p><strong>Ví dụ:</strong> ta có bảng sau</p>
+    <div class="table-responsive">
+        <table class="table">
+            <tbody><tr>
+                <th>CustomerID</th>
+                <th>CustomerName</th>
+                <th>ContactName</th>
+                <th>Address</th>
+                <th>City</th>
+                <th>PostalCode</th>
+                <th>Country</th>
+            </tr>
+            <tr>
+                <td>1<br><br></td>
+                <td>Alfreds Futterkiste</td>
+                <td>Maria Anders</td>
+                <td>Obere Str. 57</td>
+                <td>Berlin</td>
+                <td>12209</td>
+                <td>Germany</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>Ana Trujillo Emparedados y helados</td>
+                <td>Ana Trujillo</td>
+                <td>Avda. de la Constitución 2222</td>
+                <td>México D.F.</td>
+                <td>05021</td>
+                <td>Mexico</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>Antonio Moreno Taquería</td>
+                <td>Antonio Moreno</td>
+                <td>Mataderos 2312</td>
+                <td>México D.F.</td>
+                <td>05023</td>
+                <td>Mexico</td>
+            </tr>
+            <tr>
+                <td>4<br><br></td>
+                <td>Around the Horn</td>
+                <td>Thomas Hardy</td>
+                <td>120 Hanover Sq.</td>
+                <td>London</td>
+                <td>WA1 1DP</td>
+                <td>UK</td>
+            </tr>
+            <tr>
+                <td>5</td>
+                <td>Berglunds snabbköp</td>
+                <td>Christina Berglund</td>
+                <td>Berguvsvägen 8</td>
+                <td>Luleå</td>
+                <td>S-958 22</td>
+                <td>Sweden</td>
+            </tr>
+            </tbody></table>
+    </div>
+    <p><strong>Ví dụ: </strong>Câu lệnh SQL sau liệt kê số lượng khách hàng ở mỗi quốc gia:</p>
+    <pre class="brush: sql">
+        SELECT COUNT(CustomerID), Country
+        FROM Customers
+        GROUP BY Country;
+    </pre>
+    <p><strong>Ví dụ: </strong>Câu lệnh SQL sau liệt kê số lượng khách hàng ở mỗi quốc gia, được sắp xếp từ cao đến thấp:</p>
+    <pre class="brush: sql">
+        SELECT COUNT(CustomerID), Country
+        FROM Customers
+        GROUP BY Country
+        ORDER BY COUNT(CustomerID) DESC;
+    </pre>
+    <p><strong>Ví dụ:</strong> ta có 2 bảng sau</p>
+    <p>Bảng "Orders"</p>
+    <div class="table-responsive">
+        <table class="table">
+            <tbody><tr>
+                <th>OrderID</th>
+                <th>CustomerID</th>
+                <th>EmployeeID</th>
+                <th>OrderDate</th>
+                <th>ShipperID</th>
+            </tr>
+            <tr>
+                <td>10248</td>
+                <td>90</td>
+                <td>5</td>
+                <td>1996-07-04</td>
+                <td>3</td>
+            </tr>
+            <tr>
+                <td>10249</td>
+                <td>81</td>
+                <td>6</td>
+                <td>1996-07-05</td>
+                <td>1</td>
+            </tr>
+            <tr>
+                <td>10250</td>
+                <td>34</td>
+                <td>4</td>
+                <td>1996-07-08</td>
+                <td>2</td>
+            </tr>
+            </tbody></table>
+    </div>
+    <p>Bảng "Shippers"</p>
+    <div class="table-responsive">
+        <table class="table">
+            <tbody><tr>
+                <th>ShipperID</th>
+                <th>ShipperName</th>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>Speedy Express</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>United Package</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>Federal Shipping</td>
+            </tr>
+            </tbody></table>
+    </div>
+    <p><strong>Ví dụ: </strong>Lệnh SQL sau đây liệt kê số lượng đơn đặt hàng được gửi bởi shipper:</p>
+    <pre class="brush: sql">
+        SELECT Shippers.ShipperName, COUNT(Orders.OrderID) AS NumberOfOrders FROM Orders
+        LEFT JOIN Shippers ON Orders.ShipperID = Shippers.ShipperID
+        GROUP BY ShipperName;
+    </pre>
+</div>
+<div id="category_02">
+    <p><strong>2. Mệnh đề HAVING</strong></p>
+    <p>Mệnh đề <code>HAVING</code> được sử dụng khi không thể sử dụng WHERE.</p>
+    <p><strong>Cú pháp: </strong></p>
+    <pre class="brush: sql">
+        SELECT column_name(s)
+        FROM table_name
+        WHERE condition
+        GROUP BY column_name(s)
+        HAVING condition
+        ORDER BY column_name(s);
+    </pre>
+    <p><strong>Ví dụ:</strong> ta có 2 bảng sau</p>
+    <p>Bảng "Orders"</p>
+    <div class="table-responsive">
+        <table class="table">
+            <tbody><tr>
+                <th>OrderID</th>
+                <th>CustomerID</th>
+                <th>EmployeeID</th>
+                <th>OrderDate</th>
+                <th>ShipperID</th>
+            </tr>
+            <tr>
+                <td>10248</td>
+                <td>90</td>
+                <td>5</td>
+                <td>1996-07-04</td>
+                <td>3</td>
+            </tr>
+            <tr>
+                <td>10249</td>
+                <td>81</td>
+                <td>6</td>
+                <td>1996-07-05</td>
+                <td>1</td>
+            </tr>
+            <tr>
+                <td>10250</td>
+                <td>34</td>
+                <td>4</td>
+                <td>1996-07-08</td>
+                <td>2</td>
+            </tr>
+            </tbody></table>
+    </div>
+    <p>Bảng "Employees"</p>
+    <div class="table-responsive">
+        <table class="table">
+            <tbody><tr>
+                <th>EmployeeID</th>
+                <th>LastName</th>
+                <th>FirstName</th>
+                <th>BirthDate</th>
+                <th>Photo</th>
+                <th>Notes</th>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>Davolio</td>
+                <td>Nancy</td>
+                <td>1968-12-08</td>
+                <td>EmpID1.pic</td>
+                <td>Education includes a BA....</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>Fuller</td>
+                <td>Andrew</td>
+                <td>1952-02-19</td>
+                <td>EmpID2.pic</td>
+                <td>Andrew received his BTS....</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>Leverling</td>
+                <td>Janet</td>
+                <td>1963-08-30</td>
+                <td>EmpID3.pic</td>
+                <td>Janet has a BS degree....</td>
+            </tr>
+            </tbody></table>
+    </div>
+    <p><strong>Ví dụ: </strong>Câu lệnh SQL sau liệt kê các nhân viên đã đăng ký trên 10 đơn đặt hàng:</p>
+    <pre class="brush: sql">
+        SELECT Employees.LastName, COUNT(Orders.OrderID) AS NumberOfOrders
+        FROM (Orders
+        INNER JOIN Employees ON Orders.EmployeeID = Employees.EmployeeID)
+        GROUP BY LastName
+        HAVING COUNT(Orders.OrderID) > 10;
+    </pre>
+    <p><strong>Ví dụ: </strong>Các câu lệnh SQL sau đây liệt kê các nhân viên "Davolio" hoặc "Fuller" đã đăng ký trên 25 đơn đặt hàng:</p>
+    <pre class="brush: sql">
+        SELECT Employees.LastName, COUNT(Orders.OrderID) AS NumberOfOrders
+        FROM Orders
+        INNER JOIN Employees ON Orders.EmployeeID = Employees.EmployeeID
+        WHERE LastName = 'Davolio' OR LastName = 'Fuller'
+        GROUP BY LastName
+        HAVING COUNT(Orders.OrderID) > 25;
+    </pre>
+</div>
+<div id="category_03">
+    <p><strong>3. Toán tử EXISTS</strong></p>
+    <p>Toán tử <code>EXISTS</code> được sử dụng để kiểm tra sự tồn tại của bất kỳ bản ghi nào trong một truy vấn con.</p>
+    <p>Toán tử EXISTS trả về true nếu yêu cầu truy vấn phụ trả về một hoặc nhiều bản ghi.</p>
+    <p><strong>Cú pháp: </strong></p>
+    <pre class="brush: sql">
+        SELECT column_name(s)
+        FROM table_name
+        WHERE EXISTS
+        (SELECT column_name FROM table_name WHERE condition);
+    </pre>
+    <p><strong>Ví dụ:</strong> ta có 2 bảng sau</p>
+    <p>Bảng "Products"</p>
+    <div class="table-responsive">
+        <table class="table">
+            <tbody><tr>
+                <th>ProductID</th>
+                <th>ProductName</th>
+                <th>SupplierID</th>
+                <th>CategoryID</th>
+                <th>Unit</th>
+                <th>Price</th>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>Chais</td>
+                <td>1</td>
+                <td>1</td>
+                <td>10 boxes x 20 bags</td>
+                <td>18</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>Chang</td>
+                <td>1</td>
+                <td>1</td>
+                <td>24 - 12 oz bottles</td>
+                <td>19</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>Aniseed Syrup</td>
+                <td>1</td>
+                <td>2</td>
+                <td>12 - 550 ml bottles</td>
+                <td>10</td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>Chef Anton's Cajun Seasoning</td>
+                <td>2</td>
+                <td>2</td>
+                <td>48 - 6 oz jars</td>
+                <td>22</td>
+            </tr>
+            <tr>
+                <td>5</td>
+                <td>Chef Anton's Gumbo Mix</td>
+                <td>2</td>
+                <td>2</td>
+                <td>36 boxes</td>
+                <td>21.35</td>
+            </tr>
+            </tbody></table>
+    </div>
+    <p>Bảng "Suppliers"</p>
+    <div class="table-responsive">
+        <table class="table">
+            <tbody><tr>
+                <th>SupplierID</th>
+                <th>SupplierName</th>
+                <th>ContactName</th>
+                <th>Address</th>
+                <th>City</th>
+                <th>PostalCode</th>
+                <th>Country</th>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>Exotic Liquid</td>
+                <td>Charlotte Cooper</td>
+                <td>49 Gilbert St.</td>
+                <td>London</td>
+                <td>EC1 4SD</td>
+                <td>UK</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>New Orleans Cajun Delights</td>
+                <td>Shelley Burke</td>
+                <td>P.O. Box 78934</td>
+                <td>New Orleans</td>
+                <td>70117</td>
+                <td>USA</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>Grandma Kelly's Homestead</td>
+                <td>Regina Murphy</td>
+                <td>707 Oxford Rd.</td>
+                <td>Ann Arbor</td>
+                <td>48104</td>
+                <td>USA</td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>Tokyo Traders</td>
+                <td>Yoshi Nagase</td>
+                <td>9-8 Sekimai Musashino-shi</td>
+                <td>Tokyo</td>
+                <td>100</td>
+                <td>Japan</td>
+            </tr>
+            </tbody></table>
+    </div>
+    <p><strong>Ví dụ: </strong>Câu lệnh SQL sau trả về TRUE và liệt kê các nhà cung cấp với giá sản phẩm dưới 20:</p>
+    <pre class="brush: sql">
+        SELECT SupplierName
+        FROM Suppliers
+        WHERE EXISTS (SELECT ProductName FROM Products WHERE SupplierId = Suppliers.supplierId AND Price < 20);
+    </pre>
+    <p><strong>Ví dụ: </strong>Câu lệnh SQL sau trả về TRUE và liệt kê các nhà cung cấp với giá sản phẩm bằng 22:</p>
+    <pre class="brush: sql">
+        SELECT SupplierName
+        FROM Suppliers
+        WHERE EXISTS (SELECT ProductName FROM Products WHERE SupplierId = Suppliers.supplierId AND Price = 22);
+    </pre>
+</div>

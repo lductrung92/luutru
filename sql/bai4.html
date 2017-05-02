@@ -1,0 +1,221 @@
+<p>Bài hôm nay mình sẽ đi giới thiệu về các câu lệnh truy vấn với: WHERE, AND, OR và NOT, ORDER BY</p>
+<p><strong>Mục Lục:</strong></p>
+<div id="category_list">
+    <ul>
+        <li><a id = "category_01_link" href="#">Mệnh đề WHERE</a></li>
+        <li><a id = "category_02_link" href="#">Toán tử AND, OR và NOT</a></li>
+        <li><a id = "category_03_link" href="#">Sắp xếp kết quả bằng ORDER BY</a></li>
+    </ul>
+</div>
+<div id="category_01">
+    <p><strong>1. Mệnh đề WHERE</strong></p>
+    <p>Mệnh đề <code>WHERE</code> được sử dụng để lọc các bản ghi.</p>
+    <p>Mệnh đề <code>WHERE</code> được sử dụng để trích xuất các bản ghi đáp ứng được điều kiện cụ thể.</p>
+    <p><strong>Cú pháp: </strong></p>
+    <pre class="brush: sql">
+        SELECT column1, column2, ... FROM table_name WHERE condition;
+    </pre>
+    <p><strong>Ví dụ:</strong> ta có bảng sau</p>
+    <div class="table-responsive">
+        <table class="table">
+            <tbody><tr>
+                <th>CustomerID</th>
+                <th>CustomerName</th>
+                <th>ContactName</th>
+                <th>Address</th>
+                <th>City</th>
+                <th>PostalCode</th>
+                <th>Country</th>
+            </tr>
+            <tr>
+                <td>1<br><br></td>
+                <td>Alfreds Futterkiste</td>
+                <td>Maria Anders</td>
+                <td>Obere Str. 57</td>
+                <td>Berlin</td>
+                <td>12209</td>
+                <td>Germany</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>Ana Trujillo Emparedados y helados</td>
+                <td>Ana Trujillo</td>
+                <td>Avda. de la Constitución 2222</td>
+                <td>México D.F.</td>
+                <td>05021</td>
+                <td>Mexico</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>Antonio Moreno Taquería</td>
+                <td>Antonio Moreno</td>
+                <td>Mataderos 2312</td>
+                <td>México D.F.</td>
+                <td>05023</td>
+                <td>Mexico</td>
+            </tr>
+            <tr>
+                <td>4<br><br></td>
+                <td>Around the Horn</td>
+                <td>Thomas Hardy</td>
+                <td>120 Hanover Sq.</td>
+                <td>London</td>
+                <td>WA1 1DP</td>
+                <td>UK</td>
+            </tr>
+            <tr>
+                <td>5</td>
+                <td>Berglunds snabbköp</td>
+                <td>Christina Berglund</td>
+                <td>Berguvsvägen 8</td>
+                <td>Luleå</td>
+                <td>S-958 22</td>
+                <td>Sweden</td>
+            </tr>
+            </tbody></table>
+    </div>
+    <p><strong>Ví dụ: </strong>chọn tất cả các khách hàng từ nước "Mexico", trong bảng "Customers":</p>
+    <pre class="brush: sql">
+        SELECT * FROM Customers WHERE Country='Mexico';
+    </pre>
+    <div class="table-responsive">
+        <table class="table">
+            <tbody><tr>
+                <th>CustomerID</th>
+                <th>CustomerName</th>
+                <th>ContactName</th>
+                <th>Address</th>
+                <th>City</th>
+                <th>PostalCode</th>
+                <th>Country</th>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>Ana Trujillo Emparedados y helados</td>
+                <td>Ana Trujillo</td>
+                <td>Avda. de la Constitución 2222</td>
+                <td>México D.F.</td>
+                <td>05021</td>
+                <td>Mexico</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>Antonio Moreno Taquería</td>
+                <td>Antonio Moreno</td>
+                <td>Mataderos 2312</td>
+                <td>México D.F.</td>
+                <td>05023</td>
+                <td>Mexico</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <p>Các toán tử sau có thể được sử dụng trong mệnh đề <code>WHERE</code>:</p>
+    <div class="table-responsive">
+        <table class="table">
+            <tbody><tr>
+                <th style="width:20%">Operator</th>
+                <th>Description</th>
+            </tr>
+            <tr>
+                <td>=</td>
+                <td>Kiểm tra xem giá trị của hai toán hạng có cân bằng không, nếu có thì điều kiện trở thành true</td>
+            </tr>
+            <tr>
+                <td><></td>
+                <td>Kiểm tra xem giá trị của hai toán hạng là cân bằng hay là không, nếu không cân bằng thì điều kiện trở thành true</td>
+            </tr>
+            <tr>
+                <td>></td>
+                <td>Kiểm tra xem giá trị của toán hạng trái có lớn hơn giá trị của toán hạng phải không, nếu có thì điều kiện trở thành true</td>
+            </tr>
+            <tr>
+                <td><</td>
+                <td>Kiểm tra xem giá trị của toán hạng trái có nhỏ hơn giá trị của toán hạng phải không, nếu có thì điều kiện trở thành true</td>
+            </tr>
+            <tr>
+                <td>>=</td>
+                <td>Kiểm tra xem giá trị của toán hạng trái có lớn hơn hoặc bằng giá trị của toán hạng phải không, nếu có thì điều kiện trở thành true</td>
+            </tr>
+            <tr>
+                <td><=</td>
+                <td>Kiểm tra xem giá trị của toán hạng trái có nhỏ hơn hoặc bằng giá trị của toán hạng phải không, nếu có thì điều kiện trở thành true</td>
+            </tr>
+            <tr>
+                <td>BETWEEN</td>
+                <td>Toán tử BETWEEN được sử dụng để tìm các giá trị mà là trong một tập giá trị, được cung cấp giá trị nhỏ nhất và giá trị lớn nhất</td>
+            </tr>
+            <tr>
+                <td>LIKE</td>
+                <td>Toán tử LIKE được sử dụng để so sánh một giá trị với các giá trị tương tự bởi sử dụng các toán tử Wildcard</td>
+            </tr>
+            <tr>
+                <td>IN</td>
+                <td>Toán tử IN được sử dụng để so sánh một giá trị với một danh sách các giá trị hằng mà đã được xác định</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<div id="category_02">
+    <p><strong>2. Toán tử AND, OR và NOT</strong></p>
+    <p>Mệnh đề WHERE có thể kết hợp với toán tử <code>AND</code>, <code>OR</code>, và <code>NOT</code>.</p>
+    <p>Toán tử <code>AND</code> và <code>OR</code> được sử dụng để lọc các bản ghi dựa trên nhiều điều kiện:</p>
+    <ul>
+        <li>Toán tử <code>AND</code> hiển thị một bản ghi nếu tất cả các điều kiện <code>AND</code> là <code>TRUE</code>.</li>
+        <li>Toán tử <code>OR</code> hiển thị một bản ghi nếu bất kỳ điều kiện <code>OR</code> là <code>TRUE</code></li>
+    </ul>
+    <p>Toán tử <code>NOT</code> hiển thị một bản ghi nếu điều kiện là không <code>TRUE</code>.</p>
+    <p><strong>Cú pháp: </strong> <code>AND</code></p>
+    <pre class="brush: sql">
+        SELECT column1, column2, ... FROM table_name
+        WHERE condition1 AND condition2 AND condition3 ...;
+    </pre>
+    <p><strong>Cú pháp: </strong> <code>OR</code></p>
+    <pre class="brush: sql">
+        SELECT column1, column2, ... FROM table_name
+        WHERE condition1 OR condition2 OR condition3 ...;
+    </pre>
+    <p><strong>Cú pháp: </strong> <code>NOT</code></p>
+    <pre class="brush: sql">
+        SELECT column1, column2, ... FROM table_name
+        WHERE NOT condition;
+    </pre>
+    <p><strong>Ví dụ: </strong>Câu lệnh SQL sau đây sẽ chọn tất cả các trường từ "Customers" nơi nước là "Germany" và thành phố là "Berlin":</p>
+    <pre class="brush: sql">
+        SELECT * FROM Customers
+        WHERE Country='Germany' AND City='Berlin';
+    </pre>
+    <p><strong>Ví dụ: </strong>Câu lệnh SQL sau đây sẽ chọn tất cả các trường từ "Customers" nơi thành phố là "Berlin" hoặc "München":</p>
+    <pre class="brush: sql">
+        SELECT * FROM Customers
+        WHERE City='Berlin' OR City='München';
+    </pre>
+    <p><strong>Ví dụ: </strong>Câu lệnh SQL sau đây sẽ chọn tất cả các trường từ "Customers", tại đó quốc gia không phải là "Germany":</p>
+    <pre class="brush: sql">
+        SELECT * FROM Customers
+        WHERE NOT Country='Germany';
+    </pre>
+</div>
+<div id="category_03">
+    <p><strong>3. Sắp xếp kết quả bằng ORDER BY</strong></p>
+    <p>Từ <code>ORDER BY</code> được sử dụng để sắp xếp kết quả theo thứ tự tăng dần hoặc giảm dần.</p>
+    <p>Từ <code>ORDER BY</code> sắp xếp các bản ghi theo thứ tự tăng dần theo mặc định. Để sắp xếp các hồ sơ theo thứ tự giảm dần, sử dụng từ khóa DESC.</p>
+    <p><strong>Cú pháp: </strong></p>
+    <pre class="brush: sql">
+        SELECT column1, column2, ... FROM table_name
+        ORDER BY column1, column2, ... ASC|DESC;
+    </pre>
+    <p><strong>Ví dụ: </strong>Câu lệnh SQL sau đây sẽ chọn tất cả khách hàng từ bảng "Customers", được sắp xếp theo cột "Country":</p>
+    <pre class="brush: sql">
+        SELECT * FROM Customers ORDER BY Country;
+    </pre>
+    <p><strong>Ví dụ: </strong>Câu lệnh SQL sau đây sẽ chọn tất cả khách hàng từ bảng "Customers", được sắp xếp DESCENDING theo cột "Country":</p>
+    <pre class="brush: sql">
+        SELECT * FROM Customers ORDER BY Country DESC;
+    </pre>
+    <p><strong>Ví dụ: </strong>Câu lệnh SQL sau đây sẽ chọn tất cả khách hàng từ bảng "Customers", được sắp xếp theo cột "Country" và cột "CustomerName":</p>
+    <pre class="brush: sql">
+        SELECT * FROM Customers ORDER BY Country, CustomerName;
+    </pre>
+</div>

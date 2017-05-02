@@ -1,0 +1,115 @@
+<p>Bài trước mình đã giới thiệu về <code>Query Builder</code> trong Laravel 5 và hướng dẫn các bạn áp dụng <code>Query Builder</code> để hiển thị tin lên trang chủ. Bài hôm nay chúng ta sẽ đi tìm hiểu về <code>Pagination</code> trong Laravel 5 và sẽ hướng dẫn các bạn áp dụng <code>Pagination</code> để hiển thị list tin lên trang chủ.</p>
+<p><strong>Mục Lục:</strong></p>
+<div id="category_list">
+    <ul>
+        <li><a id = "category_01_link" href="#">Giới thiệu</a></li>
+        <li>
+            <a id = "category_02_link" href="#">Các sử dụng Pagination</a>
+            <ul>
+                <li><a id = "category_03_link" href="#">Phân trang với Eloquent</a></li>
+                <li><a id = "category_04_link" href="#">Phân trang với Query Builder</a></li>
+            </ul>
+        </li>
+        <li><a id = "category_05_link" href="#">Hiển thị list tin lên trang chủ</a></li>
+    </ul>
+</div>
+<div id="category_01">
+    <p><strong>1. Giới thiệu</strong></p>
+    <p>Khi sử dụng code thuần, việc phân trang có thể rất khó khăn. Phân trang trong Laravel được tích hợp với Query Builder và Eloquent ORM giúp cho việc phân trang trở nên dễ dàng và thuận tiện hơn. HTML được ta ra theo khuôn của Bootstrap CSS .</p>
+</div>
+<div id="category_02">
+    <p><strong>2. Các sử dụng <code>Pagination</code></strong></p>
+</div>
+<div id="category_03">
+    <p><strong>Phân trang với Eloquent</strong></p>
+    <p>Bạn cũng có thể phân trang với truy vấn Eloquent . Trong ví dụ này, chúng ta sẽ phân trang bảng <code>users</code> với 15 tin trên 1 trang.</p>
+    <pre class="brush: php">
+        $users = App\User::paginate(15);
+        return view('user.index', ['users' => $users]);
+    </pre>
+    <p>Khi đó trên view <code>index</code> để hiển thị phân trang ta làm như sau: </p>
+    <pre class="brush: php">
+        <div class="container">
+            @foreach ($users as $user)
+                {{ $user->name }}
+            @endforeach
+        </div>
+        {{ $users->links() }}
+    </pre>
+</div>
+<div id="category_04">
+    <p><strong>Phân trang với Query Builder</strong></p>
+    <p>Cũng tương tự như <code>Eloquent</code></p>
+    <pre class="brush: php">
+        $users = DB::table('users')->paginate(15);
+        return view('user.index', ['users' => $users]);
+    </pre>
+    <p>Khi đó trên view <code>index</code> để hiển thị phân trang ta làm như sau: </p>
+    <pre class="brush: php">
+        <div class="container">
+            @foreach ($users as $user)
+                {{ $user->name }}
+            @endforeach
+        </div>
+        {{ $users->links() }}
+    </pre>
+</div>
+<div id="category_05">
+    <p><strong>Hiển thị list tin lên trang chủ</strong></p>
+    <p>Lấy dữ liệu để phân trang, trong class <code>HomeController</code> thêm vào như sau</p>
+    <pre class="brush: php">
+        namespace App\Http\Controllers\Home;
+        use Illuminate\Support\Facades\DB;
+
+        class HomeController extends BaseController
+        {
+            public function index ()
+            {
+                //$articles = Article::paginate(2); // Eloquent
+
+                $articles = DB::table('articles')->paginate(2); // Query Builder
+                return view('home.index', ['articles' => $articles]);
+            }
+        }
+    </pre>
+    <p>Hiển thị list ra trang chủ <code>resources/views/home/index.blade.php</code></p>
+    <pre class="brush: php">
+        @extends('home.base.base')
+        @section('title', 'Trang chủ')
+        @section('content')
+            <div class="content">
+                <div class="slider">
+                    <ul>
+                        <li>
+                            <a href="#">
+                                <img class="thumb" src="https://www.smashingmagazine.com/wp-content/uploads/2016/01/07-responsive-image-example-castle-7-opt.jpg"/>
+                                <span>Tổng hợp tin tức hay nhất tuần 05/4/2017</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="listview">
+                    <ul>
+                        @foreach($articles as $article)
+                        <li class="listitem clearfix">
+                            <a class="title" href="#">
+                               {{ $article->title }}
+                            </a>
+                            <a class="thumb" href="{{ $article->alias }}.html">
+                                <img src="upload/articles/{{ $article->image }}"/>
+                            </a>
+                            <div class="desc">{!! $article->description !!}</div>
+                        </li>
+                        @endforeach
+                    </ul>
+                </div>
+                <div class="pagination-container">
+                    {{ $articles->links() }}
+                </div>
+            </div>
+        @endsection
+    </pre>
+    <p>Test thử nào: http://localhost/tintuc/public</p>
+    <p style="text-align: center"><img alt="" src="http://laptrinh.laedaily.com/laravel-filemanager/photos/1/laravel/bai15/1.png"></p>
+    <p>Trong bài này mình đã giới thiệu về <code>Pagination</code> trong Laravel 5 và hướng dẫn các bạn hiển thị list tin tức lên trang chủ. Trong series bài viết tiếp theo mình sẽ hướng dẫn các bạn về xóa <code>public</code> trên url, hiển thị chi tiết tin. </p>
+</div>
