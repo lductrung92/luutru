@@ -1,0 +1,265 @@
+<p>Bài hôm nay mình sẽ đi giới thiệu về đối tượng Date trong JavaScript</p>
+<p><strong>Mục Lục:</strong></p>
+<div id="category_list">
+    <ul>
+        <li><a id = "category_01_link" href="#">Tạo đối tượng Date</a></li>
+        <li><a id = "category_02_link" href="#">Date Formats trong Javascript</a></li>
+        <li><a id = "category_03_link" href="#">Các phương thức của Date(Date Methods)</a></li>
+    </ul>
+</div>
+<div id="category_01">
+    <p><strong>1. Tạo đối tượng Date</strong></p>
+    <p>Đối tượng Date cho phép bạn làm việc với tất cả các vấn đề liên quan đến thời gian trong Javascript</p>
+    <p>Đôi tượng Date được tạo bởi từ khóa <code>new Date()</code></p>
+    <pre class="brush: js">
+        new Date()
+        new Date(dateString)
+        new Date(milliseconds)
+        new Date(year, month, day, hours, minutes, seconds, milliseconds)
+    </pre>
+    <ul>
+        <li>Sử dụng <code>new Date(): </code>tạo đối tượng <code>Date</code> với thời gian hiện tại.
+            <p><strong>Ví dụ: </strong></p>
+            <pre class="brush: js">
+                var d = new Date();
+                document.getElementById("demo").innerHTML = d;
+            </pre>
+            <a href="demo/js/bai9/1" class="button bar-item green hover-white hover-text-green" style="margin-bottom: 7px" target="_blank">Xem ví dụ »</a>
+        </li>
+        <li>Sử dụng <code>new Date(dateString): </code>tạo đối tượng <code>Date</code> với ngày và giờ đã được chỉ định.
+            <p><strong>Ví dụ: </strong></p>
+            <pre class="brush: js">
+               var d = new Date("October 13, 2014 11:13:00");
+                document.getElementById("demo").innerHTML = d;
+            </pre>
+            <a href="demo/js/bai9/2" class="button bar-item green hover-white hover-text-green" style="margin-bottom: 7px" target="_blank">Xem ví dụ »</a>
+        </li>
+        <li>Sử dụng <code>new Date(milliseconds): </code>tạo đối tượng <code>Date</code> với tham số truyền vào là kiểu <code>number</code>
+            <p><strong>Ví dụ: </strong></p>
+            <pre class="brush: js">
+                var d = new Date(86400000);
+                document.getElementById("demo").innerHTML = d;
+            </pre>
+            <a href="demo/js/bai9/3" class="button bar-item green hover-white hover-text-green" style="margin-bottom: 7px" target="_blank">Xem ví dụ »</a>
+        </li>
+        <li>Sử dụng <code> new Date(year, month, day, hours, minutes, seconds, milliseconds): </code>tạo đối tượng <code>Date</code> với ngày và giờ đã được chỉ định.
+            <p><strong>Ví dụ: </strong></p>
+            <pre class="brush: js">
+                var d = new Date(99, 5, 24, 11, 33, 30, 0);
+                document.getElementById("demo").innerHTML = d;
+            </pre>
+            <a href="demo/js/bai9/4" class="button bar-item green hover-white hover-text-green" style="margin-bottom: 7px" target="_blank">Xem ví dụ »</a>
+        </li>
+    </ul>
+</div>
+<div id="category_02">
+    <p><strong>2. Date Formats trong Javascript</strong></p>
+    <p>Có 4 kiểu định dạng Date trong JavaScript phổ biến:</p>
+    <div class="table-responsive">
+        <table class="table">
+            <tbody><tr>
+                <th>Kiểu</th>
+                <th>Ví dụ</th>
+            </tr>
+            <tr>
+                <td>ISO Date</td>
+                <td>"2015-03-25"  (The International Standard)</td>
+            </tr>
+            <tr>
+                <td>Short Date</td>
+                <td>"03/25/2015"</td>
+            </tr>
+            <tr>
+                <td>Long Date</td>
+                <td>"Mar 25 2015" or "25 Mar 2015"</td>
+            </tr>
+            <tr>
+                <td>Full Date</td>
+                <td>"Wednesday March 25 2015"</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<div id="category_03">
+    <p><strong>3. Các phương thức của Date(Date Methods)</strong></p>
+    <p><strong>Các pương thức get Date</strong></p>
+    <div class="table-responsive">
+        <table class="table">
+            <tbody>
+            <tr>
+                <th>Phương thức</th>
+                <th>Mô tả</th>
+            </tr>
+            <tr>
+                <td>getDate()</td>
+                <td>Trả về ngày trong tháng (1-31)</td>
+            </tr>
+            <tr>
+                <td>getDay()</td>
+                <td>Trả về ngày trong tuần (0-6)</td>
+            </tr>
+            <tr>
+                <td>getFullYear()</td>
+                <td>Trả về năm của ngày (yyyy)</td>
+            </tr>
+            <tr>
+                <td>getHours()</td>
+                <td>Trả về giờ của ngày (0-23)</td>
+            </tr>
+            <tr>
+                <td>getMilliseconds()</td>
+                <td>Trả về mili giây của ngày (0-999)</td>
+            </tr>
+            <tr>
+                <td>getMinutes()</td>
+                <td>Get the minutes (0-59)</td>
+            </tr>
+            <tr>
+                <td>getMonth()</td>
+                <td>Trả về phút của ngày (0-11)</td>
+            </tr>
+            <tr>
+                <td>getSeconds()</td>
+                <td>Trả về giây của ngày (0-59)</td>
+            </tr>
+            <tr>
+                <td>getTime()</td>
+                <td>Trả về giá trị số của ngày</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <p><strong>Ví dụ: </strong></p>
+    <pre class="brush: js">
+        var d1 = new Date();
+        document.getElementById("demo1").innerHTML = d1.getTime();
+
+        var d2= new Date();
+        document.getElementById("demo2").innerHTML = d2.getFullYear();
+
+        var d3 = new Date();
+        document.getElementById("demo3").innerHTML = d3.getDay();
+
+        var d4 = new Date();
+        var days = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+        document.getElementById("demo4").innerHTML = days[d4.getDay()];
+    </pre>
+    <a href="demo/js/bai9/5" class="button bar-item green hover-white hover-text-green" style="margin-bottom: 7px" target="_blank">Xem ví dụ »</a>
+    <p><strong>Các pương thức set Date</strong></p>
+    <div class="table-responsive">
+        <table class="table">
+            <tbody>
+            <tr>
+                <th>Phương thức</th>
+                <th>Mô tả</th>
+            </tr>
+            <tr>
+                <td>setDate()</td>
+                <td>Thiết lập ngày trong tháng (1-31)</td>
+            </tr>
+            <tr>
+                <td>setFullYear()</td>
+                <td>Thiết lập năm đầy đủ cho ngày</td>
+            </tr>
+            <tr>
+                <td>setHours()</td>
+                <td>Thiết lập giờ cho ngày (0-23)</td>
+            </tr>
+            <tr>
+                <td>setMilliseconds()</td>
+                <td>Thiết lập mili giây cho ngày (0-999)</td>
+            </tr>
+            <tr>
+                <td>setMinutes()</td>
+                <td>Thiết lập phút cho ngày (0-59)</td>
+            </tr>
+            <tr>
+                <td>setMonth()</td>
+                <td>Thiết lập tháng cho ngày (0-11)</td>
+            </tr>
+            <tr>
+                <td>setSeconds()</td>
+                <td>Thiết lập giây cho ngày (0-59)</td>
+            </tr>
+            <tr>
+                <td>setTime()</td>
+                <td>Thiết lập thời gian đối tượng Date được biểu diễn bởi số mili giây từ tháng 1, 1970, 00:00:00 UTC</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <p><strong>Ví dụ: </strong></p>
+    <pre class="brush: js">
+        var d1 = new Date();
+        d1.setFullYear(2020, 0, 14);
+        document.getElementById("demo1").innerHTML = d1;
+
+        var d2 = new Date();
+        d2.setDate(20);
+        document.getElementById("demo2").innerHTML = d2;
+
+        var d3 = new Date();
+        d3.setDate(d3.getDate() + 50);
+        document.getElementById("demo3").innerHTML = d3;
+    </pre>
+    <a href="demo/js/bai9/6" class="button bar-item green hover-white hover-text-green" style="margin-bottom: 7px" target="_blank">Xem ví dụ »</a>
+    <p><strong>Các pương thức UTC Date</strong></p>
+    <div class="table-responsive">
+        <table class="table">
+            <tbody>
+            <tr>
+                <th>Phương thức</th>
+                <th>Mô tả</th>
+            </tr>
+            <tr>
+                <td>getUTCDate()</td>
+                <td>Trả về ngày trong tháng, tuy nhiên trả về theo UTC Date</td>
+            </tr>
+            <tr>
+                <td>getUTCDay()</td>
+                <td>Tương tự như getDay(), tuy nhiên trả về theo UTC day</td>
+            </tr>
+            <tr>
+                <td>getUTCFullYear()</td>
+                <td>Tương tự như getFullYear(),tuy nhiên trả về theo UTC year</td>
+            </tr>
+            <tr>
+                <td>getUTCHours()</td>
+                <td>Tương tự như getHours(), tuy nhiên trả về theo UTC hour</td>
+            </tr>
+            <tr>
+                <td>getUTCMilliseconds()</td>
+                <td>Tương tự như getMilliseconds(), tuy nhiên trả về theo UTC milliseconds</td>
+            </tr>
+            <tr>
+                <td>getUTCMinutes()</td>
+                <td>Tương tự như getMinutes(), tuy nhiên trả về theo UTC minutes</td>
+            </tr>
+            <tr>
+                <td>getUTCMonth()</td>
+                <td>Tương tự như getMonth(), tuy nhiên trả về theo UTC month</td>
+            </tr>
+            <tr>
+                <td>getUTCSeconds()</td>
+                <td>Tương tự như getSeconds(), tuy nhiên trả về theo UTC seconds</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <p><strong>So sánh đối tượng Date với nhau</strong></p>
+    <pre class="brush: js">
+        var today, someday, text;
+        today = new Date();
+        someday = new Date();
+        someday.setFullYear(2100, 0, 14);
+
+        if (someday > today) {
+            text = "Hôm nay là ngày trước ngày January 14, 2100.";
+        } else {
+            text = "Hôm nay là ngày sau ngày January 14, 2100.";
+        }
+        document.getElementById("demo").innerHTML = text;
+    </pre>
+    <a href="demo/js/bai9/7" class="button bar-item green hover-white hover-text-green" style="margin-bottom: 7px" target="_blank">Xem ví dụ »</a>
+</div>

@@ -1,0 +1,42 @@
+<p>Bài hôm nay mình sẽ đi giới thiệu về DOM (Document Object Model) trong Javascript</p>
+<p><strong>Mục Lục:</strong></p>
+<div id="category_list">
+    <ul>
+        <li><a id = "category_01_link" href="#">DOM là gì?</a></li>
+        <li><a id = "category_02_link" href="#">Cấu trúc của DOM</a></li>
+        <li><a id = "category_03_link" href="#">Các loại DOM trong JavaScript</a></li>
+    </ul>
+</div>
+<div id="category_01">
+    <p><strong>1. DOM là gì?</strong></p>
+    <p><code>DOM</code> là chữ viết tắt từ tiếng Anh <code>Document Object Model</code> ("Mô hình Đối tượng Tài liệu"), là một giao diện lập trình ứng dụng (API). Thường thường DOM, có dạng một cây cấu trúc dữ liệu, được dùng để truy xuất các tài liệu dạng HTML và XML. Mô hình DOM độc lập với hệ điều hành và dựa theo kỹ thuật lập trình hướng đối tượng để mô tả tài liệu.</p>
+    <p>Ban đầu, chưa có chuẩn thống nhất nên các thành phần trong một tài liệu HTML mô tả bằng các phiên bản khác nhau của DOM được hiển thị bởi các chương trình duyệt web thông qua JavaScript. Điều này buộc World Wide Web Consortium (W3C) phải đưa ra một loạt các mô tả kĩ thuật về tiêu chuẩn cho DOM để thống nhất mô hình này.</p>
+    <p><code>DOM</code> dùng để truy xuất và thao tác trên các tài liệu có cấu trúc dạng HTML hay XML bằng các ngôn ngữ lập trình thông dịch (scripting language) như JavaScript, PHP, Python.</p>
+</div>
+<div id="category_02">
+    <p><strong>2. Cấu trúc của DOM</strong></p>
+    <p>Đối với <code>HTML DOM</code>, mỗi thành phần đều được xem là 1 nút (node), được biểu diễn trên 1 cây cấu trúc dạng cây gọi là DOM Tree. Các phần tử khác nhau sẽ được phân loại nút khác nhau nhưng quan trọng nhất là 3 loại: nút gốc (document node), nút phần tử (element node), nút văn bản (text node).</p>
+    <p style="text-align: center"><img src="http://laedaily.com/laravel-filemanager/photos/1/js/bai9/pic_htmltree.gif"></p>
+    <p><strong>Nút gốc:</strong> chính là tài liệu HTML, thường được biểu diễn bởi thẻ &lt;html&gt;.</p>
+    <p><strong>Nút phần tử:</strong> biểu diễn cho 1 phần tử HTML.</p>
+    <p><strong>Nút văn bản:</strong> mỗi đoạn kí tự trong tài liệu HTML, bên trong 1 thẻ HTML đều là 1 nút văn bản. Đó có thể là tên trang web trong thẻ &lt;title&gt;, tên đề mục trong thẻ &lt;h1&gt;, hay một đoạn văn trong thẻ </p>.
+    <p>Ngoài ra, còn có nút thuộc tính (attribute node) và nút chú thích (comment node).</p>
+</div>
+<div id="category_03">
+    <p><strong>3. Các loại DOM trong JavaScript</strong></p>
+    <p>Việc xử lý và làm việc với đối tượng HTML rất phức tạp và đa dạng. Chính vì vậy, JavaScript cung cấp cho chúng ta các phương thức, đối tượng và mỗi thành phần như vậy có những nhiệm vụ riêng biệt. Dưới đây là 8 loại DOM thường được sử dụng trong JavaScript:</p>
+    <p><strong>DOM Document:</strong> có nhiệm vụ lưu trữ toàn bộ các thành phần trong tài liệu của website.</p>
+    <p><strong>DOM Element:</strong> có nhiệm vụ truy xuất tới thẻ HTML nào đó thông qua các thuộc tính như tên class, id, name của thẻ HTML.</p>
+    <p><strong>DOM HTML:</strong> có nhiệm vụ thay đổi giá trị nội dung và giá trị thuộc tính của các thẻ HTML.</p>
+    <p><strong>DOM CSS:</strong> có nhiệm vụ thay đổi các định dạng CSS của thẻ HTML.</p>
+    <p><strong>DOM Event:</strong> có nhiệm vụ gán các sự kiện như onclick(), onload() vào các thẻ HTML.</p>
+    <p><strong>DOM EventListener:</strong> có nhiệm vụ lắng nghe các sự kiện tác động lên thẻ HTML đó.</p>
+    <p><strong>DOM Navigation:</strong> dùng để quản lý, thao tác với các thẻ HTML, thể hiện mối quan hệ cha – con của các thẻ HTML.</p>
+    <p><strong>DOM Node, Nodelist:</strong> có nhiệm vụ thao tác với HTML thông qua đối tượng (Object).</p>
+</div>
+
+
+
+
+
+
