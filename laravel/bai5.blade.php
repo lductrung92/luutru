@@ -53,9 +53,9 @@
     <p>Download AdminLTE: <a href="https://github.com/almasaeed2010/AdminLTE/archive/master.zip" target="_blank">tại đây</a></p>
     <p>Giải nén vào thư mục <code>public</code> đổi tên thành adminlte(tùy)</p>
     <p>Tạo view như sau: </p>
-    <p style="text-align: center"><img alt="" src="http://laptrinh.laedaily.com/laravel-filemanager/photos/1/laravel/bai5/1.jpg"/></p>
+    <p style="text-align: center"><img alt="" src="http://laedaily.com/laravel-filemanager/photos/1/laravel/bai5/1.jpg"/></p>
     <p>Nội dung từng file: </p>
-    <p>Code hơi dài nên các bạn có thể xem video hướng dẫn và download: <a href="http://laptrinh.laedaily.com/laravel-filemanager/photos/1/laravel/bai5/views.zip" target="_blank">tại đây</a></p>
+    <p>Code hơi dài nên các bạn có thể xem video hướng dẫn và download: <a href="http://laedaily.com/laravel-filemanager/photos/1/laravel/bai5/views.zip" target="_blank">tại đây</a></p>
     <p>Tạo<code>Route</code></p>
     <pre class="brush: php">
         Route::group(['prefix' => 'administrator'], function () {
@@ -74,7 +74,7 @@
     </pre>
     <p>Các bạn truy cập vào: http://localhost/tintuc/public/administrator/index </p>
     <p>Kết quả</p>
-    <p style="text-align: center"><img alt="" src="http://laptrinh.laedaily.com/laravel-filemanager/photos/1/laravel/bai5/2.jpg"/></p>
+    <p style="text-align: center"><img alt="" src="http://laedaily.com/laravel-filemanager/photos/1/laravel/bai5/2.jpg"/></p>
 
 </div>
 <p><strong>Video hướng dẫn: </strong></p>

@@ -12,9 +12,9 @@
 <div id="category_01">
     <p><strong>1. Cấu hình database</strong></p>
     <p>Để cấu hình database trong Laravel, bạn tìm đến file <code>.env</code> ở thu mục gốc của ứng dụng.</p>
-    <p style="text-align: center"><img alt="" src="http://laptrinh.laedaily.com/laravel-filemanager/photos/1/laravel/bai6/1.jpg"/></p>
+    <p style="text-align: center"><img alt="" src="http://laedaily.com/laravel-filemanager/photos/1/laravel/bai6/1.jpg"/></p>
     <p>Mở file lên với editor bất kỳ, tìm đến và chỉnh sửa 6 dòng như trong hình (trong trường hợp này mình dùng mysql). Tùy server, tên database, tài khoản của bạn để điền tương ứng</p>
-    <p style="text-align: center"><img alt="" src="http://laptrinh.laedaily.com/laravel-filemanager/photos/1/laravel/bai6/2.jpg"/></p>
+    <p style="text-align: center"><img alt="" src="http://laedaily.com/laravel-filemanager/photos/1/laravel/bai6/2.jpg"/></p>
 </div>
 <div id="category_02">
     <p><strong>2. Sử dụng migrations trong laravel 5</strong></p>
@@ -127,7 +127,7 @@
 </div>
 <div id="category_03">
     <p><strong>3. Tạo database website tin tức cơ bản bằng migrations</strong></p>
-    <p style="text-align: center"><img alt="" src="http://laptrinh.laedaily.com/laravel-filemanager/photos/1/laravel/bai6/sql.JPG"/></p>
+    <p style="text-align: center"><img alt="" src="http://laedaily.com/laravel-filemanager/photos/1/laravel/bai6/sql.JPG"/></p>
     <p>Tạo bản <code>user</code></p>
     <p>Mặc đinh Laravel đã tạo sẵn cho bạn file <code>_create_users_table</code> trong thư mục <code>database/migrations</code>. Bạn mở lên chỉnh sữa <code>function up()</code> như sau</p>
     <pre class="brush: php">
@@ -194,7 +194,7 @@
         $ php artisan migrate 
     </pre>
     <p>Nếu trong quá trình chạy lênh trên bị lỗi như sau</p>
-    <p style="text-align: center"><img alt="" src="http://laptrinh.laedaily.com/laravel-filemanager/photos/1/laravel/bai6/3.png"/></p>
+    <p style="text-align: center"><img alt="" src="http://laedaily.com/laravel-filemanager/photos/1/laravel/bai6/3.png"/></p>
     <p>Bạn xóa hết xóa các bảng đã tạo rồi mở file <code>app/Providers/AppServiceProvider.php</code> ở function <code>boot()</code> bạn thêm vào đoạn</p>
     <pre class="brush: php">
         Schema::defaultStringLength(191); // chèn thêm thư viện use Illuminate\Support\Facades\Schema;

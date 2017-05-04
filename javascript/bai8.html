@@ -1,0 +1,339 @@
+<p>Bài hôm nay mình sẽ đi giới thiệu về đối tượng (Objects) trong Javascript</p>
+<p><strong>Mục Lục:</strong></p>
+<div id="category_list">
+    <ul>
+        <li>
+            <a id = "category_01_link" href="#">Đối tượng(Object), Thuộc tính(Properties), Phương thức(Methods)</a>
+            <ul>
+                <li><a id = "category_02_link" href="#">Đối tượng(Object)</a></li>
+                <li><a id = "category_03_link" href="#">Thuộc tính(Properties)</a></li>
+                <li><a id = "category_04_link" href="#">Phương thức(Methods)</a></li>
+            </ul>
+        </li>
+        <li>
+            <a id = "category_05_link" href="#">Đối tượng(Object), Thuộc tính(Properties), Phương thức(Methods) trong Javascript</a>
+            <ul>
+                <li><a id = "category_06_link" href="#">Đối tượng(Object)</a></li>
+                <li><a id = "category_07_link" href="#">Thuộc tính(Properties)</a></li>
+                <li><a id = "category_08_link" href="#">Phương thức(Methods)</a></li>
+            </ul>
+        </li>
+        <li>
+            <a id = "category_09_link" href="#">Cách khai báo một đối tượng(Object) trong Javascript</a>
+            <ul>
+                <li><a id = "category_10_link" href="#">Cách khai báo thuộc tính (Property) của đối tượng</a></li>
+                <li><a id = "category_11_link" href="#">Cách khai báo phương thức (Method) của đối tượng</a></li>
+            </ul>
+        </li>
+        <li>
+            <a id = "category_12_link" href="#">Cách truy cập giá trị của đối tượng(Object) trong Javascript</a>
+            <ul>
+                <li><a id = "category_13_link" href="#">Cách truy cập giá trị thuộc tính của đối tượng</a></li>
+                <li><a id = "category_14_link" href="#">Cách thực thi phương thức của đối tượng</a></li>
+            </ul>
+        </li>
+    </ul>
+</div>
+
+<div id="category_01">
+    <p><strong>1. Đối tượng(Object), Thuộc tính(Properties), Phương thức(Methods)</strong></p>
+</div>
+<div id="category_02">
+    <p><strong>Đối tượng(Object)</strong></p>
+    <p>Hiểu môn na đối tượng trong lập trình dùng để biểu diễn một đối tượng trong thế giới thực.</p>
+    <p><strong>Ví dụ: </strong>con chó, con gà, con trâu, xe, sinh viên, học sinh, ...</p>
+    <p>Mỗi đối tượng được đặc trưng bởi các thuộc tính(Properties), hành vi(Phương thức - Methods) riêng của nó.</p>
+</div>
+<div id="category_03">
+    <p><strong>Thuộc tính(Properties)</strong></p>
+    <p>Thuộc tính chính là <code>thông số kỹ thuật</code> của đối tượng. Một đối tượng có thể có nhiều thuộc tính.</p>
+    <p><strong>Ví dụ: </strong></p>
+    <div class="table-responsive" style="margin-bottom: 0px;">
+        <table class="table">
+            <tbody>
+            <tr>
+                <th>Đối tượng</th>
+                <th>Thuộc tính</th>
+            </tr>
+            <tr>
+                <td rowspan="6">Khách hàng</td>
+                <td>Họ tên</td>
+            </tr>
+            <tr>
+                <td>Địa chỉ</td>
+            </tr>
+            <tr>
+                <td>Số CMND</td>
+            </tr>
+            <tr>
+                <td>Số điện thoại</td>
+            </tr>
+            <tr>
+                <td>Số tài khoản</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <p>Trong cùng một loại đối tượng, thuộc tính của các cá thể khác nhau có thể nhận giá trị khác nhau.</p>
+    <p><strong>Ví dụ: </strong></p>
+    <div class="table-responsive" style="margin-bottom: 0px;">
+        <table class="table">
+            <tbody>
+            <tr>
+                <th>Đối tượng</th>
+                <th>Thuộc tính</th>
+                <th>Giá trị thuộc tính</th>
+            </tr>
+            <tr>
+                <td rowspan="6">Khách hàng</td>
+                <td>Họ tên</td>
+                <td>Nguyễn Văn A, Nguyễn Văn B, ...</td>
+            </tr>
+            <tr>
+                <td>Địa chỉ</td>
+                <td>Quảng Nam, Quảng Bình, Đà Nẵng, ...</td>
+            </tr>
+            <tr>
+                <td>Số CMND</td>
+                <td>2057371222, 2057578999, ...</td>
+            </tr>
+            <tr>
+                <td>Số điện thoại</td>
+                <td>012231745698, 01223457891, ...</td>
+            </tr>
+            <tr>
+                <td>Số tài khoản</td>
+                <td>21562121552122, 4545464232120002, ....</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<div id="category_04">
+    <p><strong>Phương thức(Methods)</strong></p>
+    <p>Phương thức chính là những hành động có thể được thực hiện bởi đối tượng. Một đối tượng có thể có nhiều phương thức.</p>
+    <p><strong>Ví dụ</strong></p>
+    <div class="table-responsive" style="margin-bottom: 0px;">
+        <table class="table">
+            <tbody>
+            <tr>
+                <th>Đối tượng</th>
+                <th>Phương thức</th>
+            </tr>
+            <tr>
+                <td rowspan="6">Khách hàng</td>
+                <td>Rút tiền()</td>
+            </tr>
+            <tr>
+                <td>Nạp tiền()</td>
+            </tr>
+            <tr>
+                <td>Chuyển khoản()</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+<div id="category_05">
+    <p><strong>2. Đối tượng(Object), Thuộc tính(Properties), Phương thức(Methods) trong Javascript</strong></p>
+</div>
+<div id="category_06">
+    <p><strong>Đối tượng(Object)</strong></p>
+    <p>Trong JavaScript, đối tượng là một loại biến đặc biệt có thể lưu trữ nhiều giá trị (mỗi giá trị sẽ tương ứng với một thuộc tính)</p>
+    <p>Ví dụ: </p>
+    <p>Đối tượng <code>khachhang</code> dưới đây có 5 thuộc tính</p>
+    <ul>
+        <li>Thuộc tính hoten với giá trị là Lê Đức Trung</li>
+        <li>Thuộc tính diachi với giá trị là Đà Nẵng</li>
+        <li>Thuộc tính cmnd với giá trị là 205737509</li>
+        <li>Thuộc tính dienthoai với giá trị là 01223175918</li>
+        <li>Thuộc tính stk với giá trị là Nguyễn 12205343015560</li>
+    </ul>
+    <pre class="brush: js">
+        var khachhang = {hoten:"Lê Đức Trung", diachi:"Đà Nẵng", cmnd:"205737509", dienthoai:"01223175918" , stk:"12205343015560"};
+    </pre>
+    <a href="demo/js/bai1/1" class="button bar-item green hover-white hover-text-green" style="margin-bottom: 7px" target="_blank">Xem ví dụ »</a>
+</div>
+<div id="category_07">
+    <p><strong>Thuộc tính(Properties)</strong></p>
+    <p>Thuộc tính là các giá trị kết hợp với một đối tượng JavaScript.</p>
+    <p>Một đối tượng JavaScript là một tập hợp các thuộc tính không có thứ bậc.</p>
+    <p>Thuộc tính thường có thể được thay đổi, thêm vào và xóa, nhưng một số chỉ được đọc.</p>
+    <p><strong>Ví dụ: </strong></p>
+    <div class="table-responsive" style="margin-bottom: 0px;">
+        <table class="table">
+            <tbody>
+            <tr>
+                <th>Tên thuộc tính</th>
+                <th>Giá trị thuộc tính</th>
+            </tr>
+            <tr>
+                <td>hoten</td>
+                <td>Lê Đức Trung</td>
+            </tr>
+            <tr>
+                <td>diachi</td>
+                <td>Đà Nẵng</td>
+            </tr>
+            <tr>
+                <td>cmnd</td>
+                <td>205737509</td>
+            </tr>
+            <tr>
+                <td>dienthoai</td>
+                <td>01223175918</td>
+            </tr>
+            <tr>
+                <td>stk</td>
+                <td>12205343015560</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>
+<div id="category_08">
+    <p><strong>Phương thức(Methods)</strong></p>
+    <p>Các phương pháp JavaScript là các hành động có thể được thực hiện trên các đối tượng.</p>
+    <p><strong>Ví dụ: </strong></p>
+    <p>Đối tượng <code>khachhang</code> dưới đây có 2 thuộc tính và 1 phương thức</p>
+    <ul>
+        <li>Thuộc tính firstName với giá trị là Lê</li>
+        <li>Thuộc tính lastName với giá trị là Trung</li>
+        <li>Phương thức fullName là một hàm dùng để trả về giá trị chuỗi firstName + lastName</li>
+    </ul>
+    <pre class="brush: js">
+        var khachhang = {
+            firstName:"Lê ",
+            lastName:"Trung",
+            fullName:function(){
+                return (this.firstName + this.lastName);
+            }
+        };
+    </pre>
+    <a href="demo/js/bai1/2" class="button bar-item green hover-white hover-text-green" style="margin-bottom: 7px" target="_blank">Xem ví dụ »</a>
+</div>
+<div id="category_09">
+    <p><strong>3. Cách khai báo một đối tượng(Object) trong Javascript</strong></p>
+    <p>Với JavaScript, bạn có thể định nghĩa và tạo các đối tượng của riêng mình.</p>
+    <p>Với JavaScript, bạn có thể định nghĩa và tạo các đối tượng của riêng mình.</p>
+    <ul>
+        <li>Xác định và tạo ra một đối tượng đơn, sử dụng một đối tượng literal.</li>
+        <li>Xác định và tạo ra một đối tượng duy nhất, với từ khóa mới.</li>
+        <li>Xác định một đối tượng constructor, và sau đó tạo ra các đối tượng của các loại constructed.</li>
+    </ul>
+
+    <p><strong>Sử dụng một Object Literal</strong></p>
+    <p>Đây là cách dễ dàng nhất để tạo một đối tượng JavaScript.</p>
+    <p>Sử dụng một đối tượng chữ, bạn vừa xác định và tạo ra một đối tượng trong một câu lệnh.</p>
+    <p>Một đối tượng literal là một danh sách tên: cặp giá trị (như tuổi: 50) bên trong dấu ngoặc nhọn {}.</p>
+    <p><strong>Ví dụ: </strong> tạo một đối tượng <code>khachhang</code> mới với bốn thuộc tính:</p>
+    <pre class="brush: js">
+        var khachhang = {firstName:"Lê", lastName:"Trung", age:25, eyeColor:"black"};
+    </pre>
+    <a href="demo/js/bai1/3" class="button bar-item green hover-white hover-text-green" style="margin-bottom: 7px" target="_blank">Xem ví dụ »</a>
+
+    <p><strong>Sử dụng từ khoá <code>new</code></strong></p>
+    <p><strong>Ví dụ: </strong> tạo một đối tượng <code>khachhang</code> mới với bốn thuộc tính:</p>
+    <pre class="brush: js">
+        var khachhang = new Object();
+            khachhang.firstName = "Lê";
+            khachhang.lastName = "Trung";
+            khachhang.age = 25;
+            khachhang.eyeColor = "black";
+    </pre>
+    <a href="demo/js/bai1/4" class="button bar-item green hover-white hover-text-green" style="margin-bottom: 7px" target="_blank">Xem ví dụ »</a>
+
+    <p><strong>Sử dụng một đối tượng Constructor</strong></p>
+    <p>Đôi khi chúng ta muốn có một "loại đối tượng" có thể được sử dụng để tạo ra nhiều đối tượng của một loại.</p>
+    <p><strong>Ví dụ: </strong></p>
+    <pre class="brush: js">
+        function khachhang(first, last, age, eye) {
+            this.firstName = first;
+            this.lastName = last;
+            this.age = age;
+            this.eyeColor = eye;
+        }
+        var khachhang1 = new khachhang("John", "Doe", 25, "blue");
+        var khachhang2 = new khachhang("Sally", "Rally", 26, "green");
+    </pre>
+    <a href="demo/js/bai1/5" class="button bar-item green hover-white hover-text-green" style="margin-bottom: 7px" target="_blank">Xem ví dụ »</a>
+</div>
+<div id="category_10">
+    <p><strong>Cách khai báo thuộc tính (Property) của đối tượng</strong></p>
+    <p>Để khai báo thuộc tính của đối tượng, ta sử dụng cú pháp <code>tên thuộc tính : giá trị thuộc tính</code></p>
+    <p><strong>Ví dụ: </strong> tạo một đối tượng <code>khachhang</code> mới với ba thuộc tính:</p>
+    <pre class="brush: js">
+        var khachhang = {
+            firstName:"Lê ",
+            lastName:"Trung",
+            age:25
+        };
+    </pre>
+</div>
+<div id="category_11">
+    <p><strong>Cách khai báo phương thức (Method) của đối tượng</strong></p>
+    <p>Để khai báo phương thức của đối tượng, ta sử dụng cú pháp tên phương thức : <code>function(){Các câu lệnh JavaScript}</code></p>
+    <p>Đối tượng <code>khachhang</code> dưới đây có:</p>
+    <ul>
+        <li>Hai thuộc tính là: firstName, lastName</li>
+        <li>Hai phương thức là: show_firstName, show_lastName</li>
+    </ul>
+    <pre class="brush: js">
+        var khachhang = {
+            firstName:"Lê",
+            lastName:"Trung",
+            show_firstName:function(){
+                return ("Họ của anh ấy là: " + this.firstName);
+            },
+            show_lastName:function(){
+                return ("Tên của anh ấy là: " + this.lastName);
+            }
+        };
+    </pre>
+</div>
+
+<div id="category_12">
+    <p><strong>4. Cách truy cập giá trị của đối tượng(Object) trong Javascript</strong></p>
+</div>
+<div id="category_13">
+    <p><strong>Cách truy cập giá trị thuộc tính của đối tượng</strong></p>
+    <p>Cú pháp để truy cập vào thuộc tính của một đối tượng:</p>
+    <pre class="brush: js">
+        objectName.property          // khachhang.age
+        or
+        objectName["property"]       // khachhang["age"]
+        or
+        objectName[expression]       // x = "age"; khachhang[x]
+    </pre>
+    <p><strong>Ví dụ: </strong>Truy cập giá trị của thuộc tính <code>firstName</code> và <code>lastName</code> của đối tượng <code>khachhang</code></p>
+    <pre class="brush: js">
+        var khachhang = {firstName:"Lê", lastName:"Trung"};
+        document.getElementById("firstName").innerHTML = khachhang.firstName;
+        document.getElementById("lastName").innerHTML = khachhang["lastName"];
+    </pre>
+    <a href="demo/js/bai1/6" class="button bar-item green hover-white hover-text-green" style="margin-bottom: 7px" target="_blank">Xem ví dụ »</a>
+</div>
+<div id="category_14">
+    <p><strong>Cách thực thi phương thức của đối tượng</strong></p>
+    <p>Để thực thi phương thức của đối tượng, ta sử dụng cú pháp <code>tên đối tượng.tên phương thức()</code></p>
+    <p><strong>Ví dụ: </strong> Thực thi phương thức show_info của đối tượng <code>khachhang</code></p>
+    <pre class="brush: js">
+        var khachhang = {
+            firstName:"Lê",
+            lastName:"Trung",
+            age: 25,
+            phone: 012223175989,
+            show_info:function(){
+                return ("Khách hàng: " + this.firstName + " " + this.lastName + ". Tuổi: " + this.age + ". Số điện thoại: " + this.phone);
+            }
+        };
+
+        document.getElementById("info").innerHTML = khachhang.show_info();
+    </pre>
+    <a href="demo/js/bai1/7" class="button bar-item green hover-white hover-text-green" style="margin-bottom: 7px" target="_blank">Xem ví dụ »</a>
+</div>
+
+

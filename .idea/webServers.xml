@@ -3,7 +3,7 @@
   <component name="WebServers">
     <option name="servers">
       <webServer id="793e761d-64fb-44af-8e9f-d21d10416ce1" name="lae" url="http://ftp.laedaily.webstarterz.com">
-        <fileTransfer host="ftp.laedaily.webstarterz.com" port="21" rootFolder="/public_html">
+        <fileTransfer host="ftp.laedaily.webstarterz.com" port="21" rootFolder="/public_html" password="dfeedfcddfc9dfdcdfd9dfcedfcddfc9dfdcdfd9df9b" username="lductrung@laedaily.com">
           <advancedOptions>
             <advancedOptions compatibilityMode="true" dataProtectionLevel="Private" passiveMode="true" showHiddenFiles="true" />
           </advancedOptions>

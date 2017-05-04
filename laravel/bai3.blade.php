@@ -25,7 +25,7 @@
             Ta hiểu môn na như sau: khi <code>index.blade.php</code> nhận được 1 request từ người dùng, nó sẽ đưa request đó về route, từ route sẽ định tuyến cho request đó đi đâu tiếp theo.
         </li>
         <li>
-            Ví dụ: Khi người dùng truy cập vào đường dẫn: http://laptrinh.laedaily.com/article, thì lúc này route sẽ nhận url là <code>/articles</code>, sau đó nó sẽ gửi request đó tời Controller tương ứng để xử lý.
+            Ví dụ: Khi người dùng truy cập vào đường dẫn: http://laedaily.com/article, thì lúc này route sẽ nhận url là <code>/articles</code>, sau đó nó sẽ gửi request đó tời Controller tương ứng để xử lý.
         </li>
         <li>
             Tóm lại, chúng ta chỉ cần hiểu route trong laravel đóng vai trò định tuyến(điều hướng request).
@@ -72,8 +72,8 @@
     </pre>
     <p>Bạn truy cập vào địa chỉ: <i>http://localhost/blog/public/demo_get</i> sẽ thấy kết quả:</p>
     <p style="text-align: center">
-        <a href="http://laptrinh.laedaily.com/upload/laravel/bai3/1.png">
-            <img src="http://laptrinh.laedaily.com/laravel-filemanager/photos/1/laravel/bai3/1.png" title="Demo route get laravel 5" />
+        <a href="http://laedaily.com/upload/laravel/bai3/1.png">
+            <img src="http://laedaily.com/laravel-filemanager/photos/1/laravel/bai3/1.png" title="Demo route get laravel 5" />
         </a>
     </p>
     <p><strong>Ví dụ 2: Khi action là một mảng</strong></p>
@@ -158,16 +158,16 @@
     </pre>
     <p>Bạn truy cập vào địa chỉ: <i>http://localhost/login</i> sẽ thấy kết quả giống như sau:</p>
     <p style="text-align: center">
-        <a href="http://laptrinh.laedaily.com/upload/laravel/bai3/2.png">
-            <img src="http://laptrinh.laedaily.com/laravel-filemanager/photos/1/laravel/bai3/2.png" title="Demo route get laravel 5" />
+        <a href="http://laedaily.com/upload/laravel/bai3/2.png">
+            <img src="http://laedaily.com/laravel-filemanager/photos/1/laravel/bai3/2.png" title="Demo route get laravel 5" />
         </a>
     </p>
     <p>Ta thấy nó nhận hiển thị form login mà ta đã tạo ở file <code>login.blade.php</code>. Vì đây là method get lấy nhận request GET đưa về function <code>getLogin()</code> của controller <code>DemoControler</code> và function này return về view login</p>
     <p>Tiếp theo nhập vào thông tin và nhấn submit (Username: <code>admin</code> Password: <code>123</code>)</p>
     <p>Kết quả: </p>
     <p style="text-align: center">
-        <a href="http://laptrinh.laedaily.com/upload/laravel/bai3/3.png">
-            <img src="http://laptrinh.laedaily.com/laravel-filemanager/photos/1/laravel/bai3/3.png" title="Demo route post laravel 5" />
+        <a href="http://laedaily.com/upload/laravel/bai3/3.png">
+            <img src="http://laedaily.com/laravel-filemanager/photos/1/laravel/bai3/3.png" title="Demo route post laravel 5" />
         </a>
     </p>
     <p>Ta thấy nó nhận hiển thị <code>Login thành công</code>. Có thể hiểu khi ta nhấn submit thì các thông tin <code>user, pass, token</code> sẽ đưa về route post, route này sẽ đưa về function <code>postLogin()</code> của controller <code>DemoControler</code> và function này kiểm tra dữ liệu nhập vào và xuất ra thông báo</p>

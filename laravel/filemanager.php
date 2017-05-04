@@ -181,6 +181,6 @@
 </pre>
 <p><i>Lưu ý: <code>middlewares</code> và <code>user_field</code> cấu hình theo mục đích sử dụng của bạn nhé.</i></p>
 <p><strong>Kết quả: </strong></p>
-<p style="text-align: center"><img src="http://laptrinh.laedaily.com/laravel-filemanager/photos/1/laravel/baimoi/filemanager/filemanager_1.jpg"></p>
-<p style="text-align: center"><img src="http://laptrinh.laedaily.com/laravel-filemanager/photos/1/laravel/baimoi/filemanager/filemanager_2.jpg"></p>
-<p style="text-align: center"><img src="http://laptrinh.laedaily.com/laravel-filemanager/photos/1/laravel/baimoi/filemanager/filemanager_3.jpg"></p>
+<p style="text-align: center"><img src="http://laedaily.com/laravel-filemanager/photos/1/laravel/baimoi/filemanager/filemanager_1.jpg"></p>
+<p style="text-align: center"><img src="http://laedaily.com/laravel-filemanager/photos/1/laravel/baimoi/filemanager/filemanager_2.jpg"></p>
+<p style="text-align: center"><img src="http://laedaily.com/laravel-filemanager/photos/1/laravel/baimoi/filemanager/filemanager_3.jpg"></p>
