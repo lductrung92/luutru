@@ -1,0 +1,65 @@
+<p>Một Session(phiên) là một cách để lưu trữ thông tin (trong các biến) để được sử dụng trên nhiều trang.</p>
+<p>Không giống như cookie, thông tin không được lưu trữ trên máy tính của người dùng.</p>
+<p><strong>Mục Lục:</strong></p>
+<div id="category_list">
+    <ul>
+        <li><a id = "category_01_link" href="#">Session là gì?</a></li>
+        <li><a id = "category_02_link" href="#">Tạo Session trong PHP</a></li>
+        <li><a id = "category_03_link" href="#">Truy xuất Session trong PHP</a></li>
+        <li><a id = "category_04_link" href="#">Cập nhật Session trong PHP</a></li>
+        <li><a id = "category_05_link" href="#">Xóa Session trong PHP</a></li>
+    </ul>
+</div>
+<div id="category_01">
+    <p><strong>1. Session là gì?</strong></p>
+    <p>Khi bạn làm việc với một ứng dụng, bạn mở nó, làm một số thay đổi, và sau đó bạn đóng nó. Điều này giống như một phiên họp. Máy tính biết bạn là ai. Nó biết khi nào bạn bắt đầu ứng dụng và khi bạn kết thúc. Nhưng trên internet có một vấn đề: máy chủ web không biết bạn là ai hay bạn làm gì, bởi vì địa chỉ HTTP không duy trì trạng thái.</p>
+    <p>Các biến Session giải quyết vấn đề này bằng cách lưu trữ thông tin người dùng để sử dụng trên nhiều trang (ví dụ như tên người dùng, màu sắc yêu thích, vân vân). Theo mặc định, biến session cho đến khi người dùng đóng trình duyệt.</p>
+</div>
+<div id="category_02">
+    <p><strong>2. Tạo Session trong PHP</strong></p>
+    <p>Một phiên được bắt đầu bằng chức năng session_start().</p>
+    <p>Các biến session được thiết lập với biến toàn cầu PHP: $_SESSION</p>
+    <pre class="brush: php">
+        // Start the session
+        session_start();
+    </pre>
+    <p>Lưu ý: session_start() phải nằm ở vị trí đầu file. Trước bất kỳ thẻ HTML nào.</p>
+</div>
+<div id="category_03">
+    <p><strong>3. Truy xuất Session trong PHP</strong></p>
+    <p>Ta tạo trang "demo_session1.php" có nội dung như sau: </p>
+    <pre class="brush: php">
+        session_start();
+
+        $_SESSION["favcolor"] = "green";
+        $_SESSION["favanimal"] = "cat";
+        echo "Session variables are set.";
+    </pre>
+    <a href="demo/php/bai20/1" class="button bar-item green hover-white hover-text-green" style="margin-bottom: 7px" target="_blank">Xem ví dụ »</a>
+    <p>Tiếp theo ta tạo trang "demo_session2.php". Từ trang này "demo_session2.php" ta sẽ truy cập thông tin session ở trang "demo_session1.php"</p>
+    <pre class="brush: php">
+        session_start();
+
+        echo "Favorite color is " . $_SESSION["favcolor"] . ".<br>";
+        echo "Favorite animal is " . $_SESSION["favanimal"] . ".";
+    </pre>
+    <a href="demo/php/bai20/2" class="button bar-item green hover-white hover-text-green" style="margin-bottom: 7px" target="_blank">Xem ví dụ »</a>
+</div>
+<div id="category_04">
+    <p><strong>4. Cập nhật Session trong PHP</strong></p>
+    <p>Để thay đổi một biến session, chỉ cần ghi đè lên nó:</p>
+    <pre class="brush: php">
+        session_start();
+
+        $_SESSION["favcolor"] = "yellow";
+        print_r($_SESSION);
+    </pre>
+    <a href="demo/php/bai20/3" class="button bar-item green hover-white hover-text-green" style="margin-bottom: 7px" target="_blank">Xem ví dụ »</a>
+</div>
+<div id="category_05">
+    <p><strong>5. Xóa Session trong PHP</strong></p>
+    <p>Để xóa session ta sử dụng unset(), session_unset () và session_destroy ()</p>
+    <p>unset(): Xóa 1 session được chỉ định. Ví dụ: unset($_SESSION['demo']);</p>
+    <p>session_unset(): Xóa toàn bộ biến session</p>
+    <p>session_destroy(): Xóa phiên làm việc</p>
+</div>

@@ -1,0 +1,34 @@
+<p><strong>Ghi file - fwrite()</strong></p>
+<p>Hàm fwrite() của PHP được sử dụng để ghi vào một tệp.</p>
+<p>Để ghi được file ta phải mở file. Tuy nhiên để mở file và có thể ghi được ta phải xác định <code>mode</code> của hàm fopen là "w", thay vì "r" như ở bài trước.</p>
+<p>Tham số đầu tiên của fwrite () chứa tên của tệp để ghi vào và tham số thứ hai là chuỗi được viết.</p>
+<p>Ví dụ dưới đây viết một vài tên vào một tệp mới có tên là "newfile.txt"</p>
+<pre class="brush: php">
+    $myfile = fopen("newfile.txt", "w") or die("Unable to open file!");
+    $txt = "John Doe\n";
+    fwrite($myfile, $txt);
+    $txt = "Jane Doe\n";
+    fwrite($myfile, $txt);
+    fclose($myfile);
+</pre>
+<p>Đoạn code trên viết vào file 2 lần. Lần đầu gửi chuỗi $txt chứa "John Doe", lần thứ 2 cũng như vậy. Sau khi viết xong đóng file bằng hàm fclose</p>
+<p>Mở tập tin "newfile.txt" nó sẽ có nội dung như sau:</p>
+<pre>
+    John Doe
+    Jane Doe
+</pre>
+<p>Bây giờ ta thử ghi đè lên file "newfile.txt" đã có dữ liệu trước đó</p>
+<pre class="brush: php">
+    $myfile = fopen("newfile.txt", "w") or die("Unable to open file!");
+    $txt = "Mickey Mouse\n";
+    fwrite($myfile, $txt);
+    $txt = "Minnie Mouse\n";
+    fwrite($myfile, $txt);
+    fclose($myfile);
+</pre>
+<p>Mở tập tin "newfile.txt" nó sẽ có nội dung như sau:</p>
+<pre>
+    Mickey Mouse
+    Minnie Mouse
+</pre>
+<p>Như vậy, tất cả dữ liệu trong file trước đó đã được thay thế mới</p>
