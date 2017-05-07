@@ -1,0 +1,112 @@
+<p><strong>Mục Lục:</strong></p>
+<div id="category_list">
+    <ul>
+        <li><a id = "category_01_link" href="#">Các kiểu dữ liệu trong PHP</a></li>
+        <li><a id = "category_02_link" href="#">String</a></li>
+        <li><a id = "category_03_link" href="#">Integer</a></li>
+        <li><a id = "category_04_link" href="#">Float</a></li>
+        <li><a id = "category_05_link" href="#">Boolean</a></li>
+        <li><a id = "category_06_link" href="#">Array</a></li>
+        <li><a id = "category_07_link" href="#">Object(Đối tượng)</a></li>
+        <li><a id = "category_08_link" href="#">Null</a></li>
+    </ul>
+</div>
+<div id="category_01">
+    <p><strong>1. Các kiểu dữ liệu trong PHP</strong></p>
+    <p>PHP hỗ trợ các kiểu dữ liệu sau:</p>
+    <ul>
+        <li>Chuỗi</li>
+        <li>Số nguyên</li>
+        <li>Float</li>
+        <li>Boolean</li>
+        <li>Mảng</li>
+        <li>Object(Đối tượng)</li>
+        <li>Null(rỗng)</li>
+    </ul>
+</div>
+<div id="category_02">
+    <p><strong>2. String</strong></p>
+    <p>Một chuỗi là một dãy ký tự, như "Hello world!".</p>
+    <p>Một chuỗi có thể là bất kỳ văn bản bên trong dấu ngoặc kép. Bạn có thể sử dụng dấu ngoặc kép đơn hoặc đôi:</p>
+    <pre class="brush: php">
+        $x = "Hello world!";
+        $y = 'Hello world!';
+
+        echo $x;
+        echo "<br>";
+        echo $y;
+    </pre>
+    <a href="demo/php/bai5/1" class="button bar-item green hover-white hover-text-green" style="margin-bottom: 7px" target="_blank">Xem ví dụ »</a>
+</div>
+<div id="category_03">
+    <p><strong>3. Integer</strong></p>
+    <p>Kiểu dữ liệu số nguyên là số không phải số thập phân giữa -2,1448,483,648 và 2,147,483,647.</p>
+    <p>Quy tắc cho số nguyên:</p>
+    <ul>
+        <li>Số nguyên phải có ít nhất một chữ số</li>
+        <li>Một số nguyên không được có dấu thập phân</li>
+        <li>Số nguyên có thể là dương hoặc âm</li>
+        <li>Các số nguyên có thể được xác định theo ba định dạng: số thập phân, hệ thập lục phân hoặc bát phân</li>
+    </ul>
+    <pre class="brush: php">
+        $x = 5985;
+        var_dump($x);
+    </pre>
+    <a href="demo/php/bai5/2" class="button bar-item green hover-white hover-text-green" style="margin-bottom: 7px" target="_blank">Xem ví dụ »</a>
+</div>
+<div id="category_04">
+    <p><strong>4. Float</strong></p>
+    <p>Float là một số với một số thập phân hoặc một số dạng số mũ.</p>
+    <pre class="brush: php">
+        $x = 10.365;
+        var_dump($x);
+    </pre>
+    <a href="demo/php/bai5/3" class="button bar-item green hover-white hover-text-green" style="margin-bottom: 7px" target="_blank">Xem ví dụ »</a>
+</div>
+<div id="category_05">
+    <p><strong>5. Boolean</strong></p>
+    <p>Boolean trả về 1 trong 2 giá trị: TRUE hoặc FALSE.</p>
+    <pre>
+        $x = true;
+        $y = false;
+    </pre>
+</div>
+<div id="category_06">
+    <p><strong>6. Array</strong></p>
+    <p>Một mảng lưu trữ nhiều giá trị trong một biến duy nhất.</p>
+    <pre class="brush: php">
+        $cars = array("Volvo","BMW","Toyota");
+        var_dump($cars);
+    </pre>
+    <a href="demo/php/bai5/4" class="button bar-item green hover-white hover-text-green" style="margin-bottom: 7px" target="_blank">Xem ví dụ »</a>
+</div>
+<div id="category_07">
+    <p><strong>7. Object(Đối tượng)</strong></p>
+    <p>Đối tượng là loại dữ liệu lưu trữ dữ liệu và thông tin về cách xử lý dữ liệu đó.</p>
+    <p>Trong PHP, một đối tượng phải được khai báo rõ ràng.</p>
+    <p>Đầu tiên chúng ta phải khai báo một lớp đối tượng. Đối với điều này, chúng tôi sử dụng từ khoá <code>class</code>. Một <code>class</code> là một cấu trúc có thể chứa các thuộc tính và phương thức:
+    <pre class="brush: php">
+       class Car {
+            function Car() {
+                $this->model = "VW";
+            }
+        }
+
+        // tạo đối tượng
+        $herbie = new Car();
+
+        // hiển thị thuộc tính
+        echo $herbie->model;
+    </pre>
+    <a href="demo/php/bai5/5" class="button bar-item green hover-white hover-text-green" style="margin-bottom: 7px" target="_blank">Xem ví dụ »</a>
+</div>
+<div id="category_08">
+    <p><strong>8. String</strong></p>
+    <p>Null là một kiểu dữ liệu đặc biệt chỉ có thể có một giá trị: NULL.</p>
+    <pre class="brush: php">
+        $x = "Hello world!";
+        $x = null;
+        var_dump($x);
+    </pre>
+    <a href="demo/php/bai5/6" class="button bar-item green hover-white hover-text-green" style="margin-bottom: 7px" target="_blank">Xem ví dụ »</a>
+</div>

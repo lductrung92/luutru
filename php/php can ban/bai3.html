@@ -1,0 +1,60 @@
+<p><strong>Mục Lục:</strong></p>
+<div id="category_list">
+    <ul>
+        <li><a id = "category_01_link" href="#">Tạo biến trong PHP</a></li>
+        <li><a id = "category_02_link" href="#">Biến đầu ra</a></li>
+        <li><a id = "category_03_link" href="#">Phạm vi biến trong PHP</a></li>
+    </ul>
+</div>
+<div id="category_01">
+    <p><strong>1. Tạo biến trong PHP</strong></p>
+    <p>Trong PHP biến được ký hiệu bởi dấu " $ " đi sau là các ký tự bao gồm các chữ cái thường (a - z) in hoa (A - Z) và các chữ số (0 - 9) và dấu " gạch dưới " ( _ ) .</p>
+    <p>- Biến bắt đầu bằng dấu " $ " sau đó là các ký tự chữ cái hoặc dấu gạch dưới</p>
+    <p>- Biến không được viết cách</p>
+    <p>- Biến không được bắt đầu bằng chữ số</p>
+    <pre class="brush: php">
+        echo "Hello World!";
+    </pre>
+</div>
+<div id="category_02">
+    <p><strong>2. Biến đầu ra</strong></p>
+    <p>Câu lệnh <code>echo</code> trong PHP thường được sử dụng để xuất dữ liệu ra màn hình.</p>
+    <pre class="brush: php">
+        $txt = "laedaily.com";
+        echo "I love $txt!";
+    </pre>
+    <a href="demo/php/bai3/1" class="button bar-item green hover-white hover-text-green" style="margin-bottom: 7px" target="_blank">Xem ví dụ »</a>
+</div>
+<div id="category_03">
+    <p><strong>3.Phạm vi biến trong PHP</strong></p>
+    <p>PHP có ba phạm vi biến khác nhau:</p>
+    <ul>
+        <li>Biến cục bộ</li>
+        <li>Biến toàn cục</li>
+        <li>Biến tĩnh</li>
+    </ul>
+    <p><strong>Ví dụ: </strong>Biến cục bộ và biến toàn cục</p>
+    <pre class="brush: php">
+        $x = 5; // global
+        function myTest() {
+            $x = 6;
+            echo "<p>Biến x nằm trong function có giá trị: $x</p>";
+        }
+        myTest();
+        echo "<p>Biến x nằm ngoài function có giá trị: $x</p>";
+    </pre>
+    <a href="demo/php/bai3/2" class="button bar-item green hover-white hover-text-green" style="margin-bottom: 7px" target="_blank">Xem ví dụ »</a>
+    <p><strong>Ví dụ: </strong>Biến tĩnh</p>
+    <pre class="brush: php">
+        function myTest() {
+            static $x = 0;
+            echo $x;
+            $x++;
+        }
+
+        myTest();
+        myTest();
+        myTest();
+    </pre>
+    <a href="demo/php/bai3/3" class="button bar-item green hover-white hover-text-green" style="margin-bottom: 7px" target="_blank">Xem ví dụ »</a>
+</div>

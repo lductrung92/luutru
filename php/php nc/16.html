@@ -1,0 +1,120 @@
+<p><strong>Mở tệp - fopen()</strong></p>
+<p>Hàm fopen() của PHP được sử dụng để mở một file. Nó yêu cầu 2 tham số, tham số thứ nhất là tên file, và tham số thứ 2 là mode, tức là chế độ để hoạt động.</p>
+<p>Tập tin có thể được mở ở một trong các mode sau:</p>
+<div class="table-response">
+    <table class="table">
+        <tbody><tr>
+            <th width="10%">Mode</th>
+            <th>Mục đích</th>
+        </tr>
+        <tr>
+            <td>r</td>
+            <td><p>Mở file và chỉ đọc.</p>
+                <p>Di chuyển con trỏ file về đầu file</p>
+            </td>
+        </tr>
+        <tr>
+            <td>r+</td>
+            <td><p>Mở file cho việc đọc và ghi.</p>
+                <p>Di chuyển con trỏ về đầu file</p></td>
+        </tr>
+        <tr>
+            <td>w</td>
+            <td><p>Mở file và chỉ ghi.</p>
+                <p>Di chuyển con trỏ về đầu file</p>
+                <p>và cắt bỏ file về độ dài là 0.</p>
+                <p>Nếu các file không tồn tại, nó sẽ cố gắng tạo ra một file.</p>
+            </td>
+        </tr>
+        <tr>
+            <td>w+</td>
+            <td><p>Mở file cho việc đọc và ghi.</p>
+                <p>Di chuyển con trỏ về đầu file</p>
+                <p>và cắt bỏ file có độ dài là 0.</p>
+                <p>Nếu các file không tồn tại, nó sẽ cố gắng tạo ra một file.</p>
+            </td>
+        </tr>
+        <tr>
+            <td>a</td>
+            <td><p>Mở file với mục đích chỉ ghi.</p>
+                <p>Di chuyển con trỏ về cuối file</p>
+                <p>Nếu các file không tồn tại, nó sẽ cố gắng tạo ra một file.</p>
+            </td>
+        </tr>
+        <tr>
+            <td>a+</td>
+            <td><p>Mở file với mục đích đọc và ghi.</p>
+                <p>Di chuyển con trỏ về cuối file</p>
+                <p>Nếu các file không tồn tại, nó sẽ cố gắng tạo ra một file.</p>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<p><strong>Đọc tệp - fread()</strong></p>
+<p><strong>Cú pháp: </strong></p>
+<pre class="brush: php">
+    fread($myfile,filesize("webdictionary.txt"));
+</pre>
+<p>Tham số đầu tiên của fread () chứa tên của tệp tin để đọc và tham số thứ hai xác định số byte tối đa để đọc.</p>
+<p><strong>Đóng tệp - fclose()</strong></p>
+<p>Sử dụng flose để đóng tập tin khi ta đã thao tác xong để tránh trường hợp chiếm dụng tài nguyên</p>
+<p><strong>Cú pháp: </strong></p>
+<pre class="brush: php">
+    fclose($myfile);
+</pre>
+
+<p>Ví dụ ta có tệp văn bản "webdictionary.txt" có nội dung như sau:</p>
+<pre>
+    AJAX = Asynchronous JavaScript and XML
+    CSS = Cascading Style Sheets
+    HTML = Hyper Text Markup Language
+    PHP = PHP Hypertext Preprocessor
+    SQL = Structured Query Language
+    SVG = Scalable Vector Graphics
+    XML = EXtensible Markup Language
+</pre>
+<p>Sử dụng fopen để mở tệp tin, fread để đọc dữ liệu trong tệp tin, fclose để đóng tệp tin</p>
+<pre class="brush: php">
+    $myfile = fopen("webdictionary.txt", "r") or die("Unable to open file!");
+    echo fread($myfile,filesize("webdictionary.txt"));
+    fclose($myfile);
+</pre>
+<p><strong>Kết quả trả về: </strong></p>
+<pre>
+    AJAX = Asynchronous JavaScript and XML CSS = Cascading Style Sheets HTML = Hyper Text Markup Language PHP = PHP Hypertext Preprocessor SQL = Structured Query Language SVG = Scalable Vector Graphics XML = EXtensible Markup Language
+</pre>
+<p><strong>Đọc 1 dòng - fgets()</strong></p>
+<p>Hàm fgets () được sử dụng để đọc một dòng từ một tệp.</p>
+<p><strong>Ví dụ: </strong></p>
+<pre class="brush: php">
+    $myfile = fopen("webdictionary.txt", "r") or die("Unable to open file!");
+    echo fgets($myfile);
+    fclose($myfile);
+</pre>
+<p><strong>Kết quả trả về: </strong></p>
+<pre>
+    AJAX = Asynchronous JavaScript and XML
+</pre>
+<p><strong>Check End-Of-File - feof()</strong></p>
+<p>Hàm feof() kiểm tra xem đã đọc đến cuối file hay chưa.</p>
+<p>Hàm feof () hữu ích cho việc lặp lại dữ liệu có độ dài không xác định.</p>
+<p><strong>Ví dụ: </strong></p>
+<pre class="brush: php">
+    $myfile = fopen("webdictionary.txt", "r") or die("Unable to open file!");
+    // Output one line until end-of-file
+    while(!feof($myfile)) {
+      echo fgets($myfile) . "<br>";
+    }
+    fclose($myfile);
+</pre>
+<p><strong>Kết quả trả về: </strong></p>
+<pre>
+    AJAX = Asynchronous JavaScript and XML
+    CSS = Cascading Style Sheets
+    HTML = Hyper Text Markup Language
+    PHP = PHP Hypertext Preprocessor
+    SQL = Structured Query Language
+    SVG = Scalable Vector Graphics
+    XML = EXtensible Markup Language
+</pre>

@@ -1,0 +1,47 @@
+<p><strong>Mục Lục:</strong></p>
+<div id="category_list">
+    <ul>
+        <li><a id = "category_01_link" href="#">Vòng lặp while trong PHP</a></li>
+        <li><a id = "category_02_link" href="#">Vòng lặp do...while trong PHP</a></li>
+    </ul>
+</div>
+<div id="category_01">
+    <p><strong>1. Vòng lặp while trong PHP</strong></p>
+    <p>Vòng lặp while thực hiện một khối mã miễn là điều kiện xác định là đúng.</p>
+    <p><strong>Cú pháp: </strong></p>
+    <pre class="brush :php">
+        while (condition is true) {
+            // code thực hiện;
+        }
+    </pre>
+    <p>Ví dụ dưới đây khởi tạo biến $x bằng 1 ($x = 1). Sau đó, vòng lặp while sẽ tiếp tục chạy miễn là $x nhỏ hơn, hoặc bằng 5 ($x <= 5). Mỗi lần lặp ta sẽ in ra giá trị của $x</p>
+    <pre class="brush: php">
+        $x = 1;
+
+        while($x <= 5) {
+            echo "The number is: $x <br>";
+            $x++;
+        }
+    </pre>
+    <a href="demo/php/bai10/1" class="button bar-item green hover-white hover-text-green" style="margin-bottom: 7px" target="_blank">Xem ví dụ »</a>
+</div>
+<div id="category_02">
+    <p><strong>2. Vòng lặp do...while trong PHP</strong></p>
+    <p>Các vòng lặp do ... while sẽ luôn thực thi khối mã một lần, sau đó nó sẽ kiểm tra điều kiện, và lặp lại các vòng lặp trong khi điều kiện là đúng.</p>
+    <p><strong>Cú pháp: </strong></p>
+    <pre class="brush :php">
+        do {
+            // code
+        } while (condition is true);
+    </pre>
+    <p>Ví dụ dưới đây khởi tạo $x bằng 1 ($ x = 1). Sau đó, vòng lặp do while sẽ viết một số kết quả đầu ra, và sau đó tăng giá trị biến $x với 1. Sau đó, điều kiện được kiểm tra (là $x nhỏ hơn, hoặc bằng 5), và vòng lặp sẽ tiếp tục chạy miễn là $x nhỏ hơn, hoặc bằng 5</p>
+    <pre class="brush: php">
+        $x = 1;
+
+        do {
+            echo "The number is: $x <br>";
+            $x++;
+        } while ($x <= 5);
+    </pre>
+    <a href="demo/php/bai10/2" class="button bar-item green hover-white hover-text-green" style="margin-bottom: 7px" target="_blank">Xem ví dụ »</a>
+</div>

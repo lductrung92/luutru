@@ -1,0 +1,49 @@
+<p><strong>Mục Lục:</strong></p>
+<div id="category_list">
+    <ul>
+        <li><a id = "category_01_link" href="#">Vòng lặp for trong PHP</a></li>
+        <li><a id = "category_02_link" href="#">Vòng lặp foreach trong PHP</a></li>
+    </ul>
+</div>
+<div id="category_01">
+    <p><strong>1. Vòng lặp while trong PHP</strong></p>
+    <p>Vòng lặp for được sử dụng khi bạn biết trước giới hạn số lần lặp.</p>
+    <p><strong>Cú pháp: </strong></p>
+    <pre class="brush :php">
+        for (init counter; test counter; increment counter) {
+            // code
+        }
+    </pre>
+    <p><strong>Trong đó: </strong></p>
+    <ul>
+        <li>init counter : Khởi tạo giá trị ban đầu</li>
+        <li>test counter : so sánh cho mỗi vòng lặp lặp. Nếu nó được đánh giá là TRUE, vòng lặp tiếp tục. Nếu nó đánh giá là FALSE, vòng kết thúc.</li>
+        <li>increment counter : Tăng giá trị của bộ đếm vòng lặp</li>
+    </ul>
+    <p>Ví dụ dưới đây hiển thị các con số từ 0 đến 10:</p>
+    <pre class="brush: php">
+        for ($x = 0; $x <= 10; $x++) {
+            echo "The number is: $x <br>";
+        }
+    </pre>
+    <a href="demo/php/bai11/1" class="button bar-item green hover-white hover-text-green" style="margin-bottom: 7px" target="_blank">Xem ví dụ »</a>
+</div>
+<div id="category_02">
+    <p><strong>2. Vòng lặp foreach trong PHP</strong></p>
+    <p>Vòng lặp foreach chỉ hoạt động trên các mảng, và được sử dụng để lặp qua mỗi cặp khóa / giá trị trong một mảng.</p>
+    <p><strong>Cú pháp: </strong></p>
+    <pre class="brush :php">
+        foreach ($array as $value) {
+            // code
+        }
+    </pre>
+    <p>Đối với mỗi vòng lặp lặp, giá trị của phần tử mảng hiện tại được gán cho giá trị $ và con trỏ mảng được di chuyển bởi một, cho đến khi nó đến phần tử mảng cuối cùng.</p>
+    <pre class="brush: php">
+        $colors = array("red", "green", "blue", "yellow");
+
+        foreach ($colors as $value) {
+            echo "$value <br>";
+        }
+    </pre>
+    <a href="demo/php/bai11/2" class="button bar-item green hover-white hover-text-green" style="margin-bottom: 7px" target="_blank">Xem ví dụ »</a>
+</div>

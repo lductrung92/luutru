@@ -1,0 +1,37 @@
+<p>Câu lệnh switch được sử dụng để thực hiện các hành động khác nhau dựa trên các điều kiện khác nhau.</p>
+<p><strong>Cú pháp: </strong></p>
+<pre class="brush :php">
+    switch (n) {
+        case label1:
+            // code thực hiện khi n=label1;
+            break;
+        case label2:
+            // code thực hiện khi n=label2;
+            break;
+        case label3:
+            // code thực hiện khi n=label3;
+            break;
+        ...
+        default:
+           // code thực hiện khi n is khác với tất cả các label trên;
+    }
+</pre>
+<p>Đây là cách nó hoạt động: Đầu tiên chúng ta có một biểu thức n (thường là một biến). Giá trị của biểu thức sau đó được so sánh với các giá trị cho mỗi trường hợp <code>case</code>. Nếu có một kết hợp, nếu đúng câu lệnh trong khối <code>code</code> đó được thực thi, ngược lại sẽ duyệt tiếp các <code>case</code> còn lại, nếu không thấy thì khôi lệnh <code>default</code> được thực thi. Sử dụng break để ngăn không cho mã chạy tự động trong trường hợp kế tiếp.</p>
+<pre class="brush: php">
+    $favcolor = "red";
+
+    switch ($favcolor) {
+        case "red":
+            echo "Your favorite color is red!";
+            break;
+        case "blue":
+            echo "Your favorite color is blue!";
+            break;
+        case "green":
+            echo "Your favorite color is green!";
+            break;
+        default:
+            echo "Your favorite color is neither red, blue, nor green!";
+    }
+</pre>
+<a href="demo/php/bai9/1" class="button bar-item green hover-white hover-text-green" style="margin-bottom: 7px" target="_blank">Xem ví dụ »</a>

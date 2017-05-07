@@ -1,0 +1,72 @@
+<p><strong>Mục Lục:</strong></p>
+<div id="category_list">
+    <ul>
+        <li><a id = "category_01_link" href="#">Lệnh if</a></li>
+        <li><a id = "category_02_link" href="#">Lệnh if ... else</a></li>
+        <li><a id = "category_03_link" href="#">Lệnh if ... elseif .... else</a></li>
+    </ul>
+</div>
+<div id="category_01">
+    <p><strong>1. Lệnh if</strong></p>
+    <p><strong>Cú pháp</strong></p>
+    <pre class="brush: php">
+        if (condition) {
+            // to do something
+        }
+    </pre>
+    <pre class="brush: php">
+        $t = date("H");
+
+        if ($t < "20") {
+            echo "Have a good day!";
+        }
+    </pre>
+    <a href="demo/php/bai8/1" class="button bar-item green hover-white hover-text-green" style="margin-bottom: 7px" target="_blank">Xem ví dụ »</a>
+</div>
+<div id="category_02">
+    <p><strong>2. Lệnh if ... else</strong></p>
+    <p><strong>Cú pháp</strong></p>
+    <pre class="brush: php">
+        if (condition) {
+           // code thực hiện khi điện kiện là đúng
+        } else {
+            // code thực hiện khi điện kiện là sai
+        }
+    </pre>
+    <pre class="brush: php">
+        $t = date("H");
+
+        if ($t < "20") {
+            echo "Have a good day!";
+        } else {
+            echo "Have a good night!";
+        }
+    </pre>
+    <a href="demo/php/bai8/2" class="button bar-item green hover-white hover-text-green" style="margin-bottom: 7px" target="_blank">Xem ví dụ »</a>
+</div>
+<div id="category_03">
+    <p><strong>3. Lệnh if ... elseif .... else</strong></p>
+    <p><strong>Cú pháp</strong></p>
+    <pre class="brush: php">
+        if (condition) {
+            // code thực hiện khi điện kiện là đúng
+        } elseif (condition) {
+            // code thực hiện khi điện kiện là đúng
+        } else {
+            // code thực hiện khi điện kiện là sai
+        }
+    </pre>
+    <pre class="brush: php">
+        $t = date("H");
+
+        if ($t < "10") {
+            echo "Have a good morning!";
+        } elseif ($t < "20") {
+            echo "Have a good day!";
+        } else {
+            echo "Have a good night!";
+        }
+    </pre>
+    <a href="demo/php/bai8/3" class="button bar-item green hover-white hover-text-green" style="margin-bottom: 7px" target="_blank">Xem ví dụ »</a>
+</div>
+

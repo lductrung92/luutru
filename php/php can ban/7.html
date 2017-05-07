@@ -1,0 +1,43 @@
+<p><strong>Mục Lục:</strong></p>
+<div id="category_list">
+    <ul>
+        <li><a id = "category_01_link" href="#">Cú pháp hàm constant()</a></li>
+        <li><a id = "category_02_link" href="#">Hằng số toàn cục</a></li>
+    </ul>
+</div>
+<div id="category_01">
+    <p><strong>1. Cú pháp hàm constant()</strong></p>
+    <p>Để tạo một hằng số, sử dụng hàm <code>define ()</code>.</p>
+    <pre class="brush: php">
+        define(name, value, case-insensitive)
+    </pre>
+    <p>Trong đó:</p>
+    <ul>
+        <li>name : tên của hằng</li>
+        <li>value : giá trị của hằng</li>
+        <li>case-insensitive : Lựa chon tên hằng là chữ hoa hay chữ thường</li>
+    </ul>
+    <pre class="brush: php">
+        define("GREETING1", "Welcome to Laedaily.com!");
+        echo GREETING1;
+
+        define("GREETING2", "Welcome to Laedaily.com!", true);
+        echo greeting2;
+    </pre>
+    <a href="demo/php/bai7/1" class="button bar-item green hover-white hover-text-green" style="margin-bottom: 7px" target="_blank">Xem ví dụ »</a>
+</div>
+<div id="category_02">
+    <p><strong>2. Hằng số toàn cục</strong></p>
+    <p>Hằng số toàn cục được khai báo để sử dụng trên toàn bộ tập lệnh</p>
+    <pre class="brush: php">
+        define("GREETING", "Welcome to Laedaily.com!");
+
+        function myTest() {
+            echo GREETING;
+        }
+         
+        myTest();
+    </pre>
+    <a href="demo/php/bai7/2" class="button bar-item green hover-white hover-text-green" style="margin-bottom: 7px" target="_blank">Xem ví dụ »</a>
+</div>
+

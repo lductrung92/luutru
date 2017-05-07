@@ -1,0 +1,67 @@
+<p>Mảng đa chiều là một mảng chứa một hoặc nhiều mảng.</p>
+<p>PHP hiểu các mảng đa chiều có độ sâu hai, ba, bốn, năm, hoặc nhiều hơn. Tuy nhiên, mảng trên ba cấp độ thì rất khó quản lý.</p>
+<p>Kích thước của một mảng cho biết số chỉ mục(index) bạn cần để chọn một phần tử.</p>
+<ul>
+    <li>Đối với một mảng hai chiều bạn cần hai chỉ số để chọn một phần tử</li>
+    <li>Đối với một mảng ba chiều bạn cần ba chỉ số để chọn một phần tử</li>
+</ul>
+<p><strong>Ví dụ: </strong> ta sẽ lưu trữ bảng sau trong mảng 2 chiều</p>
+<div class="table-response">
+    <table class="table">
+        <tbody><tr>
+            <th>Name</th>
+            <th>Stock</th>
+            <th>Sold</th>
+        </tr>
+        <tr>
+            <td>Volvo</td>
+            <td>22</td>
+            <td>18</td>
+        </tr>
+        <tr>
+            <td>BMW</td>
+            <td>15</td>
+            <td>13</td>
+        </tr>
+        <tr>
+            <td>Saab</td>
+            <td>5</td>
+            <td>2</td>
+        </tr>
+        <tr>
+            <td>Land Rover</td>
+            <td>17</td>
+            <td>15</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<pre class="brush :php">
+    $cars = array
+    (
+        array("Volvo",22,18),
+        array("BMW",15,13),
+        array("Saab",5,2),
+        array("Land Rover",17,15)
+    );
+</pre>
+<p>Để có được quyền truy cập vào các phần tử của mảng $cars, chúng ta phải trỏ đến hai chỉ số (hàng và cột):</p>
+<pre class="brush: php">
+    echo $cars[0][0].": In stock: ".$cars[0][1].", sold: ".$cars[0][2].".<br>";
+    echo $cars[1][0].": In stock: ".$cars[1][1].", sold: ".$cars[1][2].".<br>";
+    echo $cars[2][0].": In stock: ".$cars[2][1].", sold: ".$cars[2][2].".<br>";
+    echo $cars[3][0].": In stock: ".$cars[3][1].", sold: ".$cars[3][2].".<br>";
+</pre>
+<a href="demo/php/bai14/1" class="button bar-item green hover-white hover-text-green" style="margin-bottom: 7px" target="_blank">Xem ví dụ »</a>
+<p>Chúng ta cũng có thể đặt một vòng lặp For trong vòng For khác để lấy các phần tử của mảng $cars</p>
+<pre class="brush: php">
+    for ($row = 0; $row < 4; $row++) {
+        echo "<p><b>Row number $row</b></p>";
+        echo "<ul>";
+        for ($col = 0; $col < 3; $col++) {
+        echo "<li>".$cars[$row][$col]."</li>";
+        }
+        echo "</ul>";
+    }
+</pre>
+<a href="demo/php/bai14/2" class="button bar-item green hover-white hover-text-green" style="margin-bottom: 7px" target="_blank">Xem ví dụ »</a>
