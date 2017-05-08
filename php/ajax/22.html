@@ -1,0 +1,134 @@
+<p>Khi bạn đã gửi một Request tới một Server, có thể bạn muốn thực hiện một số hoạt động nào đó trên phần Response được trả về. Điều này có thể thực hiện thông qua sự giúp đỡ của sự kiện onreadystatechange trong AJAX.</p>
+<p>Sự kiện onreadystatechange này sẽ được kích hoạt mỗi khi trạng thái readyState thay đổi. Mà thuộc tính readyState này giữ phần biểu diễn status của đối tượng XMLHttpRequest, do đó dựa vào từng giá trị của readyState thì bạn có thể cung cấp hoạt động tương ứng nào đó.</p>
+<p>Các thuộc tính quan trọng của đối tượng XMLHttpRequest trong AJAX:</p>
+<div class="table-responsive">
+    <table class="table">
+        <tbody><tr>
+            <th>Thuộc tính</th>
+            <th>Miêu tả</th>
+        </tr>
+        <tr>
+            <td>onreadystatechange</td>
+            <td>Một Event Handler lắng nghe và xử lý một sự kiện khi có thay đổi về trạng thái nào diễn ra.</td>
+        </tr>
+        <tr>
+            <td>readyState</td>
+            <td>Thuộc tính này định nghĩa trạng thái hiện tại của đối tượng XMLHttpRequest.
+                <ul class="list">
+                    <li><p>0: Requet chưa được khởi tạo</p></li>
+                    <li><p>1: Request đã được thiết lập</p></li>
+                    <li><p>2: Request đã được gửi</p></li>
+                    <li><p>3: Request đang được xử lý</p></li>
+                    <li><p>4: Kết thúc Request</p></li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td>status</td>
+            <td>Trả về trạng thái dưới dạng một số (ví dụ: 404 cho "Not Found", 200 cho "OK")</td>
+        </tr>
+        </tbody></table>
+</div>
+<p>Trong sự kiện onreadystatechange, ta sẽ xác định xem điều gì sẽ xảy ra khi Response từ Server đã sẵn sàng để được xử lý.</p>
+<p>Khi readyState là 4 và status là 200 thì tức là Response đã sẵn sàng</p>
+<p>Trong ví dụ này sẽ hướng dãn sử dụng kỹ thuật Ajax trong PHP để tạo 1 ứng dụng nhỏ: Khi người dùng nhập vào sẽ hiển thị ra các gợi ý với dữ liệu nguồn được định nghĩa sẵn.</p>
+<p>Trước vào ví dụ ta sẽ</p>
+<p>Tạo file <code>index.php</code> có mã như sau: </p>
+<pre class="brush: js; html-script: true">
+    &lt;html&gt;
+    &lt;head&gt;
+    &lt;script&gt;
+        function showHint(str) {
+            if (str.length == 0) {
+                document.getElementById("txtHint").innerHTML = "";
+                return;
+            } else {
+                var xmlhttp = new XMLHttpRequest();
+                xmlhttp.onreadystatechange = function() {
+                    if (this.readyState == 4 && this.status == 200) {
+                        document.getElementById("txtHint").innerHTML = this.responseText;
+                    }
+                };
+                xmlhttp.open("GET", "gethint.php?q=" + str, true);
+                xmlhttp.send();
+            }
+        }
+    &lt;/script&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+
+    &lt;p&gt;&lt;b&gt;Start typing a name in the input field below:&lt;/b&gt;&lt;/p&gt;
+    &lt;form&gt;&nbsp;
+    First name:&nbsp;&lt;input&nbsp;type=&quot;text&quot;&nbsp;onkeyup=&quot;showHint(this.value)&quot;&gt;
+    &lt;/form&gt;
+    &lt;p&gt;Suggestions:&nbsp;&lt;span&nbsp;id=&quot;txtHint&quot;&gt;&lt;/span&gt;&lt;/p&gt;
+    &lt;/body&gt;
+    &lt;/html&gt;
+</pre>
+<p><strong>Giải thích: </strong></p>
+<ul>
+    <li>Trước tiên, kiểm tra xem trường đầu vào có rỗng không (str.length == 0)</li>
+    <li>Tiếp theo, Tạo một đối tượng XMLHttpRequest</li>
+    <li>Sử dụng hàm onreadystatechange để lắng nghe các sự kiện từ máy chủ</li>
+    <li>Gửi yêu cầu tới tệp PHP (gethint.php) trên máy chủ</li>
+    <li>Lưu ý rằng tham số q được thêm vào url (gethint.php?q = " + str)</li>
+    <li>Và biến str chứa nội dung của trường đầu vào</li>
+</ul>
+<p>Tệp PHP (gethint.php) kiểm tra một mảng tên và trả về các tên tương ứng cho trình duyệt:</p>
+<pre class="brush: php">
+    // Array with names
+    $a[] = "Anna";
+    $a[] = "Brittany";
+    $a[] = "Cinderella";
+    $a[] = "Diana";
+    $a[] = "Eva";
+    $a[] = "Fiona";
+    $a[] = "Gunda";
+    $a[] = "Hege";
+    $a[] = "Inga";
+    $a[] = "Johanna";
+    $a[] = "Kitty";
+    $a[] = "Linda";
+    $a[] = "Nina";
+    $a[] = "Ophelia";
+    $a[] = "Petunia";
+    $a[] = "Amanda";
+    $a[] = "Raquel";
+    $a[] = "Cindy";
+    $a[] = "Doris";
+    $a[] = "Eve";
+    $a[] = "Evita";
+    $a[] = "Sunniva";
+    $a[] = "Tove";
+    $a[] = "Unni";
+    $a[] = "Violet";
+    $a[] = "Liza";
+    $a[] = "Elizabeth";
+    $a[] = "Ellen";
+    $a[] = "Wenche";
+    $a[] = "Vicky";
+
+    // get the q parameter from URL
+    $q = $_REQUEST["q"];
+
+    $hint = "";
+
+    // lookup all hints from array if $q is different from ""
+    if ($q !== "") {
+        $q = strtolower($q);
+        $len=strlen($q);
+        foreach($a as $name) {
+            if (stristr($q, substr($name, 0, $len))) {
+                if ($hint === "") {
+                    $hint = $name;
+                } else {
+                    $hint .= ", $name";
+                }
+            }
+        }
+    }
+
+    // Output "no suggestion" if no hint was found or output correct values
+    echo $hint === "" ? "no suggestion" : $hint;
+</pre>
+<a href="demo/php/bai22/1" class="button bar-item green hover-white hover-text-green" style="margin-bottom: 7px" target="_blank">Xem ví dụ »</a>

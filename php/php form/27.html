@@ -1,0 +1,61 @@
+<p>Có 2 cách để Client có thể gửi thông tin lên Server: </p>
+<ul>
+    <li>Phương thức GET: Là phương thức thức gửi dữ liệu thông qua đường dẫn URL nằm trên thanh địa chỉ của Browser. Server sẽ nhận dữ liệu thông qua các biến GET được gửi theo trên đường dẫn phía Client gửi lên.</li>
+    <li>Phương thức POST: gửi dữ liệu gửi thông qua một form HTML, chúng ta không thể thấy các giá trị đó nên POST được đánh giá có tính bảo mật hơn GET.</li>
+</ul>
+<p><strong>Khi nào sử dụng GET?</strong></p>
+<p>Sử dụng GET khi thông tin gửi đi không nhạy cảm(không cần che giấu) vì tất cả các tên biến và giá trị được hiển thị trên URL của trình duyệt, sử dụng khi số lượng thông tin gửi đi ít khoảng dưới 2000 ký tự.</p>
+<p><strong>Khi nào sử dụng POST?</strong></p>
+<p>Sử dụng POST khi thông tin gửi đi là nhạy cảm(cần che giấu) vì tất cả các tên biến và giá trị sẽ được ẩn đi trên URL của trình duyệt, sử dụng khi số lượng thông tin gửi đi lớn.</p>
+<p><strong>Ví dụ: </strong> Sử dụng method GET</p>
+<pre class="brush: php; html-script: true">
+    &lt;?php
+       if( isset($_GET[&quot;name&quot;]) || isset($_GET[&quot;age&quot;]) )
+       {
+          echo &quot;Ch&agrave;o mừng &quot;. $_GET[&#39;name&#39;]. &quot;&lt;br /&gt;&quot;;
+          echo &quot;Bạn &quot;. $_GET[&#39;age&#39;]. &quot; tuổi.&quot;;
+
+          exit();
+       }
+    ?&gt;
+    &lt;html&gt;
+       &lt;body&gt;
+
+          &lt;form action=&quot;&lt;?php $_PHP_SELF ?&gt;&quot; method=&quot;GET&quot;&gt;
+             Họ t&ecirc;n: &lt;input type=&quot;text&quot; name=&quot;name&quot; /&gt;
+             Tuổi: &lt;input type=&quot;text&quot; name=&quot;age&quot; /&gt;
+             &lt;input type=&quot;submit&quot; /&gt;
+          &lt;/form&gt;
+
+       &lt;/body&gt;
+    &lt;/html&gt;
+</pre>
+<a href="demo/php/bai27/1" class="button bar-item green hover-white hover-text-green" style="margin-bottom: 7px" target="_blank">Xem ví dụ »</a>
+<p><strong>Ví dụ: </strong> Sử dụng method POST</p>
+<pre class="brush: php; html-script: true">
+    &lt;?php
+       if( isset($_POST[&quot;name&quot;]) || isset($_POST[&quot;age&quot;]) )
+       {
+          if (preg_match(&quot;/[^A-Za-z&#39;-]/&quot;,$_POST[&#39;name&#39;] ))
+          {
+             die (&quot;Biến name kh&ocirc;ng hợp lệ - n&ecirc;n l&agrave; c&aacute;c chữ c&aacute;i&quot;);
+            }
+          echo &quot;Ch&agrave;o mừng &quot;. $_POST[&#39;name&#39;]. &quot;&lt;br /&gt;&quot;;
+          echo &quot;Bạn &quot;. $_POST[&#39;age&#39;]. &quot; tuổi.&quot;;
+
+          exit();
+       }
+    ?&gt;
+    &lt;html&gt;
+       &lt;body&gt;
+
+          &lt;form action=&quot;&lt;?php $_PHP_SELF ?&gt;&quot; method=&quot;POST&quot;&gt;
+             Họ t&ecirc;n: &lt;input type=&quot;text&quot; name=&quot;name&quot; /&gt;
+             Tuổi: &lt;input type=&quot;text&quot; name=&quot;age&quot; /&gt;
+             &lt;input type=&quot;submit&quot; /&gt;
+          &lt;/form&gt;
+
+       &lt;/body&gt;
+    &lt;/html&gt;
+</pre>
+<a href="demo/php/bai27/2" class="button bar-item green hover-white hover-text-green" style="margin-bottom: 7px" target="_blank">Xem ví dụ »</a>

@@ -1,0 +1,159 @@
+<p>Trong bài này sẽ trình bày ví dụ minh họa cách truy cập Database sử dụng kỹ thuật Ajax.</p>
+<p>Chuẩn bị cơ sở dữ liệu: bảng <code>user</code> có nội dung như sau: </p>
+<div class="table-responsive">
+    <table class="table">
+        <tbody><tr>
+            <th>id</th>
+            <th>FirstName</th>
+            <th>LastName</th>
+            <th>Age</th>
+            <th>Hometown</th>
+            <th>Job</th>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>Peter</td>
+            <td>Griffin</td>
+            <td>41</td>
+            <td>Quahog</td>
+            <td>Brewery</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>Lois</td>
+            <td>Griffin</td>
+            <td>40</td>
+            <td>Newport</td>
+            <td>Piano Teacher</td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td>Joseph</td>
+            <td>Swanson</td>
+            <td>39</td>
+            <td>Quahog</td>
+            <td>Police Officer</td>
+        </tr>
+        <tr>
+            <td>4</td>
+            <td>Glenn</td>
+            <td>Quagmire</td>
+            <td>41</td>
+            <td>Quahog</td>
+            <td>Pilot</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<p>Trong ví dụ này sẽ tạo chức năng khi người dùng select tên của 1 user sẽ hiện ra bảng thông tin user đó</p>
+<p>Tạo file <code>index.php</code> có mã như sau: </p>
+<pre class="brush: js; html-script: true">
+    &lt;html&gt;
+    &lt;head&gt;
+    &lt;script&gt;
+        function showUser(str) {
+            if (str == "") {
+                document.getElementById("txtHint").innerHTML = "";
+                return;
+            } else {
+                if (window.XMLHttpRequest) {
+                    // code for IE7+, Firefox, Chrome, Opera, Safari
+                    xmlhttp = new XMLHttpRequest();
+                } else {
+                    // code for IE6, IE5
+                    xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+                }
+                xmlhttp.onreadystatechange = function() {
+                    if (this.readyState == 4 && this.status == 200) {
+                        document.getElementById("txtHint").innerHTML = this.responseText;
+                    }
+                };
+                xmlhttp.open("GET","getuser.php?q="+str,true);
+                xmlhttp.send();
+            }
+        }
+    &lt;/script&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+    &lt;form&gt;
+    &lt;select&nbsp;name=&quot;users&quot;&nbsp;onchange=&quot;showUser(this.value)&quot;&gt;
+    &nbsp;&nbsp;&lt;option&nbsp;value=&quot;&quot;&gt;Select a person:&lt;/option&gt;
+    &nbsp;&nbsp;&lt;option&nbsp;value=&quot;1&quot;&gt;Peter Griffin&lt;/option&gt;
+    &nbsp;&nbsp;&lt;option&nbsp;value=&quot;2&quot;&gt;Lois Griffin&lt;/option&gt;
+    &nbsp;&nbsp;&lt;option&nbsp;value=&quot;3&quot;&gt;Joseph Swanson&lt;/option&gt;
+    &nbsp;&nbsp;&lt;option&nbsp;value=&quot;4&quot;&gt;Glenn Quagmire&lt;/option&gt;
+    &nbsp;&nbsp;&lt;/select&gt;
+    &lt;/form&gt;
+    &lt;br&gt;
+    &lt;div&nbsp;id=&quot;txtHint&quot;&gt;&lt;b&gt;Person info will be listed here...&lt;/b&gt;&lt;/div&gt;
+    &lt;/body&gt;
+    &lt;/html&gt;
+</pre>
+<p><strong>Giải thích: </strong></p>
+<ul>
+    <li>Trước tiên, kiểm tra xem người được chọn không. Nếu không có người nào được chọn (str == "")</li>
+    <p>Nếu một người được chọn, hãy làm như sau:</p>
+    <ul>
+        <li>Tạo một đối tượng XMLHttpRequest</li>
+        <li>Sử dụng hàm onreadystatechange để lắng nghe các sự kiện từ máy chủ</li>
+        <li>Gửi yêu cầu tới tệp PHP (getuser.php) trên máy chủ</li>
+        <li>Lưu ý rằng tham số q được thêm vào url (getuser.php?q = " + str)</li>
+        <li>Và biến str chứa nội dung của trường đầu vào</li>
+    </ul>
+</ul>
+<p>Tệp PHP (getuser.php) truy vấn đối với cơ sở dữ liệu và trả về kết quả trong một bảng HTML</p>
+<pre class="brush: js; html-script: true">
+    &lt;!DOCTYPE html&gt;
+    &lt;html&gt;
+    &lt;head&gt;
+    &lt;style&gt;
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        table, td, th {
+            border: 1px solid black;
+            padding: 5px;
+        }
+        
+        th {text-align: left;}
+    &lt;/style&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;?php
+            $q = intval($_GET[&#39;q&#39;]);
+
+            $con = mysqli_connect(&#39;localhost&#39;,&#39;peter&#39;,&#39;abc123&#39;,&#39;my_db&#39;);
+            if (!$con) {
+                die(&#39;Could not connect: &#39; . mysqli_error($con));
+            }
+
+            mysqli_select_db($con,&quot;ajax_demo&quot;);
+            $sql=&quot;SELECT * FROM user WHERE id = &#39;&quot;.$q.&quot;&#39;&quot;;
+            $result = mysqli_query($con,$sql);
+
+            echo &quot;&lt;table&gt;
+            &lt;tr&gt;
+            &lt;th&gt;Firstname&lt;/th&gt;
+            &lt;th&gt;Lastname&lt;/th&gt;
+            &lt;th&gt;Age&lt;/th&gt;
+            &lt;th&gt;Hometown&lt;/th&gt;
+            &lt;th&gt;Job&lt;/th&gt;
+            &lt;/tr&gt;&quot;;
+            while($row = mysqli_fetch_array($result)) {
+                echo &quot;&lt;tr&gt;&quot;;
+                echo &quot;&lt;td&gt;&quot; . $row[&#39;FirstName&#39;] . &quot;&lt;/td&gt;&quot;;
+                echo &quot;&lt;td&gt;&quot; . $row[&#39;LastName&#39;] . &quot;&lt;/td&gt;&quot;;
+                echo &quot;&lt;td&gt;&quot; . $row[&#39;Age&#39;] . &quot;&lt;/td&gt;&quot;;
+                echo &quot;&lt;td&gt;&quot; . $row[&#39;Hometown&#39;] . &quot;&lt;/td&gt;&quot;;
+                echo &quot;&lt;td&gt;&quot; . $row[&#39;Job&#39;] . &quot;&lt;/td&gt;&quot;;
+                echo &quot;&lt;/tr&gt;&quot;;
+            }
+            echo &quot;&lt;/table&gt;&quot;;
+            mysqli_close($con);
+        ?&gt;
+    &lt;/body&gt;
+    &lt;/html&gt;
+</pre>
+<a href="demo/php/bai23/1" class="button bar-item green hover-white hover-text-green" style="margin-bottom: 7px" target="_blank">Xem ví dụ »</a>

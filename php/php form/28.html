@@ -1,0 +1,128 @@
+<p>Trong bài này sẽ hướng dẫn Validation Form sử dụng PHP. Hiểu đơn giản là bắt lỗi người dùng nhập vào nếu sai sẽ xuất thông báo lỗi.</p>
+<p>Có hai kiểu Validation có sẵn trong PHP: </p>
+<ul>
+    <li><strong>Client-Side Validation: </strong>Validation được thực hiện trên trình duyệt web ở Client</li>
+    <li><strong>Server-Side Validation: </strong>Validation được thực hiện ở phía Server</li>
+</ul>
+<p><strong>Ví dụ: </strong>ta có 1 form như sau: </p>
+<pre class="brush: php; html-script: true">
+    &lt;h2&gt;V&iacute; dụ Form Validation sử dụng PHP&lt;/h2&gt;
+    &lt;form method=&quot;post&quot; action=&quot;&lt;?php $_PHP_SELF ?&gt;&quot;&gt;
+    &lt;label&gt;Họ t&ecirc;n:&lt;/label&gt; &lt;input type=&quot;text&quot; name=&quot;name&quot;&gt;
+    &lt;br&gt;&lt;br&gt;
+    &lt;label&gt;E-mail:&lt;/label&gt; &lt;input type=&quot;text&quot; name=&quot;email&quot;&gt;
+    &lt;br&gt;&lt;br&gt;
+    &lt;label&gt;Website:&lt;/label&gt; &lt;input type=&quot;text&quot; name=&quot;website&quot;&gt;
+    &lt;br&gt;&lt;br&gt;
+    &lt;label&gt;B&igrave;nh luận:&lt;/label&gt; &lt;textarea name=&quot;comment&quot; rows=&quot;5&quot; cols=&quot;40&quot;&gt;&lt;/textarea&gt;
+    &lt;br&gt;&lt;br&gt;
+    &lt;label&gt;Giới t&iacute;nh:&lt;/label&gt;
+    &lt;input type=&quot;radio&quot; name=&quot;gender&quot; value=&quot;Nam&quot; checked&gt;Nam
+    &lt;input type=&quot;radio&quot; name=&quot;gender&quot; value=&quot;Nữ&quot;&gt;Nữ
+    &lt;br&gt;&lt;br&gt;
+    &lt;input type=&quot;submit&quot; name=&quot;submit&quot; value=&quot;Submit&quot;&gt;
+    &lt;/form&gt;
+</pre>
+<p>Hiển thị thông tin người dùng sau khi nhấn submit form</p>
+<pre class="brush: php; html-script: true">
+    $name = $email = $gender = $comment = $website = "";
+    if (isset($_POST["submit"])) {
+        $name = test_input($_POST["name"]);
+        $email = test_input($_POST["email"]);
+        $website = test_input($_POST["website"]);
+        $comment = test_input($_POST["comment"]);
+        $gender = test_input($_POST["gender"]);
+    }
+    function test_input($data) {
+        $data = trim($data);
+        $data = stripslashes($data);
+        $data = htmlspecialchars($data);
+        return $data;
+    }
+
+    if(isset($_POST["submit"])) {
+        echo "<h2>Thông tin của bạn:</h2>";
+        echo "<strong>Họ tên: </strong>" . $name;
+        echo "<br>";
+        echo "<strong>E-mail: </strong>" . $email;
+        echo "<br>";
+        echo "<strong>Website: </strong>" . $website;
+        echo "<br>";
+        echo "<strong>Bình luận: </strong>" . $comment;
+        echo "<br>";
+        echo "<strong>Giới tính: </strong>" . $gender;
+        exit();
+    }
+?>
+</pre>
+<a href="demo/php/bai28/1" class="button bar-item green hover-white hover-text-green" style="margin-bottom: 7px" target="_blank">Xem ví dụ »</a>
+<p>Các trường bắt buộc</p>
+<div class="table-responsive">
+    <table class="table table-bordered">
+        <tbody><tr>
+            <th>Trường dữ liệu</th>
+            <th>Qui tắc Validation</th>
+        </tr>
+        <tr>
+            <td>Họ tên</td>
+            <td>Yêu cầu chữ cái và khoảng trắng</td>
+        </tr>
+        <tr>
+            <td>E-mail</td>
+            <td>Yêu cầu <b>@</b> và <b>.</b></td>
+        </tr>
+        <tr>
+            <td>Website</td>
+            <td>Nếu có, phải là một URL hợp lệ</td>
+        </tr>
+        <tr>
+            <td>Bình luận</td>
+            <td>Không bắt buộc</td>
+        </tr>
+        <tr>
+            <td>Giới tính</td>
+            <td>Chọn 1 trong 2, tuy nhiên đã đặt mặc định là nam nên không cần kiểm tra</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<p>Kiểm tra họ tên là bắt buộc và chỉ có thể là chữ cái và khoảng trắng</p>
+<pre class="brush: php">
+    if (empty($_POST["name"])) {
+        $nameErr = "Name is required";
+    } else {
+        $name = test_input($_POST["name"]);
+        // kiểm tra tên chỉ có thể là chữ cái và khoảng trắng
+        if (!preg_match("/^[a-zA-Z ]*$/",$name)) {
+            $nameErr = "Họ tên chỉ có thể là chữ cái và khoảng trắng";
+        }
+    }
+</pre>
+<p>Kiểm tra E-mail là bắt buộc và có @ và '.'</p>
+<pre class="brush: php">
+    if (empty($_POST["email"])) {
+        $emailErr = "Email is required";
+    } else {
+        $email = test_input($_POST["email"]);
+        // kiểm tra xem địa chỉ e-mail có đúng định dạng hay không
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            $emailErr = "Định dạng email không hợp lệ";
+        }
+    }
+</pre>
+<p>Kiểm tra Website có url hợp lệ hay không</p>
+<pre class="brush: php">
+    if (empty($_POST["website"])) {
+        $website = "";
+    } else {
+        $website = test_input($_POST["website"]);
+        // kiểm tra url hợp lệ hay không
+        if (!preg_match("/\b(?:(?:https?|ftp):\/\/|www\.)[-a-z0-9+&@#\/%?=~_|!:,.;]*[-a-z0-9+&@#\/%=~_|]/i",$website)) {
+            $websiteErr = "url không hợp lệ";
+        }
+    }
+</pre>
+<p>Code hoàn thiện bây giờ:</p>
+<pre class="brush: php; html-script: true">
+
+</pre>

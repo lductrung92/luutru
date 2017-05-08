@@ -1,0 +1,95 @@
+<p>Trong bài này sẽ trình bày ví dụ minh họa ứng dụng RSS Reader sử dụng kỹ thuật Ajax.</p>
+<p>Khi người dùng chọn RSS feed trong danh sách thả xuống ở trên, một hàm gọi là "showRSS()" được thực thi. Hàm được kích hoạt bởi sự kiện "onchange":</p>
+<pre class="brush: js; html-script: true">
+    &lt;html&gt;
+    &lt;head&gt;
+    &lt;script&gt;
+        function showRSS(str) {
+            if (str.length==0) {
+            document.getElementById("rssOutput").innerHTML="";
+            return;
+            }
+            if (window.XMLHttpRequest) {
+            // code for IE7+, Firefox, Chrome, Opera, Safari
+            xmlhttp=new XMLHttpRequest();
+            } else {  // code for IE6, IE5
+            xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+            }
+            xmlhttp.onreadystatechange=function() {
+            if (this.readyState==4 && this.status==200) {
+              document.getElementById("rssOutput").innerHTML=this.responseText;
+            }
+            }
+            xmlhttp.open("GET","getrss.php?q="+str,true);
+            xmlhttp.send();
+        }
+    &lt;/script&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+    &lt;form&gt;
+    &lt;select onchange=&quot;showRSS(this.value)&quot;&gt;
+    &lt;option value=&quot;&quot;&gt;Select an RSS-feed:&lt;/option&gt;
+    &lt;option value=&quot;Google&quot;&gt;Google News&lt;/option&gt;
+    &lt;option value=&quot;NBC&quot;&gt;NBC News&lt;/option&gt;
+    &lt;/select&gt;
+    &lt;/form&gt;
+    &lt;br&gt;
+    &lt;div id=&quot;rssOutput&quot;&gt;RSS-feed will be listed here...&lt;/div&gt;
+    &lt;/body&gt;
+    &lt;/html&gt;
+</pre>
+<p><strong>Giải thích: </strong>hàm showRSS() thực hiện như sau:</p>
+<ul>
+    <li>Chức năng showRSS () thực hiện như sau:.</li>
+    <li>Tạo một đối tượng XMLHttpRequest</li>
+    <li>Sử dụng hàm onreadystatechange để lắng nghe các sự kiện từ máy chủ</li>
+    <li>Gửi yêu cầu tới tệp PHP (getrss.php) trên máy chủ</li>
+    <li>Lưu ý rằng tham số q được thêm vào url (getrss.php?q = " + str)</li>
+    <li>Và biến str chứa nội dung của trường đầu vào</li>
+
+</ul>
+<p>Tệp PHP (getrss.php) có mã như sau: </p>
+<pre class="brush: php">
+    //get the q parameter from URL
+    $q=$_GET["q"];
+
+    //find out which feed was selected
+    if($q=="Google") {
+      $xml=("http://news.google.com/news?ned=us&topic=h&output=rss");
+    } elseif($q=="NBC") {
+      $xml=("http://rss.msnbc.msn.com/id/3032091/device/rss/rss.xml");
+    }
+
+    $xmlDoc = new DOMDocument();
+    $xmlDoc->load($xml);
+    //get elements from &quot;&lt;channel&gt;&quot;
+    $channel=$xmlDoc-&gt;getElementsByTagName(&#39;channel&#39;)-&gt;item(0);
+    $channel_title = $channel-&gt;getElementsByTagName(&#39;title&#39;)
+    -&gt;item(0)-&gt;childNodes-&gt;item(0)-&gt;nodeValue;
+    $channel_link = $channel-&gt;getElementsByTagName(&#39;link&#39;)
+    -&gt;item(0)-&gt;childNodes-&gt;item(0)-&gt;nodeValue;
+    $channel_desc = $channel-&gt;getElementsByTagName(&#39;description&#39;)
+    -&gt;item(0)-&gt;childNodes-&gt;item(0)-&gt;nodeValue;
+
+    //output elements from &quot;&lt;channel&gt;&quot;
+    echo(&quot;&lt;p&gt;&lt;a href=&#39;&quot; . $channel_link
+      . &quot;&#39;&gt;&quot; . $channel_title . &quot;&lt;/a&gt;&quot;);
+    echo(&quot;&lt;br&gt;&quot;);
+    echo($channel_desc . &quot;&lt;/p&gt;&quot;);
+
+    //get and output &quot;&lt;item&gt;&quot; elements
+    $x=$xmlDoc-&gt;getElementsByTagName(&#39;item&#39;);
+    for ($i=0; $i&lt;=2; $i++) {
+      $item_title=$x-&gt;item($i)-&gt;getElementsByTagName(&#39;title&#39;)
+      -&gt;item(0)-&gt;childNodes-&gt;item(0)-&gt;nodeValue;
+      $item_link=$x-&gt;item($i)-&gt;getElementsByTagName(&#39;link&#39;)
+      -&gt;item(0)-&gt;childNodes-&gt;item(0)-&gt;nodeValue;
+      $item_desc=$x-&gt;item($i)-&gt;getElementsByTagName(&#39;description&#39;)
+      -&gt;item(0)-&gt;childNodes-&gt;item(0)-&gt;nodeValue;
+      echo (&quot;&lt;p&gt;&lt;a href=&#39;&quot; . $item_link
+      . &quot;&#39;&gt;&quot; . $item_title . &quot;&lt;/a&gt;&quot;);
+      echo (&quot;&lt;br&gt;&quot;);
+      echo ($item_desc . &quot;&lt;/p&gt;&quot;);
+    }
+</pre>
+<a href="demo/php/bai26/1" class="button bar-item green hover-white hover-text-green" style="margin-bottom: 7px" target="_blank">Xem ví dụ »</a>
