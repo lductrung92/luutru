@@ -1,0 +1,266 @@
+<p>Trong bài này sẽ hướng dẫn Validation Form sử dụng Javascript. Bắt lỗi người dùng khi đăng ký tài khoản</p>
+<p><strong>Mã Html</strong></p>
+<pre class="brush: js; html-script: true">
+    &lt;div id=&quot;emptyDiv&quot;&gt;&lt;/div&gt;
+    &lt;div id=&quot;description&quot;&gt;&lt;/div&gt;
+    &lt;!--container start--&gt;
+    &lt;div id=&quot;container&quot;&gt;
+    &nbsp; &lt;div id=&quot;container_body&quot;&gt;
+    &nbsp; &nbsp; &lt;div&gt;
+    &nbsp; &nbsp; &nbsp; &lt;h2 class=&quot;form_title&quot;&gt;User Registration Form Demo&lt;/h2&gt;
+    &nbsp; &nbsp; &nbsp; &lt;p class=&quot;head_para&quot;&gt;Form Validated Using Javascript&lt;/p&gt;
+    &nbsp; &nbsp; &lt;/div&gt;
+    &nbsp; &nbsp; &lt;!--Form &nbsp;start--&gt;
+    &nbsp; &nbsp; &lt;div id=&quot;form_name&quot;&gt;
+    &nbsp; &nbsp; &nbsp; &lt;div class=&quot;firstnameorlastname&quot;&gt;
+    &nbsp; &nbsp; &nbsp; &nbsp;&lt;form name=&quot;form&quot; &gt;
+    &nbsp; &nbsp; &nbsp; &nbsp;&lt;div id=&quot;errorBox&quot;&gt;&lt;/div&gt;
+    &nbsp; &nbsp; &nbsp; &nbsp; &lt;input type=&quot;text&quot; name=&quot;Name&quot; value=&quot;&quot; placeholder=&quot;First Name&quot; &nbsp;class=&quot;input_name&quot; &gt;
+    &nbsp; &nbsp; &nbsp; &nbsp; &lt;input type=&quot;text&quot; name=&quot;LastName&quot; value=&quot;&quot; placeholder=&quot;Last Name&quot; class=&quot;input_name&quot; &gt;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp; &lt;/div&gt;
+    &nbsp; &nbsp; &nbsp; &lt;div id=&quot;email_form&quot;&gt;
+    &nbsp; &nbsp; &nbsp; &nbsp; &lt;input type=&quot;text&quot; name=&quot;Email&quot; value=&quot;&quot; &nbsp;placeholder=&quot;Your Email&quot; class=&quot;input_email&quot;&gt;
+    &nbsp; &nbsp; &nbsp; &lt;/div&gt;
+    &nbsp; &nbsp; &nbsp; &lt;div id=&quot;Re_email_form&quot;&gt;
+    &nbsp; &nbsp; &nbsp; &nbsp; &lt;input type=&quot;text&quot; name=&quot;enterEmail&quot; value=&quot;&quot; &nbsp;placeholder=&quot;Re-enter Email&quot; class=&quot;input_Re_email&quot;&gt;
+    &nbsp; &nbsp; &nbsp; &lt;/div&gt;
+    &nbsp; &nbsp; &nbsp; &lt;div id=&quot;password_form&quot;&gt;
+    &nbsp; &nbsp; &nbsp; &nbsp; &lt;input type=&quot;password&quot; name=&quot;Password&quot; value=&quot;&quot; &nbsp;placeholder=&quot;New Password&quot; class=&quot;input_password&quot;&gt;
+    &nbsp; &nbsp; &nbsp; &lt;/div&gt;
+    &nbsp; &nbsp; &nbsp; &lt;!--birthday details start--&gt;
+    &nbsp; &nbsp; &nbsp; &lt;div&gt;
+    &nbsp; &nbsp; &nbsp; &nbsp; &lt;h3 class=&quot;birthday_title&quot;&gt;Birthday&lt;/h3&gt;
+    &nbsp; &nbsp; &nbsp; &lt;/div&gt;
+    &nbsp; &nbsp; &nbsp; &lt;div&gt;
+    &nbsp; &nbsp; &nbsp; &nbsp; &lt;select name=&quot;birthday_month&quot; &gt;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;option value=&quot;&quot; selected &gt;Month&lt;/option&gt;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;option value=&quot;1&quot;&gt;Jan&lt;/option&gt;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;option value=&quot;2&quot;&gt;Feb&lt;/option&gt;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;option value=&quot;3&quot;&gt;Mar&lt;/option&gt;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;option value=&quot;4&quot;&gt;Apr&lt;/option&gt;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;option value=&quot;5&quot;&gt;May&lt;/option&gt;
+    &nbsp; &nbsp; &nbsp; &nbsp; &lt;/select&gt;
+    &nbsp; &nbsp; &nbsp; &nbsp; &amp;nbsp;&amp;nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; &lt;select name=&quot;birthday_day&quot; &gt;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;option value=&quot;&quot; selected&gt;Day&lt;/option&gt;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;option value=&quot;1&quot;&gt;1&lt;/option&gt;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;option value=&quot;2&quot;&gt;2&lt;/option&gt;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;option value=&quot;3&quot;&gt;3&lt;/option&gt;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;option value=&quot;4&quot;&gt;4&lt;/option&gt;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;option value=&quot;5&quot;&gt;5&lt;/option&gt;
+    &nbsp; &nbsp; &nbsp; &nbsp; &lt;/select&gt;
+    &nbsp; &nbsp; &nbsp; &nbsp; &amp;nbsp;&amp;nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; &lt;select name=&quot;birthday_year&quot;&gt;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;option value=&quot;&quot; selected&gt;Year&lt;/option&gt;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;option value=&quot;2013&quot;&gt;2013&lt;/option&gt;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;option value=&quot;2012&quot;&gt;2012&lt;/option&gt;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;option value=&quot;2011&quot;&gt;2011&lt;/option&gt;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;option value=&quot;2010&quot;&gt;2010&lt;/option&gt;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;option value=&quot;2009&quot;&gt;2009&lt;/option&gt;
+    &nbsp; &nbsp; &nbsp; &nbsp; &lt;/select&gt;
+    &nbsp; &nbsp; &nbsp; &lt;/div&gt;
+    &nbsp; &nbsp; &nbsp; &lt;!--birthday details ends--&gt;
+    &nbsp; &nbsp; &nbsp; &lt;div id=&quot;radio_button&quot;&gt;
+    &nbsp; &nbsp; &nbsp; &nbsp; &lt;input type=&quot;radio&quot; name=&quot;radiobutton&quot; value=&quot;Female&quot;&gt;
+    &nbsp; &nbsp; &nbsp; &nbsp; &lt;label &gt;Female&lt;/label&gt;
+    &nbsp; &nbsp; &nbsp; &nbsp; &amp;nbsp;&amp;nbsp;&amp;nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; &lt;input type=&quot;radio&quot; name=&quot;radiobutton&quot; value=&quot;Male&quot;&gt;
+    &nbsp; &nbsp; &nbsp; &nbsp; &lt;label &gt;Male&lt;/label&gt;
+    &nbsp; &nbsp; &nbsp; &lt;/div&gt;
+    &nbsp; &nbsp; &nbsp; &nbsp;&lt;div&gt;
+    &nbsp; &nbsp; &nbsp; &nbsp; &lt;p id=&quot;sign_user&quot; onClick=&quot;Submit()&quot;&gt;Sign Up &lt;/p&gt;
+    &nbsp; &nbsp; &nbsp; &lt;/div&gt;
+    &nbsp; &nbsp; &nbsp;&lt;/form&gt;
+    &nbsp; &nbsp; &lt;/div&gt;
+    &nbsp; &nbsp; &lt;!--form ends--&gt;
+    &nbsp; &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;!--container ends--&gt;
+</pre>
+<p><strong>Mã CSS</strong></p>
+<pre class="brush: css">
+    *{
+     margin:0px;
+     padding:0px;
+     }
+    body{
+     font-family:Tahoma, Geneva, sans-serif;
+     }
+    #container{
+     width:550px;
+     background-color:rgba(250,250,252,.9);
+     margin:auto;
+     margin-top:10px;
+     margin-bottom:10px;
+     box-shadow:0 0 3px #999;
+     }
+    #container_body{
+     padding:20px;
+     }
+    .form_title{
+     font-size:35px;
+     color:#141823;
+     text-align:center;
+     padding:10px;
+     font-weight:normal;
+     }
+    .head_para{
+     font-size:19px;
+     color:#99a2a7;
+     text-align:center;
+     font-weight:normal;
+     }
+    #form_name{
+     padding:25px 0 0 15px;
+     }
+    .firstnameorlastname{
+      margin-right:20px;
+     }
+    .input_name{
+     width:207px;
+     padding:5px;
+     font-size:18px;
+     }
+    #email_form{
+     clear:both;
+     padding:15px 0 10px 0px;
+     }
+    .input_email{
+     width:434px;
+     padding:5px;
+     font-size:18px;
+     }
+    #Re_email_form{
+     padding:10px 0 10px 0px;
+     }
+    .input_Re_email{
+     width:434px;
+     padding:5px;
+     font-size:18px;
+     }
+    #password_form{
+     padding:10px 0 10px 0px;
+     }
+    .input_password{
+     width:434px;
+     padding:5px;
+     font-size:18px;
+     }
+    .birthday_title{
+     font-size:16px;
+     color:#8b919d;
+     font-weight:normal;
+     padding:0 0 10px 0;
+     }
+    select{
+     padding:5px;
+     }
+    #birthday{
+     font-size:12px;
+     color:#8b919d;
+     padding-top:10px;
+     }
+    #radio_button{
+     padding:10px 0 0 0;
+     }
+    #sign_user{
+     font-size:14px;
+     color:#FFF;
+     text-align:center;
+     background-color:#3B5998;
+     padding:10px;
+     margin-top:10px;
+     cursor: pointer;
+     }
+    #errorBox{
+     color:#F00;
+     }
+</pre>
+<p><strong>Mã Javascript</strong></p>
+<pre class="brush: js">
+     function Submit(){
+     var emailRegex = /^[A-Za-z0-9._]*\@[A-Za-z]*\.[A-Za-z]{2,5}$/;
+     var fname = document.form.Name.value,
+      lname = document.form.LastName.value,
+      femail = document.form.Email.value,
+      freemail = document.form.enterEmail.value,
+      fpassword = document.form.Password.value,
+      fmonth = document.form.birthday_month.value,
+      fday = document.form.birthday_day.value,
+      fyear = document.form.birthday_year.value;
+
+     if( fname == "" )
+       {
+         document.form.Name.focus() ;
+      document.getElementById("errorBox").innerHTML = "enter the first name";
+         return false;
+       }
+     if( lname == "" )
+       {
+         document.form.LastName.focus() ;
+       document.getElementById("errorBox").innerHTML = "enter the last name";
+         return false;
+       }
+
+       if (femail == "" )
+     {
+      document.form.Email.focus();
+      document.getElementById("errorBox").innerHTML = "enter the email";
+      return false;
+      }else if(!emailRegex.test(femail)){
+      document.form.Email.focus();
+      document.getElementById("errorBox").innerHTML = "enter the valid email";
+      return false;
+      }
+
+       if (freemail == "" )
+     {
+      document.form.enterEmail.focus();
+      document.getElementById("errorBox").innerHTML = "Re-enter the email";
+      return false;
+      }else if(!emailRegex.test(freemail)){
+      document.form.enterEmail.focus();
+      document.getElementById("errorBox").innerHTML = "Re-enter the valid email";
+      return false;
+      }
+
+      if(freemail !=  femail){
+       document.form.enterEmail.focus();
+       document.getElementById("errorBox").innerHTML = "emails are not matching, re-enter again";
+       return false;
+       }
+
+
+     if(fpassword == "")
+      {
+       document.form.Password.focus();
+       document.getElementById("errorBox").innerHTML = "enter the password";
+       return false;
+      }
+
+       if (fmonth == "") {
+            document.form.birthday_month.focus();
+      document.getElementById("errorBox").innerHTML = "select the birthday month";
+            return false;
+         }
+      if (fday == "") {
+            document.form.birthday_day.focus();
+      document.getElementById("errorBox").innerHTML = "select the birthday day";
+            return false;
+         }
+      if (fyear == "") {
+            document.form.birthday_year.focus();
+      document.getElementById("errorBox").innerHTML = "select the birthday year";
+            return false;
+         }
+      if(document.form.radiobutton[0].checked == false && document.form.radiobutton[1].checked == false){
+        document.getElementById("errorBox").innerHTML = "select your gender";
+        return false;
+       }
+      if(fname != '' && lname != '' && femail != '' && freemail != '' && fpassword != '' && fmonth != '' && fday != '' && fyear != ''){
+       document.getElementById("errorBox").innerHTML = "form submitted successfully";
+       }
+    }
+</pre>
+<a href="demo/js/bai11/1" class="button bar-item green hover-white hover-text-green" style="margin-bottom: 7px" target="_blank">Xem ví dụ »</a>

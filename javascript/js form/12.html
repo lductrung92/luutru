@@ -1,0 +1,75 @@
+<p>Bắt lỗi passwword nhập lại có trùng khớp với password đã nhập ban đầu hay không?</p>
+<p><strong>Mã HTML</strong></p>
+<pre class="brush: html">
+    &lt;div class=&quot;tutorialWrapper&quot;&gt
+    &nbsp; &nbsp; &nbsp; &lt;form&gt
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;div class=&quot;fieldWrapper&quot;&gt
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;label for=&quot;pass1&quot;&gt;Password:&lt;/label&gt
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;input type=&quot;password&quot; name=&quot;pass1&quot; id=&quot;pass1&quot;&gt
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;/div&gt
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;div class=&quot;fieldWrapper&quot;&gt
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;label for=&quot;pass2&quot;&gt;Confirm Password:&lt;/label&gt
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;input type=&quot;password&quot; name=&quot;pass2&quot; id=&quot;pass2&quot; onkeyup=&quot;checkPass(); return false;&quot;&gt
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;span id=&quot;confirmMessage&quot; class=&quot;confirmMessage&quot;&gt;&lt;/span&gt
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;/div&gt
+    &nbsp; &nbsp; &nbsp; &lt;/form&gt
+    &nbsp; &lt;/div&gt;
+</pre>
+<p><strong>Mã CSS</strong></p>
+<pre class="brush: css">
+    .tutorialWrapper{
+      width: 100%;
+      height: auto;
+    }
+    .tutorialWrapper form{
+      background-color: #ffc;
+      border: 1px solid #cc9;
+      padding: 10px;
+      font-family: verdana;
+      width: 75%;
+      font-size: 13px;
+    }
+    .fieldWrapper{
+      margin: 2px 0 2px 0;
+      padding: 0;
+    }
+    .tutorialWrapper label{
+      float: left;
+      text-align: right;
+      margin: 0 5px 0 0;
+      width: 30%;
+    }
+    .tutorialWrapper input{
+      width: 200px;
+      border: 1px solid #cc9;
+    }
+    .confirmMessage{
+      margin: 0;
+      padding: 0;
+      font-size: .8em;
+    }
+    input {
+         padding: 3px;
+    }
+</pre>
+<p><strong>Mã Javascript</strong></p>
+<pre class="brush: js">
+    function checkPass()
+    {
+        var pass1 = document.getElementById('pass1');
+        var pass2 = document.getElementById('pass2');
+        var message = document.getElementById('confirmMessage');
+        var goodColor = "#66cc66";
+        var badColor = "#ff6666";
+        if(pass1.value == pass2.value){
+            pass2.style.backgroundColor = goodColor;
+            message.style.color = goodColor;
+            message.innerHTML = "Passwords Trùng khớp!"
+        }else{
+            pass2.style.backgroundColor = badColor;
+            message.style.color = badColor;
+            message.innerHTML = "Passwords Không trùng khớp!"
+        }
+    }
+</pre>
+<a href="demo/js/bai11/2" class="button bar-item green hover-white hover-text-green" style="margin-bottom: 7px" target="_blank">Xem ví dụ »</a>

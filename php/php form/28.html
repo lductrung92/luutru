@@ -89,7 +89,7 @@
 <p>Kiểm tra họ tên là bắt buộc và chỉ có thể là chữ cái và khoảng trắng</p>
 <pre class="brush: php">
     if (empty($_POST["name"])) {
-        $nameErr = "Name is required";
+        $nameErr = "Bạn phải nhập họ tên";
     } else {
         $name = test_input($_POST["name"]);
         // kiểm tra tên chỉ có thể là chữ cái và khoảng trắng
@@ -101,7 +101,7 @@
 <p>Kiểm tra E-mail là bắt buộc và có @ và '.'</p>
 <pre class="brush: php">
     if (empty($_POST["email"])) {
-        $emailErr = "Email is required";
+        $emailErr = "Bạn phải nhập e-mail";
     } else {
         $email = test_input($_POST["email"]);
         // kiểm tra xem địa chỉ e-mail có đúng định dạng hay không
@@ -118,11 +118,120 @@
         $website = test_input($_POST["website"]);
         // kiểm tra url hợp lệ hay không
         if (!preg_match("/\b(?:(?:https?|ftp):\/\/|www\.)[-a-z0-9+&@#\/%?=~_|!:,.;]*[-a-z0-9+&@#\/%=~_|]/i",$website)) {
-            $websiteErr = "url không hợp lệ";
+            $websiteErr = "Url không hợp lệ";
         }
     }
 </pre>
 <p>Code hoàn thiện bây giờ:</p>
 <pre class="brush: php; html-script: true">
+    &lt;!DOCTYPE HTML&gt;
+    &lt;html&gt;
+    &lt;head&gt;
+        &lt;style&gt;
+            body {
+                padding: 5px;
+            }
+            label {
+                width: 15%;
+                float: left;
+            }
+            input {
+                padding: 3px;
+            }
+            .error {color: #FF0000;}
+        &lt;/style&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
 
+    &lt;?php
+        // define variables and set to empty values
+        $nameErr = $emailErr = $genderErr = $websiteErr = &quot;&quot;;
+        $name = $email = $gender = $comment = $website = &quot;&quot;;
+
+        if (isset($_POST[&quot;submit&quot;])) {
+            if (empty($_POST[&quot;name&quot;])) {
+                $nameErr = &quot;Bạn phải nhập họ t&ecirc;n&quot;;
+            } else {
+                $name = test_input($_POST[&quot;name&quot;]);
+                // kiểm tra t&ecirc;n chỉ c&oacute; thể l&agrave; chữ c&aacute;i v&agrave; khoảng trắng
+                if (!preg_match(&quot;/^[a-zA-Z ]*$/&quot;,$name)) {
+                    $nameErr = &quot;Họ t&ecirc;n chỉ c&oacute; thể l&agrave; chữ c&aacute;i v&agrave; khoảng trắng&quot;;
+                }
+            }
+
+            if (empty($_POST[&quot;email&quot;])) {
+                $emailErr = &quot;Bạn phải nhập e-mail&quot;;
+            } else {
+                $email = test_input($_POST[&quot;email&quot;]);
+                // kiểm tra xem địa chỉ e-mail c&oacute; đ&uacute;ng định dạng hay kh&ocirc;ng
+                if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+                    $emailErr = &quot;Định dạng email kh&ocirc;ng hợp lệ&quot;;
+                }
+            }
+
+            if (empty($_POST[&quot;website&quot;])) {
+                $website = &quot;&quot;;
+            } else {
+                $website = test_input($_POST[&quot;website&quot;]);
+                // kiểm tra url hợp lệ hay kh&ocirc;ng
+                if (!preg_match(&quot;/\b(?:(?:https?|ftp):\/\/|www\.)[-a-z0-9+&amp;@#\/%?=~_|!:,.;]*[-a-z0-9+&amp;@#\/%=~_|]/i&quot;,$website)) {
+                    $websiteErr = &quot;Url kh&ocirc;ng hợp lệ&quot;;
+                }
+            }
+
+            if (empty($_POST[&quot;comment&quot;])) {
+                $comment = &quot;&quot;;
+            } else {
+                $comment = test_input($_POST[&quot;comment&quot;]);
+            }
+        }
+
+        function test_input($data) {
+            $data = trim($data);
+            $data = stripslashes($data);
+            $data = htmlspecialchars($data);
+            return $data;
+        }
+    ?&gt;
+
+    &lt;h2&gt;PHP Form Validation Example&lt;/h2&gt;
+    &lt;p&gt;&lt;span class=&quot;error&quot;&gt;* C&aacute;c trường bắt buộc&lt;/span&gt;&lt;/p&gt;
+    &lt;form method=&quot;post&quot; action=&quot;&lt;?php $_PHP_SELF ?&gt;&quot;&gt;
+        &lt;label&gt;Họ t&ecirc;n:&lt;/label&gt; &lt;input type=&quot;text&quot; name=&quot;name&quot;&gt;
+        &lt;span class=&quot;error&quot;&gt;* &lt;?php echo $nameErr;?&gt;&lt;/span&gt;
+        &lt;br&gt;&lt;br&gt;
+        &lt;label&gt;E-mail:&lt;/label&gt; &lt;input type=&quot;text&quot; name=&quot;email&quot;&gt;
+        &lt;span class=&quot;error&quot;&gt;* &lt;?php echo $emailErr;?&gt;&lt;/span&gt;
+        &lt;br&gt;&lt;br&gt;
+        &lt;label&gt;Website:&lt;/label&gt; &lt;input type=&quot;text&quot; name=&quot;website&quot;&gt;
+        &lt;span class=&quot;error&quot;&gt;&lt;?php echo $websiteErr;?&gt;&lt;/span&gt;
+        &lt;br&gt;&lt;br&gt;
+        &lt;label&gt;B&igrave;nh luận:&lt;/label&gt; &lt;textarea name=&quot;comment&quot; rows=&quot;5&quot; cols=&quot;40&quot;&gt;&lt;/textarea&gt;
+        &lt;br&gt;&lt;br&gt;
+        &lt;label&gt;Giới t&iacute;nh:&lt;/label&gt;
+        &lt;input type=&quot;radio&quot; name=&quot;gender&quot; checked value=&quot;Nam&quot;&gt;Nam
+        &lt;input type=&quot;radio&quot; name=&quot;gender&quot; value=&quot;Nữ&quot;&gt;Nữ
+        &lt;br&gt;&lt;br&gt;
+        &lt;input type=&quot;submit&quot; name=&quot;submit&quot; value=&quot;Submit&quot;&gt;
+    &lt;/form&gt;
+
+    &lt;?php
+    if(isset($_POST[&quot;submit&quot;])) {
+        echo &quot;&lt;h2&gt;Th&ocirc;ng tin của bạn:&lt;/h2&gt;&quot;;
+        echo &quot;&lt;strong&gt;Họ t&ecirc;n: &lt;/strong&gt;&quot; . $name;
+        echo &quot;&lt;br&gt;&quot;;
+        echo &quot;&lt;strong&gt;E-mail: &lt;/strong&gt;&quot; . $email;
+        echo &quot;&lt;br&gt;&quot;;
+        echo &quot;&lt;strong&gt;Website: &lt;/strong&gt;&quot; . $website;
+        echo &quot;&lt;br&gt;&quot;;
+        echo &quot;&lt;strong&gt;B&igrave;nh luận: &lt;/strong&gt;&quot; . $comment;
+        echo &quot;&lt;br&gt;&quot;;
+        echo &quot;&lt;strong&gt;Giới t&iacute;nh: &lt;/strong&gt;&quot; . $gender;
+        exit();
+    }
+    ?&gt;
+
+    &lt;/body&gt;
+    &lt;/html&gt;
 </pre>
+<a href="demo/php/bai28/2" class="button bar-item green hover-white hover-text-green" style="margin-bottom: 7px" target="_blank">Xem ví dụ »</a>
