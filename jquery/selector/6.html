@@ -1,0 +1,333 @@
+<p>Bài này chỉ đưa ra các bộ chọn của form trong jQuery mà ta hay gặp</p>
+<p><strong>Mục Lục:</strong></p>
+<div id="category_list">
+    <ul>
+        <li><a id = "category_01_link" href="#">:input Selector</a></li>
+        <li><a id = "category_02_link" href="#">:button Selector</a></li>
+        <li><a id = "category_03_link" href="#">:checkbox Selector</a></li>
+        <li><a id = "category_04_link" href="#">:selected Selector</a></li>
+        <li><a id = "category_05_link" href="#">:enable Selector</a></li>
+        <li><a id = "category_06_link" href="#">:disable Selector</a></li>
+    </ul>
+</div>
+<div id="category_01">
+    <p><strong>:input Selector</strong></p>
+    <p><strong>Cú pháp: </strong></p>
+    <pre class="brush: js">
+        jQuery( ":input" )
+    </pre>
+    <p>Chọn các thành phần input có thuộc tính type trùng với selector.</p>
+    <p><strong>Ví dụ: </strong></p>
+    <pre class="brush: js; html-script: true">
+        &lt;!doctype html&gt;
+        &lt;html lang=&quot;en&quot;&gt;
+        &lt;head&gt;
+        &nbsp; &lt;meta charset=&quot;utf-8&quot;&gt;
+        &nbsp; &lt;title&gt;input demo&lt;/title&gt;
+        &nbsp; &lt;style&gt;
+        &nbsp; textarea {
+        &nbsp; &nbsp; height: 25px;
+        &nbsp; }
+        &nbsp; &nbsp;&nbsp; &nbsp;&lt;/style&gt;
+        &nbsp; &lt;script src=&quot;https://code.jquery.com/jquery-1.10.2.js&quot;&gt;&lt;/script&gt;
+        &lt;/head&gt;
+        &lt;body&gt;
+        &nbsp;
+        &lt;form&gt;
+        &nbsp; &lt;input type=&quot;button&quot; value=&quot;Input Button&quot;&gt;
+        &nbsp; &lt;input type=&quot;checkbox&quot;&gt;
+        &nbsp; &lt;input type=&quot;file&quot;&gt;
+        &nbsp; &lt;input type=&quot;hidden&quot;&gt;
+        &nbsp; &lt;input type=&quot;image&quot;&gt;
+        &nbsp; &lt;input type=&quot;password&quot;&gt;
+        &nbsp; &lt;input type=&quot;radio&quot;&gt;
+        &nbsp; &lt;input type=&quot;reset&quot;&gt;
+        &nbsp; &lt;input type=&quot;submit&quot;&gt;
+        &nbsp; &lt;input type=&quot;text&quot;&gt;
+        &nbsp; &lt;select&gt;
+        &nbsp; &nbsp; &lt;option&gt;Option&lt;/option&gt;
+        &nbsp; &lt;/select&gt;
+        &nbsp; &lt;textarea&gt;&lt;/textarea&gt;
+        &nbsp; &lt;button&gt;Button&lt;/button&gt;
+        &lt;/form&gt;
+        &lt;div id=&quot;messages&quot;&gt;&lt;/div&gt;
+        &nbsp;
+        &lt;script&gt;
+        var allInputs = $( &quot;:input&quot; );
+        var formChildren = $( &quot;form &gt; *&quot; );
+        $( &quot;#messages&quot; ).text( &quot;Found &quot; + allInputs.length + &quot; inputs and the form has &quot; +
+        &nbsp; formChildren.length + &quot; children.&quot; );
+        &nbsp;
+        $( &quot;form&quot; ).submit(function( event ) {
+        &nbsp; event.preventDefault();
+        });
+        &lt;/script&gt;
+        &nbsp;
+        &lt;/body&gt;
+        &lt;/html&gt;
+    </pre>
+    <a href="demo/jquery/10" class="button bar-item green hover-white hover-text-green" style="margin-bottom: 7px" target="_blank">Xem ví dụ »</a>
+</div>
+<div id="category_02">
+    <p><strong>:button Selector</strong></p>
+    <p><strong>Cú pháp: </strong></p>
+    <pre class="brush: js">
+        jQuery( ":button" )
+    </pre>
+    <p>Chọn các thành phần button.</p>
+    <p><strong>Ví dụ: </strong></p>
+    <pre class="brush: js; html-script: true">
+        &lt;!doctype html&gt;
+        &lt;html lang=&quot;en&quot;&gt;
+        &lt;head&gt;
+        &nbsp; &lt;meta charset=&quot;utf-8&quot;&gt;
+        &nbsp; &lt;title&gt;button demo&lt;/title&gt;
+        &nbsp; &lt;style&gt;
+        &nbsp; textarea {
+        &nbsp; &nbsp; height: 35px;
+        &nbsp; }
+        &nbsp; div {
+        &nbsp; &nbsp; color: red;
+        &nbsp; }
+        &nbsp; fieldset {
+        &nbsp; &nbsp; margin: 0;
+        &nbsp; &nbsp; padding: 0;
+        &nbsp; &nbsp; border-width: 0;
+        &nbsp; }
+        &nbsp; .marked {
+        &nbsp; &nbsp; background-color: yellow;
+        &nbsp; &nbsp; border: 3px red solid;
+        &nbsp; }
+        &nbsp; &lt;/style&gt;
+        &nbsp; &lt;script src=&quot;https://code.jquery.com/jquery-1.10.2.js&quot;&gt;&lt;/script&gt;
+        &lt;/head&gt;
+        &lt;body&gt;
+        &nbsp;
+        &lt;form&gt;
+        &nbsp; &lt;fieldset&gt;
+        &nbsp; &nbsp; &lt;input type=&quot;button&quot; value=&quot;Input Button&quot;&gt;
+        &nbsp; &nbsp; &lt;input type=&quot;checkbox&quot;&gt;
+        &nbsp;
+        &nbsp; &nbsp; &lt;input type=&quot;file&quot;&gt;
+        &nbsp; &nbsp; &lt;input type=&quot;hidden&quot;&gt;
+        &nbsp; &nbsp; &lt;input type=&quot;image&quot;&gt;
+        &nbsp;
+        &nbsp; &nbsp; &lt;input type=&quot;password&quot;&gt;
+        &nbsp; &nbsp; &lt;input type=&quot;radio&quot;&gt;
+        &nbsp; &nbsp; &lt;input type=&quot;reset&quot;&gt;
+        &nbsp;
+        &nbsp; &nbsp; &lt;input type=&quot;submit&quot;&gt;
+        &nbsp; &nbsp; &lt;input type=&quot;text&quot;&gt;
+        &nbsp; &nbsp; &lt;select&gt;
+        &nbsp; &nbsp; &nbsp; &lt;option&gt;Option&lt;/option&gt;
+        &nbsp; &nbsp; &lt;/select&gt;
+        &nbsp;
+        &nbsp; &nbsp; &lt;textarea&gt;&lt;/textarea&gt;
+        &nbsp; &nbsp; &lt;button&gt;Button&lt;/button&gt;
+        &nbsp; &lt;/fieldset&gt;
+        &lt;/form&gt;
+        &nbsp;
+        &lt;div&gt;&lt;/div&gt;
+        &nbsp;
+        &lt;script&gt;
+        var input = $( &quot;:button&quot; ).addClass( &quot;marked&quot; );
+        $( &quot;div&quot; ).text( &quot;For this type jQuery found &quot; + input.length + &quot;.&quot; );
+        // Prevent the form from submitting
+        $( &quot;form&quot; ).submit(function( event ) {
+        &nbsp; event.preventDefault();
+        });
+        &lt;/script&gt;
+        &nbsp;
+        &lt;/body&gt;
+        &lt;/html&gt;
+
+    </pre>
+    <a href="demo/jquery/11" class="button bar-item green hover-white hover-text-green" style="margin-bottom: 7px" target="_blank">Xem ví dụ »</a>
+</div>
+<div id="category_03">
+    <p><strong>:checkbox Selector</strong></p>
+    <p><strong>Cú pháp: </strong></p>
+    <pre class="brush: js">
+        jQuery( ":checkbox" )
+    </pre>
+    <p>Chọn các thành phần checkbox.</p>
+    <p><strong>Ví dụ: </strong></p>
+    <pre class="brush: js; html-script: true">
+        &lt;!doctype html&gt;
+        &lt;html lang=&quot;en&quot;&gt;
+        &lt;head&gt;
+        &nbsp; &lt;meta charset=&quot;utf-8&quot;&gt;
+        &nbsp; &lt;title&gt;checkbox demo&lt;/title&gt;
+        &nbsp; &lt;style&gt;
+        &nbsp; textarea {
+        &nbsp; &nbsp; height: 25px;
+        &nbsp; }
+        &nbsp; &lt;/style&gt;
+        &nbsp; &lt;script src=&quot;https://code.jquery.com/jquery-1.10.2.js&quot;&gt;&lt;/script&gt;
+        &lt;/head&gt;
+        &lt;body&gt;
+        &nbsp;
+        &lt;form&gt;
+        &nbsp; &lt;input type=&quot;button&quot; value=&quot;Input Button&quot;&gt;
+        &nbsp; &lt;input type=&quot;checkbox&quot;&gt;
+        &nbsp;
+        &nbsp; &lt;input type=&quot;checkbox&quot;&gt;
+        &nbsp; &lt;input type=&quot;file&quot;&gt;
+        &nbsp; &lt;input type=&quot;hidden&quot;&gt;
+        &nbsp;
+        &nbsp; &lt;input type=&quot;image&quot;&gt;
+        &nbsp; &lt;input type=&quot;password&quot;&gt;
+        &nbsp; &lt;input type=&quot;radio&quot;&gt;
+        &nbsp;
+        &nbsp; &lt;input type=&quot;reset&quot;&gt;
+        &nbsp; &lt;input type=&quot;submit&quot;&gt;
+        &nbsp; &lt;input type=&quot;text&quot;&gt;
+        &nbsp;
+        &nbsp; &lt;select&gt;
+        &nbsp; &nbsp; &lt;option&gt;Option&lt;/option&gt;
+        &nbsp; &lt;/select&gt;
+        &nbsp;
+        &nbsp; &lt;textarea&gt;&lt;/textarea&gt;
+        &nbsp; &lt;button&gt;Button&lt;/button&gt;
+        &lt;/form&gt;
+        &nbsp;
+        &lt;div&gt;&lt;/div&gt;
+        &nbsp;
+        &lt;script&gt;
+        var input = $( &quot;form input:checkbox&quot; )
+        &nbsp; .wrap( &quot;&lt;span&gt;&lt;/span&gt;&quot; )
+        &nbsp; .parent()
+        &nbsp; .css({
+        &nbsp; &nbsp; background: &quot;yellow&quot;,
+        &nbsp; &nbsp; border: &quot;3px red solid&quot;
+        &nbsp; });
+        &nbsp;
+        $( &quot;div&quot; )
+        &nbsp; .text( &quot;For this type jQuery found &quot; + input.length + &quot;.&quot; )
+        &nbsp; .css( &quot;color&quot;, &quot;red&quot; );
+        &nbsp;
+        // Prevent the form from submitting
+        $( &quot;form&quot; ).submit(function( event ) {
+        &nbsp; &nbsp; event.preventDefault();
+        });
+        &lt;/script&gt;
+        &nbsp;
+        &lt;/body&gt;
+        &lt;/html&gt;
+    </pre>
+    <a href="demo/jquery/12" class="button bar-item green hover-white hover-text-green" style="margin-bottom: 7px" target="_blank">Xem ví dụ »</a>
+</div>
+<div id="category_04">
+    <p><strong>:selected Selector</strong></p>
+    <p><strong>Cú pháp: </strong></p>
+    <pre class="brush: js">
+       jQuery( ":selected" )
+    </pre>
+    <p>Chọn các thành phần selected.</p>
+    <p><strong>Ví dụ: </strong></p>
+    <pre class="brush: js; html-script: true">
+        &lt;!doctype html&gt;
+        &lt;html lang=&quot;en&quot;&gt;
+        &lt;head&gt;
+        &nbsp; &lt;meta charset=&quot;utf-8&quot;&gt;
+        &nbsp; &lt;title&gt;selected demo&lt;/title&gt;
+        &nbsp; &lt;style&gt;
+        &nbsp; div {
+        &nbsp; &nbsp; color: red;
+        &nbsp; }
+        &nbsp; &lt;/style&gt;
+        &nbsp; &lt;script src=&quot;https://code.jquery.com/jquery-1.10.2.js&quot;&gt;&lt;/script&gt;
+        &lt;/head&gt;
+        &lt;body&gt;
+        &nbsp;
+        &lt;select name=&quot;garden&quot; multiple=&quot;multiple&quot;&gt;
+        &nbsp; &lt;option&gt;Flowers&lt;/option&gt;
+        &nbsp; &lt;option selected=&quot;selected&quot;&gt;Shrubs&lt;/option&gt;
+        &nbsp; &lt;option&gt;Trees&lt;/option&gt;
+        &nbsp; &lt;option selected=&quot;selected&quot;&gt;Bushes&lt;/option&gt;
+        &nbsp; &lt;option&gt;Grass&lt;/option&gt;
+        &nbsp; &lt;option&gt;Dirt&lt;/option&gt;
+        &lt;/select&gt;
+        &lt;div&gt;&lt;/div&gt;
+        &nbsp;
+        &lt;script&gt;
+        $( &quot;select&quot; )
+        &nbsp; .change(function() {
+        &nbsp; &nbsp; var str = &quot;&quot;;
+        &nbsp; &nbsp; $( &quot;select option:selected&quot; ).each(function() {
+        &nbsp; &nbsp; &nbsp; str += $( this ).text() + &quot; &quot;;
+        &nbsp; &nbsp; });
+        &nbsp; &nbsp; $( &quot;div&quot; ).text( str );
+        &nbsp; })
+        &nbsp; .trigger( &quot;change&quot; );
+        &lt;/script&gt;
+        &nbsp;
+        &lt;/body&gt;
+        &lt;/html&gt;
+    </pre>
+    <a href="demo/jquery/13" class="button bar-item green hover-white hover-text-green" style="margin-bottom: 7px" target="_blank">Xem ví dụ »</a>
+</div>
+<div id="category_05">
+    <p><strong>:enable Selector</strong></p>
+    <p><strong>Cú pháp: </strong></p>
+    <pre class="brush: js">
+        jQuery( ":enabled" )
+    </pre>
+    <p>Chọn các thành phần enabled.</p>
+    <p><strong>Ví dụ: </strong></p>
+    <pre class="brush: js; html-script: true">
+        &lt;!doctype html&gt;
+        &lt;html lang=&quot;en&quot;&gt;
+        &lt;head&gt;
+        &nbsp; &lt;meta charset=&quot;utf-8&quot;&gt;
+        &nbsp; &lt;title&gt;enabled demo&lt;/title&gt;
+        &nbsp; &lt;script src=&quot;https://code.jquery.com/jquery-1.10.2.js&quot;&gt;&lt;/script&gt;
+        &lt;/head&gt;
+        &lt;body&gt;
+        &nbsp;
+        &lt;form&gt;
+        &nbsp; &lt;input name=&quot;email&quot; disabled=&quot;disabled&quot;&gt;
+        &nbsp; &lt;input name=&quot;id&quot;&gt;
+        &lt;/form&gt;
+        &nbsp;
+        &lt;script&gt;
+        $( &quot;input:enabled&quot; ).val( &quot;this is it&quot; );
+        &lt;/script&gt;
+        &nbsp;
+        &lt;/body&gt;
+        &lt;/html&gt;
+    </pre>
+    <a href="demo/jquery/14" class="button bar-item green hover-white hover-text-green" style="margin-bottom: 7px" target="_blank">Xem ví dụ »</a>
+</div>
+<div id="category_06">
+    <p><strong>:disable Selector</strong></p>
+    <p><strong>Cú pháp: </strong></p>
+    <pre class="brush: js">
+        jQuery( ":disabled" )
+    </pre>
+    <p>Chọn các thành phần disabled.</p>
+    <p><strong>Ví dụ: </strong></p>
+    <pre class="brush: js; html-script: true">
+        &lt;!doctype html&gt;
+        &lt;html lang=&quot;en&quot;&gt;
+        &lt;head&gt;
+        &nbsp; &lt;meta charset=&quot;utf-8&quot;&gt;
+        &nbsp; &lt;title&gt;disabled demo&lt;/title&gt;
+        &nbsp; &lt;script src=&quot;https://code.jquery.com/jquery-1.10.2.js&quot;&gt;&lt;/script&gt;
+        &lt;/head&gt;
+        &lt;body&gt;
+        &nbsp;
+        &lt;form&gt;
+        &nbsp; &lt;input name=&quot;email&quot; disabled=&quot;disabled&quot;&gt;
+        &nbsp; &lt;input name=&quot;id&quot;&gt;
+        &lt;/form&gt;
+        &nbsp;
+        &lt;script&gt;
+        $( &quot;input:disabled&quot; ).val( &quot;this is it&quot; );
+        &lt;/script&gt;
+        &nbsp;
+        &lt;/body&gt;
+        &lt;/html&gt;
+    </pre>
+    <a href="demo/jquery/15" class="button bar-item green hover-white hover-text-green" style="margin-bottom: 7px" target="_blank">Xem ví dụ »</a>
+</div>

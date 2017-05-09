@@ -1,0 +1,92 @@
+<p>Trong bài này sẽ trình bày ví dụ minh họa ứng dụng Select Box tỉnh thành sử dụng kỹ thuật Ajax.</p>
+<p>Khi người dùng select tỉnh thì sẽ hiển thị ra list danh sách các huyện tương ứng</p>
+<p>Tạo file <code>index.php</code> có mã như sau: </p>
+<pre class="brush: js; html-script: true">
+    &lt;?php
+        require &#39;getListCity.php&#39;;
+    ?&gt;
+    &lt;html&gt;
+    &lt;style type=&quot;text/css&quot;&gt;
+        select {
+            padding: 3px;
+            width: 40%;
+        }
+    &lt;/style&gt;
+    &lt;head&gt;
+        &lt;script&gt;
+            function showTownship(str) {
+                if (str.length==0) {
+                    document.getElementById(&quot;township&quot;).value=&quot;Chọn quận huyện&quot;;
+                    return;
+                }
+                if (window.XMLHttpRequest) {
+                    // code for IE7+, Firefox, Chrome, Opera, Safari
+                    xmlhttp=new XMLHttpRequest();
+                } else {  // code for IE6, IE5
+                    xmlhttp=new ActiveXObject(&quot;Microsoft.XMLHTTP&quot;);
+                }
+                xmlhttp.onreadystatechange=function() {
+                    if (this.readyState==4 &amp;&amp; this.status==200) {
+                        document.getElementById(&quot;township&quot;).innerHTML=this.responseText;
+                    }
+                }
+                xmlhttp.open(&quot;GET&quot;,&quot;/gettownship.php?q=&quot;+str,true);
+                xmlhttp.send();
+            }
+        &lt;/script&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+
+    &lt;form&gt;
+        &lt;select onchange=&quot;showTownship(this.value)&quot;&gt;
+            &lt;option value=&quot;0&quot;&gt;Chọn tỉnh th&agrave;nh&lt;/option&gt;
+            &lt;?php
+                foreach(get_list_city_vn() as $city =&gt; $township) {
+                    echo &#39;&lt;option value=&quot;&#39;. $city .&#39;&quot;&gt;&#39;. $city .&#39;&lt;/option&gt;&#39;;
+                }
+            ?&gt;
+        &lt;/select&gt;
+        &lt;br /&gt;&lt;br /&gt;
+        &lt;select id=&quot;township&quot;&gt;
+            &lt;option value=&quot;0&quot;&gt;Chọn quận huyện&lt;/option&gt;
+        &lt;/select&gt;
+    &lt;/form&gt;
+    &lt;/body&gt;
+    &lt;/html&gt;
+</pre>
+<p><strong>Giải thích: </strong>hàm showTownship() thực hiện như sau:</p>
+<ul>
+    <li>Chức năng showTownship() thực hiện như sau:</li>
+    <li>Tạo một đối tượng XMLHttpRequest</li>
+    <li>Sử dụng hàm onreadystatechange để lắng nghe các sự kiện từ máy chủ</li>
+    <li>Gửi yêu cầu tới tệp PHP (gettownship.php) trên máy chủ</li>
+    <li>Lưu ý rằng tham số q được thêm vào url (gettownship.php?q = " + str)</li>
+    <li>Và biến str chứa nội dung của trường đầu vào</li>
+
+</ul>
+<p>Tệp PHP (gettownship.php) có mã như sau: </p>
+<pre class="brush: php">
+    require 'getListCity.php';
+    $city = $_GET["q"];
+    $c = false;
+    foreach (get_list_city_vn() as $key => $value) {
+        if(trim($key) == trim($city)) {
+            foreach ($value as $township) {
+                echo '<option value="'. $township .'">'. $township .'</option>';
+            }
+            $c = true;
+        }
+    }
+    if(!$c){
+        echo '<option value="0">Chọn Quận / Huyện</option>';
+        return;
+    }
+</pre>
+<p><strong>Giải thích: </strong></p>
+<ul>
+    <li>Lấy giá trị từ index gửi qua gán vào biến $city</li>
+    <li>Code file <code>getListCity.php</code> chỉ là mảng danh sách tỉnh, quận huyện: <a href="http://laedaily.com/laravel-filemanager/photos/1/file/getListCity.php" target="_blank">Xem chi tiết</a> </li>
+    <li>Sử dụng vòng lặp foreach so sánh, rồi đưa ra kết quả</li>
+
+</ul>
+<a href="demo/php/bai29/1" class="button bar-item green hover-white hover-text-green" style="margin-bottom: 7px" target="_blank">Xem ví dụ »</a>

@@ -1,0 +1,99 @@
+<p>Phương thức jQuery <code>load()</code> là một phương pháp AJAX đơn giản, nhưng mạnh mẽ.</p>
+<p>Phương thức <code>load()</code> tải dữ liệu từ máy chủ và đặt dữ liệu trả về vào phần tử đã chọn.</p>
+<p><strong>Cú pháp: </strong></p>
+<pre class="brush: js">
+    $(selector).load(URL,data,callback);
+</pre>
+<p><strong>Trong đó: </strong></p>
+<ul>
+    <li>URL - bắt buộc chỉ định URL bạn muốn tải</li>
+    <li>data - dữ liệu gửi cùng với yêu cầu</li>
+    <li>callback - một hàm được thực hiện sau khi phương thức load() hoàn tất.</li>
+</ul>
+<p><strong>Ví dụ 1: </strong> load 1 đoạn text từ file demo.txt có nội dung như sau</p>
+<pre class="brush: html">
+    <h3>Chào mừng bạn đến với website: laedaily.com !!!</h3>
+    <p>Đây là ví dụ về phương thức load() trong jQuery</p>
+</pre>
+<p>Ta sẽ load dữ liệu vào thẻ div có id="demo"</p>
+<pre class="brush: js; html-script: true">
+    $(document).ready(function(){
+        $("button").click(function(){
+            $("#demo").load("http://laedaily.com/laravel-filemanager/photos/1/file/demo/jquery/file/demo.txt");
+        });
+    });
+</pre>
+<p><strong>Mã HTML</strong></p>
+<pre class="brush: html">
+    <div id="demo"><h2>Let jQuery AJAX Change This Text</h2></div>
+    <button>Load</button>
+</pre>
+<a href="demo/jquery/38" class="button bar-item green hover-white hover-text-green" style="margin-bottom: 7px" target="_blank">Xem ví dụ »</a>
+<p><strong>Ví dụ 2: </strong>load 1 form đăng ký từ file form.txt có nội dung như sau: </p>
+<pre class="brush: html">
+    <form>
+      <fieldset>
+        <div id="legend">
+          <legend class="">Register</legend>
+        </div>
+        <div class="control-group">
+          <!-- Username -->
+          <label class="control-label"  for="username">Username</label>
+          <div class="controls">
+            <input type="text" id="username" name="username" placeholder="" class="input-xlarge">
+            <p class="help-block">Username can contain any letters or numbers, without spaces</p>
+          </div>
+        </div>
+
+        <div class="control-group">
+          <!-- E-mail -->
+          <label class="control-label" for="email">E-mail</label>
+          <div class="controls">
+            <input type="text" id="email" name="email" placeholder="" class="input-xlarge">
+            <p class="help-block">Please provide your E-mail</p>
+          </div>
+        </div>
+
+        <div class="control-group">
+          <!-- Password-->
+          <label class="control-label" for="password">Password</label>
+          <div class="controls">
+            <input type="password" id="password" name="password" placeholder="" class="input-xlarge">
+            <p class="help-block">Password should be at least 4 characters</p>
+          </div>
+        </div>
+
+        <div class="control-group">
+          <!-- Password -->
+          <label class="control-label"  for="password_confirm">Password (Confirm)</label>
+          <div class="controls">
+            <input type="password" id="password_confirm" name="password_confirm" placeholder="" class="input-xlarge">
+            <p class="help-block">Please confirm password</p>
+          </div>
+        </div>
+
+        <div class="control-group">
+          <!-- Button -->
+          <div class="controls">
+            <button class="btn btn-success">Register</button>
+          </div>
+        </div>
+      </fieldset>
+    </form>
+</pre>
+<p>Ta sẽ load dữ liệu vào thẻ div có id="getForm"</p>
+<pre class="brush: js">
+   $(document).ready(function(){
+        $("#register").click(function(){
+            $("#getForm").load("http://laedaily.com/laravel-filemanager/photos/1/file/demo/jquery/file/form.txt", function (){
+                $("#register").hide();
+            });
+        });
+   });
+</pre>
+<p><strong>Mã HTML</strong></p>
+<pre class="brush: html">
+    <div id="getForm" style="margin: 20px"><h2>Let jQuery AJAX Change This Text</h2></div>
+    <button id="register">Đăng ký</button>
+</pre>
+<a href="demo/jquery/39" class="button bar-item green hover-white hover-text-green" style="margin-bottom: 7px" target="_blank">Xem ví dụ »</a>

@@ -1,0 +1,97 @@
+<p><strong>Cú pháp: </strong>
+<pre class="brush: js">
+    jQuery( "selector1, selector2, selectorN" )
+</pre>
+<p><strong>Trong đó: </strong></p>
+<ul>
+    <li>Selector1: Bất kỳ bộ chọn hợp lệ.</li>
+    <li>Selector2: Một bộ chọn hợp lệ khác.</li>
+    <li>SelectorN: Các bộ chọn lọc hợp lệ khác theo ý muốn của bạn.</li>
+</ul>
+<p><code>Multiple Selector (“selector1, selector2, selectorN”)</code> cho phép bạn kết hợp nhiều bộ chọn lại với nhau</p>
+<p><strong>Ví dụ 1: </strong> Kết hợp ba bộ chọn với nhau</p>
+<pre class="brush: js; html-script: true">
+    &lt;!doctype html&gt;
+    &lt;html lang=&quot;en&quot;&gt;
+    &lt;head&gt;
+    &nbsp; &lt;meta charset=&quot;utf-8&quot;&gt;
+    &nbsp; &lt;title&gt;multiple demo&lt;/title&gt;
+    &nbsp; &lt;style&gt;
+    &nbsp; div, span, p {
+    &nbsp; &nbsp; width: 126px;
+    &nbsp; &nbsp; height: 60px;
+    &nbsp; &nbsp; float: left;
+    &nbsp; &nbsp; padding: 3px;
+    &nbsp; &nbsp; margin: 2px;
+    &nbsp; &nbsp; background-color: #eee;
+    &nbsp; &nbsp; font-size: 14px;
+    &nbsp; }
+    &nbsp; &lt;/style&gt;
+    &nbsp; &lt;script src=&quot;https://code.jquery.com/jquery-1.10.2.js&quot;&gt;&lt;/script&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+    &nbsp;
+    &lt;div&gt;div&lt;/div&gt;
+    &lt;p class=&quot;myClass&quot;&gt;p class=&quot;myClass&quot;&lt;/p&gt;
+    &lt;p class=&quot;notMyClass&quot;&gt;p class=&quot;notMyClass&quot;&lt;/p&gt;
+    &lt;span&gt;span&lt;/span&gt;
+    &nbsp;
+    &lt;script&gt;
+    $( &quot;div, span, p.myClass&quot; ).css( &quot;border&quot;, &quot;3px solid red&quot; );
+    &lt;/script&gt;
+    &nbsp;
+    &lt;/body&gt;
+    &lt;/html&gt;
+</pre>
+<a href="demo/jquery/8" class="button bar-item green hover-white hover-text-green" style="margin-bottom: 7px" target="_blank">Xem ví dụ »</a>
+<p><strong>Ví dụ 2: </strong>Hiển thị thứ tự các đối tượng. </p>
+<pre class="brush: js; html-script: true">
+    &lt;!doctype html&gt;
+    &lt;html lang=&quot;en&quot;&gt;
+    &lt;head&gt;
+    &nbsp; &lt;meta charset=&quot;utf-8&quot;&gt;
+    &nbsp; &lt;title&gt;multiple demo&lt;/title&gt;
+    &nbsp; &lt;style&gt;
+    &nbsp; b {
+    &nbsp; &nbsp; color: red;
+    &nbsp; &nbsp; font-size: 16px;
+    &nbsp; &nbsp; display: block;
+    &nbsp; &nbsp; clear:left;
+    &nbsp; }
+    &nbsp; div, span, p {
+    &nbsp; &nbsp; width: 40px;
+    &nbsp; &nbsp; height: 40px;
+    &nbsp; &nbsp; float: left;
+    &nbsp; &nbsp; margin: 10px;
+    &nbsp; &nbsp; background-color: blue;
+    &nbsp; &nbsp; padding: 3px;
+    &nbsp; &nbsp; color: white;
+    &nbsp; }
+    &nbsp; &lt;/style&gt;
+    &nbsp; &lt;script src=&quot;https://code.jquery.com/jquery-1.10.2.js&quot;&gt;&lt;/script&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+    &nbsp;
+    &lt;span&gt;span&lt;/span&gt;
+    &lt;p&gt;p&lt;/p&gt;
+    &lt;p&gt;p&lt;/p&gt;
+    &lt;div&gt;div&lt;/div&gt;
+    &lt;span&gt;span&lt;/span&gt;
+    &lt;p&gt;p&lt;/p&gt;
+    &lt;div&gt;div&lt;/div&gt;
+    &lt;b&gt;&lt;/b&gt;
+    &nbsp;
+    &lt;script&gt;
+    var list = $( &quot;div, p, span&quot; )
+    &nbsp; .map( function() {
+    &nbsp; &nbsp; return this.tagName;
+    &nbsp; })
+    &nbsp; .get()
+    &nbsp; .join( &quot;, &quot; );
+    $( &quot;b&quot; ).append( document.createTextNode( list ) );
+    &lt;/script&gt;
+    &nbsp;
+    &lt;/body&gt;
+    &lt;/html&gt;
+</pre>
+<a href="demo/jquery/9" class="button bar-item green hover-white hover-text-green" style="margin-bottom: 7px" target="_blank">Xem ví dụ »</a>

@@ -1,0 +1,615 @@
+<p><strong>Mục Lục:</strong></p>
+<div id="category_list">
+    <ul>
+        <li><a id = "category_01_link" href="#">.click()</a></li>
+        <li><a id = "category_02_link" href="#">.contextmenu()</a></li>
+        <li><a id = "category_03_link" href="#">.dblclick()</a></li>
+        <li><a id = "category_04_link" href="#">.hover()</a></li>
+        <li><a id = "category_05_link" href="#">.mousedown()</a></li>
+        <li><a id = "category_06_link" href="#">.mouseenter()</a></li>
+        <li><a id = "category_07_link" href="#">.mouseleave()</a></li>
+        <li><a id = "category_08_link" href="#">.mousemove()</a></li>
+        <li><a id = "category_09_link" href="#">.mouseout()</a></li>
+        <li><a id = "category_10_link" href="#">.mouseover()</a></li>
+        <li><a id = "category_11_link" href="#">.mouseup()</a></li>
+        <li><a id = "category_12_link" href="#">.toggle()</a></li>
+    </ul>
+</div>
+<div id="category_01">
+    <p><strong>.click(): </strong>Kích hoạt sự kiện click trên thành phần hoặc ràng buộc xử lý một sự kiện tới sự kiện click trong javascript.</p>
+    <p><strong>Ví dụ: </strong></p>
+    <pre class="brush: js; html-script: true">
+        &lt;!doctype html&gt;
+        &lt;html lang=&quot;en&quot;&gt;
+        &lt;head&gt;
+        &nbsp; &lt;meta charset=&quot;utf-8&quot;&gt;
+        &nbsp; &lt;title&gt;click demo&lt;/title&gt;
+        &nbsp; &lt;style&gt;
+        &nbsp; p {
+        &nbsp; &nbsp; color: red;
+        &nbsp; &nbsp; margin: 5px;
+        &nbsp; &nbsp; cursor: pointer;
+        &nbsp; }
+        &nbsp; p:hover {
+        &nbsp; &nbsp; background: yellow;
+        &nbsp; }
+        &nbsp; &lt;/style&gt;
+        &nbsp; &lt;script src=&quot;https://code.jquery.com/jquery-1.10.2.js&quot;&gt;&lt;/script&gt;
+        &lt;/head&gt;
+        &lt;body&gt;
+        &nbsp;
+        &lt;p&gt;First Paragraph&lt;/p&gt;
+        &lt;p&gt;Second Paragraph&lt;/p&gt;
+        &lt;p&gt;Yet one more Paragraph&lt;/p&gt;
+        &nbsp;
+        &lt;script&gt;
+        $( &quot;p&quot; ).click(function() {
+        &nbsp; $( this ).slideUp();
+        });
+        &lt;/script&gt;
+        &nbsp;
+        &lt;/body&gt;
+        &lt;/html&gt;
+    </pre>
+    <a href="demo/jquery/26" class="button bar-item green hover-white hover-text-green" style="margin-bottom: 7px" target="_blank">Xem ví dụ »</a>
+</div>
+<div id="category_02">
+    <p><strong>.contextmenu(): </strong>Gắn một trình xử lý sự kiện vào sự kiện JavaScript "contextmenu" hoặc kích hoạt sự kiện đó trên một phần tử.</p>
+    <p><strong>Ví dụ: </strong></p>
+    <pre class="brush: js; html-script: true">
+        &lt;!doctype html&gt;
+        &lt;html lang=&quot;en&quot;&gt;
+        &lt;head&gt;
+        &nbsp; &lt;meta charset=&quot;utf-8&quot;&gt;
+        &nbsp; &lt;title&gt;contextmenu demo&lt;/title&gt;
+        &nbsp; &lt;style&gt;
+        &nbsp; div {
+        &nbsp; &nbsp; background: blue;
+        &nbsp; &nbsp; color: white;
+        &nbsp; &nbsp; height: 100px;
+        &nbsp; &nbsp; width: 150px;
+        &nbsp;}
+        &nbsp; div.contextmenu {
+        &nbsp; &nbsp; background: yellow;
+        &nbsp; &nbsp; color: black;
+        &nbsp; }
+        &nbsp; &lt;/style&gt;
+        &nbsp; &lt;script src=&quot;https://code.jquery.com/jquery-1.10.2.js&quot;&gt;&lt;/script&gt;
+        &lt;/head&gt;
+        &lt;body&gt;
+        &nbsp;
+        &lt;div&gt;&lt;/div&gt;
+        &lt;span&gt;Right click the block&lt;/span&gt;
+        &nbsp;
+        &lt;script&gt;
+        var div = $( &quot;div:first&quot; );
+        div.contextmenu(function() {
+        &nbsp; div.toggleClass( &quot;contextmenu&quot; );
+        });
+        &lt;/script&gt;
+        &nbsp;
+        &lt;/body&gt;
+        &lt;/html&gt;
+    </pre>
+    <a href="demo/jquery/27" class="button bar-item green hover-white hover-text-green" style="margin-bottom: 7px" target="_blank">Xem ví dụ »</a>
+</div>
+<div id="category_03">
+    <p><strong>.dblclick(): </strong>Kích hoạt sự kiện double click trên thành phần hoặc ràng buộc xử lý một sự kiện tới sự kiện double click trong javascript</p>
+    <p><strong>Ví dụ: </strong></p>
+    <pre class="brush: js; html-script: true">
+        &lt;!doctype html&gt;
+        &lt;html lang=&quot;en&quot;&gt;
+        &lt;head&gt;
+        &nbsp; &lt;meta charset=&quot;utf-8&quot;&gt;
+        &nbsp; &lt;title&gt;dblclick demo&lt;/title&gt;
+        &nbsp; &lt;style&gt;
+        &nbsp; div {
+        &nbsp; &nbsp; background: blue;
+        &nbsp; &nbsp; color: white;
+        &nbsp; &nbsp; height: 100px;
+        &nbsp; &nbsp; width: 150px;
+        &nbsp;}
+        &nbsp; div.dbl {
+        &nbsp; &nbsp; background: yellow;
+        &nbsp; &nbsp; color: black;
+        &nbsp; }
+        &nbsp; &lt;/style&gt;
+        &nbsp; &lt;script src=&quot;https://code.jquery.com/jquery-1.10.2.js&quot;&gt;&lt;/script&gt;
+        &lt;/head&gt;
+        &lt;body&gt;
+        &nbsp;
+        &lt;div&gt;&lt;/div&gt;
+        &lt;span&gt;Double click the block&lt;/span&gt;
+        &nbsp;
+        &lt;script&gt;
+        var divdbl = $( &quot;div:first&quot; );
+        divdbl.dblclick(function() {
+        &nbsp; divdbl.toggleClass( &quot;dbl&quot; );
+        });
+        &lt;/script&gt;
+        &nbsp;
+        &lt;/body&gt;
+        &lt;/html&gt;
+    </pre>
+    <a href="demo/jquery/28" class="button bar-item green hover-white hover-text-green" style="margin-bottom: 7px" target="_blank">Xem ví dụ »</a>
+</div>
+<div id="category_04">
+    <p><strong>.hover(): </strong>kết hợp xử lý cả 2 sự kiện di chuyển con trỏ chuột vào thành phần (mouseenter) và di chuyển con trỏ chuột ra khỏi thành phần (mouseleave).</p>
+    <p><strong>Ví dụ: </strong></p>
+    <pre class="brush: js; html-script: true">
+        &lt;!doctype html&gt;
+        &lt;html lang=&quot;en&quot;&gt;
+        &lt;head&gt;
+        &nbsp; &lt;meta charset=&quot;utf-8&quot;&gt;
+        &nbsp; &lt;title&gt;hover demo&lt;/title&gt;
+        &nbsp; &lt;style&gt;
+        &nbsp; ul {
+        &nbsp; &nbsp; margin-left: 20px;
+        &nbsp; &nbsp; color: blue;
+        &nbsp; }
+        &nbsp; li {
+        &nbsp; &nbsp; cursor: default;
+        &nbsp; }
+        &nbsp; span {
+        &nbsp; &nbsp; color: red;
+        &nbsp; }
+        &nbsp; &lt;/style&gt;
+        &nbsp; &lt;script src=&quot;https://code.jquery.com/jquery-1.10.2.js&quot;&gt;&lt;/script&gt;
+        &lt;/head&gt;
+        &lt;body&gt;
+        &nbsp;
+        &lt;ul&gt;
+        &nbsp; &lt;li&gt;Milk&lt;/li&gt;
+        &nbsp; &lt;li&gt;Bread&lt;/li&gt;
+        &nbsp; &lt;li class=&quot;fade&quot;&gt;Chips&lt;/li&gt;
+        &nbsp; &lt;li class=&quot;fade&quot;&gt;Socks&lt;/li&gt;
+        &lt;/ul&gt;
+        &nbsp;
+        &lt;script&gt;
+        $( &quot;li&quot; ).hover(
+        &nbsp; function() {
+        &nbsp; &nbsp; $( this ).append( $( &quot;&lt;span&gt; ***&lt;/span&gt;&quot; ) );
+        &nbsp; }, function() {
+        &nbsp; &nbsp; $( this ).find( &quot;span:last&quot; ).remove();
+        &nbsp; }
+        );
+        &nbsp;
+        $( &quot;li.fade&quot; ).hover(function() {
+        &nbsp; $( this ).fadeOut( 100 );
+        &nbsp; $( this ).fadeIn( 500 );
+        });
+        &lt;/script&gt;
+        &nbsp;
+        &lt;/body&gt;
+        &lt;/html&gt;
+    </pre>
+    <a href="demo/jquery/29" class="button bar-item green hover-white hover-text-green" style="margin-bottom: 7px" target="_blank">Xem ví dụ »</a>
+</div>
+<div id="category_05">
+    <p><strong>.mousedown(): </strong>Ràng buộc một xử lý tới một sự kiện mousedown (click chuột), hoặc kích hoạt sự kiện mousedown lên một thành phần.</p>
+    <p><strong>Ví dụ: </strong></p>
+    <pre class="brush: js; html-script: true">
+        &lt;!doctype html&gt;
+        &lt;html lang=&quot;en&quot;&gt;
+        &lt;head&gt;
+        &nbsp; &lt;meta charset=&quot;utf-8&quot;&gt;
+        &nbsp; &lt;title&gt;mousedown demo&lt;/title&gt;
+        &nbsp; &lt;script src=&quot;https://code.jquery.com/jquery-1.10.2.js&quot;&gt;&lt;/script&gt;
+        &lt;/head&gt;
+        &lt;body&gt;
+        &nbsp;
+        &lt;p&gt;Press mouse and release here.&lt;/p&gt;
+        &nbsp;
+        &lt;script&gt;
+        $( &quot;p&quot; )
+        &nbsp; .mouseup(function() {
+        &nbsp; &nbsp; $( this ).append( &quot;&lt;span style=&#39;color:#f00;&#39;&gt;Mouse up.&lt;/span&gt;&quot; );
+        &nbsp; })
+        &nbsp; .mousedown(function() {
+        &nbsp; &nbsp; $( this ).append( &quot;&lt;span style=&#39;color:#00f;&#39;&gt;Mouse down.&lt;/span&gt;&quot; );
+        &nbsp; });
+        &lt;/script&gt;
+        &nbsp;
+        &lt;/body&gt;
+        &lt;/html&gt;
+    </pre>
+    <a href="demo/jquery/30" class="button bar-item green hover-white hover-text-green" style="margin-bottom: 7px" target="_blank">Xem ví dụ »</a>
+</div>
+<div id="category_06">
+    <p><strong>.mouseenter(): </strong>Ràng buộc một xử lý tới một sự kiện mouseenter (di chuyển chuột vào thành phần), hoặc kích hoạt sự kiện mouseenter lên một thành phần.</p>
+    <p><strong>Ví dụ: </strong></p>
+    <pre class="brush: js; html-script: true">
+        &lt;!doctype html&gt;
+        &lt;html lang=&quot;en&quot;&gt;
+        &lt;head&gt;
+        &nbsp; &lt;meta charset=&quot;utf-8&quot;&gt;
+        &nbsp; &lt;title&gt;mouseenter demo&lt;/title&gt;
+        &nbsp; &lt;style&gt;
+        &nbsp; div.out {
+        &nbsp; &nbsp; width: 40%;
+        &nbsp; &nbsp; height: 120px;
+        &nbsp; &nbsp; margin: 0 15px;
+        &nbsp; &nbsp; background-color: #d6edfc;
+        &nbsp; &nbsp; float: left;
+        &nbsp; }
+        &nbsp; div.in {
+        &nbsp; &nbsp; width: 60%;
+        &nbsp; &nbsp; height: 60%;
+        &nbsp; &nbsp; background-color: #fc0;
+        &nbsp; &nbsp; margin: 10px auto;
+        &nbsp; }
+        &nbsp; p {
+        &nbsp; &nbsp; line-height: 1em;
+        &nbsp; &nbsp; margin: 0;
+        &nbsp; &nbsp; padding: 0;
+        &nbsp; }
+        &nbsp; &lt;/style&gt;
+        &nbsp; &lt;script src=&quot;https://code.jquery.com/jquery-1.10.2.js&quot;&gt;&lt;/script&gt;
+        &lt;/head&gt;
+        &lt;body&gt;
+        &nbsp;
+        &lt;div class=&quot;out overout&quot;&gt;
+        &nbsp; &lt;p&gt;move your mouse&lt;/p&gt;
+        &nbsp; &lt;div class=&quot;in overout&quot;&gt;&lt;p&gt;move your mouse&lt;/p&gt;&lt;p&gt;0&lt;/p&gt;&lt;/div&gt;
+        &nbsp; &lt;p&gt;0&lt;/p&gt;
+        &lt;/div&gt;
+        &nbsp;
+        &lt;div class=&quot;out enterleave&quot;&gt;
+        &nbsp; &lt;p&gt;move your mouse&lt;/p&gt;
+        &nbsp; &lt;div class=&quot;in enterleave&quot;&gt;&lt;p&gt;move your mouse&lt;/p&gt;&lt;p&gt;0&lt;/p&gt;&lt;/div&gt;
+        &nbsp; &lt;p&gt;0&lt;/p&gt;
+        &lt;/div&gt;
+        &nbsp;
+        &lt;script&gt;
+        var i = 0;
+        $( &quot;div.overout&quot; )
+        &nbsp; .mouseover(function() {
+        &nbsp; &nbsp; $( &quot;p:first&quot;, this ).text( &quot;mouse over&quot; );
+        &nbsp; &nbsp; $( &quot;p:last&quot;, this ).text( ++i );
+        &nbsp; })
+        &nbsp; .mouseout(function() {
+        &nbsp; &nbsp; $( &quot;p:first&quot;, this ).text( &quot;mouse out&quot; );
+        &nbsp; });
+        &nbsp;
+        var n = 0;
+        $( &quot;div.enterleave&quot; )
+        &nbsp; .mouseenter(function() {
+        &nbsp; &nbsp; $( &quot;p:first&quot;, this ).text( &quot;mouse enter&quot; );
+        &nbsp; &nbsp; $( &quot;p:last&quot;, this ).text( ++n );
+        &nbsp; })
+        &nbsp; .mouseleave(function() {
+        &nbsp; &nbsp; $( &quot;p:first&quot;, this ).text( &quot;mouse leave&quot; );
+        &nbsp; });
+        &lt;/script&gt;
+        &nbsp;
+        &lt;/body&gt;
+        &lt;/html&gt;
+    </pre>
+    <a href="demo/jquery/31" class="button bar-item green hover-white hover-text-green" style="margin-bottom: 7px" target="_blank">Xem ví dụ »</a>
+</div>
+<div id="category_07">
+    <p><strong>.mouseleave(): </strong>Ràng buộc một xử lý tới một sự kiện mouseleave (di chuyển chuột ra khỏi thành phần), hoặc kích hoạt sự kiện mouseleave lên một thành phần.</p>
+    <p><strong>Ví dụ: </strong></p>
+    <pre class="brush: js; html-script: true">
+        &lt;!doctype html&gt;
+        &lt;html lang=&quot;en&quot;&gt;
+        &lt;head&gt;
+        &nbsp; &lt;meta charset=&quot;utf-8&quot;&gt;
+        &nbsp; &lt;title&gt;mouseleave demo&lt;/title&gt;
+        &nbsp; &lt;style&gt;
+        &nbsp; div.out {
+        &nbsp; &nbsp; width: 40%;
+        &nbsp; &nbsp; height: 120px;
+        &nbsp; &nbsp; margin: 0 15px;
+        &nbsp; &nbsp; background-color: #d6edfc;
+        &nbsp; &nbsp; float: left;
+        &nbsp; }
+        &nbsp; div.in {
+        &nbsp; &nbsp; width: 60%;
+        &nbsp; &nbsp; height: 60%;
+        &nbsp; &nbsp; background-color: #fc0;
+        &nbsp; &nbsp; margin: 10px auto;
+        &nbsp; }
+        &nbsp; p {
+        &nbsp; &nbsp; line-height: 1em;
+        &nbsp; &nbsp; margin: 0;
+        &nbsp; &nbsp; padding: 0;
+        &nbsp; }
+        &nbsp; &lt;/style&gt;
+        &nbsp; &lt;script src=&quot;https://code.jquery.com/jquery-1.10.2.js&quot;&gt;&lt;/script&gt;
+        &lt;/head&gt;
+        &lt;body&gt;
+        &nbsp;
+        &lt;div class=&quot;out overout&quot;&gt;
+        &nbsp; &lt;p&gt;move your mouse&lt;/p&gt;
+        &nbsp; &lt;div class=&quot;in overout&quot;&gt;&lt;p&gt;move your mouse&lt;/p&gt;&lt;p&gt;0&lt;/p&gt;&lt;/div&gt;
+        &nbsp; &lt;p&gt;0&lt;/p&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;out enterleave&quot;&gt;
+        &nbsp; &lt;p&gt;move your mouse&lt;/p&gt;
+        &nbsp; &lt;div class=&quot;in enterleave&quot;&gt;&lt;p&gt;move your mouse&lt;/p&gt;&lt;p&gt;0&lt;/p&gt;&lt;/div&gt;
+        &nbsp; &lt;p&gt;0&lt;/p&gt;
+        &lt;/div&gt;
+        &nbsp;
+        &lt;script&gt;
+        var i = 0;
+        $( &quot;div.overout&quot; )
+        &nbsp; .mouseover(function() {
+        &nbsp; &nbsp; $( &quot;p:first&quot;, this ).text( &quot;mouse over&quot; );
+        &nbsp; })
+        &nbsp; .mouseout(function() {
+        &nbsp; &nbsp; $( &quot;p:first&quot;, this ).text( &quot;mouse out&quot; );
+        &nbsp; &nbsp; $( &quot;p:last&quot;, this ).text( ++i );
+        &nbsp; });
+        &nbsp;
+        var n = 0;
+        $( &quot;div.enterleave&quot; )
+        &nbsp; .mouseenter(function() {
+        &nbsp; &nbsp; $( &quot;p:first&quot;, this ).text( &quot;mouse enter&quot; );
+        &nbsp; })
+        &nbsp; .mouseleave(function() {
+        &nbsp; &nbsp; $( &quot;p:first&quot;, this ).text( &quot;mouse leave&quot; );
+        &nbsp; &nbsp; $( &quot;p:last&quot;, this ).text( ++n );
+        &nbsp; });
+        &lt;/script&gt;
+        &nbsp;
+        &lt;/body&gt;
+    </pre>
+    <a href="demo/jquery/32" class="button bar-item green hover-white hover-text-green" style="margin-bottom: 7px" target="_blank">Xem ví dụ »</a>
+</div>
+<div id="category_08">
+    <p><strong>.mousemove(): </strong>Ràng buộc một xử lý tới một sự kiện mousemove (click chuột), hoặc kích hoạt sự kiện mousemove lên một thành phần.</p>
+    <p><strong>Ví dụ: </strong></p>
+    <pre class="brush: js; html-script: true">
+        &lt;!doctype html&gt;
+        &lt;html lang=&quot;en&quot;&gt;
+        &lt;head&gt;
+        &nbsp; &lt;meta charset=&quot;utf-8&quot;&gt;
+        &nbsp; &lt;title&gt;mousemove demo&lt;/title&gt;
+        &nbsp; &lt;style&gt;
+        &nbsp; div {
+        &nbsp; &nbsp; width: 220px;
+        &nbsp; &nbsp; height: 170px;
+        &nbsp; &nbsp; margin: 10px 50px 10px 10px;
+        &nbsp; &nbsp; background: yellow;
+        &nbsp; &nbsp; border: 2px groove;
+        &nbsp; &nbsp; float: right;
+        &nbsp; }
+        &nbsp; p {
+        &nbsp; &nbsp; margin: 0;
+        &nbsp; &nbsp; margin-left: 10px;
+        &nbsp; &nbsp; color: red;
+        &nbsp; &nbsp; width: 220px;
+        &nbsp; &nbsp; height: 120px;
+        &nbsp; &nbsp; padding-top: 70px;
+        &nbsp; &nbsp; float: left;
+        &nbsp; &nbsp; font-size: 14px;
+        &nbsp; }
+        &nbsp; span {
+        &nbsp; &nbsp; display: block;
+        &nbsp; }
+        &nbsp; &lt;/style&gt;
+        &nbsp; &lt;script src=&quot;https://code.jquery.com/jquery-1.10.2.js&quot;&gt;&lt;/script&gt;
+        &lt;/head&gt;
+        &lt;body&gt;
+        &nbsp;
+        &lt;p&gt;
+        &nbsp; &lt;span&gt;Move the mouse over the div.&lt;/span&gt;
+        &nbsp; &lt;span&gt;&amp;nbsp;&lt;/span&gt;
+        &lt;/p&gt;
+        &lt;div&gt;&lt;/div&gt;
+        &nbsp;
+        &lt;script&gt;
+        $( &quot;div&quot; ).mousemove(function( event ) {
+        &nbsp; var pageCoords = &quot;( &quot; + event.pageX + &quot;, &quot; + event.pageY + &quot; )&quot;;
+        &nbsp; var clientCoords = &quot;( &quot; + event.clientX + &quot;, &quot; + event.clientY + &quot; )&quot;;
+        &nbsp; $( &quot;span:first&quot; ).text( &quot;( event.pageX, event.pageY ) : &quot; + pageCoords );
+        &nbsp; $( &quot;span:last&quot; ).text( &quot;( event.clientX, event.clientY ) : &quot; + clientCoords );
+        });
+        &lt;/script&gt;
+        &nbsp;
+        &lt;/body&gt;
+        &lt;/html&gt;
+    </pre>
+    <a href="demo/jquery/33" class="button bar-item green hover-white hover-text-green" style="margin-bottom: 7px" target="_blank">Xem ví dụ »</a>
+</div>
+<div id="category_09">
+    <p><strong>.mouseout(): </strong>Ràng buộc một xử lý tới một sự kiện mouseout (di chuyển chuột ra khỏi một thành phần), hoặc kích hoạt sự kiện mouseout lên một thành phần.</p>
+    <p><strong>Ví dụ: </strong></p>
+    <pre class="brush: js; html-script: true">
+        &lt;!doctype html&gt;
+        &lt;html lang=&quot;en&quot;&gt;
+        &lt;head&gt;
+        &nbsp; &lt;meta charset=&quot;utf-8&quot;&gt;
+        &nbsp; &lt;title&gt;mouseout demo&lt;/title&gt;
+        &nbsp; &lt;style&gt;
+        &nbsp; div.out {
+        &nbsp; &nbsp; width: 40%;
+        &nbsp; &nbsp; height: 120px;
+        &nbsp; &nbsp; margin: 0 15px;
+        &nbsp; &nbsp; background-color: #d6edfc;
+        &nbsp; &nbsp; float: left;
+        &nbsp; }
+        &nbsp; div.in {
+        &nbsp; &nbsp; width: 60%;
+        &nbsp; &nbsp; height: 60%;
+        &nbsp; &nbsp; background-color: #fc0;
+        &nbsp; &nbsp; margin: 10px auto;
+        &nbsp; }
+        &nbsp; p {
+        &nbsp; &nbsp; line-height: 1em;
+        &nbsp; &nbsp; margin: 0;
+        &nbsp; &nbsp; padding: 0;
+        &nbsp; }
+        &nbsp; &lt;/style&gt;
+        &nbsp; &lt;script src=&quot;https://code.jquery.com/jquery-1.10.2.js&quot;&gt;&lt;/script&gt;
+        &lt;/head&gt;
+        &lt;body&gt;
+        &nbsp;
+        &lt;div class=&quot;out overout&quot;&gt;
+        &nbsp; &lt;p&gt;move your mouse&lt;/p&gt;
+        &nbsp; &lt;div class=&quot;in overout&quot;&gt;&lt;p&gt;move your mouse&lt;/p&gt;&lt;p&gt;0&lt;/p&gt;&lt;/div&gt;
+        &nbsp; &lt;p&gt;0&lt;/p&gt;
+        &lt;/div&gt;
+        &nbsp;
+        &lt;div class=&quot;out enterleave&quot;&gt;
+        &nbsp; &lt;p&gt;move your mouse&lt;/p&gt;
+        &nbsp; &lt;div class=&quot;in enterleave&quot;&gt;&lt;p&gt;move your mouse&lt;/p&gt;&lt;p&gt;0&lt;/p&gt;&lt;/div&gt;
+        &nbsp; &lt;p&gt;0&lt;/p&gt;
+        &lt;/div&gt;
+        &nbsp;
+        &lt;script&gt;
+        var i = 0;
+        $( &quot;div.overout&quot; )
+        &nbsp; .mouseout(function() {
+        &nbsp; &nbsp; $( &quot;p:first&quot;, this ).text( &quot;mouse out&quot; );
+        &nbsp; &nbsp; $( &quot;p:last&quot;, this ).text( ++i );
+        &nbsp; })
+        &nbsp; .mouseover(function() {
+        &nbsp; &nbsp; $( &quot;p:first&quot;, this ).text( &quot;mouse over&quot; );
+        &nbsp; });
+        &nbsp;
+        var n = 0;
+        $( &quot;div.enterleave&quot; )
+        &nbsp; .on( &quot;mouseenter&quot;, function() {
+        &nbsp; &nbsp; $( &quot;p:first&quot;, this ).text( &quot;mouse enter&quot; );
+        &nbsp; })
+        &nbsp; .on( &quot;mouseleave&quot;, function() {
+        &nbsp; &nbsp; $( &quot;p:first&quot;, this ).text( &quot;mouse leave&quot; );
+        &nbsp; &nbsp; $( &quot;p:last&quot;, this ).text( ++n );
+        &nbsp; });
+        &lt;/script&gt;
+        &nbsp;
+        &lt;/body&gt;
+        &lt;/html&gt;
+    </pre>
+    <a href="demo/jquery/34" class="button bar-item green hover-white hover-text-green" style="margin-bottom: 7px" target="_blank">Xem ví dụ »</a>
+</div>
+<div id="category_10">
+    <p><strong>.mouseover(): </strong>Ràng buộc một xử lý tới một sự kiện mouseover (di chuyển chuột ra khỏi thành phần), hoặc kích hoạt sự kiện mouseover lên một thành phần.</p>
+    <p><strong>Ví dụ: </strong></p>
+    <pre class="brush: js; html-script: true">
+        &lt;!doctype html&gt;
+        &lt;html lang=&quot;en&quot;&gt;
+        &lt;head&gt;
+        &nbsp; &lt;meta charset=&quot;utf-8&quot;&gt;
+        &nbsp; &lt;title&gt;mouseover demo&lt;/title&gt;
+        &nbsp; &lt;style&gt;
+        &nbsp; div.out {
+        &nbsp; &nbsp; width: 40%;
+        &nbsp; &nbsp; height: 120px;
+        &nbsp; &nbsp; margin: 0 15px;
+        &nbsp; &nbsp; background-color: #d6edfc;
+        &nbsp; &nbsp; float: left;
+        &nbsp; }
+        &nbsp; div.in {
+        &nbsp; &nbsp; width: 60%;
+        &nbsp; &nbsp; height: 60%;
+        &nbsp; &nbsp; background-color: #fc0;
+        &nbsp; &nbsp; margin: 10px auto;
+        &nbsp; }
+        &nbsp; p {
+        &nbsp; &nbsp; line-height: 1em;
+        &nbsp; &nbsp; margin: 0;
+        &nbsp; &nbsp; padding: 0;
+        &nbsp; }
+        &nbsp; &lt;/style&gt;
+        &nbsp; &lt;script src=&quot;https://code.jquery.com/jquery-1.10.2.js&quot;&gt;&lt;/script&gt;
+        &lt;/head&gt;
+        &lt;body&gt;
+        &nbsp;
+        &lt;div class=&quot;out overout&quot;&gt;
+        &nbsp; &lt;span&gt;move your mouse&lt;/span&gt;
+        &nbsp; &lt;div class=&quot;in&quot;&gt;
+        &nbsp; &lt;/div&gt;
+        &lt;/div&gt;
+        &nbsp;
+        &lt;div class=&quot;out enterleave&quot;&gt;
+        &nbsp; &lt;span&gt;move your mouse&lt;/span&gt;
+        &nbsp; &lt;div class=&quot;in&quot;&gt;
+        &nbsp; &lt;/div&gt;
+        &lt;/div&gt;
+        &nbsp;
+        &lt;script&gt;
+        var i = 0;
+        $( &quot;div.overout&quot; )
+        &nbsp; .mouseover(function() {
+        &nbsp; &nbsp; i += 1;
+        &nbsp; &nbsp; $( this ).find( &quot;span&quot; ).text( &quot;mouse over x &quot; + i );
+        &nbsp; })
+        &nbsp; .mouseout(function() {
+        &nbsp; &nbsp; $( this ).find( &quot;span&quot; ).text( &quot;mouse out &quot; );
+        &nbsp; });
+        &nbsp;
+        var n = 0;
+        $( &quot;div.enterleave&quot; )
+        &nbsp; .mouseenter(function() {
+        &nbsp; &nbsp; n += 1;
+        &nbsp; &nbsp; $( this ).find( &quot;span&quot; ).text( &quot;mouse enter x &quot; + n );
+        &nbsp; })
+        &nbsp; .mouseleave(function() {
+        &nbsp; &nbsp; $( this ).find( &quot;span&quot; ).text( &quot;mouse leave&quot; );
+        &nbsp; });
+        &lt;/script&gt;
+        &nbsp;
+        &lt;/body&gt;
+        &lt;/html&gt;
+    </pre>
+    <a href="demo/jquery/35" class="button bar-item green hover-white hover-text-green" style="margin-bottom: 7px" target="_blank">Xem ví dụ »</a>
+</div>
+<div id="category_11">
+    <p><strong>.mouseup(): </strong> Ràng buộc một xử lý tới một sự kiện mouseup (nhả chuột), hoặc kích hoạt sự kiện mouseup lên một thành phần.</p>
+    <p><strong>Ví dụ: </strong></p>
+    <pre class="brush: js; html-script: true">
+        &lt;!doctype html&gt;
+        &lt;html lang=&quot;en&quot;&gt;
+        &lt;head&gt;
+        &nbsp; &lt;meta charset=&quot;utf-8&quot;&gt;
+        &nbsp; &lt;title&gt;mouseup demo&lt;/title&gt;
+        &nbsp; &lt;script src=&quot;https://code.jquery.com/jquery-1.10.2.js&quot;&gt;&lt;/script&gt;
+        &lt;/head&gt;
+        &lt;body&gt;
+        &nbsp;
+        &lt;p&gt;Press mouse and release here.&lt;/p&gt;
+        &nbsp;
+        &lt;script&gt;
+        $( &quot;p&quot; )
+        &nbsp; .mouseup(function() {
+        &nbsp; &nbsp; $( this ).append( &quot;&lt;span style=&#39;color:#f00;&#39;&gt;Mouse up.&lt;/span&gt;&quot; );
+        &nbsp; })
+        &nbsp; .mousedown(function() {
+        &nbsp; &nbsp; $( this ).append( &quot;&lt;span style=&#39;color:#00f;&#39;&gt;Mouse down.&lt;/span&gt;&quot; );
+        &nbsp; });
+        &lt;/script&gt;
+        &nbsp;
+        &lt;/body&gt;
+        &lt;/html&gt;
+    </pre>
+    <a href="demo/jquery/36" class="button bar-item green hover-white hover-text-green" style="margin-bottom: 7px" target="_blank">Xem ví dụ »</a>
+</div>
+<div id="category_12">
+    <p><strong>.toggle(): </strong>Hiển thị và ẩn các thành phần phù hợp.</p>
+    <p><strong>Ví dụ: </strong></p>
+    <pre class="brush: js; html-script: true">
+        &lt;html&gt;
+        &lt;head&gt;
+        &lt;script src=&quot;https://code.jquery.com/jquery-1.10.2.js&quot;&gt;&lt;/script&gt;
+        &lt;/script&gt;
+        &lt;script&gt;
+        $(document).ready(function(){
+            $(&quot;p&quot;).toggle(
+                function(){$(&quot;p&quot;).css({&quot;color&quot;: &quot;red&quot;});},
+                function(){$(&quot;p&quot;).css({&quot;color&quot;: &quot;blue&quot;});},
+                function(){$(&quot;p&quot;).css({&quot;color&quot;: &quot;green&quot;});
+            });
+        });
+        &lt;/script&gt;
+        &lt;/head&gt;
+        &lt;body&gt;
+        &lt;p style=&quot;font-size:40px&quot;&gt;Click me.&lt;/p&gt;
+        &lt;div&gt;&lt;b&gt;Note:&lt;/b&gt; The toggle() method was deprecated in jQuery version 1.8, and removed in version 1.9. We have used an earlier version of jQuery (1.8 in the script tag), for this example to work.&lt;/div&gt;
+        &lt;/body&gt;
+        &lt;/html&gt;
+    </pre>
+    <a href="demo/jquery/37" class="button bar-item green hover-white hover-text-green" style="margin-bottom: 7px" target="_blank">Xem ví dụ »</a>
+</div>

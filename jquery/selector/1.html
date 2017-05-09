@@ -1,0 +1,86 @@
+<p><strong>Cú pháp: </strong>
+<pre class="brush: js">
+    jQuery ("*")
+</pre>
+<p><code>All Selector ("*")</code> được dùng để chọn toàn bộ phần tử
+<p><strong>Ví dụ: </strong> Đếm tất cả các phần tử có trong liệu
+<pre class="brush: js; html-script: true">
+    &lt;!doctype html&gt;
+    &lt;html lang=&quot;en&quot;&gt;
+    &lt;head&gt;
+    &nbsp; &lt;meta charset=&quot;utf-8&quot;&gt;
+    &nbsp; &lt;title&gt;all demo&lt;/title&gt;
+    &nbsp; &lt;style&gt;
+    &nbsp; h3 {
+    &nbsp; &nbsp; margin: 0;
+    &nbsp; }
+    &nbsp; div, span, p {
+    &nbsp; &nbsp; width: 80px;
+    &nbsp; &nbsp; height: 40px;
+    &nbsp; &nbsp; float: left;
+    &nbsp; &nbsp; padding: 10px;
+    &nbsp; &nbsp; margin: 10px;
+    &nbsp; &nbsp; background-color: #EEEEEE;
+    &nbsp; }
+    &nbsp; &lt;/style&gt;
+    &nbsp; &lt;script src=&quot;https://code.jquery.com/jquery-1.10.2.js&quot;&gt;&lt;/script&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+    &nbsp;
+    &lt;div&gt;DIV&lt;/div&gt;
+    &lt;span&gt;SPAN&lt;/span&gt;
+    &lt;p&gt;P &lt;button&gt;Button&lt;/button&gt;&lt;/p&gt;
+    &nbsp;
+    &lt;script&gt;
+    var elementCount = $( &quot;*&quot; ).css( &quot;border&quot;, &quot;3px solid red&quot; ).length;
+    $( &quot;body&quot; ).prepend( &quot;&lt;h3&gt;&quot; + elementCount + &quot; elements found&lt;/h3&gt;&quot; );
+    &lt;/script&gt;
+    &nbsp;
+    &lt;/body&gt;
+    &lt;/html&gt;
+</pre>
+<a href="demo/jquery/1" class="button bar-item green hover-white hover-text-green" style="margin-bottom: 7px" target="_blank">Xem ví dụ »</a>
+<p>Tìm tất cả các phần tử trong document.body để các phần tử như head, script,... bị loại bỏ</p>
+<pre class="brush: js; html-script: true">
+    &lt;!doctype html&gt;
+    &lt;html lang=&quot;en&quot;&gt;
+    &lt;head&gt;
+    &nbsp; &lt;meta charset=&quot;utf-8&quot;&gt;
+    &nbsp; &lt;title&gt;all demo&lt;/title&gt;
+    &nbsp; &lt;style&gt;
+    &nbsp; h3 {
+    &nbsp; &nbsp; margin: 0;
+    &nbsp; }
+    &nbsp; div, span, p {
+    &nbsp; &nbsp; width: 80px;
+    &nbsp; &nbsp; height: 40px;
+    &nbsp; &nbsp; float: left;
+    &nbsp; &nbsp; padding: 10px;
+    &nbsp; &nbsp; margin: 10px;
+    &nbsp; &nbsp; background-color: #EEEEEE;
+    &nbsp; }
+    &nbsp; #test {
+    &nbsp; &nbsp; width: auto;
+    &nbsp; &nbsp; height: auto;
+    &nbsp; &nbsp; background-color: transparent;
+    &nbsp; }
+    &nbsp; &lt;/style&gt;
+    &nbsp; &lt;script src=&quot;https://code.jquery.com/jquery-1.10.2.js&quot;&gt;&lt;/script&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+    &nbsp;
+    &lt;div id=&quot;test&quot;&gt;
+    &nbsp; &lt;div&gt;DIV&lt;/div&gt;
+    &nbsp; &lt;span&gt;SPAN&lt;/span&gt;
+    &nbsp; &lt;p&gt;P &lt;button&gt;Button&lt;/button&gt;&lt;/p&gt;
+    &lt;/div&gt;
+    &nbsp;
+    &lt;script&gt;
+    var elementCount = $( &quot;#test&quot; ).find( &quot;*&quot; ).css( &quot;border&quot;, &quot;3px solid red&quot; ).length;
+    $( &quot;body&quot; ).prepend( &quot;&lt;h3&gt;&quot; + elementCount + &quot; elements found&lt;/h3&gt;&quot; );
+    &lt;/script&gt;
+    &nbsp;
+    &lt;/body&gt;
+    &lt;/html&gt;
+</pre>
+<a href="demo/jquery/2" class="button bar-item green hover-white hover-text-green" style="margin-bottom: 7px" target="_blank">Xem ví dụ »</a>

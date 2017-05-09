@@ -1,0 +1,72 @@
+<p><strong>Cú pháp: </strong>
+<pre class="brush: js">
+    jQuery (".class")
+</pre>
+<p><code>Class Selector (“.class”)</code> chọn tất cả các phần tử với một lớp nhất định.</p>
+<p>Đối với trình chọn lớp, jQuery sử dụng hàm gốc của JavaScript <code>getElementsByClassName()</code></p>
+<p><strong>Ví dụ 1: </strong> Tìm phần tử với lớp "myClass".</p>
+<pre class="brush: js; html-script: true">
+    &lt;!doctype html&gt;
+    &lt;html lang=&quot;en&quot;&gt;
+    &lt;head&gt;
+    &nbsp; &lt;meta charset=&quot;utf-8&quot;&gt;
+    &nbsp; &lt;title&gt;class demo&lt;/title&gt;
+    &nbsp; &lt;style&gt;
+    &nbsp; div, span {
+    &nbsp; &nbsp; width: 120px;
+    &nbsp; &nbsp; height: 40px;
+    &nbsp; &nbsp; float: left;
+    &nbsp; &nbsp; padding: 10px;
+    &nbsp; &nbsp; margin: 10px;
+    &nbsp; &nbsp; background-color: #EEEEEE;
+    &nbsp; }
+    &nbsp; &lt;/style&gt;
+    &nbsp; &lt;script src=&quot;https://code.jquery.com/jquery-1.10.2.js&quot;&gt;&lt;/script&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+    &nbsp;
+    &lt;div class=&quot;notMe&quot;&gt;div class=&quot;notMe&quot;&lt;/div&gt;
+    &lt;div class=&quot;myClass&quot;&gt;div class=&quot;myClass&quot;&lt;/div&gt;
+    &lt;span class=&quot;myClass&quot;&gt;span class=&quot;myClass&quot;&lt;/span&gt;
+    &nbsp;
+    &lt;script&gt;
+    $( &quot;.myClass&quot; ).css( &quot;border&quot;, &quot;3px solid red&quot; );
+    &lt;/script&gt;
+    &nbsp;
+    &lt;/body&gt;
+    &lt;/html&gt;
+</pre>
+<a href="demo/jquery/3" class="button bar-item green hover-white hover-text-green" style="margin-bottom: 7px" target="_blank">Xem ví dụ »</a>
+<p><strong>Ví dụ 2: </strong>Tìm phần tử với lớp "myclass" và "otherclass".</p>
+<pre class="brush: js; html-script: true">
+    &lt;!doctype html&gt;
+    &lt;html lang=&quot;en&quot;&gt;
+    &lt;head&gt;
+    &nbsp; &lt;meta charset=&quot;utf-8&quot;&gt;
+    &nbsp; &lt;title&gt;class demo&lt;/title&gt;
+    &nbsp; &lt;style&gt;
+    &nbsp; div, span {
+    &nbsp; &nbsp; width: 120px;
+    &nbsp; &nbsp; height: 40px;
+    &nbsp; &nbsp; float: left;
+    &nbsp; &nbsp; padding: 10px;
+    &nbsp; &nbsp; margin: 10px;
+    &nbsp; &nbsp; background-color: #EEEEEE;
+    &nbsp; }
+    &nbsp; &lt;/style&gt;
+    &nbsp; &lt;script src=&quot;https://code.jquery.com/jquery-1.10.2.js&quot;&gt;&lt;/script&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+    &nbsp;
+    &lt;div class=&quot;myclass&quot;&gt;div class=&quot;notMe&quot;&lt;/div&gt;
+    &lt;div class=&quot;myclass otherclass&quot;&gt;div class=&quot;myClass&quot;&lt;/div&gt;
+    &lt;span class=&quot;myclass otherclass&quot;&gt;span class=&quot;myClass&quot;&lt;/span&gt;
+    &nbsp;
+    &lt;script&gt;
+    $( &quot;.myclass.otherclass&quot; ).css( &quot;border&quot;, &quot;13px solid red&quot; );
+    &lt;/script&gt;
+    &nbsp;
+    &lt;/body&gt;
+    &lt;/html&gt;
+</pre>
+<a href="demo/jquery/4" class="button bar-item green hover-white hover-text-green" style="margin-bottom: 7px" target="_blank">Xem ví dụ »</a>

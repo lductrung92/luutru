@@ -1,0 +1,295 @@
+<p><strong>Mục Lục:</strong></p>
+<div id="category_list">
+    <ul>
+        <li><a id = "category_01_link" href="#">.blur()</a></li>
+        <li><a id = "category_02_link" href="#">.change()</a></li>
+        <li><a id = "category_03_link" href="#">.focus()</a></li>
+        <li><a id = "category_04_link" href="#">.focusin()</a></li>
+        <li><a id = "category_05_link" href="#">.focusout()</a></li>
+        <li><a id = "category_06_link" href="#">.select()</a></li>
+        <li><a id = "category_07_link" href="#">.submit()</a></li>
+    </ul>
+</div>
+<div id="category_01">
+    <p><strong>.blur(): </strong>Kèm một hành động khi sử dụng blur, sự kiện blur là khi người dùng thoát khỏi focus trong trường nhập (input).</p>
+    <p><strong>Ví dụ: </strong></p>
+    <pre class="brush: js; html-script: true">
+        &lt;!DOCTYPE html&gt;
+        &lt;html&gt;
+        &lt;head&gt;
+        &lt;script src=&quot;https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js&quot;&gt;&lt;/script&gt;
+        &lt;script&gt;
+        $(document).ready(function(){
+        &nbsp; &nbsp; $(&quot;input&quot;).blur(function(){
+        &nbsp; &nbsp; &nbsp; &nbsp; alert(&quot;This input field has lost its focus.&quot;);
+        &nbsp; &nbsp; });
+        });
+        &lt;/script&gt;
+        &lt;/head&gt;
+        &lt;body&gt;
+
+        <p>Enter your name: &lt;input type=&quot;text&quot;&gt;
+        &lt;p&gt;Write something in the input field, and then click outside the field to lose focus (blur).&lt;/p&gt;</p>
+
+        <p>&lt;/body&gt;
+        &lt;/html&gt;
+        &nbsp;
+    </pre>
+    <a href="demo/jquery/16" class="button bar-item green hover-white hover-text-green" style="margin-bottom: 7px" target="_blank">Xem ví dụ »</a>
+</div>
+<div id="category_02">
+    <p><strong>.change(): </strong>Xác định một thành phần đã được thay đổi.</p>
+    <p><strong>Ví dụ: </strong></p>
+    <pre class="brush: js; html-script: true">
+        &lt;!doctype html&gt;
+        &lt;html lang=&quot;en&quot;&gt;
+        &lt;head&gt;
+        &nbsp; &lt;meta charset=&quot;utf-8&quot;&gt;
+        &nbsp; &lt;title&gt;change demo&lt;/title&gt;
+        &nbsp; &lt;style&gt;
+        &nbsp; div {
+        &nbsp; &nbsp; color: red;
+        &nbsp; }
+        &nbsp; &lt;/style&gt;
+        &nbsp; &lt;script src=&quot;https://code.jquery.com/jquery-1.10.2.js&quot;&gt;&lt;/script&gt;
+        &lt;/head&gt;
+        &lt;body&gt;
+        &nbsp;
+        &lt;select name=&quot;sweets&quot; multiple=&quot;multiple&quot;&gt;
+        &nbsp; &lt;option&gt;Chocolate&lt;/option&gt;
+        &nbsp; &lt;option selected=&quot;selected&quot;&gt;Candy&lt;/option&gt;
+        &nbsp; &lt;option&gt;Taffy&lt;/option&gt;
+        &nbsp; &lt;option selected=&quot;selected&quot;&gt;Caramel&lt;/option&gt;
+        &nbsp; &lt;option&gt;Fudge&lt;/option&gt;
+        &nbsp; &lt;option&gt;Cookie&lt;/option&gt;
+        &lt;/select&gt;
+        &lt;div&gt;&lt;/div&gt;
+        &nbsp;
+        &lt;script&gt;
+        $( &quot;select&quot; )
+        &nbsp; .change(function () {
+        &nbsp; &nbsp; var str = &quot;&quot;;
+        &nbsp; &nbsp; $( &quot;select option:selected&quot; ).each(function() {
+        &nbsp; &nbsp; &nbsp; str += $( this ).text() + &quot; &quot;;
+        &nbsp; &nbsp; });
+        &nbsp; &nbsp; $( &quot;div&quot; ).text( str );
+        &nbsp; })
+        &nbsp; .change();
+        &lt;/script&gt;
+        &nbsp;
+        &lt;/body&gt;
+        &lt;/html&gt;
+    </pre>
+    <a href="demo/jquery/17" class="button bar-item green hover-white hover-text-green" style="margin-bottom: 7px" target="_blank">Xem ví dụ »</a>
+
+</div>
+<div id="category_03">
+    <p><strong>.focus(): </strong>Xử lý một sự kiện focus, hoặc kích hoạt sự kiện focus cho thành phần.</p>
+    <p><strong>Ví dụ: </strong></p>
+    <pre class="brush: js; html-script: true">
+        &lt;!doctype html&gt;
+        &lt;html lang=&quot;en&quot;&gt;
+        &lt;head&gt;
+        &nbsp; &lt;meta charset=&quot;utf-8&quot;&gt;
+        &nbsp; &lt;title&gt;focus demo&lt;/title&gt;
+        &nbsp; &lt;style&gt;
+        &nbsp; span {
+        &nbsp; &nbsp; display: none;
+        &nbsp; }
+        &nbsp; &lt;/style&gt;
+        &nbsp; &lt;script src=&quot;https://code.jquery.com/jquery-1.10.2.js&quot;&gt;&lt;/script&gt;
+        &lt;/head&gt;
+        &lt;body&gt;
+        &nbsp;
+        &lt;p&gt;&lt;input type=&quot;text&quot;&gt; &lt;span&gt;focus fire&lt;/span&gt;&lt;/p&gt;
+        &lt;p&gt;&lt;input type=&quot;password&quot;&gt; &lt;span&gt;focus fire&lt;/span&gt;&lt;/p&gt;
+        &nbsp;
+        &lt;script&gt;
+        $( &quot;input&quot; ).focus(function() {
+        &nbsp; $( this ).next( &quot;span&quot; ).css( &quot;display&quot;, &quot;inline&quot; ).fadeOut( 1000 );
+        });
+        &lt;/script&gt;
+        &nbsp;
+        &lt;/body&gt;
+        &lt;/html&gt;
+    </pre>
+    <a href="demo/jquery/18" class="button bar-item green hover-white hover-text-green" style="margin-bottom: 7px" target="_blank">Xem ví dụ »</a>
+
+</div>
+<div id="category_04">
+    <p><strong>.focusin(): </strong>Xử lý một sự kiện "focusin" (xác nhận một focus).</p>
+    <p><strong>Ví dụ: </strong></p>
+    <pre class="brush: js; html-script: true">
+        &lt;!doctype html&gt;
+        &lt;html lang=&quot;en&quot;&gt;
+        &lt;head&gt;
+        &nbsp; &lt;meta charset=&quot;utf-8&quot;&gt;
+        &nbsp; &lt;title&gt;focusin demo&lt;/title&gt;
+        &nbsp; &lt;style&gt;
+        &nbsp; span {
+        &nbsp; &nbsp; display: none;
+        &nbsp; }
+        &nbsp; &lt;/style&gt;
+        &nbsp; &lt;script src=&quot;https://code.jquery.com/jquery-1.10.2.js&quot;&gt;&lt;/script&gt;
+        &lt;/head&gt;
+        &lt;body&gt;
+        &nbsp;
+        &lt;p&gt;&lt;input type=&quot;text&quot;&gt; &lt;span&gt;focusin fire&lt;/span&gt;&lt;/p&gt;
+        &lt;p&gt;&lt;input type=&quot;password&quot;&gt; &lt;span&gt;focusin fire&lt;/span&gt;&lt;/p&gt;
+        &nbsp;
+        &lt;script&gt;
+        $( &quot;p&quot; ).focusin(function() {
+        &nbsp; $( this ).find( &quot;span&quot; ).css( &quot;display&quot;, &quot;inline&quot; ).fadeOut( 1000 );
+        });
+        &lt;/script&gt;
+        &nbsp;
+        &lt;/body&gt;
+        &lt;/html&gt;
+    </pre>
+    <a href="demo/jquery/19" class="button bar-item green hover-white hover-text-green" style="margin-bottom: 7px" target="_blank">Xem ví dụ »</a>
+
+</div>
+<div id="category_05">
+    <p><strong>.focusout(): </strong>Xử lý một sự kiện "focusout" (xác nhận thoát khỏi focus).</p>
+    <p><strong>Ví dụ: </strong></p>
+    <pre class="brush: js; html-script: true">
+        &lt;!doctype html&gt;
+        &lt;html lang=&quot;en&quot;&gt;
+        &lt;head&gt;
+        &nbsp; &lt;meta charset=&quot;utf-8&quot;&gt;
+        &nbsp; &lt;title&gt;focusout demo&lt;/title&gt;
+        &nbsp; &lt;style&gt;
+        &nbsp; .inputs {
+        &nbsp; &nbsp; float: left;
+        &nbsp; &nbsp; margin-right: 1em;
+        &nbsp; }
+        &nbsp; .inputs p {
+        &nbsp; &nbsp; margin-top: 0;
+        &nbsp; }
+        &nbsp; &lt;/style&gt;
+        &nbsp; &lt;script src=&quot;https://code.jquery.com/jquery-1.10.2.js&quot;&gt;&lt;/script&gt;
+        &lt;/head&gt;
+        &lt;body&gt;
+        &nbsp;
+        &lt;div class=&quot;inputs&quot;&gt;
+        &nbsp; &lt;p&gt;
+        &nbsp; &nbsp; &lt;input type=&quot;text&quot;&gt;&lt;br&gt;
+        &nbsp; &nbsp; &lt;input type=&quot;text&quot;&gt;
+        &nbsp; &lt;/p&gt;
+        &nbsp; &lt;p&gt;
+        &nbsp; &nbsp; &lt;input type=&quot;password&quot;&gt;
+        &nbsp; &lt;/p&gt;
+        &lt;/div&gt;
+        &lt;div id=&quot;focus-count&quot;&gt;focusout fire&lt;/div&gt;
+        &lt;div id=&quot;blur-count&quot;&gt;blur fire&lt;/div&gt;
+        &nbsp;
+        &lt;script&gt;
+        var focus = 0,
+        &nbsp; blur = 0;
+        $( &quot;p&quot; )
+        &nbsp; .focusout(function() {
+        &nbsp; &nbsp; focus++;
+        &nbsp; &nbsp; $( &quot;#focus-count&quot; ).text( &quot;focusout fired: &quot; + focus + &quot;x&quot; );
+        &nbsp; })
+        &nbsp; .blur(function() {
+        &nbsp; &nbsp; blur++;
+        &nbsp; &nbsp; $( &quot;#blur-count&quot; ).text( &quot;blur fired: &quot; + blur + &quot;x&quot; );
+        &nbsp; });
+        &lt;/script&gt;
+        &nbsp;
+        &lt;/body&gt;
+        &lt;/html&gt;
+    </pre>
+    <a href="demo/jquery/20" class="button bar-item green hover-white hover-text-green" style="margin-bottom: 7px" target="_blank">Xem ví dụ »</a>
+
+</div>
+<div id="category_06">
+    <p><strong>.select(): </strong>Ràng buộc xử lý một sự kiện tới sự kiện Javascript "select" hay kích hoạt sự kiện này trên thành phần.</p>
+    <p><strong>Ví dụ: </strong></p>
+    <pre class="brush: js; html-script: true">
+        &lt;!doctype html&gt;
+        &lt;html lang=&quot;en&quot;&gt;
+        &lt;head&gt;
+        &nbsp; &lt;meta charset=&quot;utf-8&quot;&gt;
+        &nbsp; &lt;title&gt;select demo&lt;/title&gt;
+        &nbsp; &lt;style&gt;
+        &nbsp; p {
+        &nbsp; &nbsp; color: blue;
+        &nbsp; }
+        &nbsp; div {
+        &nbsp; &nbsp; color: red;
+        &nbsp; }
+        &nbsp; &lt;/style&gt;
+        &nbsp; &lt;script src=&quot;https://code.jquery.com/jquery-1.10.2.js&quot;&gt;&lt;/script&gt;
+        &lt;/head&gt;
+        &lt;body&gt;
+        &nbsp;
+        &nbsp; &lt;p&gt;Click and drag the mouse to select text in the inputs.&lt;/p&gt;
+        &nbsp; &lt;input type=&quot;text&quot; value=&quot;Some text&quot;&gt;
+        &nbsp; &lt;input type=&quot;text&quot; value=&quot;to test on&quot;&gt;
+        &nbsp; &lt;div&gt;&lt;/div&gt;
+        &nbsp;
+        &lt;script&gt;
+        $( &quot;:input&quot; ).select(function() {
+        &nbsp; $( &quot;div&quot; ).text( &quot;Something was selected&quot; ).show().fadeOut( 1000 );
+        });
+        &lt;/script&gt;
+        &nbsp;
+        &lt;/body&gt;
+        &lt;/html&gt;
+    </pre>
+    <a href="demo/jquery/21" class="button bar-item green hover-white hover-text-green" style="margin-bottom: 7px" target="_blank">Xem ví dụ »</a>
+
+</div>
+<div id="category_07">
+    <p><strong>.submit(): </strong>Ràng buộc xử lý một sự kiện tới sự kiện Javascript "submit" hay kích hoạt sự kiện này trên thành phần.</p>
+    <p><strong>Ví dụ: </strong></p>
+    <pre class="brush: js; html-script: true">
+        &lt;!doctype html&gt;
+        &lt;html lang=&quot;en&quot;&gt;
+        &lt;head&gt;
+        &nbsp; &lt;meta charset=&quot;utf-8&quot;&gt;
+        &nbsp; &lt;title&gt;submit demo&lt;/title&gt;
+        &nbsp; &lt;style&gt;
+        &nbsp; p {
+        &nbsp; &nbsp; margin: 0;
+        &nbsp; &nbsp; color: blue;
+        &nbsp; }
+        &nbsp; div,p {
+        &nbsp; &nbsp; margin-left: 10px;
+        &nbsp; }
+        &nbsp; span {
+        &nbsp; &nbsp; color: red;
+        &nbsp; }
+        &nbsp; &lt;/style&gt;
+        &nbsp; &lt;script src=&quot;https://code.jquery.com/jquery-1.10.2.js&quot;&gt;&lt;/script&gt;
+        &lt;/head&gt;
+        &lt;body&gt;
+        &nbsp;
+        &lt;p&gt;Type &#39;correct&#39; to validate.&lt;/p&gt;
+        &lt;form action=&quot;javascript:alert( &#39;success!&#39; );&quot;&gt;
+        &nbsp; &lt;div&gt;
+        &nbsp; &nbsp; &lt;input type=&quot;text&quot;&gt;
+        &nbsp; &nbsp; &lt;input type=&quot;submit&quot;&gt;
+        &nbsp; &lt;/div&gt;
+        &lt;/form&gt;
+        &lt;span&gt;&lt;/span&gt;
+        &nbsp;
+        &lt;script&gt;
+        $( &quot;form&quot; ).submit(function( event ) {
+        &nbsp; if ( $( &quot;input:first&quot; ).val() === &quot;correct&quot; ) {
+        &nbsp; &nbsp; $( &quot;span&quot; ).text( &quot;Validated...&quot; ).show();
+        &nbsp; &nbsp; return;
+        &nbsp; }
+        &nbsp;
+        &nbsp; $( &quot;span&quot; ).text( &quot;Not valid!&quot; ).show().fadeOut( 1000 );
+        &nbsp; event.preventDefault();
+        });
+        &lt;/script&gt;
+        &nbsp;
+        &lt;/body&gt;
+        &lt;/html&gt;
+    </pre>
+    <a href="demo/jquery/22" class="button bar-item green hover-white hover-text-green" style="margin-bottom: 7px" target="_blank">Xem ví dụ »</a>
+
+</div>

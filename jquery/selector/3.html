@@ -1,0 +1,39 @@
+<p><strong>Cú pháp: </strong>
+<pre class="brush: js">
+    jQuery( "element" )
+</pre>
+<p><code>Element Selector (“element”)</code> Chọn tất cả các phần tử với tên thẻ đã chỉ định.</p>
+<p>Element Selector trong jQuery tương tự như hàm <code>getElementsByTagName()</code> trong Javascript.</p>
+<p><strong>Ví dụ: </strong> Tìm mọi phần tử DIV.</p>
+<pre class="brush: js; html-script: true">
+    &lt;!doctype html&gt;
+    &lt;html lang=&quot;en&quot;&gt;
+    &lt;head&gt;
+    &nbsp; &lt;meta charset=&quot;utf-8&quot;&gt;
+    &nbsp; &lt;title&gt;element demo&lt;/title&gt;
+    &nbsp; &lt;style&gt;
+    &nbsp; div, span {
+    &nbsp; &nbsp; width: 60px;
+    &nbsp; &nbsp; height: 60px;
+    &nbsp; &nbsp; float: left;
+    &nbsp; &nbsp; padding: 10px;
+    &nbsp; &nbsp; margin: 10px;
+    &nbsp; &nbsp; background-color: #eee;
+    &nbsp; }
+    &nbsp; &lt;/style&gt;
+    &nbsp; &lt;script src=&quot;https://code.jquery.com/jquery-1.10.2.js&quot;&gt;&lt;/script&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+    &nbsp;
+    &lt;div&gt;DIV1&lt;/div&gt;
+    &lt;div&gt;DIV2&lt;/div&gt;
+    &lt;span&gt;SPAN&lt;/span&gt;
+    &nbsp;
+    &lt;script&gt;
+    $( &quot;div&quot; ).css( &quot;border&quot;, &quot;9px solid red&quot; );
+    &lt;/script&gt;
+    &nbsp;
+    &lt;/body&gt;
+    &lt;/html&gt;
+</pre>
+<a href="demo/jquery/5" class="button bar-item green hover-white hover-text-green" style="margin-bottom: 7px" target="_blank">Xem ví dụ »</a>

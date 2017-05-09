@@ -1,0 +1,71 @@
+<p><strong>Cú pháp: </strong>
+<pre class="brush: js">
+    jQuery ("#id")
+</pre>
+<p><code>ID Selector ("#id")</code> chọn một phần tử với thuộc tính id đã cho.</p>
+<p>ID Selector trong jQuery tương tự như hàm <code>getElementById()</code> trong Javascript.</p>
+<p><strong>Lưu ý: </strong> Mỗi id chỉ được sử dụng một lần trong một tài liệu. Nếu có nhiều hơn một phần tử được gán cùng một ID, các truy vấn sử dụng ID đó sẽ chỉ chọn phần tử tìm thấy đầu tiên trong DOM. </p>
+<p><strong>Ví dụ 1: </strong> Chọn phần tử có id "myDiv" và đặt cho nó một đường viền màu đỏ.</p>
+<pre class="brush: js; html-script: true">
+    &lt;!doctype html&gt;
+    &lt;html lang=&quot;en&quot;&gt;
+    &lt;head&gt;
+    &nbsp; &lt;meta charset=&quot;utf-8&quot;&gt;
+    &nbsp; &lt;title&gt;id demo&lt;/title&gt;
+    &nbsp; &lt;style&gt;
+    &nbsp; div {
+    &nbsp; &nbsp; width: 90px;
+    &nbsp; &nbsp; height: 90px;
+    &nbsp; &nbsp; float: left;
+    &nbsp; &nbsp; padding: 5px;
+    &nbsp; &nbsp; margin: 5px;
+    &nbsp; &nbsp; background-color: #eee;
+    &nbsp; }
+    &nbsp; &lt;/style&gt;
+    &nbsp; &lt;script src=&quot;https://code.jquery.com/jquery-1.10.2.js&quot;&gt;&lt;/script&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+    &nbsp;
+    &lt;div id=&quot;notMe&quot;&gt;&lt;p&gt;id=&quot;notMe&quot;&lt;/p&gt;&lt;/div&gt;
+    &lt;div id=&quot;myDiv&quot;&gt;id=&quot;myDiv&quot;&lt;/div&gt;
+    &nbsp;
+    &lt;script&gt;
+    $( &quot;#myDiv&quot; ).css( &quot;border&quot;, &quot;3px solid red&quot; );
+    &lt;/script&gt;
+    &nbsp;
+    &lt;/body&gt;
+    &lt;/html&gt;
+</pre>
+<a href="demo/jquery/6" class="button bar-item green hover-white hover-text-green" style="margin-bottom: 7px" target="_blank">Xem ví dụ »</a>
+<p><strong>Ví dụ 2: </strong>Chọn phần tử có id "myID.entry [1]" và đặt cho nó một đường viền màu đỏ. </p>
+<pre class="brush: js; html-script: true">
+    &lt;!doctype html&gt;
+    &lt;html lang=&quot;en&quot;&gt;
+    &lt;head&gt;
+    &nbsp; &lt;meta charset=&quot;utf-8&quot;&gt;
+    &nbsp; &lt;title&gt;id demo&lt;/title&gt;
+    &nbsp; &lt;style&gt;
+    &nbsp; div {
+    &nbsp; &nbsp; width: 300px;
+    &nbsp; &nbsp; float: left;
+    &nbsp; &nbsp; padding: 2px;
+    &nbsp; &nbsp; margin: 3px;
+    &nbsp; &nbsp; background-color: #eee;
+    &nbsp; }
+    &nbsp; &lt;/style&gt;
+    &nbsp; &lt;script src=&quot;https://code.jquery.com/jquery-1.10.2.js&quot;&gt;&lt;/script&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+    &nbsp;
+    &lt;div id=&quot;myID.entry[0]&quot;&gt;id=&quot;myID.entry[0]&quot;&lt;/div&gt;
+    &lt;div id=&quot;myID.entry[1]&quot;&gt;id=&quot;myID.entry[1]&quot;&lt;/div&gt;
+    &lt;div id=&quot;myID.entry[2]&quot;&gt;id=&quot;myID.entry[2]&quot;&lt;/div&gt;
+    &nbsp;
+    &lt;script&gt;
+    $( &quot;#myID\\.entry\\[1\\]&quot; ).css( &quot;border&quot;, &quot;3px solid red&quot; );
+    &lt;/script&gt;
+    &nbsp;
+    &lt;/body&gt;
+    &lt;/html&gt;
+</pre>
+<a href="demo/jquery/7" class="button bar-item green hover-white hover-text-green" style="margin-bottom: 7px" target="_blank">Xem ví dụ »</a>

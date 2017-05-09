@@ -1,0 +1,203 @@
+<p><strong>Mục Lục:</strong></p>
+<div id="category_list">
+    <ul>
+        <li><a id = "category_01_link" href="#">.keydown()</a></li>
+        <li><a id = "category_02_link" href="#">.keypress()</a></li>
+        <li><a id = "category_03_link" href="#">.keyup()</a></li>
+    </ul>
+</div>
+<div id="category_01">
+    <p><strong>.keydown(): </strong>Ràng buộc một xử lý tới một sự kiện keydown (nhấn phím), hoặc kích hoạt sự kiện keydown lên một thành phần.</p>
+    <p><strong>Ví dụ: </strong></p>
+    <pre class="brush: js; html-script: true">
+        &lt;!doctype html&gt;<br />
+        &lt;html lang=&quot;en&quot;&gt;<br />
+        &lt;head&gt;<br />
+        &nbsp; &lt;meta charset=&quot;utf-8&quot;&gt;<br />
+        &nbsp; &lt;title&gt;keydown demo&lt;/title&gt;<br />
+        &nbsp; &lt;style&gt;<br />
+        &nbsp; fieldset {<br />
+        &nbsp; &nbsp; margin-bottom: 1em;<br />
+        &nbsp; }<br />
+        &nbsp; input {<br />
+        &nbsp; &nbsp; display: block;<br />
+        &nbsp; &nbsp; margin-bottom: .25em;<br />
+        &nbsp; }<br />
+        &nbsp; #print-output {<br />
+        &nbsp; &nbsp; width: 100%;<br />
+        &nbsp; }<br />
+        &nbsp; .print-output-line {<br />
+        &nbsp; &nbsp; white-space: pre;<br />
+        &nbsp; &nbsp; padding: 5px;<br />
+        &nbsp; &nbsp; font-family: monaco, monospace;<br />
+        &nbsp; &nbsp; font-size: .7em;<br />
+        &nbsp; }<br />
+        &nbsp; &lt;/style&gt;<br />
+        &nbsp; &lt;script src=&quot;https://code.jquery.com/jquery-1.10.2.js&quot;&gt;&lt;/script&gt;<br />
+        &lt;/head&gt;<br />
+        &lt;body&gt;<br />
+        &nbsp;<br />
+        &lt;form&gt;<br />
+        &nbsp; &lt;fieldset&gt;<br />
+        &nbsp; &nbsp; &lt;label for=&quot;target&quot;&gt;Type Something:&lt;/label&gt;<br />
+        &nbsp; &nbsp; &lt;input id=&quot;target&quot; type=&quot;text&quot;&gt;<br />
+        &nbsp; &lt;/fieldset&gt;<br />
+        &lt;/form&gt;<br />
+        &lt;button id=&quot;other&quot;&gt;<br />
+        &nbsp; Trigger the handler<br />
+        &lt;/button&gt;<br />
+        &lt;script type=&quot;text/javascript&quot; src=&quot;/resources/events.js&quot;&gt;&lt;/script&gt;<br />
+        &nbsp;<br />
+        &lt;script&gt;<br />
+        var xTriggered = 0;<br />
+        $( &quot;#target&quot; ).keydown(function( event ) {<br />
+        &nbsp; if ( event.which == 13 ) {<br />
+        &nbsp; &nbsp;event.preventDefault();<br />
+        &nbsp; }<br />
+        &nbsp; xTriggered++;<br />
+        &nbsp; var msg = &quot;Handler for .keydown() called &quot; + xTriggered + &quot; time(s).&quot;;<br />
+        &nbsp; $.print( msg, &quot;html&quot; );<br />
+        &nbsp; $.print( event );<br />
+        });<br />
+        &nbsp;<br />
+        $( &quot;#other&quot; ).click(function() {<br />
+        &nbsp; $( &quot;#target&quot; ).keydown();<br />
+        });<br />
+        &lt;/script&gt;<br />
+        &nbsp;<br />
+        &lt;/body&gt;<br />
+        &lt;/html&gt;
+    </pre>
+    <a href="demo/jquery/23" class="button bar-item green hover-white hover-text-green" style="margin-bottom: 7px" target="_blank">Xem ví dụ »</a>
+</div>
+<div id="category_02">
+    <p><strong>.keypress(): </strong>Ràng buộc một xử lý tới một sự kiện keypress, hoặc kích hoạt sự kiện keypress lên một thành phần.</p>
+    <p><strong>Ví dụ: </strong></p>
+    <pre class="brush: js; html-script: true">
+       &lt;!doctype html&gt;<br />
+        &lt;html lang=&quot;en&quot;&gt;<br />
+        &lt;head&gt;<br />
+        &nbsp; &lt;meta charset=&quot;utf-8&quot;&gt;<br />
+        &nbsp; &lt;title&gt;keypress demo&lt;/title&gt;<br />
+        &nbsp; &lt;style&gt;<br />
+        &nbsp; fieldset {<br />
+        &nbsp; &nbsp; margin-bottom: 1em;<br />
+        &nbsp; }<br />
+        &nbsp; input {<br />
+        &nbsp; &nbsp; display: block;<br />
+        &nbsp; &nbsp; margin-bottom: .25em;<br />
+        &nbsp; }<br />
+        &nbsp; #print-output {<br />
+        &nbsp; &nbsp; width: 100%;<br />
+        &nbsp; }<br />
+        &nbsp; .print-output-line {<br />
+        &nbsp; &nbsp; white-space: pre;<br />
+        &nbsp; &nbsp; padding: 5px;<br />
+        &nbsp; &nbsp; font-family: monaco, monospace;<br />
+        &nbsp; &nbsp; font-size: .7em;<br />
+        &nbsp; }<br />
+        &nbsp; &lt;/style&gt;<br />
+        &nbsp; &lt;script src=&quot;https://code.jquery.com/jquery-1.10.2.js&quot;&gt;&lt;/script&gt;<br />
+        &lt;/head&gt;<br />
+        &lt;body&gt;<br />
+        &nbsp;<br />
+        &lt;form&gt;<br />
+        &nbsp; &lt;fieldset&gt;<br />
+        &nbsp; &nbsp; &lt;label for=&quot;target&quot;&gt;Type Something:&lt;/label&gt;<br />
+        &nbsp; &nbsp; &lt;input id=&quot;target&quot; type=&quot;text&quot;&gt;<br />
+        &nbsp; &lt;/fieldset&gt;<br />
+        &lt;/form&gt;<br />
+        &lt;button id=&quot;other&quot;&gt;<br />
+        &nbsp; Trigger the handler<br />
+        &lt;/button&gt;<br />
+        &lt;script src=&quot;/resources/events.js&quot;&gt;&lt;/script&gt;<br />
+        &nbsp;<br />
+        &lt;script&gt;<br />
+        var xTriggered = 0;<br />
+        $( &quot;#target&quot; ).keypress(function( event ) {<br />
+        &nbsp; if ( event.which == 13 ) {<br />
+        &nbsp; &nbsp; &nbsp;event.preventDefault();<br />
+        &nbsp; }<br />
+        &nbsp; xTriggered++;<br />
+        &nbsp; var msg = &quot;Handler for .keypress() called &quot; + xTriggered + &quot; time(s).&quot;;<br />
+        &nbsp; $.print( msg, &quot;html&quot; );<br />
+        &nbsp; $.print( event );<br />
+        });<br />
+        &nbsp;<br />
+        $( &quot;#other&quot; ).click(function() {<br />
+        &nbsp; $( &quot;#target&quot; ).keypress();<br />
+        });<br />
+        &lt;/script&gt;<br />
+        &nbsp;<br />
+        &lt;/body&gt;<br />
+        &lt;/html&gt;
+    </pre>
+    <a href="demo/jquery/24" class="button bar-item green hover-white hover-text-green" style="margin-bottom: 7px" target="_blank">Xem ví dụ »</a>
+
+</div>
+<div id="category_03">
+    <p><strong>.keyup(): </strong>Ràng buộc một xử lý tới một sự kiện keyup (nhã phím nhấn), hoặc kích hoạt sự kiện keyup lên một thành phần.</p>
+    <p><strong>Ví dụ: </strong></p>
+    <pre class="brush: js; html-script: true">
+        &lt;!doctype html&gt;<br />
+        &lt;html lang=&quot;en&quot;&gt;<br />
+        &lt;head&gt;<br />
+        &nbsp; &lt;meta charset=&quot;utf-8&quot;&gt;<br />
+        &nbsp; &lt;title&gt;keyup demo&lt;/title&gt;<br />
+        &nbsp; &lt;style&gt;<br />
+        &nbsp; fieldset {<br />
+        &nbsp; &nbsp; margin-bottom: 1em;<br />
+        &nbsp; }<br />
+        &nbsp; input {<br />
+        &nbsp; &nbsp; display: block;<br />
+        &nbsp; &nbsp; margin-bottom: .25em;<br />
+        &nbsp; }<br />
+        &nbsp; #print-output {<br />
+        &nbsp; &nbsp; width: 100%;<br />
+        &nbsp; }<br />
+        &nbsp; .print-output-line {<br />
+        &nbsp; &nbsp; white-space: pre;<br />
+        &nbsp; &nbsp; padding: 5px;<br />
+        &nbsp; &nbsp; font-family: monaco, monospace;<br />
+        &nbsp; &nbsp; font-size: .7em;<br />
+        &nbsp; }<br />
+        &nbsp; &lt;/style&gt;<br />
+        &nbsp; &lt;script src=&quot;https://code.jquery.com/jquery-1.10.2.js&quot;&gt;&lt;/script&gt;<br />
+        &lt;/head&gt;<br />
+        &lt;body&gt;<br />
+        &nbsp;<br />
+        &lt;form&gt;<br />
+        &nbsp; &lt;fieldset&gt;<br />
+        &nbsp; &nbsp; &lt;label for=&quot;target&quot;&gt;Type Something:&lt;/label&gt;<br />
+        &nbsp; &nbsp; &lt;input id=&quot;target&quot; type=&quot;text&quot;&gt;<br />
+        &nbsp; &lt;/fieldset&gt;<br />
+        &lt;/form&gt;<br />
+        &lt;button id=&quot;other&quot;&gt;<br />
+        &nbsp; Trigger the handler<br />
+        &lt;/button&gt;<br />
+        &lt;script type=&quot;text/javascript&quot; src=&quot;/resources/events.js&quot;&gt;&lt;/script&gt;<br />
+        &nbsp;<br />
+        &lt;script&gt;<br />
+        var xTriggered = 0;<br />
+        $( &quot;#target&quot; ).keyup(function( event ) {<br />
+        &nbsp; xTriggered++;<br />
+        &nbsp; var msg = &quot;Handler for .keyup() called &quot; + xTriggered + &quot; time(s).&quot;;<br />
+        &nbsp; $.print( msg, &quot;html&quot; );<br />
+        &nbsp; $.print( event );<br />
+        }).keydown(function( event ) {<br />
+        &nbsp; if ( event.which == 13 ) {<br />
+        &nbsp; &nbsp; event.preventDefault();<br />
+        &nbsp; }<br />
+        });<br />
+        &nbsp;<br />
+        $( &quot;#other&quot;).click(function() {<br />
+        &nbsp; $( &quot;#target&quot; ).keyup();<br />
+        });<br />
+        &lt;/script&gt;<br />
+        &nbsp;<br />
+        &lt;/body&gt;<br />
+        &lt;/html&gt;
+    </pre>
+    <a href="demo/jquery/25" class="button bar-item green hover-white hover-text-green" style="margin-bottom: 7px" target="_blank">Xem ví dụ »</a>
+
+</div>
