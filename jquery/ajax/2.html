@@ -1,0 +1,123 @@
+<p>Các phương thức jQuery get() và post() được sử dụng để yêu cầu dữ liệu từ máy chủ với yêu cầu HTTP GET hoặc POST.</p>
+<p>Hai phương pháp thường được sử dụng cho một yêu cầu phản hồi giữa người dùng và máy chủ là: GET và POST.</p>
+<ul>
+    <li>GET - Yêu cầu dữ liệu từ một nguồn cụ thể</li>
+    <li>POST - Gửi dữ liệu được xử lý đến một tài nguyên được chỉ định</li>
+</ul>
+<p><strong>Mục Lục:</strong></p>
+<div id="category_list">
+    <ul>
+        <li><a id = "category_01_link" href="#">Phương thức get trong jQuery</a></li>
+        <li><a id = "category_02_link" href="#">Phương thức post trong jQuery</a></li>
+    </ul>
+</div>
+<div id="category_01">
+    <p><strong>Phương thức get trong jQuery: </strong>Phương thức $.get() yêu cầu dữ liệu từ máy chủ với yêu cầu HTTP GET.</p>
+    <p><strong>Cú pháp:</strong></p>
+    <pre class="brush: js">
+        $.get(URL,callback);
+    </pre>
+    <p><strong>Trong đó: </strong></p>
+    <ul>
+        <li>URL - bắt buộc chỉ định URL bạn muốn yêu cầu</li>
+        <li>callback - một hàm được thực hiện sau khi phương thức get() hoàn tất.</li>
+    </ul>
+    <p><strong>Ví dụ: </strong> Lấy lại ví dụ bài <a href="http://laedaily.com/ajax-select-box-tinh-thanh.html" target="_blank">Ajax Select Box Tỉnh thành</a> trong phần PHP Ajax.</p>
+    <p>Tham số URL ở đây ta sẽ gửi về file <code>gettownship.php</code></p>
+    <p>Hàm showTownship() sẽ nội dung như sau:</p>
+    <pre class="brush: js">
+        function showTownship(str) {
+            if (str.length==0) {
+                $("#township").value="Chọn quận huyện";
+                return;
+            }
+            $.get("gettownship.php?q="+str, function(data, status){
+                 $("#township").html(data);
+            });
+        }
+    </pre>
+    <p>Rõ ràng code giờ nhìn rất ngắn gọn, dể hiểu.</p>
+    <a href="demo/jquery/40" class="button bar-item green hover-white hover-text-green" style="margin-bottom: 7px" target="_blank">Xem ví dụ »</a>
+</div>
+<div id="category_02">
+    <p><strong>Phương thức post trong jQuery: </strong>Phương thức $.post() yêu cầu dữ liệu từ máy chủ sử dụng một yêu cầu HTTP POST.</p>
+    <p><strong>Cú pháp:</strong></p>
+    <pre class="brush: js">
+        $.post(URL,data,callback);
+    </pre>
+    <p><strong>Trong đó: </strong></p>
+    <ul>
+        <li>URL - bắt buộc chỉ định URL bạn muốn yêu cầu</li>
+        <li>callback - một hàm được thực hiện sau khi phương thức get() hoàn tất.</li>
+    </ul>
+    <p><strong>Ví dụ: </strong> Lấy lại ví dụ bài <a href="http://laedaily.com/ajax-database.html" target="_blank">Ajax Database</a> trong phần PHP Ajax.</p>
+    <p>Tham số URL ở đây ta sẽ gửi về file <code>getuser.php</code></p>
+    <p>File <code>getuser.php</code> chỉ cần sữa 1 dòng $q = intval($_GET[&#39;q&#39;]) thành $q = intval($_POST[&#39;q&#39;])</p>
+    <pre class="brush: php; html-script: true">
+        &lt;!DOCTYPE html&gt;
+        &lt;html&gt;
+        &lt;head&gt;
+        &lt;style&gt;
+        &nbsp; &nbsp; table {
+        &nbsp; &nbsp; &nbsp; &nbsp; width: 100%;
+        &nbsp; &nbsp; &nbsp; &nbsp; border-collapse: collapse;
+        &nbsp; &nbsp; }
+        &nbsp; &nbsp; &nbsp;
+        &nbsp; &nbsp; table, td, th {
+        &nbsp; &nbsp; &nbsp; &nbsp; border: 1px solid black;
+        &nbsp; &nbsp; &nbsp; &nbsp; padding: 5px;
+        &nbsp; &nbsp; }
+        &nbsp; &nbsp; &nbsp;
+        &nbsp; &nbsp; th {text-align: left;}
+        &lt;/style&gt;
+        &lt;/head&gt;
+        &lt;body&gt;
+        &nbsp; &nbsp; &lt;?php
+        &nbsp; &nbsp; &nbsp; &nbsp; $q = intval($_POST[&#39;q&#39;]);
+        &nbsp;
+        &nbsp; &nbsp; &nbsp; &nbsp; $con = mysqli_connect(&#39;localhost&#39;,&#39;peter&#39;,&#39;abc123&#39;,&#39;my_db&#39;);
+        &nbsp; &nbsp; &nbsp; &nbsp; if (!$con) {
+        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; die(&#39;Could not connect: &#39; . mysqli_error($con));
+        &nbsp; &nbsp; &nbsp; &nbsp; }
+        &nbsp;
+        &nbsp; &nbsp; &nbsp; &nbsp; mysqli_select_db($con,&quot;ajax_demo&quot;);
+        &nbsp; &nbsp; &nbsp; &nbsp; $sql=&quot;SELECT * FROM user WHERE id = &#39;&quot;.$q.&quot;&#39;&quot;;
+        &nbsp; &nbsp; &nbsp; &nbsp; $result = mysqli_query($con,$sql);
+        &nbsp;
+        &nbsp; &nbsp; &nbsp; &nbsp; echo &quot;&lt;table&gt;
+        &nbsp; &nbsp; &nbsp; &nbsp; &lt;tr&gt;
+        &nbsp; &nbsp; &nbsp; &nbsp; &lt;th&gt;Firstname&lt;/th&gt;
+        &nbsp; &nbsp; &nbsp; &nbsp; &lt;th&gt;Lastname&lt;/th&gt;
+        &nbsp; &nbsp; &nbsp; &nbsp; &lt;th&gt;Age&lt;/th&gt;
+        &nbsp; &nbsp; &nbsp; &nbsp; &lt;th&gt;Hometown&lt;/th&gt;
+        &nbsp; &nbsp; &nbsp; &nbsp; &lt;th&gt;Job&lt;/th&gt;
+        &nbsp; &nbsp; &nbsp; &nbsp; &lt;/tr&gt;&quot;;
+        &nbsp; &nbsp; &nbsp; &nbsp; while($row = mysqli_fetch_array($result)) {
+        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; echo &quot;&lt;tr&gt;&quot;;
+        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; echo &quot;&lt;td&gt;&quot; . $row[&#39;FirstName&#39;] . &quot;&lt;/td&gt;&quot;;
+        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; echo &quot;&lt;td&gt;&quot; . $row[&#39;LastName&#39;] . &quot;&lt;/td&gt;&quot;;
+        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; echo &quot;&lt;td&gt;&quot; . $row[&#39;Age&#39;] . &quot;&lt;/td&gt;&quot;;
+        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; echo &quot;&lt;td&gt;&quot; . $row[&#39;Hometown&#39;] . &quot;&lt;/td&gt;&quot;;
+        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; echo &quot;&lt;td&gt;&quot; . $row[&#39;Job&#39;] . &quot;&lt;/td&gt;&quot;;
+        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; echo &quot;&lt;/tr&gt;&quot;;
+        &nbsp; &nbsp; &nbsp; &nbsp; }
+        &nbsp; &nbsp; &nbsp; &nbsp; echo &quot;&lt;/table&gt;&quot;;
+        &nbsp; &nbsp; &nbsp; &nbsp; mysqli_close($con);
+        &nbsp; &nbsp; ?&gt;
+        &lt;/body&gt;
+        &lt;/html&gt;
+    </pre>
+    <p>Hàm showUser() sẽ nội dung như sau:</p>
+    <pre class="brush: js">
+        function showUser(str) {
+            if (str.length==0) {
+                $("#txtHint").value="";
+                return;
+            }
+            $.post("postuser.php", {q: str}, function(data, status){
+                 $("#txtHint").html(data);
+            });
+        }
+    </pre>
+    <a href="demo/jquery/41" class="button bar-item green hover-white hover-text-green" style="margin-bottom: 7px" target="_blank">Xem ví dụ »</a>
+</div>
