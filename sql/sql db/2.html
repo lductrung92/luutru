@@ -1,0 +1,111 @@
+<p>Câu lệnh ALTER TABLE được sử dụng để thêm, xóa, hoặc sửa đổi các cột trong một bảng hiện có.</p>
+<p>Câu lệnh ALTER TABLE cũng được sử dụng để thêm và bỏ các ràng buộc khác nhau trên một bảng hiện có.</p>
+<p><strong>ALTER TABLE - Thêm cột</strong></p>
+<p>Để thêm một cột trong một bảng, sử dụng cú pháp sau:</p>
+<pre class="brush: sql">
+    ALTER TABLE table_name
+    ADD column_name datatype;
+</pre>
+<p><strong>ALTER TABLE - Xóa cột</strong></p>
+<p>Để xóa một cột trong một bảng, sử dụng cú pháp sau:</p>
+<pre class="brush: sql">
+    ALTER TABLE table_name
+    DROP COLUMN column_name;
+</pre>
+<p><strong>ALTER TABLE - ALTER/MODIFY COLUMN</strong></p>
+<p>Để thay đổi kiểu dữ liệu của một cột trong một bảng, sử dụng cú pháp sau:</p>
+<p><strong>SQL Server/MS Access:</strong></p>
+<pre class="brush: sql">
+    ALTER TABLE table_name
+    ALTER COLUMN column_name datatype;
+</pre>
+<p><strong>SQL/Oracle:</strong></p>
+<pre class="brush: sql">
+    ALTER TABLE table_name
+    MODIFY COLUMN column_name datatype;
+</pre>
+<p><strong>Ví dụ: </strong>Có bảng "Persons":</p>
+<div class="table-responsive">
+    <table class="table">
+        <tbody><tr>
+            <th>ID</th>
+            <th>LastName</th>
+            <th>FirstName</th>
+            <th>Address</th>
+            <th>City</th>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>Hansen</td>
+            <td>Ola</td>
+            <td>Timoteivn 10</td>
+            <td>Sandnes</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>Svendson</td>
+            <td>Tove</td>
+            <td>Borgvn 23</td>
+            <td>Sandnes</td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td>Pettersen</td>
+            <td>Kari</td>
+            <td>Storgt 20</td>
+            <td>Stavanger</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<p>Bây giờ chúng ta muốn thêm một cột có tên "DateOfBirth" trong bảng "Persons".</p>
+<p>Ta sử dụng câu lệnh SQL sau:</p>
+<pre class="brush: sql">
+    ALTER TABLE Persons
+    ADD DateOfBirth date;
+</pre>
+<p><strong>Kết quả bảng "Persons" bây giờ:</strong></p>
+<div class="table-responsive">
+    <table class="table">
+        <tbody><tr>
+            <th>ID</th>
+            <th>LastName</th>
+            <th>FirstName</th>
+            <th>Address</th>
+            <th>City</th>
+            <th>DateOfBirth</th>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>Hansen</td>
+            <td>Ola</td>
+            <td>Timoteivn 10</td>
+            <td>Sandnes</td>
+            <td>&nbsp;</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>Svendson</td>
+            <td>Tove</td>
+            <td>Borgvn 23</td>
+            <td>Sandnes</td>
+            <td>&nbsp;</td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td>Pettersen</td>
+            <td>Kari</td>
+            <td>Storgt 20</td>
+            <td>Stavanger</td>
+            <td>&nbsp;</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<p>Tiếp theo, chúng ta muốn xóa cột có tên "DateOfBirth" trong bảng "Persons".</p>
+<p>Ta sử dụng câu lệnh SQL sau:</p>
+<pre class="brush: sql">
+    ALTER TABLE Persons
+    DROP COLUMN DateOfBirth;
+</pre>
+<p>Kết quả bảng "Persons" sẽ có dữ liệu như ban đầu</p>
