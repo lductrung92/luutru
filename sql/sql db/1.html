@@ -1,0 +1,78 @@
+<p><strong>Mục Lục:</strong></p>
+<div id="category_list">
+    <ul>
+        <li><a id = "category_01_link" href="#">Create DB</a></li>
+        <li><a id = "category_02_link" href="#">Drop DB</a></li>
+        <li><a id = "category_03_link" href="#">Create Table</a></li>
+        <li><a id = "category_04_link" href="#">Drop Table</a></li>
+    </ul>
+</div>
+<div id="category_01">
+    <p><strong>1. Create DB: </strong>được sử dụng để tạo ra một cơ sở dữ liệu SQL mới.</p>
+    <p><strong>Cú pháp: </strong></p>
+    <pre class="brush: sql">
+        CREATE DATABASE databasename;
+    </pre>
+    <p><strong>Ví dụ: </strong>Câu lệnh SQL sau tạo một cơ sở dữ liệu gọi là "testDB":</p>
+    <pre class="brush: sql">
+        CREATE DATABASE testDB;
+    </pre>
+</div>
+<div id="category_02">
+    <p><strong>2. Drop DB: </strong>được sử dụng để xóa một cơ sở dữ liệu SQL hiện có.</p>
+    <p><strong>Cú pháp: </strong></p>
+    <pre class="brush: sql">
+        DROP DATABASE databasename;
+    </pre>
+    <p><strong>Ví dụ: </strong>Câu lệnh SQL sẽ xóa cơ sở dữ liệu hiện có "testDB":</p>
+    <pre class="brush: sql">
+        DROP DATABASE testDB;
+    </pre>
+</div>
+<div id="category_03">
+    <p><strong>3. Create Table: </strong>được sử dụng để tạo một bảng mới trong cơ sở dữ liệu.</p>
+    <p><strong>Cú pháp: </strong></p>
+    <pre class="brush: sql">
+        CREATE TABLE table_name (
+            column1 datatype,
+            column2 datatype,
+            column3 datatype,
+           ....
+        );
+    </pre>
+    <p><strong>Ví dụ: </strong>tạo một bảng "Persons" có chứa năm cột: PersonID, LastName, FirstName, Address và City:</p>
+    <pre class="brush: sql">
+        CREATE TABLE Persons (
+            PersonID int,
+            LastName varchar(255),
+            FirstName varchar(255),
+            Address varchar(255),
+            City varchar(255)
+        );
+    </pre>
+    <p><strong>Tạo bảng sử dụng bảng khác</strong></p>
+    <p>Một bản sao của một bảng hiện có có thể được tạo ra bằng cách kết hợp câu lệnh CREATE TABLE và câu lệnh SELECT.</p>
+    <p><strong>Cú pháp: </strong></p>
+    <pre class="brush: sql">
+        CREATE TABLE new_table_name AS
+        SELECT column1, column2,...
+        FROM existing_table_name
+        WHERE ....;
+    </pre>
+</div>
+<div id="category_04">
+    <p><strong>4. Drop Table: </strong>được sử dụng xóa một bảng hiện có trong cơ sở dữ liệu.</p>
+    <p><strong>Cú pháp: </strong></p>
+    <pre class="brush: sql">
+        DROP TABLE table_name;
+    </pre>
+    <p><strong>Ví dụ: </strong>Câu lệnh SQL sẽ xóa bảng hiện có "Shippers":</p>
+    <pre class="brush: sql">
+        DROP TABLE Shippers;
+    </pre>
+    <p><strong>TRUNCATE TABLE: </strong>Câu lệnh TRUNCATE TABLE được sử dụng để xóa dữ liệu bên trong một bảng.</p>
+    <p><strong>Cú pháp: </strong></p>
+    <pre class="brush: sql">
+        TRUNCATE TABLE table_name;
+    </pre>
+</div>

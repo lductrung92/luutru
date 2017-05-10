@@ -1,0 +1,166 @@
+<p>Thư viện jQuery có một bộ đầy đủ các tính năng của Ajax. Các chức năng và phương pháp trong đó cho phép tải dữ liệu từ máy chủ mà không cần phải làm mới trang trình duyệt.</p>
+<p>Bài viết này sẽ giới thiệu một thư viện rất hữu ích cho các bạn muốn hiển thị danh sách từ nguồn dữ liệu nào đó ra 1 table.</p>
+<p><strong>DataTables plugin: </strong>DataTables rất đơn giản để sử dụng như một plug-in jQuery với một phạm vi tùy chọn tùy biến rất lớn. DataTables có khả năng đọc dữ liệu từ hầu như bất kỳ nguồn dữ liệu JSON nào có thể thu được bằng Ajax.</p>
+<p>Chi tiết về DataTables bạn có thể lên đây đọc thêm: <a href="https://datatables.net">https://datatables.net</a></p>
+<p><strong>Ví dụ cơ bản: </strong></p>
+<p>Ta có 1 file .txt có nội dung như sau:</p>
+<pre class="brush: js">
+    {
+      "data": [
+        [
+          "Tiger Nixon",
+          "System Architect",
+          "Edinburgh",
+          "5421",
+          "2011/04/25",
+          "$320,800"
+        ],
+        [
+          "Garrett Winters",
+          "Accountant",
+          "Tokyo",
+          "8422",
+          "2011/07/25",
+          "$170,750"
+        ],
+        [
+          "Martena Mccray",
+          "Post-Sales support",
+          "Edinburgh",
+          "8240",
+          "2011/03/09",
+          "$324,050"
+        ],
+        [
+          "Unity Butler",
+          "Marketing Designer",
+          "San Francisco",
+          "5384",
+          "2009/12/09",
+          "$85,675"
+        ],
+        [
+          "Howard Hatfield",
+          "Office Manager",
+          "San Francisco",
+          "7031",
+          "2008/12/16",
+          "$164,500"
+        ],
+        [
+          "Hope Fuentes",
+          "Secretary",
+          "San Francisco",
+          "6318",
+          "2010/02/12",
+          "$109,850"
+        ],
+        [
+          "Vivian Harrell",
+          "Financial Controller",
+          "San Francisco",
+          "9422",
+          "2009/02/14",
+          "$452,500"
+        ],
+        [
+          "Jennifer Acosta",
+          "Junior Javascript Developer",
+          "Edinburgh",
+          "3431",
+          "2013/02/01",
+          "$75,650"
+        ],
+        [
+          "Cara Stevens",
+          "Sales Assistant",
+          "New York",
+          "3990",
+          "2011/12/06",
+          "$145,600"
+        ],
+        [
+          "Hermione Butler",
+          "Regional Director",
+          "London",
+          "1016",
+          "2011/03/21",
+          "$356,250"
+        ],
+        [
+          "Lael Greer",
+          "Systems Administrator",
+          "London",
+          "6733",
+          "2009/02/27",
+          "$103,500"
+        ],
+        [
+          "Jonas Alexander",
+          "Developer",
+          "San Francisco",
+          "8196",
+          "2010/07/14",
+          "$86,500"
+        ],
+        [
+          "Shad Decker",
+          "Regional Director",
+          "Edinburgh",
+          "6373",
+          "2008/11/13",
+          "$183,000"
+        ],
+        [
+          "Michael Bruce",
+          "Javascript Developer",
+          "Singapore",
+          "5384",
+          "2011/06/27",
+          "$183,000"
+        ],
+        [
+          "Donna Snider",
+          "Customer Support",
+          "New York",
+          "4226",
+          "2011/01/25",
+          "$112,000"
+        ]
+      ]
+    }
+</pre>
+<p>Bây giờ ta sẽ hiển thị dữ liệu này trong 1 table: </p>
+<pre class="brush: html">
+    &lt;table id=&quot;example&quot; class=&quot;display&quot; cellspacing=&quot;0&quot; width=&quot;100%&quot;&gt;
+        &lt;thead&gt;
+        &lt;tr&gt;
+            &lt;th&gt;Name&lt;/th&gt;
+            &lt;th&gt;Position&lt;/th&gt;
+            &lt;th&gt;Office&lt;/th&gt;
+            &lt;th&gt;Extn.&lt;/th&gt;
+            &lt;th&gt;Start date&lt;/th&gt;
+            &lt;th&gt;Salary&lt;/th&gt;
+        &lt;/tr&gt;
+        &lt;/thead&gt;
+        &lt;tfoot&gt;
+        &lt;tr&gt;
+            &lt;th&gt;Name&lt;/th&gt;
+            &lt;th&gt;Position&lt;/th&gt;
+            &lt;th&gt;Office&lt;/th&gt;
+            &lt;th&gt;Extn.&lt;/th&gt;
+            &lt;th&gt;Start date&lt;/th&gt;
+            &lt;th&gt;Salary&lt;/th&gt;
+        &lt;/tr&gt;
+        &lt;/tfoot&gt;
+    &lt;/table&gt;
+</pre>
+<p>Với Datatable việc này khá đơn giản: </p>
+<pre class="brush: js">
+    $(document).ready(function() {
+        $('#example').DataTable( {
+            "ajax": 'http://laedaily.com/laravel-filemanager/photos/1/file/demo/jquery/file/arrays.txt'
+        } );
+    });
+</pre>
+<a href="demo/jquery/43" class="button bar-item green hover-white hover-text-green" style="margin-bottom: 7px" target="_blank">Xem ví dụ »</a>

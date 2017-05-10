@@ -1,0 +1,112 @@
+<p>Bài này sẽ sử dụng validate plugin jquery để validation form đăng ký</p>
+<ul>
+    <li>jQuery version: 1.12.4. Link cdn: <a href="https://cdn.jsdelivr.net/jquery/1.12.4/jquery.min.js">https://cdn.jsdelivr.net/jquery/1.12.4/jquery.min.js</a> </li>
+    <li>Validate plugin cdn: <a href="https://cdn.jsdelivr.net/jquery.validation/1.15.1/jquery.validate.min.js">https://cdn.jsdelivr.net/jquery.validation/1.15.1/jquery.validate.min.js</a></li>
+</ul>
+<p><strong>FORM</strong></p>
+<pre class="brush: html">
+    &lt;div class=&quot;container&quot;&gt;
+      &lt;h2&gt;Registration&lt;/h2&gt;
+      &lt;form name=&quot;registration&quot; method=&quot;post&quot; action=&quot;/checkForm&quot;&gt;
+        &lt;label for=&quot;firstname&quot;&gt;First Name&lt;/label&gt;
+        &lt;input type=&quot;text&quot; name=&quot;firstname&quot; id=&quot;firstname&quot; placeholder=&quot;John&quot;/&gt;
+        &lt;label for=&quot;lastname&quot;&gt;Last Name&lt;/label&gt;
+        &lt;input type=&quot;text&quot; name=&quot;lastname&quot; id=&quot;lastname&quot; placeholder=&quot;Doe&quot;/&gt;
+        &lt;label for=&quot;email&quot;&gt;Email&lt;/label&gt;
+        &lt;input type=&quot;email&quot; name=&quot;email&quot; id=&quot;email&quot; placeholder=&quot;john@doe.com&quot;/&gt;
+        &lt;label for=&quot;password&quot;&gt;Password&lt;/label&gt;
+        &lt;input type=&quot;password&quot; name=&quot;password&quot; id=&quot;password&quot; placeholder=&quot;&amp;#9679;&amp;#9679;&amp;#9679;&amp;#9679;&amp;#9679;&quot;/&gt;
+        &lt;button type=&quot;submit&quot;&gt;Register&lt;/button&gt;
+      &lt;/form&gt;
+    &lt;/div&gt;
+</pre>
+<p><strong>CSS</strong></p>
+<pre class="brush: css">
+    @import url("https://fonts.googleapis.com/css?family=Open+Sans");
+
+    /* Styles */
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: "Open Sans";
+      font-size: 14px;
+    }
+
+    .container {
+      width: 500px;
+      margin: 25px auto;
+    }
+
+    form {
+      padding: 20px;
+      background: #2c3e50;
+      color: #fff;
+      -moz-border-radius: 4px;
+      -webkit-border-radius: 4px;
+      border-radius: 4px;
+    }
+    form label,
+    form input,
+    form button {
+      border: 0;
+      margin-bottom: 3px;
+      display: block;
+      width: 100%;
+    }
+    form input {
+      height: 25px;
+      line-height: 25px;
+      background: #fff;
+      color: #000;
+      padding: 0 6px;
+      -moz-box-sizing: border-box;
+      -webkit-box-sizing: border-box;
+      box-sizing: border-box;
+    }
+    form button {
+      height: 30px;
+      line-height: 30px;
+      background: #e67e22;
+      color: #fff;
+      margin-top: 10px;
+      cursor: pointer;
+    }
+    form .error {
+      color: #ff0000;
+    }
+</pre>
+<p><strong>JS</strong></p>
+<pre class="brush: js">
+    $(function() {
+      $("form[name='registration']").validate({
+        rules: {
+          firstname: "required",
+          lastname: "required",
+          email: {
+            required: true,
+            email: true
+          },
+          password: {
+            required: true,
+            minlength: 5
+          }
+        },
+        messages: {
+          firstname: "Please enter your firstname",
+          lastname: "Please enter your lastname",
+          password: {
+            required: "Please provide a password",
+            minlength: "Your password must be at least 5 characters long"
+          },
+          email: "Please enter a valid email address"
+        },
+        submitHandler: function(form) {
+          form.submit();
+        }
+      });
+    });
+</pre>
+<a href="demo/jquery/42" class="button bar-item green hover-white hover-text-green" style="margin-bottom: 7px" target="_blank">Xem ví dụ »</a>
